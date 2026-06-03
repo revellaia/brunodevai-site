@@ -328,6 +328,24 @@ footer p { font-size:10px; color:#333; letter-spacing:.06em; }
 footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:600; }
 
 /* ════════════════════════════════════════
+   BACK TO TOP
+════════════════════════════════════════ */
+#back-top {
+  position:fixed; bottom:32px; right:32px; z-index:800;
+  width:40px; height:40px;
+  border:1px solid rgba(197,160,89,.5); background:rgba(10,10,10,.85);
+  backdrop-filter:blur(12px);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0; pointer-events:none;
+  transition:opacity .3s, border-color .25s, background .25s;
+}
+#back-top.visible { opacity:1; pointer-events:auto; }
+#back-top:hover { border-color:#C5A059; background:rgba(197,160,89,.12); }
+#back-top svg { transition:transform .2s; }
+#back-top:hover svg { transform:translateY(-2px); }
+@media (max-width:768px) { #back-top { bottom:20px; right:16px; width:36px; height:36px; } }
+
+/* ════════════════════════════════════════
    SECTOR REVEAL ANIMATION
 ════════════════════════════════════════ */
 .sector .s-left { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
@@ -395,6 +413,12 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
 
 <!-- Progress -->
 <div id="progress-bar"></div>
+<!-- Back to top -->
+<button id="back-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M7 11V3M3 7l4-4 4 4" stroke="#C5A059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 <!-- Custom cursor -->
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="cur-ring"></div>
@@ -1010,10 +1034,11 @@ const $ = id => document.getElementById(id);
 const openWA = msg => window.open('https://wa.me/5563992601105?text='+encodeURIComponent(msg),'_blank');
 const goTo = n => $('s'+n)?.scrollIntoView({behavior:'smooth'});
 
-/* ─ Progress bar ─ */
+/* ─ Progress bar + back to top ─ */
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   $('progress-bar').style.width = pct + '%';
+  $('back-top').classList.toggle('visible', pct > 20);
 });
 
 /* ─ Nav compact on scroll ─ */
