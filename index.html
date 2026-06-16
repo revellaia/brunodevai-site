@@ -32,6 +32,10 @@
 <link rel="apple-touch-icon" href="logo-brunodevai.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<!-- Security -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://revellaia.github.io https://www.ateliememore.com.br; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 <style>
 /* ════════════════════════════════════════
    RESET & BASE
@@ -1118,7 +1122,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
 <!-- ══════════════════════════════════════
      SCRIPTS
 ══════════════════════════════════════ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
 <script>
 /* ─ Helpers ─ */
 const $ = id => document.getElementById(id);
