@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BRUNODEV.AI — Sites Ultra Realistas para Empresas de Elite</title>
+<title>BRUNODEV.AI · Sites Ultra Realistas para Empresas de Elite</title>
 
 <!-- SEO -->
 <meta name="description" content="Sites ultra realistas para empresas de elite. Saude, agronegocio, automoveis, imoveis, advocacia, gastronomia, estetica, hotelaria, arquitetura, fitness, educacao, industria, moda, tech e logistica. Proposta gratuita em ate 48h."/>
-<meta name="author" content="Bruno Goebel — BRUNODEV.AI"/>
+<meta name="author" content="Bruno Goebel · BRUNODEV.AI"/>
 <meta name="contact" content="bgmcruz1988@gmail.com"/>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://brunodevai.com/"/>
-<meta property="og:title" content="BRUNODEV.AI — Sites Ultra Realistas para Empresas de Elite"/>
+<meta property="og:title" content="BRUNODEV.AI · Sites Ultra Realistas para Empresas de Elite"/>
 <meta property="og:description" content="Sites premium que colocam sua empresa no topo do mercado digital. 15 setores atendidos. Proposta gratuita em ate 48h."/>
 <meta property="og:image" content="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=630&auto=format&fit=crop&q=90"/>
 <meta property="og:image:width" content="1200"/>
@@ -23,7 +23,7 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="BRUNODEV.AI — Sites Ultra Realistas"/>
+<meta name="twitter:title" content="BRUNODEV.AI · Sites Ultra Realistas"/>
 <meta name="twitter:description" content="Sites premium para empresas de elite. 15 setores atendidos. Proposta gratuita em ate 48h."/>
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=630&auto=format&fit=crop&q=90"/>
 
@@ -407,6 +407,39 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   .contact-title { font-size:44px; }
   footer { padding:20px 32px; }
 }
+
+/* ── Trabalhos Realizados ── */
+#trabalhos { background:#fbf9f4; padding:120px 40px; position:relative; }
+.works-inner { max-width:1180px; margin:0 auto; }
+.works-head { text-align:center; max-width:680px; margin:0 auto 64px; }
+.works-eyebrow { font-size:9px; letter-spacing:.25em; color:#C5A059; text-transform:uppercase; font-weight:700; margin-bottom:18px; }
+.works-title { font-family:'Bodoni Moda',serif; font-size:52px; color:#1b1c19; font-weight:400; line-height:1.1; margin-bottom:18px; }
+.works-title em { font-style:italic; color:#C5A059; }
+.works-sub { font-size:14px; color:#777; line-height:1.8; font-weight:300; }
+.works-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
+.work-card { background:#fff; border:1px solid rgba(27,28,25,.08); border-radius:4px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s ease, border-color .5s ease; }
+.work-card:hover { transform:translateY(-6px); box-shadow:0 30px 60px -20px rgba(27,28,25,.28); border-color:rgba(197,160,89,.5); }
+.work-media { position:relative; aspect-ratio:16/10; overflow:hidden; background:#1b1c19; }
+.work-media img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s cubic-bezier(.16,1,.3,1); }
+.work-card:hover .work-media img { transform:scale(1.06); }
+.work-media::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(27,28,25,.55),rgba(27,28,25,0) 55%); }
+.work-live { position:absolute; top:16px; left:16px; z-index:2; display:inline-flex; align-items:center; gap:7px; background:rgba(27,28,25,.72); backdrop-filter:blur(6px); color:#fbf9f4; font-size:9px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; padding:7px 12px; border-radius:100px; }
+.work-live i { width:7px; height:7px; border-radius:50%; background:#5ad17f; animation:workPulse 2s infinite; }
+@keyframes workPulse { 0%{box-shadow:0 0 0 0 rgba(90,209,127,.6);} 70%{box-shadow:0 0 0 7px rgba(90,209,127,0);} 100%{box-shadow:0 0 0 0 rgba(90,209,127,0);} }
+.work-num { position:absolute; bottom:14px; right:18px; z-index:2; font-family:'Bodoni Moda',serif; font-size:38px; color:rgba(251,249,244,.9); line-height:1; }
+.work-body { padding:26px 28px 28px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.work-tag { font-size:9px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:#C5A059; }
+.work-name { font-family:'Bodoni Moda',serif; font-size:26px; color:#1b1c19; font-weight:400; line-height:1.15; }
+.work-desc { font-size:13px; color:#666; line-height:1.7; font-weight:300; flex:1; }
+.work-cta { margin-top:6px; display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:#1b1c19; transition:color .3s ease; }
+.work-card:hover .work-cta { color:#C5A059; }
+.work-arrow { transition:transform .35s ease; }
+.work-card:hover .work-arrow { transform:translateX(5px); }
+@media (max-width:780px){
+  #trabalhos { padding:80px 24px; }
+  .works-title { font-size:36px; }
+  .works-grid { grid-template-columns:1fr; gap:24px; }
+}
 </style>
 </head>
 <body>
@@ -432,7 +465,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   </a>
   <div class="nav-links">
     <a href="#sectors" data-i18n="nav-setores">Setores</a>
-    <a href="#contact" data-i18n="nav-portfolio">Portfólio</a>
+    <a href="#trabalhos" data-i18n="nav-portfolio">Portfólio</a>
     <a href="#contact" data-i18n="nav-contato">Contato</a>
   </div>
   <div class="nav-right">
@@ -486,7 +519,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
 </section>
 
 <!-- ══════════════════════════════════════
-     SECTOR 01 — SAÚDE INFANTIL
+     SECTOR 01 · SAÚDE INFANTIL
 ══════════════════════════════════════ -->
 <div id="sectors"></div>
 <section class="sector" id="s1">
@@ -521,7 +554,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 02 — AGRONEGÓCIO -->
+<!-- SECTOR 02 · AGRONEGÓCIO -->
 <section class="sector" id="s2">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay" style="background:linear-gradient(115deg,rgba(4,4,4,.80) 0%,rgba(4,4,4,.5) 42%,rgba(4,4,4,.15) 100%)"></div>
@@ -554,7 +587,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 03 — AUTOMÓVEIS -->
+<!-- SECTOR 03 · AUTOMÓVEIS -->
 <section class="sector" id="s3">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=95&auto=format&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -587,7 +620,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 04 — IMOBILIÁRIAS -->
+<!-- SECTOR 04 · IMOBILIÁRIAS -->
 <section class="sector" id="s4">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -620,7 +653,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 05 — ADVOCACIA -->
+<!-- SECTOR 05 · ADVOCACIA -->
 <section class="sector" id="s5">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay" style="background:linear-gradient(115deg,rgba(4,4,4,.86) 0%,rgba(4,4,4,.58) 42%,rgba(4,4,4,.2) 100%)"></div>
@@ -653,7 +686,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 06 — GASTRONOMIA -->
+<!-- SECTOR 06 · GASTRONOMIA -->
 <section class="sector" id="s6">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -686,7 +719,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 07 — ESTÉTICA -->
+<!-- SECTOR 07 · ESTÉTICA -->
 <section class="sector" id="s7">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -719,7 +752,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 08 — HOTELARIA -->
+<!-- SECTOR 08 · HOTELARIA -->
 <section class="sector" id="s8">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -752,7 +785,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 09 — ARQUITETURA -->
+<!-- SECTOR 09 · ARQUITETURA -->
 <section class="sector" id="s9">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay" style="background:linear-gradient(115deg,rgba(4,4,4,.82) 0%,rgba(4,4,4,.52) 45%,rgba(4,4,4,.16) 100%)"></div>
@@ -785,7 +818,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 10 — FITNESS -->
+<!-- SECTOR 10 · FITNESS -->
 <section class="sector" id="s10">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -818,7 +851,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 11 — EDUCAÇÃO -->
+<!-- SECTOR 11 · EDUCAÇÃO -->
 <section class="sector" id="s11">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1920&q=95&auto=format&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -851,7 +884,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 12 — INDÚSTRIA -->
+<!-- SECTOR 12 · INDÚSTRIA -->
 <section class="sector" id="s12">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=95&auto=format&fit=crop&crop=center')"></div>
   <div class="s-overlay" style="background:linear-gradient(115deg,rgba(4,4,4,.88) 0%,rgba(4,4,4,.6) 42%,rgba(4,4,4,.22) 100%)"></div>
@@ -884,7 +917,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 13 — MODA -->
+<!-- SECTOR 13 · MODA -->
 <section class="sector" id="s13">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=95&auto=format&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -917,7 +950,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Próximo Setor</span>
 </div>
 
-<!-- SECTOR 14 — TECH -->
+<!-- SECTOR 14 · TECH -->
 <section class="sector" id="s14">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay"></div>
@@ -950,7 +983,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
   <span class="between-label">Último Setor</span>
 </div>
 
-<!-- SECTOR 15 — LOGÍSTICA -->
+<!-- SECTOR 15 · LOGÍSTICA -->
 <section class="sector" id="s15">
   <div class="s-bg" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=95&fit=crop&crop=center')"></div>
   <div class="s-overlay" style="background:linear-gradient(115deg,rgba(4,4,4,.85) 0%,rgba(4,4,4,.56) 42%,rgba(4,4,4,.18) 100%)"></div>
@@ -974,6 +1007,50 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
       <div class="s-tag">Cotação Digital</div>
       <div class="s-tag">Certificações e Seguros</div>
       <div class="s-tag">Cobertura Nacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     TRABALHOS REALIZADOS
+══════════════════════ -->
+<section id="trabalhos">
+  <div class="works-inner">
+    <div class="works-head">
+      <div class="works-eyebrow" data-i18n="works-eyebrow">Portfólio Real</div>
+      <h2 class="works-title" data-i18n="works-title">Trabalhos <em>Realizados</em></h2>
+      <p class="works-sub" data-i18n="works-sub">Projetos entregues e no ar. Cada site abaixo está publicado, funcionando e gerando presença real para o cliente.</p>
+    </div>
+    <div class="works-grid">
+
+      <a class="work-card" href="https://revellaia.github.io/pires-contabilidade/" target="_blank" rel="noopener">
+        <div class="work-media">
+          <span class="work-live"><i></i><span data-i18n="works-live">No ar</span></span>
+          <span class="work-num">01</span>
+          <img src="https://revellaia.github.io/pires-contabilidade/assets/magda-hero.jpg" alt="Site Pires Contabilidade" loading="lazy"/>
+        </div>
+        <div class="work-body">
+          <div class="work-tag" data-i18n="works-pires-tag">Contabilidade</div>
+          <h3 class="work-name">Pires Contabilidade</h3>
+          <p class="work-desc" data-i18n="works-pires-desc">Magda Pires · Araguaína-TO. Contabilidade estratégica com presença digital de alto padrão, clareza e autoridade desde o primeiro contato.</p>
+          <span class="work-cta"><span data-i18n="works-cta">Ver site ao vivo</span><span class="work-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://revellaia.github.io/paula-guimaraes/" target="_blank" rel="noopener">
+        <div class="work-media">
+          <span class="work-live"><i></i><span data-i18n="works-live">No ar</span></span>
+          <span class="work-num">02</span>
+          <img src="https://revellaia.github.io/paula-guimaraes/assets/paula-camera-web.jpg" alt="Site Paula Guimarães Fotografia" loading="lazy"/>
+        </div>
+        <div class="work-body">
+          <div class="work-tag" data-i18n="works-paula-tag">Fotografia</div>
+          <h3 class="work-name">Paula Guimarães</h3>
+          <p class="work-desc" data-i18n="works-paula-desc">Studio de fotografia autoral em Araguaína-TO. Retrato, gestante, newborn e editorial em uma experiência visual imersiva.</p>
+          <span class="work-cta"><span data-i18n="works-cta">Ver site ao vivo</span><span class="work-arrow">→</span></span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1017,7 +1094,7 @@ footer span { font-size:10px; color:#C5A059; letter-spacing:.08em; font-weight:6
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><b>BRUNODEV<span>.AI</span></b></div>
-  <p>© 2025 BRUNODEV.AI — Todos os direitos reservados</p>
+  <p>© 2025 BRUNODEV.AI · Todos os direitos reservados</p>
   <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
     <span>Sites Ultra Realistas</span>
     <a href="mailto:bgmcruz1988@gmail.com" style="font-size:10px;color:#C5A059;letter-spacing:.06em;text-decoration:none;">bgmcruz1988@gmail.com</a>
@@ -1103,6 +1180,11 @@ sectors.forEach(s => io.observe(s));
 /* ─ i18n ─ */
 let lang = 'PT';
 const tEN = {
+  'works-eyebrow':'Real Portfolio','works-title':'Completed <em>Work</em>',
+  'works-sub':'Delivered and live. Every site below is published, running and building real presence for the client.',
+  'works-live':'Live','works-cta':'View live site',
+  'works-pires-tag':'Accounting','works-pires-desc':'Magda Pires · Araguaína-TO. Strategic accounting with a high-end digital presence, clarity and authority from the very first contact.',
+  'works-paula-tag':'Photography','works-paula-desc':'Authorial photography studio in Araguaína-TO. Portrait, maternity, newborn and editorial in an immersive visual experience.',
   'nav-setores':'Sectors','nav-portfolio':'Portfolio','nav-contato':'Contact',
   'nav-cta':'Request Proposal',
   'hero-eyebrow':'Premium Web Design for Elite Businesses',
@@ -1129,7 +1211,7 @@ const sectorsEN = [
   {eyebrow:'Sector 07 / Beauty',title:'Beauty<br>& Aesthetics',desc:'In the beauty market, image is everything. Premium websites that translate your aesthetic into a digital experience that sells procedures, builds loyalty and elevates your brand perception.',cta:'Elevate my brand'},
   {eyebrow:'Sector 08 / Hospitality',title:'Hotels<br>& Hospitality',desc:'The booking decision happens long before check-in. An immersive digital experience that conveys the atmosphere of your hotel turns online visitors into confirmed guests.',cta:'Increase my bookings'},
   {eyebrow:'Sector 09 / Architecture',title:'Architecture<br>& Construction',desc:'Your projects deserve a showcase as impressive as the work itself. Digital portfolios that communicate architectural vision, technical precision and the sophistication of your firm to the right clients.',cta:'Present my portfolio'},
-  {eyebrow:'Sector 10 / Fitness',title:'Fitness<br>& Wellness',desc:'Transformation sells. Premium websites that convey energy, results and belonging — driving sign-ups, retaining members and positioning your gym or studio as the reference in your city.',cta:'Grow my student base'},
+  {eyebrow:'Sector 10 / Fitness',title:'Fitness<br>& Wellness',desc:'Transformation sells. Premium websites that convey energy, results and belonging, driving sign-ups, retaining members and positioning your gym or studio as the reference in your city.',cta:'Grow my student base'},
   {eyebrow:'Sector 11 / Education',title:'Education<br>& Courses',desc:'Thousands of students choose where to study based on what they see online before any visit. A premium educational platform attracts the right student, with the right profile, at the right moment.',cta:'Attract the best students'},
   {eyebrow:'Sector 12 / Industry',title:'Industry &<br>Manufacturing',desc:'B2B credibility that opens doors and closes long-term contracts. High-standard industrial websites position your company among the sector references and attract major buyers.',cta:'Position my industry'},
   {eyebrow:'Sector 13 / Fashion',title:'Fashion, Luxury<br>& Lifestyle',desc:'Your brand deserves a digital showcase worthy of what you create. Luxury fashion portals that sell exclusivity, build desire and convert admirers into loyal buyers.',cta:'Launch my digital showcase'},
