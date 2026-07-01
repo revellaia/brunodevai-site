@@ -6,16 +6,17 @@
 <title>Bruno Goebel · Sites ultra realistas e ecossistemas digitais</title>
 
 <!-- SEO -->
-<meta name="description" content="Bruno Goebel cria sites ultra realistas, portais e ecossistemas digitais para qualquer setor. Design premium, engenharia segura e o mesmo padrao aplicado aos proprios produtos: Vakon Universe e Frozen Legacy."/>
+<meta name="description" content="Bruno Goebel cria sites ultra realistas, portais e ecossistemas digitais para qualquer setor. Design premium, engenharia segura e o mesmo padrão aplicado aos próprios produtos: Vakon Universe e NeoFit 365."/>
 <meta name="author" content="Bruno Goebel"/>
 <meta name="contact" content="bgmcruz1988@gmail.com"/>
 <link rel="canonical" href="https://brunodevai.com/"/>
+<meta name="robots" content="index, follow"/>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://brunodevai.com/"/>
 <meta property="og:title" content="Bruno Goebel · Sites ultra realistas e ecossistemas digitais"/>
-<meta property="og:description" content="Sites, portais e ecossistemas digitais de alto valor. Design premium, seguranca real e prova por projetos reais."/>
+<meta property="og:description" content="Sites, portais e ecossistemas digitais de alto valor. Design premium, segurança real e prova por projetos reais."/>
 <meta property="og:image" content="https://brunodevai.com/logo-brunodevai.png"/>
 <meta property="og:locale" content="pt_BR"/>
 <meta property="og:site_name" content="Bruno Goebel"/>
@@ -36,8 +37,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <!-- Security (herdado da auditoria 2026-06-16) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://revellaia.github.io https://www.ateliememore.com.br; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
 <script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 
 <!-- Schema.org -->
@@ -49,7 +51,7 @@
   "jobTitle":"Designer e arquiteto de ecossistemas digitais",
   "email":"bgmcruz1988@gmail.com",
   "url":"https://brunodevai.com/",
-  "knowsAbout":["Web design premium","Next.js","Three.js","UX","SEO","Seguranca web","LGPD"]
+  "knowsAbout":["Web design premium","Next.js","Three.js","UX","SEO","Segurança web","LGPD"]
 }
 </script>
 
@@ -58,20 +60,17 @@
    TOKENS
 ========================================================== */
 :root{
-  /* Claro herdado */
   --cream:#fbf9f4; --cream-2:#f2eee4; --gold:#C5A059; --charcoal:#1b1c19;
   --ink:#26261f; --ink-soft:#4d4d4d;
-  /* Escuro assinatura */
   --void:#0c0d0b; --void-2:#141613; --void-3:#1c1f1a;
   --gold-lit:#D8B368; --neon:#A8FF60; --neon-dim:rgba(168,255,96,.16);
   --text-hi:#f4f2ec; --text-lo:#9a9b94;
-  /* Sistema */
-  --maxw:1240px; --ease:cubic-bezier(.22,.61,.36,1);
-  --r:14px;
+  --maxw:1240px; --ease:cubic-bezier(.22,.61,.36,1); --r:14px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
 body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+body.locked{overflow:hidden}
 h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 .mono{font-family:'JetBrains Mono',monospace}
 a{color:inherit}
@@ -79,11 +78,9 @@ img{display:block;max-width:100%}
 ::selection{background:var(--neon);color:var(--void)}
 :focus-visible{outline:2px solid var(--neon);outline-offset:3px}
 
-/* ==========================================================
-   PROGRESS + BACK TO TOP
-========================================================== */
+/* PROGRESS + BACK TO TOP */
 #progress{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0;
-  background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .1s linear}
+  background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .1s linear;box-shadow:0 0 10px var(--neon-dim)}
 #toTop{position:fixed;right:22px;bottom:22px;z-index:800;width:46px;height:46px;border-radius:50%;
   border:1px solid var(--neon-dim);background:rgba(12,13,11,.85);color:var(--neon);
   display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
@@ -91,9 +88,7 @@ img{display:block;max-width:100%}
 #toTop.show{opacity:1;pointer-events:auto}
 #toTop:hover{box-shadow:0 0 24px var(--neon-dim);transform:translateY(-2px)}
 
-/* ==========================================================
-   NAV
-========================================================== */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;
   justify-content:space-between;padding:14px clamp(18px,4vw,56px);
   background:rgba(10,11,9,.78);backdrop-filter:blur(22px);
@@ -105,7 +100,8 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .nav-links{display:flex;gap:30px}
 .nav-links a{font-size:11px;color:var(--text-lo);letter-spacing:.09em;text-transform:uppercase;
   font-weight:500;text-decoration:none;position:relative;padding-bottom:3px;transition:color .2s}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--neon);transition:width .28s var(--ease)}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--neon);
+  box-shadow:0 0 8px var(--neon);transition:width .28s var(--ease)}
 .nav-links a:hover{color:var(--text-hi)}
 .nav-links a:hover::after{width:100%}
 .nav-right{display:flex;gap:10px;align-items:center}
@@ -116,14 +112,34 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   padding:10px 18px;border:none;cursor:pointer;text-transform:uppercase;text-decoration:none;
   transition:box-shadow .25s,transform .2s}
 .btn-cta:hover{box-shadow:0 0 26px var(--neon-dim);transform:translateY(-1px)}
-.nav-burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;z-index:620}
 .nav-burger span{width:22px;height:2px;background:var(--gold-lit);transition:.3s}
+.nav-burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.active span:nth-child(2){opacity:0}
+.nav-burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* ==========================================================
-   HERO (escuro)
-========================================================== */
-.hero{position:relative;min-height:100vh;background:var(--void);color:var(--text-hi);
-  display:flex;align-items:center;overflow:hidden}
+/* MOBILE DRAWER (fora do nav para escapar do containing block do backdrop-filter) */
+#navOverlay{position:fixed;inset:0;z-index:610;background:rgba(4,5,4,.6);backdrop-filter:blur(3px);
+  opacity:0;pointer-events:none;transition:opacity .3s}
+#navOverlay.open{opacity:1;pointer-events:auto}
+#mobileDrawer{position:fixed;top:0;right:0;z-index:615;height:100vh;height:100dvh;
+  width:min(84vw,340px);background:var(--void-2);border-left:1px solid rgba(216,179,104,.2);
+  transform:translateX(100%);transition:transform .35s var(--ease);
+  display:flex;flex-direction:column;gap:8px;padding:96px 30px 30px;overflow-y:auto;overscroll-behavior:contain}
+#mobileDrawer.open{transform:translateX(0)}
+#mobileDrawer a{font-size:17px;color:var(--text-hi);text-decoration:none;letter-spacing:.02em;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
+#mobileDrawer a::after{content:'›';color:var(--gold-lit)}
+#mobileDrawer a:hover{color:var(--neon)}
+#mobileDrawer .drawer-cta{margin-top:18px;background:var(--neon);color:var(--void);font-weight:800;
+  text-align:center;justify-content:center;border-bottom:none;border-radius:6px;padding:16px}
+#mobileDrawer .drawer-cta::after{content:''}
+.drawer-foot{margin-top:auto;padding-top:20px;font-size:12px;color:var(--text-lo)}
+.drawer-foot a{font-size:12px;border-bottom:none;padding:6px 0}
+.drawer-foot a::after{content:''}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100dvh;background:var(--void);color:var(--text-hi);display:flex;align-items:center;overflow:hidden}
 #heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.9}
 .hero::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
   background:radial-gradient(60% 60% at 70% 30%,transparent,rgba(12,13,11,.55) 70%,var(--void)),
@@ -131,114 +147,88 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-inner{position:relative;z-index:3;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,56px);width:100%}
 .hero-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lit);
   margin-bottom:26px;display:flex;align-items:center;gap:12px}
-.hero-eyebrow::before{content:'';width:34px;height:1px;background:var(--neon)}
+.hero-eyebrow::before{content:'';width:34px;height:1px;background:var(--neon);box-shadow:0 0 10px var(--neon)}
 .hero h1{font-size:clamp(34px,6.2vw,80px);line-height:1.02;font-weight:500;letter-spacing:-.01em;max-width:16ch}
 .hero h1 em{font-style:italic;color:var(--gold-lit)}
-.hero-sub{margin-top:28px;font-size:clamp(15px,1.5vw,19px);line-height:1.7;color:var(--text-lo);
-  max-width:56ch;font-weight:300}
+.hero-sub{margin-top:28px;font-size:clamp(15px,1.5vw,19px);line-height:1.7;color:var(--text-lo);max-width:56ch;font-weight:300}
 .hero-actions{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
 .btn-primary{background:var(--neon);color:var(--void);font-weight:800;font-size:13px;letter-spacing:.04em;
-  padding:16px 30px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
-  transition:box-shadow .3s,transform .2s}
+  padding:16px 30px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s,transform .2s}
 .btn-primary:hover{box-shadow:0 0 34px var(--neon-dim);transform:translateY(-2px)}
 .btn-ghost{border:1px solid rgba(216,179,104,.5);color:var(--gold-lit);font-weight:600;font-size:13px;
   letter-spacing:.04em;padding:16px 28px;background:none;cursor:pointer;text-decoration:none;
   display:inline-flex;align-items:center;gap:10px;transition:border-color .25s,color .25s}
 .btn-ghost:hover{border-color:var(--neon);color:var(--text-hi)}
 .hero-scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
-  font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);
-  display:flex;flex-direction:column;align-items:center;gap:8px}
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);display:flex;flex-direction:column;align-items:center;gap:8px}
 .hero-scroll .line{width:1px;height:34px;background:linear-gradient(var(--neon),transparent);animation:pulse 2.2s infinite}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
-/* ==========================================================
-   DARK SECTION SHELL
-========================================================== */
+/* DARK SHELL */
 .dark{background:var(--void);color:var(--text-hi);position:relative}
 .dark.grain::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(70px,9vw,130px) clamp(18px,4vw,56px);position:relative;z-index:2}
-.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
-  display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.eyebrow::before{content:'';width:28px;height:1px;background:var(--neon)}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon)}
 .dark .eyebrow{color:var(--gold-lit)}
 .sec-title{font-size:clamp(26px,3.6vw,46px);line-height:1.08;font-weight:500;letter-spacing:-.01em;max-width:20ch}
 .sec-lead{margin-top:18px;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:var(--ink-soft);max-width:60ch;font-weight:300}
 .dark .sec-lead{color:var(--text-lo)}
-
-/* Positioning strip */
 .position .wrap{padding-top:clamp(50px,6vw,80px);padding-bottom:clamp(50px,6vw,80px)}
 .position .sec-title{max-width:26ch;font-size:clamp(22px,2.8vw,38px)}
 .position em{font-style:italic;color:var(--gold-lit)}
-
-/* Proof strip */
 .proof-strip{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:26px;align-items:center}
 .proof-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text-lo);letter-spacing:.02em}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon);position:relative}
 .dot.soft{background:var(--gold-lit);box-shadow:0 0 8px rgba(216,179,104,.6)}
 .proof-item b{color:var(--text-hi);font-weight:600}
 
-/* ==========================================================
-   CATALOGO (Netflix-style)
-========================================================== */
+/* CATALOGO */
 .catalog-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}
 .catalog-nav{display:flex;gap:8px}
-.cnav{width:42px;height:42px;border:1px solid rgba(216,179,104,.35);background:none;color:var(--gold-lit);
-  cursor:pointer;display:grid;place-items:center;transition:border-color .2s,color .2s,background .2s}
+.cnav{width:42px;height:42px;border:1px solid rgba(216,179,104,.35);background:none;color:var(--gold-lit);cursor:pointer;display:grid;place-items:center;transition:border-color .2s,color .2s}
 .cnav:hover{border-color:var(--neon);color:var(--text-hi)}
-.cnav:disabled{opacity:.3;cursor:default}
-.catalog-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:6px 2px 18px;scrollbar-width:none;scroll-behavior:smooth}
+.catalog-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;scrollbar-width:none;scroll-behavior:smooth}
 .catalog-row::-webkit-scrollbar{display:none}
 .card{flex:0 0 clamp(280px,32vw,400px);scroll-snap-align:start;background:var(--void-2);
   border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden;cursor:pointer;
-  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;text-align:left;
-  display:flex;flex-direction:column;color:inherit}
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;text-align:left;display:flex;flex-direction:column;color:inherit}
 .card:hover{transform:translateY(-6px);border-color:var(--neon-dim);box-shadow:0 20px 50px rgba(0,0,0,.5)}
-.card-cover{position:relative;aspect-ratio:16/10;overflow:hidden;
-  background:linear-gradient(135deg,var(--void-3),var(--void))}
-.card-cover .cov-art{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center}
+.card-cover{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,var(--void-3),var(--void))}
+.card-cover .cov-art{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;z-index:1}
 .card-cover .cov-art .k{font-family:'Bodoni Moda',serif;font-size:clamp(26px,3vw,40px);color:var(--gold-lit);line-height:1}
 .card-cover .cov-art .k span{color:var(--text-hi)}
-.card-cover .glow{position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 30%,var(--neon-dim),transparent 70%);opacity:.5;transition:opacity .4s}
-.card:hover .glow{opacity:1}
-.card-cover .scan{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);
-  transform:translateY(0);opacity:0;transition:opacity .3s}
-.card:hover .scan{opacity:.8;animation:scan 2.4s linear infinite}
+.card-cover .glow{position:absolute;inset:0;z-index:3;background:radial-gradient(50% 60% at 50% 30%,var(--neon-dim),transparent 70%);opacity:.4;transition:opacity .4s;pointer-events:none}
+.card:hover .glow{opacity:.9}
+.card-cover .scan{position:absolute;left:0;right:0;top:0;height:1px;z-index:4;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover .scan{opacity:.85;animation:scan 2.4s linear infinite}
 @keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(240px)}}
-.card-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
-.card-cover img.loaded{opacity:1}
+.card-cover img.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .6s;z-index:2}
+.card-cover img.cover-img.loaded{opacity:1}
 .card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
-.badge{align-self:flex-start;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
-  padding:5px 10px;border-radius:40px;display:inline-flex;align-items:center;gap:7px}
+.badge{align-self:flex-start;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:40px;display:inline-flex;align-items:center;gap:7px}
 .badge.live{color:var(--neon);border:1px solid var(--neon-dim)}
-.badge.soon{color:var(--gold-lit);border:1px solid rgba(216,179,104,.3)}
+.badge.dev{color:var(--gold-lit);border:1px solid rgba(216,179,104,.35)}
 .card-name{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi);line-height:1.1}
 .card-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .card-desc{font-size:13.5px;line-height:1.65;color:var(--text-lo);font-weight:300;flex:1}
-.card-more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lit);
-  display:inline-flex;align-items:center;gap:8px;margin-top:4px}
-.card-more::after{content:'';width:0;height:1px;background:var(--neon);transition:width .3s var(--ease)}
+.card-more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lit);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+.card-more::after{content:'';width:0;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon);transition:width .3s var(--ease)}
 .card:hover .card-more::after{width:26px}
 
-/* ==========================================================
-   DOSSIE MODAL
-========================================================== */
-.modal-back{position:fixed;inset:0;z-index:1000;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);
-  display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
+/* MODAL */
+.modal-back{position:fixed;inset:0;z-index:1000;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
 .modal-back.open{display:flex}
 .modal-back.show{opacity:1}
-.modal{background:var(--void-2);border:1px solid rgba(216,179,104,.22);border-radius:16px;
-  max-width:720px;width:100%;max-height:88vh;overflow:auto;position:relative;color:var(--text-hi);
-  transform:translateY(16px);transition:transform .35s var(--ease)}
+.modal{background:var(--void-2);border:1px solid rgba(216,179,104,.22);border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow:auto;position:relative;color:var(--text-hi);transform:translateY(16px);transition:transform .35s var(--ease)}
 .modal-back.show .modal{transform:translateY(0)}
-.modal-cover{aspect-ratio:16/7;background:linear-gradient(135deg,var(--void-3),var(--void));position:relative;
-  display:grid;place-items:center}
-.modal-cover .k{font-family:'Bodoni Moda',serif;font-size:clamp(30px,5vw,52px);color:var(--gold-lit)}
+.modal-cover{aspect-ratio:16/7;background:linear-gradient(135deg,var(--void-3),var(--void));position:relative;display:grid;place-items:center;overflow:hidden}
+.modal-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.modal-cover .k{position:relative;z-index:2;font-family:'Bodoni Moda',serif;font-size:clamp(30px,5vw,52px);color:var(--gold-lit);text-shadow:0 4px 30px rgba(0,0,0,.6)}
 .modal-cover .k span{color:var(--text-hi)}
-.modal-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.4);color:var(--text-hi);cursor:pointer;
-  display:grid;place-items:center;font-size:18px;transition:border-color .2s}
+.modal-cover .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,13,11,.25),rgba(12,13,11,.75))}
+.modal-x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:var(--text-hi);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:border-color .2s}
 .modal-x:hover{border-color:var(--neon)}
 .modal-in{padding:30px clamp(22px,4vw,40px) 38px}
 .modal-in .badge{margin-bottom:14px}
@@ -249,23 +239,17 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .m-block p{font-size:14.5px;line-height:1.7;color:var(--text-lo);font-weight:300}
 .m-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
 
-/* ==========================================================
-   LIGHT SECTIONS
-========================================================== */
+/* LIGHT */
 .light{background:var(--cream)}
 .light.alt{background:var(--cream-2)}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
-.tile{background:#fff;border:1px solid rgba(27,28,25,.08);border-radius:var(--r);padding:30px 26px;
-  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.tile{background:#fff;border:1px solid rgba(27,28,25,.08);border-radius:var(--r);padding:30px 26px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
 .tile:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(27,28,25,.08);border-color:rgba(197,160,89,.4)}
 .tile .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:.1em}
 .tile h3{font-size:20px;margin:14px 0 10px;color:var(--charcoal)}
 .tile p{font-size:14px;line-height:1.7;color:var(--ink-soft);font-weight:300}
-
-/* Setores (tabs) */
 .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
-.tab{border:1px solid rgba(27,28,25,.16);background:none;color:var(--ink-soft);font-size:12.5px;
-  letter-spacing:.04em;font-weight:600;padding:11px 20px;border-radius:40px;cursor:pointer;transition:all .22s}
+.tab{border:1px solid rgba(27,28,25,.16);background:none;color:var(--ink-soft);font-size:12.5px;letter-spacing:.04em;font-weight:600;padding:11px 20px;border-radius:40px;cursor:pointer;transition:all .22s}
 .tab[aria-selected="true"]{background:var(--charcoal);color:var(--cream);border-color:var(--charcoal)}
 .tab:hover{border-color:var(--gold)}
 .tab-panel{margin-top:30px;display:none;animation:fade .4s var(--ease)}
@@ -277,49 +261,34 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .sector-card h4{font-size:19px;margin:10px 0;color:var(--charcoal)}
 .sector-card p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);font-weight:300}
 .sector-card .items{margin-top:12px;font-size:12px;color:var(--gold);letter-spacing:.03em}
-
-/* Method 5D */
-.method-list{margin-top:44px;border-top:1px solid rgba(27,28,25,.12)}
-.method-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:26px 0;
-  border-bottom:1px solid rgba(27,28,25,.12);align-items:baseline}
+.method-list{margin-top:44px;border-top:1px solid rgba(27,28,25,.12);position:relative}
+.method-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid rgba(27,28,25,.12);align-items:baseline;position:relative}
+.method-item::before{content:'';position:absolute;left:0;top:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .6s var(--ease)}
+.method-item.in::before{width:100%}
 .method-item .mk{font-family:'Bodoni Moda',serif;font-size:34px;color:var(--gold)}
 .method-item h3{font-size:20px;color:var(--charcoal);margin-bottom:8px}
 .method-item p{font-size:14px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:60ch}
-
-/* Security */
 .sec-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
 .sec-feat{border:1px solid rgba(216,179,104,.22);border-radius:var(--r);padding:22px;background:var(--void-2)}
 .sec-feat .sk{color:var(--neon);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
 .sec-feat h4{font-size:16px;color:var(--text-hi);margin:10px 0 6px}
 .sec-feat p{font-size:12.5px;line-height:1.6;color:var(--text-lo);font-weight:300}
-
-/* Stack */
 .stack-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-hi);
-  border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 16px;background:var(--void-2)}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-hi);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 16px;background:var(--void-2)}
 .chip b{color:var(--neon);font-weight:500}
-
-/* FAQ */
 .faq{margin-top:40px;border-top:1px solid rgba(27,28,25,.12)}
 .faq-item{border-bottom:1px solid rgba(27,28,25,.12)}
-.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 0;
-  display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Bodoni Moda',serif;
-  font-size:19px;color:var(--charcoal)}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:'Bodoni Moda',serif;font-size:19px;color:var(--charcoal)}
 .faq-q .pm{color:var(--gold);font-size:22px;transition:transform .3s}
 .faq-item.open .pm{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
 .faq-a p{padding:0 0 22px;font-size:14px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:70ch}
-
-/* CTA final */
 .cta-final{text-align:center}
 .cta-final .sec-title{margin:0 auto;max-width:24ch}
 .cta-final .sec-lead{margin:18px auto 0}
 .cta-final .hero-actions{justify-content:center;margin-top:36px}
-
-/* Footer */
 footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197,160,89,.16)}
-.foot{max-width:var(--maxw);margin:0 auto;padding:56px clamp(18px,4vw,56px);
-  display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot{max-width:var(--maxw);margin:0 auto;padding:56px clamp(18px,4vw,56px);display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
 .foot a{color:var(--gold-lit);text-decoration:none}
 .foot a:hover{color:var(--text-hi)}
 .foot-brand{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi)}
@@ -327,16 +296,11 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot-col h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
 .foot-col a{display:block;font-size:13px;margin-bottom:9px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.06);text-align:center;padding:20px;font-size:11px;color:var(--text-lo)}
+.foot-bottom a{color:var(--gold-lit);text-decoration:none}
 
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
+/* RESPONSIVE */
 @media(max-width:900px){
-  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);background:var(--void-2);
-    flex-direction:column;justify-content:center;gap:26px;padding:40px;transform:translateX(100%);
-    transition:transform .35s var(--ease);z-index:590}
-  .nav-links.open{transform:translateX(0)}
-  .nav-links a{font-size:16px}
+  .nav-links{display:none}
   .nav-burger{display:flex}
   .grid-3{grid-template-columns:1fr}
   .sec-feats{grid-template-columns:1fr 1fr}
@@ -349,14 +313,13 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   .method-item{grid-template-columns:1fr;gap:6px}
   .sec-feats{grid-template-columns:1fr}
   .foot{flex-direction:column}
+  .nav-right .btn-cta{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
   #heroCanvas{display:none}
   .hero{background:radial-gradient(60% 60% at 70% 30%,var(--void-3),var(--void))}
 }
-
-/* Reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -366,31 +329,44 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#top" aria-label="Bruno Goebel, inicio"><img src="logo-brunodevai.png" alt="Bruno Goebel"/></a>
+  <a class="logo" href="#top" aria-label="Bruno Goebel, início"><img src="logo-brunodevai.png" alt="Bruno Goebel"/></a>
   <div class="nav-links" id="navLinks">
     <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
     <a href="#cases" data-i18n="nav_cases">Cases</a>
     <a href="#setores" data-i18n="nav_sectors">Setores</a>
-    <a href="#metodo" data-i18n="nav_method">Metodo</a>
-    <a href="#seguranca" data-i18n="nav_security">Seguranca</a>
+    <a href="#metodo" data-i18n="nav_method">Método</a>
+    <a href="#seguranca" data-i18n="nav_security">Segurança</a>
     <a href="#contato" data-i18n="nav_contact">Contato</a>
   </div>
   <div class="nav-right">
     <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
     <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar proposta</a>
-    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<!-- MOBILE DRAWER (fora do nav) -->
+<div id="navOverlay"></div>
+<aside id="mobileDrawer" aria-label="Menu de navegação">
+  <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
+  <a href="#cases" data-i18n="nav_cases">Cases</a>
+  <a href="#setores" data-i18n="nav_sectors">Setores</a>
+  <a href="#metodo" data-i18n="nav_method">Método</a>
+  <a href="#seguranca" data-i18n="nav_security">Segurança</a>
+  <a href="#contato" data-i18n="nav_contact">Contato</a>
+  <a class="drawer-cta" href="#contato" data-i18n="nav_cta">Solicitar proposta</a>
+  <div class="drawer-foot"><a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
+</aside>
 
 <!-- HERO -->
 <header class="hero" id="top">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-inner">
-    <div class="hero-eyebrow"><span data-i18n="hero_eyebrow">Bruno Goebel · Estudio digital · Sites ultra realistas</span></div>
-    <h1 data-i18n="hero_title">Seu site nao precisa apenas existir. Ele precisa <em>aumentar a percepcao de valor</em> da sua marca.</h1>
-    <p class="hero-sub" data-i18n="hero_sub">Crio sites, portais e ecossistemas digitais para qualquer setor, com design premium, tecnologia segura e a mesma exigencia que aplico aos meus proprios produtos.</p>
+    <div class="hero-eyebrow"><span data-i18n="hero_eyebrow">Bruno Goebel · Estúdio digital · Sites ultra realistas</span></div>
+    <h1 data-i18n="hero_title">Seu site não precisa apenas existir. Ele precisa <em>aumentar a percepção de valor</em> da sua marca.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Crio sites, portais e ecossistemas digitais para qualquer setor, com design premium, tecnologia segura e a mesma exigência que aplico aos meus próprios produtos.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#contato" data-i18n="hero_cta1">Quero elevar minha presenca digital →</a>
+      <a class="btn-primary" href="#contato" data-i18n="hero_cta1">Quero elevar minha presença digital →</a>
       <a class="btn-ghost" href="#ecossistemas" data-i18n="hero_cta2">Ver projetos reais</a>
     </div>
   </div>
@@ -400,12 +376,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- POSICIONAMENTO -->
 <section class="dark position grain">
   <div class="wrap">
-    <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constroi o seu site</span></div>
-    <h2 class="sec-title" data-i18n="pos_title">Nao sou uma agencia generica. Sou o criador de ecossistemas digitais como <em>Vakon Universe</em> e <em>Frozen Legacy</em>. O mesmo padrao que uso nos meus produtos, aplico no seu site.</h2>
+    <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
+    <h2 class="sec-title" data-i18n="pos_title">Não sou uma agência genérica. Sou o criador de ecossistemas digitais como <em>Vakon Universe</em> e <em>NeoFit 365</em>. O mesmo padrão que uso nos meus produtos, aplico no seu site.</h2>
     <div class="proof-strip">
-      <span class="proof-item"><span class="dot"></span><b data-i18n="pos_p1">Vakon Universe</b> · <span data-i18n="pos_p1s">no ar</span></span>
-      <span class="proof-item"><span class="dot"></span><b data-i18n="pos_p2">Frozen Legacy</b> · <span data-i18n="pos_p2s">no ar</span></span>
-      <span class="proof-item"><span class="dot soft"></span><b>3 cases</b> · <span data-i18n="pos_p3s">clientes reais no ar</span></span>
+      <span class="proof-item"><span class="dot"></span><b>Vakon Universe</b> · <span data-i18n="pos_p1s">no ar</span></span>
+      <span class="proof-item"><span class="dot soft"></span><b>NeoFit 365</b> · <span data-i18n="pos_p2s">em desenvolvimento</span></span>
+      <span class="proof-item"><span class="dot"></span><b>3 cases</b> · <span data-i18n="pos_p3s">clientes reais no ar</span></span>
     </div>
   </div>
 </section>
@@ -415,33 +391,33 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <div class="wrap">
     <div class="catalog-head">
       <div>
-        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistemas proprios</span></div>
-        <h2 class="sec-title" data-i18n="eco_title">Prova de que atendo qualquer nivel de complexidade.</h2>
+        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistemas próprios</span></div>
+        <h2 class="sec-title" data-i18n="eco_title">Prova de que atendo qualquer nível de complexidade.</h2>
       </div>
       <div class="catalog-nav">
         <button class="cnav" data-row="ecoRow" data-dir="-1" aria-label="Anterior">‹</button>
-        <button class="cnav" data-row="ecoRow" data-dir="1" aria-label="Proximo">›</button>
+        <button class="cnav" data-row="ecoRow" data-dir="1" aria-label="Próximo">›</button>
       </div>
     </div>
     <div class="catalog-row" id="ecoRow">
       <button class="card" data-modal="m-vakon">
-        <div class="card-cover"><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Vakon<br><span>Universe</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cover-vakon.jpg" alt="Vakon Universe, hero The Frozen Legacy"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Vakon<br><span>Universe</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Vakon Universe</span>
-          <span class="card-tag" data-i18n="vakon_tag">Universo transmidia · 3D interativo</span>
-          <span class="card-desc" data-i18n="vakon_desc">Universo sci-fi transmidia com experiencia 3D em tempo real no navegador. IP proprio, bilingue, arquitetura de mundo continuo.</span>
-          <span class="card-more" data-i18n="more">Abrir dossie</span>
+          <span class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</span>
+          <span class="card-desc" data-i18n="vakon_desc">Universo sci-fi transmídia com a experiência The Frozen Legacy: 3D em tempo real no navegador, IP próprio, bilíngue e arquitetura de mundo contínuo.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
-      <button class="card" data-modal="m-frozen">
-        <div class="card-cover"><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Frozen<br><span>Legacy</span></div></div></div>
+      <button class="card" data-modal="m-neofit">
+        <div class="card-cover"><img class="cover-img" data-src="assets/neofit-battlepass.jpg" alt="NeoFit 365, interface gamificada"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">NeoFit<br><span>365</span></div></div></div>
         <div class="card-body">
-          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="card-name">Frozen Legacy</span>
-          <span class="card-tag" data-i18n="frozen_tag">Experiencia narrativa · WebGL</span>
-          <span class="card-desc" data-i18n="frozen_desc">Experiencia interativa de narrativa dentro do universo Vakon. Motion, 3D e storytelling que rodam direto no navegador, sem instalar nada.</span>
-          <span class="card-more" data-i18n="more">Abrir dossie</span>
+          <span class="badge dev"><span class="dot soft"></span><span data-i18n="badge_dev">Em desenvolvimento</span></span>
+          <span class="card-name">NeoFit 365</span>
+          <span class="card-tag" data-i18n="neofit_tag">App fitness gamificado · IA</span>
+          <span class="card-desc" data-i18n="neofit_desc">Aplicativo fitness gamificado com avatar, XP, missões e progressão, sobre arquitetura segura. Prova de que também construo sistemas e apps, não apenas sites.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
     </div>
@@ -458,38 +434,38 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
       <div class="catalog-nav">
         <button class="cnav" data-row="caseRow" data-dir="-1" aria-label="Anterior">‹</button>
-        <button class="cnav" data-row="caseRow" data-dir="1" aria-label="Proximo">›</button>
+        <button class="cnav" data-row="caseRow" data-dir="1" aria-label="Próximo">›</button>
       </div>
     </div>
     <div class="catalog-row" id="caseRow">
       <button class="card" data-modal="m-pires">
-        <div class="card-cover"><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cover-pires.jpg" alt="Site da Pires Contabilidade"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Pires Contabilidade</span>
-          <span class="card-tag" data-i18n="pires_tag">Servicos profissionais</span>
-          <span class="card-desc" data-i18n="pires_desc">Contabilidade que passou a parecer consultoria premium. Percepcao de confianca resolvida antes da primeira reuniao.</span>
-          <span class="card-more" data-i18n="more">Abrir dossie</span>
+          <span class="card-tag" data-i18n="pires_tag">Serviços profissionais</span>
+          <span class="card-desc" data-i18n="pires_desc">Contabilidade que passou a parecer consultoria premium. Percepção de confiança resolvida antes da primeira reunião.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
       <button class="card" data-modal="m-paula">
-        <div class="card-cover"><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimaraes</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cover-paula.jpg" alt="Site da fotógrafa Paula Guimarães"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimarães</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="card-name">Paula Guimaraes</span>
-          <span class="card-tag" data-i18n="paula_tag">Fotografia · alto padrao</span>
-          <span class="card-desc" data-i18n="paula_desc">Portfolio editorial noturno para fotografa. Direcao de arte que posiciona o trabalho no segmento de luxo.</span>
-          <span class="card-more" data-i18n="more">Abrir dossie</span>
+          <span class="card-name">Paula Guimarães</span>
+          <span class="card-tag" data-i18n="paula_tag">Fotografia · alto padrão</span>
+          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial noturno para fotógrafa. Direção de arte que posiciona o trabalho no segmento de luxo.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
       <button class="card" data-modal="m-memore">
-        <div class="card-cover"><div class="glow"></div><div class="scan"></div><img data-src="assets/memore.jpg" alt="Atelie Memore"/><div class="cov-art"><div class="k">Atelie<br><span>Memore</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cover-memore-live.jpg" alt="Loja do Ateliê Memoré"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Ateliê<br><span>Memoré</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="card-name">Atelie Memore</span>
-          <span class="card-tag" data-i18n="memore_tag">Comercio · artesanal</span>
-          <span class="card-desc" data-i18n="memore_desc">Marca artesanal com dominio proprio e identidade premium. Do produto feito a mao a uma vitrine que vende sozinha.</span>
-          <span class="card-more" data-i18n="more">Abrir dossie</span>
+          <span class="card-name">Ateliê Memoré</span>
+          <span class="card-tag" data-i18n="memore_tag">Comércio · artesanal</span>
+          <span class="card-desc" data-i18n="memore_desc">Marca artesanal com domínio próprio e identidade premium. Do produto feito à mão a uma vitrine que vende sozinha.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
     </div>
@@ -500,11 +476,11 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="create_eyebrow">O que eu crio</span></div>
-    <h2 class="sec-title" data-i18n="create_title">Cada entrega e um ativo comercial, nao um cartao de visita.</h2>
+    <h2 class="sec-title" data-i18n="create_title">Cada entrega é um ativo comercial, não um cartão de visita.</h2>
     <div class="grid-3">
-      <div class="tile reveal"><div class="num">01</div><h3 data-i18n="create_1t">Sites premium</h3><p data-i18n="create_1d">Sites institucionais e de marca que elevam a percepcao de valor e sustentam preco mais alto.</p></div>
-      <div class="tile reveal"><div class="num">02</div><h3 data-i18n="create_2t">Landing pages de alto padrao</h3><p data-i18n="create_2d">Paginas de conversao para lancamento, oferta ou captura, com copy e design alinhados ao objetivo.</p></div>
-      <div class="tile reveal"><div class="num">03</div><h3 data-i18n="create_3t">Portais e sistemas</h3><p data-i18n="create_3d">Portais institucionais, catalogos e aplicacoes quando o projeto pede mais que uma pagina.</p></div>
+      <div class="tile reveal"><div class="num">01</div><h3 data-i18n="create_1t">Sites premium</h3><p data-i18n="create_1d">Sites institucionais e de marca que elevam a percepção de valor e sustentam preço mais alto.</p></div>
+      <div class="tile reveal"><div class="num">02</div><h3 data-i18n="create_2t">Landing pages de alto padrão</h3><p data-i18n="create_2d">Páginas de conversão para lançamento, oferta ou captura, com copy e design alinhados ao objetivo.</p></div>
+      <div class="tile reveal"><div class="num">03</div><h3 data-i18n="create_3t">Portais, sistemas e apps</h3><p data-i18n="create_3d">Portais institucionais, catálogos, sistemas e aplicativos quando o projeto pede mais que uma página.</p></div>
     </div>
   </div>
 </section>
@@ -513,33 +489,33 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light alt" id="setores">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="sectors_eyebrow">Setores atendidos</span></div>
-    <h2 class="sec-title" data-i18n="sectors_title">Ja consigo transformar qualquer setor. E provo com casos que nao poderiam ser mais diferentes entre si.</h2>
+    <h2 class="sec-title" data-i18n="sectors_title">Já consigo transformar qualquer setor. E provo com casos que não poderiam ser mais diferentes entre si.</h2>
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true" data-tab="t1" data-i18n="sec_g1">Servicos profissionais</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t2" data-i18n="sec_g2">Comercio e varejo</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t3" data-i18n="sec_g3">Agro e industria</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="t4" data-i18n="sec_g4">Alto padrao</button>
+      <button class="tab" role="tab" aria-selected="true" data-tab="t1" data-i18n="sec_g1">Serviços profissionais</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t2" data-i18n="sec_g2">Comércio e varejo</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t3" data-i18n="sec_g3">Agro e indústria</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="t4" data-i18n="sec_g4">Alto padrão</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="t5" data-i18n="sec_g5">Tecnologia e produtos</button>
     </div>
     <div class="tab-panel active" id="t1"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g1h">Parecer confiavel e caro o suficiente</h4><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saude e educacao vendem confianca. O site precisa justificar o preco antes da primeira reuniao.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saude · Educacao</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Pires Contabilidade</h4><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graca virou uma marca com percepcao de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g1h">Parecer confiável e caro o suficiente</h4><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saúde e educação vendem confiança. O site precisa justificar o preço antes da primeira reunião.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saúde · Educação</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Pires Contabilidade</h4><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graça virou uma marca com percepção de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t2"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g2h">Vender sem depender so de marketplace</h4><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine propria que construa marca, nao apenas mais um anuncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Atelie Memore</h4><p data-i18n="sec_g2proof">Marca artesanal com dominio proprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g2h">Vender sem depender só de marketplace</h4><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine própria que construa marca, não apenas mais um anúncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Ateliê Memoré</h4><p data-i18n="sec_g2proof">Marca artesanal com domínio próprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t3"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h4><p data-i18n="sec_g3p">Fazendas, leiloes, agronegocio e logistica ganham autoridade com presenca digital seria e catalogo bem apresentado.</p><div class="items">Fazendas · Leiloes · Agronegocio · Logistica</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h4 data-i18n="sec_g3h2">Projeto agro em avaliacao</h4><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case publico em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h4><p data-i18n="sec_g3p">Fazendas, leilões, agronegócio e logística ganham autoridade com presença digital séria e catálogo bem apresentado.</p><div class="items">Fazendas · Leilões · Agronegócio · Logística</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h4 data-i18n="sec_g3h2">Projeto agro em avaliação</h4><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case público em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
     </div></div>
     <div class="tab-panel" id="t4"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g4h">Traduzir sofisticacao em tela</h4><p data-i18n="sec_g4p">Imoveis, arquitetura, fotografia, estetica e marca pessoal vivem de percepcao. O site e a primeira prova de bom gosto.</p><div class="items">Imoveis · Arquitetura · Fotografia · Estetica · Marca pessoal</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Paula Guimaraes</h4><p data-i18n="sec_g4proof">Portfolio editorial noturno que posiciona a fotografa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g4h">Traduzir sofisticação em tela</h4><p data-i18n="sec_g4p">Imóveis, arquitetura, fotografia, estética e marca pessoal vivem de percepção. O site é a primeira prova de bom gosto.</p><div class="items">Imóveis · Arquitetura · Fotografia · Estética · Marca pessoal</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Paula Guimarães</h4><p data-i18n="sec_g4proof">Portfólio editorial noturno que posiciona a fotógrafa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t5"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g5h">Parecer um produto de verdade</h4><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presenca que transmita solidez tecnica e confianca desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Vakon Universe · Frozen Legacy</h4><p data-i18n="sec_g5proof">Ecossistemas proprios com 3D em tempo real, o nivel mais alto de complexidade que ofereco.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g5h">Parecer um produto de verdade</h4><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presença que transmita solidez técnica e confiança desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Vakon Universe · NeoFit 365</h4><p data-i18n="sec_g5proof">Ecossistemas próprios com 3D em tempo real e app gamificado, o nível mais alto de complexidade que ofereço.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
   </div>
 </section>
@@ -547,14 +523,14 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- METODO -->
 <section class="light" id="metodo">
   <div class="wrap">
-    <div class="eyebrow"><span data-i18n="method_eyebrow">Metodo Percepcao 5D</span></div>
+    <div class="eyebrow"><span data-i18n="method_eyebrow">Método Percepção 5D</span></div>
     <h2 class="sec-title" data-i18n="method_title">Da ideia ao ativo no ar, sem improviso e sem surpresa.</h2>
     <div class="method-list">
-      <div class="method-item reveal"><div class="mk">1D</div><div><h3 data-i18n="m1t">Diagnostico</h3><p data-i18n="m1d">Entendo o negocio, o publico e o que precisa ser percebido. O projeto comeca por estrategia, nao por template.</p></div></div>
-      <div class="method-item reveal"><div class="mk">2D</div><div><h3 data-i18n="m2t">Direcao visual</h3><p data-i18n="m2d">Defino identidade, referencia e tom. Uma direcao unica, levada ate o fim, para nao parecer generico nem IA.</p></div></div>
-      <div class="method-item reveal"><div class="mk">3D</div><div><h3 data-i18n="m3t">Design premium</h3><p data-i18n="m3d">Desenho a experiencia completa, desktop e mobile, com acabamento de produto caro e microinteracoes proprias.</p></div></div>
-      <div class="method-item reveal"><div class="mk">4D</div><div><h3 data-i18n="m4t">Desenvolvimento seguro</h3><p data-i18n="m4d">Codigo limpo, validacao no servidor quando ha backend, e as boas praticas de seguranca aplicadas desde o primeiro commit.</p></div></div>
-      <div class="method-item reveal"><div class="mk">5D</div><div><h3 data-i18n="m5t">Deploy e evolucao</h3><p data-i18n="m5d">Publicacao, SEO, backup e manutencao. O site nasce pronto para crescer, nao para envelhecer em seis meses.</p></div></div>
+      <div class="method-item reveal"><div class="mk">1D</div><div><h3 data-i18n="m1t">Diagnóstico</h3><p data-i18n="m1d">Entendo o negócio, o público e o que precisa ser percebido. O projeto começa por estratégia, não por template.</p></div></div>
+      <div class="method-item reveal"><div class="mk">2D</div><div><h3 data-i18n="m2t">Direção visual</h3><p data-i18n="m2d">Defino identidade, referência e tom. Uma direção única, levada até o fim, para não parecer genérico nem IA.</p></div></div>
+      <div class="method-item reveal"><div class="mk">3D</div><div><h3 data-i18n="m3t">Design premium</h3><p data-i18n="m3d">Desenho a experiência completa, desktop e mobile, com acabamento de produto caro e microinterações próprias.</p></div></div>
+      <div class="method-item reveal"><div class="mk">4D</div><div><h3 data-i18n="m4t">Desenvolvimento seguro</h3><p data-i18n="m4d">Código limpo, validação no servidor quando há backend, e as boas práticas de segurança aplicadas desde o primeiro commit.</p></div></div>
+      <div class="method-item reveal"><div class="mk">5D</div><div><h3 data-i18n="m5t">Deploy e evolução</h3><p data-i18n="m5d">Publicação, SEO, backup e manutenção. O site nasce pronto para crescer, não para envelhecer em seis meses.</p></div></div>
     </div>
   </div>
 </section>
@@ -562,14 +538,14 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- SEGURANCA -->
 <section class="dark grain" id="seguranca">
   <div class="wrap">
-    <div class="eyebrow"><span data-i18n="sec_sec_eyebrow">Seguranca e continuidade</span></div>
-    <h2 class="sec-title" data-i18n="sec_sec_title">Seu site nao e so bonito. E defensavel.</h2>
-    <p class="sec-lead" data-i18n="sec_sec_lead">Cada projeto nasce com protecao de dados, deploy seguro e as boas praticas que uso nos meus proprios ecossistemas. Formularios validados no servidor, backup e manutencao inclusos.</p>
+    <div class="eyebrow"><span data-i18n="sec_sec_eyebrow">Segurança e continuidade</span></div>
+    <h2 class="sec-title" data-i18n="sec_sec_title">Seu site não é só bonito. É defensável.</h2>
+    <p class="sec-lead" data-i18n="sec_sec_lead">Cada projeto nasce com proteção de dados, deploy seguro e as boas práticas que uso nos meus próprios ecossistemas. Formulários validados no servidor, backup e manutenção inclusos.</p>
     <div class="sec-feats">
       <div class="sec-feat"><div class="sk">LGPD</div><h4 data-i18n="sf1t">Dados protegidos</h4><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com dado pessoal.</p></div>
-      <div class="sec-feat"><div class="sk">SSL</div><h4 data-i18n="sf2t">Conexao segura</h4><p data-i18n="sf2d">Certificado, HTTPS e headers de seguranca configurados no deploy.</p></div>
-      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validacao real</h4><p data-i18n="sf3d">Quando ha formulario ou backend, a validacao critica acontece no servidor, nunca so no navegador.</p></div>
-      <div class="sec-feat"><div class="sk">Backup</div><h4 data-i18n="sf4t">Continuidade</h4><p data-i18n="sf4d">Backup, monitoramento e manutencao para o site seguir no ar sem sustos.</p></div>
+      <div class="sec-feat"><div class="sk">SSL</div><h4 data-i18n="sf2t">Conexão segura</h4><p data-i18n="sf2d">Certificado, HTTPS e headers de segurança configurados no deploy.</p></div>
+      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validação real</h4><p data-i18n="sf3d">Quando há formulário ou backend, a validação crítica acontece no servidor, nunca só no navegador.</p></div>
+      <div class="sec-feat"><div class="sk">Backup</div><h4 data-i18n="sf4t">Continuidade</h4><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site seguir no ar sem sustos.</p></div>
     </div>
     <div class="stack-row">
       <span class="chip"><b>Next.js</b> · React</span>
@@ -587,12 +563,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light alt">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="faq_eyebrow">Perguntas frequentes</span></div>
-    <h2 class="sec-title" data-i18n="faq_title">O que voce provavelmente quer saber.</h2>
+    <h2 class="sec-title" data-i18n="faq_title">O que você provavelmente quer saber.</h2>
     <div class="faq">
-      <div class="faq-item"><button class="faq-q"><span data-i18n="faq1q">Quanto tempo leva um projeto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq1a">Depende do escopo. Uma landing premium sai em poucos dias, um site completo em algumas semanas. No diagnostico eu dou o prazo real, sem promessa vazia.</p></div></div>
-      <div class="faq-item"><button class="faq-q"><span data-i18n="faq2q">O site fica sendo meu?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq2a">Sim. Codigo, dominio e contas ficam no seu nome. Voce nao fica refem de ninguem para manter ou evoluir o seu ativo.</p></div></div>
-      <div class="faq-item"><button class="faq-q"><span data-i18n="faq3q">Voce faz manutencao depois?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq3a">Faco. Ofereco planos de evolucao continua, mas sem prender voce: o site e construido para ser sustentavel mesmo sem mim.</p></div></div>
-      <div class="faq-item"><button class="faq-q"><span data-i18n="faq4q">Por que nao usar um template pronto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq4a">Porque template parece template. O que faz sua marca ser percebida como cara e exatamente o que um tema pronto nao entrega: direcao propria, acabamento e prova real.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span data-i18n="faq1q">Quanto tempo leva um projeto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq1a">Depende do escopo. Uma landing premium sai em poucos dias, um site completo em algumas semanas. No diagnóstico eu dou o prazo real, sem promessa vazia.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span data-i18n="faq2q">O site fica sendo meu?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq2a">Sim. Código, domínio e contas ficam no seu nome. Você não fica refém de ninguém para manter ou evoluir o seu ativo.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span data-i18n="faq3q">Você faz manutenção depois?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq3a">Faço. Ofereço planos de evolução contínua, mas sem prender você: o site é construído para ser sustentável mesmo sem mim.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span data-i18n="faq4q">Por que não usar um template pronto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq4a">Porque template parece template. O que faz sua marca ser percebida como cara é exatamente o que um tema pronto não entrega: direção própria, acabamento e prova real.</p></div></div>
     </div>
   </div>
 </section>
@@ -601,10 +577,10 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="dark grain cta-final" id="contato">
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center"><span data-i18n="cta_eyebrow">Vamos construir o seu</span></div>
-    <h2 class="sec-title" data-i18n="cta_title">Se voce chegou ate aqui, ja percebeu a diferenca.</h2>
-    <p class="sec-lead" data-i18n="cta_lead">Me conte o seu projeto. Eu respondo com uma direcao clara e uma proposta honesta, no mesmo padrao que voce viu aqui.</p>
+    <h2 class="sec-title" data-i18n="cta_title">Se você chegou até aqui, já percebeu a diferença.</h2>
+    <p class="sec-lead" data-i18n="cta_lead">Me conte o seu projeto. Eu respondo com uma direção clara e uma proposta honesta, no mesmo padrão que você viu aqui.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20elevar%20minha%20presenca%20digital" data-i18n="cta_btn1">Quero elevar minha presenca digital →</a>
+      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20elevar%20minha%20presenca%20digital" data-i18n="cta_btn1">Quero elevar minha presença digital →</a>
       <a class="btn-ghost" href="https://vakonuniverse.com" target="_blank" rel="noopener" data-i18n="cta_btn2">Ver Vakon Universe ao vivo</a>
     </div>
   </div>
@@ -626,27 +602,28 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     </div>
     <div class="foot-col">
       <h5 data-i18n="foot_more">Mais</h5>
-      <a href="#metodo" data-i18n="nav_method">Metodo</a>
-      <a href="#seguranca" data-i18n="nav_security">Seguranca</a>
+      <a href="#metodo" data-i18n="nav_method">Método</a>
+      <a href="#seguranca" data-i18n="nav_security">Segurança</a>
+      <a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a>
       <a href="https://vakonuniverse.com" target="_blank" rel="noopener">Vakon Universe ↗</a>
     </div>
   </div>
-  <div class="foot-bottom">© <span id="yr"></span> Bruno Goebel · <span data-i18n="foot_rights">Todos os direitos reservados</span></div>
+  <div class="foot-bottom">© <span id="yr"></span> Bruno Goebel · <span data-i18n="foot_rights">Todos os direitos reservados</span> · <a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
 </footer>
 
 <button id="toTop" aria-label="Voltar ao topo">↑</button>
 
-<!-- DOSSIE MODALS -->
+<!-- DOSSIE MODAL -->
 <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal" id="modalBox">
-    <div class="modal-cover" id="mCover"><div class="k" id="mCoverK">Vakon<span> Universe</span></div>
+    <div class="modal-cover" id="mCover"><div class="veil"></div><img id="mCoverImg" alt=""/><div class="k" id="mCoverK">Vakon<span> Universe</span></div>
       <button class="modal-x" id="modalX" aria-label="Fechar">✕</button></div>
     <div class="modal-in">
-      <span class="badge live" id="mBadge"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
+      <span class="badge live" id="mBadge"><span class="dot"></span><span id="mBadgeTxt">No ar</span></span>
       <h3 id="mTitle">Vakon Universe</h3>
-      <div class="m-tag" id="mTag">Universo transmidia</div>
+      <div class="m-tag" id="mTag">Universo transmídia</div>
       <div class="m-block"><h4 data-i18n="d_challenge">Desafio</h4><p id="mChallenge"></p></div>
-      <div class="m-block"><h4 data-i18n="d_solution">Solucao</h4><p id="mSolution"></p></div>
+      <div class="m-block"><h4 data-i18n="d_solution">Solução</h4><p id="mSolution"></p></div>
       <div class="m-block"><h4 data-i18n="d_proof">O que demonstra</h4><p id="mProof"></p></div>
       <div class="m-cta"><a class="btn-primary" id="mLink" href="https://vakonuniverse.com" target="_blank" rel="noopener" data-i18n="d_visit">Ver ao vivo →</a></div>
     </div>
@@ -654,10 +631,9 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 </div>
 
 <script>
-/* ===== YEAR ===== */
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-/* ===== NAV SCROLL + PROGRESS ===== */
+/* NAV SCROLL + PROGRESS */
 const nav=document.getElementById('nav'),prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
 function onScroll(){
   const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
@@ -668,98 +644,95 @@ function onScroll(){
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
 
-/* ===== BURGER ===== */
-const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
-burger.onclick=()=>navLinks.classList.toggle('open');
-navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+/* MOBILE DRAWER */
+const burger=document.getElementById('burger'),drawer=document.getElementById('mobileDrawer'),overlay=document.getElementById('navOverlay');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');burger.classList.add('active');burger.setAttribute('aria-expanded','true');document.body.classList.add('locked')}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');burger.classList.remove('active');burger.setAttribute('aria-expanded','false');document.body.classList.remove('locked')}
+burger.onclick=()=>drawer.classList.contains('open')?closeDrawer():openDrawer();
+overlay.onclick=closeDrawer;
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer()});
 
-/* ===== REVEAL ===== */
+/* REVEAL + method rail */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 
-/* ===== LAZY IMG ===== */
-const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'200px'});
+/* LAZY IMG */
+const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
-/* ===== CATALOG ARROWS ===== */
-document.querySelectorAll('.cnav').forEach(b=>{
-  b.onclick=()=>{const row=document.getElementById(b.dataset.row);row.scrollBy({left:parseInt(b.dataset.dir)*Math.min(row.clientWidth*.8,420),behavior:'smooth'})};
-});
+/* CATALOG ARROWS */
+document.querySelectorAll('.cnav').forEach(b=>{b.onclick=()=>{const row=document.getElementById(b.dataset.row);row.scrollBy({left:parseInt(b.dataset.dir)*Math.min(row.clientWidth*.8,420),behavior:'smooth'})}});
 
-/* ===== SECTOR TABS ===== */
-document.querySelectorAll('.tab').forEach(t=>{
-  t.onclick=()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
-    t.setAttribute('aria-selected','true');
-    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-    document.getElementById(t.dataset.tab).classList.add('active');
-  };
-});
+/* SECTOR TABS */
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(t.dataset.tab).classList.add('active');
+}});
 
-/* ===== FAQ ===== */
-document.querySelectorAll('.faq-item').forEach(it=>{
-  const q=it.querySelector('.faq-q'),a=it.querySelector('.faq-a');
-  q.onclick=()=>{const open=it.classList.toggle('open');a.style.maxHeight=open?a.scrollHeight+'px':0};
-});
+/* FAQ */
+document.querySelectorAll('.faq-item').forEach(it=>{const q=it.querySelector('.faq-q'),a=it.querySelector('.faq-a');
+  q.onclick=()=>{const open=it.classList.toggle('open');a.style.maxHeight=open?a.scrollHeight+'px':0}});
 
-/* ===== DOSSIE MODAL ===== */
+/* DOSSIE MODAL */
 const DOSSIE={
-  'm-vakon':{name:'Vakon Universe',tag:'Universo transmidia · 3D interativo',cover:'Vakon| Universe',badge:'live',
-    challenge:'Criar um IP sci-fi que vivesse no navegador, sem app, sem download, e ainda assim entregasse sensacao de mundo real.',
-    solution:'Universo transmidia com 3D em tempo real, narrativa e i18n, construido como sistema continuo e nao como pagina isolada.',
-    proof:'Prova de que domino o nivel mais alto de complexidade tecnica que um projeto web pode pedir.',link:'https://vakonuniverse.com'},
-  'm-frozen':{name:'Frozen Legacy',tag:'Experiencia narrativa · WebGL',cover:'Frozen| Legacy',badge:'live',
-    challenge:'Transformar uma historia em experiencia interativa que roda direto no navegador, com motion e 3D, sem perder performance.',
-    solution:'Experiencia WebGL dentro do universo Vakon, com storytelling, movimento assinado e carregamento otimizado.',
-    proof:'Mostra que uno design, narrativa e engenharia 3D no mesmo produto. Poucos entregam isso.',link:'https://vakonuniverse.com'},
-  'm-pires':{name:'Pires Contabilidade',tag:'Servicos profissionais',cover:'Pires |Contabilidade',badge:'live',
-    challenge:'Fazer uma contabilidade parecer confiavel e premium o suficiente para justificar o preco antes da primeira reuniao.',
-    solution:'Site institucional com direcao de arte sobria, hierarquia clara e copy que constroi autoridade.',
-    proof:'Elevo a percepcao de um setor tradicionalmente sem graca. Design a servico de confianca.',link:'https://revellaia.github.io/pires-contabilidade'},
-  'm-paula':{name:'Paula Guimaraes',tag:'Fotografia · alto padrao',cover:'Paula| Guimaraes',badge:'live',
-    challenge:'Posicionar uma fotografa no segmento de luxo, onde o site e a primeira prova de bom gosto.',
-    solution:'Portfolio editorial noturno, com ritmo visual e apresentacao das fotos como obra, nao como galeria comum.',
-    proof:'Direcao de arte de alto padrao aplicada a marca pessoal criativa.',link:'https://revellaia.github.io/paula-guimaraes'},
-  'm-memore':{name:'Atelie Memore',tag:'Comercio · artesanal',cover:'Atelie| Memore',badge:'live',
-    challenge:'Dar a uma marca artesanal uma vitrine com dominio proprio que vendesse sozinha, longe do visual de marketplace.',
-    solution:'E-commerce leve com identidade premium e dominio proprio, do produto feito a mao a experiencia de compra.',
-    proof:'Provo que sei traduzir uma marca pequena e afetiva em um ativo comercial serio.',link:'https://www.ateliememore.com.br'}
+  'm-vakon':{name:'Vakon Universe',tag:'Universo transmídia · 3D interativo',cover:'Vakon| Universe',img:'assets/cover-vakon.jpg',badge:'live',badgeTxt:'No ar',
+    challenge:'Criar um IP sci-fi que vivesse no navegador, sem app, sem download, e ainda assim entregasse sensação de mundo real.',
+    solution:'Universo transmídia com a experiência The Frozen Legacy, 3D em tempo real, narrativa e bilíngue, construído como sistema contínuo e não como página isolada.',
+    proof:'Prova de que domino o nível mais alto de complexidade técnica que um projeto web pode pedir.',link:'https://vakonuniverse.com',linkTxt:'Ver ao vivo →'},
+  'm-neofit':{name:'NeoFit 365',tag:'App fitness gamificado · IA',cover:'NeoFit| 365',img:'assets/neofit-battlepass.jpg',badge:'dev',badgeTxt:'Em desenvolvimento',
+    challenge:'Transformar treino, alimentação e evolução física em uma experiência de app com retenção de jogo, sem perder rigor técnico e segurança.',
+    solution:'Aplicativo com avatar, XP, missões, progressão e recompensas, sobre uma arquitetura segura, com validação server-side no que é sensível.',
+    proof:'Mostra que não faço apenas sites: também construo sistemas, apps, gamificação, IA e backend seguro. Projeto em desenvolvimento, sem dados reais de usuário expostos.',link:'https://brunodevai.com/#contato',linkTxt:'Falar sobre um projeto assim →'},
+  'm-pires':{name:'Pires Contabilidade',tag:'Serviços profissionais',cover:'Pires |Contabilidade',img:'assets/cover-pires.jpg',badge:'live',badgeTxt:'No ar',
+    challenge:'Fazer uma contabilidade parecer confiável e premium o suficiente para justificar o preço antes da primeira reunião.',
+    solution:'Site institucional com direção de arte sóbria, hierarquia clara e copy que constrói autoridade.',
+    proof:'Elevo a percepção de um setor tradicionalmente sem graça. Design a serviço de confiança.',link:'https://revellaia.github.io/pires-contabilidade',linkTxt:'Ver ao vivo →'},
+  'm-paula':{name:'Paula Guimarães',tag:'Fotografia · alto padrão',cover:'Paula| Guimarães',img:'assets/cover-paula.jpg',badge:'live',badgeTxt:'No ar',
+    challenge:'Posicionar uma fotógrafa no segmento de luxo, onde o site é a primeira prova de bom gosto.',
+    solution:'Portfólio editorial noturno, com ritmo visual e apresentação das fotos como obra, não como galeria comum.',
+    proof:'Direção de arte de alto padrão aplicada a marca pessoal criativa.',link:'https://revellaia.github.io/paula-guimaraes',linkTxt:'Ver ao vivo →'},
+  'm-memore':{name:'Ateliê Memoré',tag:'Comércio · artesanal',cover:'Ateliê| Memoré',img:'assets/cover-memore-live.jpg',badge:'live',badgeTxt:'No ar',
+    challenge:'Dar a uma marca artesanal uma vitrine com domínio próprio que vendesse sozinha, longe do visual de marketplace.',
+    solution:'E-commerce leve com identidade premium e domínio próprio, do produto feito à mão à experiência de compra.',
+    proof:'Provo que sei traduzir uma marca pequena e afetiva em um ativo comercial sério.',link:'https://www.ateliememore.com.br',linkTxt:'Ver ao vivo →'}
 };
 const mBack=document.getElementById('modalBack'),mBox=document.getElementById('modalBox');
 let lastFocus=null;
 function coverHTML(s){const p=s.split('|');return p[0]+'<span>'+(p[1]||'')+'</span>'}
 function openModal(id){
   const d=DOSSIE[id];if(!d)return;lastFocus=document.activeElement;
+  const cov=document.getElementById('mCover'),img=document.getElementById('mCoverImg');
   document.getElementById('mCoverK').innerHTML=coverHTML(d.cover);
+  if(d.img){img.src=d.img;img.style.display='block'}else{img.style.display='none'}
   document.getElementById('mTitle').textContent=d.name;
   document.getElementById('mTag').textContent=d.tag;
   document.getElementById('mChallenge').textContent=d.challenge;
   document.getElementById('mSolution').textContent=d.solution;
   document.getElementById('mProof').textContent=d.proof;
-  document.getElementById('mLink').href=d.link;
+  const badge=document.getElementById('mBadge');badge.className='badge '+d.badge;
+  document.getElementById('mBadgeTxt').textContent=d.badgeTxt;
+  const lk=document.getElementById('mLink');lk.href=d.link;lk.textContent=d.linkTxt;
   mBack.classList.add('open');requestAnimationFrame(()=>mBack.classList.add('show'));
-  document.body.style.overflow='hidden';document.getElementById('modalX').focus();
+  document.body.classList.add('locked');document.getElementById('modalX').focus();
 }
-function closeModal(){
-  mBack.classList.remove('show');document.body.style.overflow='';
-  setTimeout(()=>mBack.classList.remove('open'),300);
-  if(lastFocus)lastFocus.focus();
-}
+function closeModal(){mBack.classList.remove('show');document.body.classList.remove('locked');
+  setTimeout(()=>mBack.classList.remove('open'),300);if(lastFocus)lastFocus.focus()}
 document.querySelectorAll('.card[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
 document.getElementById('modalX').onclick=closeModal;
 mBack.onclick=e=>{if(e.target===mBack)closeModal()};
 addEventListener('keydown',e=>{
   if(!mBack.classList.contains('open'))return;
   if(e.key==='Escape')closeModal();
-  if(e.key==='Tab'){
-    const f=mBox.querySelectorAll('button,a[href]');if(!f.length)return;
+  if(e.key==='Tab'){const f=mBox.querySelectorAll('button,a[href]');if(!f.length)return;
     const first=f[0],last=f[f.length-1];
     if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
-  }
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
 });
 
-/* ===== I18N ===== */
+/* I18N */
 const tEN={
   nav_eco:'Ecosystems',nav_cases:'Cases',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a proposal',
   hero_eyebrow:'Bruno Goebel · Digital studio · Ultra realistic websites',
@@ -767,20 +740,20 @@ const tEN={
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
   hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',
   pos_eyebrow:'Who builds your site',
-  pos_title:'I am not a generic agency. I am the creator of digital ecosystems like <em>Vakon Universe</em> and <em>Frozen Legacy</em>. The same standard I use on my products, I apply to your site.',
-  pos_p1:'Vakon Universe',pos_p1s:'live',pos_p2:'Frozen Legacy',pos_p2s:'live',pos_p3s:'real clients live',
+  pos_title:'I am not a generic agency. I am the creator of digital ecosystems like <em>Vakon Universe</em> and <em>NeoFit 365</em>. The same standard I use on my products, I apply to your site.',
+  pos_p1s:'live',pos_p2s:'in development',pos_p3s:'real clients live',
   eco_eyebrow:'Own ecosystems',eco_title:'Proof that I handle any level of complexity.',
-  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'Sci-fi transmedia universe with real-time 3D in the browser. Own IP, bilingual, continuous world architecture.',
-  frozen_tag:'Narrative experience · WebGL',frozen_desc:'Interactive narrative experience inside the Vakon universe. Motion, 3D and storytelling running straight in the browser, nothing to install.',
+  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'Sci-fi transmedia universe with The Frozen Legacy experience: real-time 3D in the browser, own IP, bilingual and continuous world architecture.',
+  neofit_tag:'Gamified fitness app · AI',neofit_desc:'Gamified fitness app with avatar, XP, missions and progression, on secure architecture. Proof that I also build systems and apps, not only websites.',
   cases_eyebrow:'Real cases · clients live',cases_title:'Deliveries for real clients, each in a different sector.',
   pires_tag:'Professional services',pires_desc:'Accounting that now looks like premium consulting. Trust resolved before the first meeting.',
   paula_tag:'Photography · high-end',paula_desc:'Nocturnal editorial portfolio for a photographer. Art direction that positions the work in the luxury segment.',
   memore_tag:'Retail · handcrafted',memore_desc:'Handcrafted brand with its own domain and premium identity. From handmade product to a storefront that sells on its own.',
-  more:'Open dossier',badge_live:'Live',
+  more:'Open dossier',badge_live:'Live',badge_dev:'In development',
   create_eyebrow:'What I build',create_title:'Every delivery is a commercial asset, not a business card.',
   create_1t:'Premium websites',create_1d:'Institutional and brand sites that raise perceived value and sustain a higher price.',
   create_2t:'High-end landing pages',create_2d:'Conversion pages for launches, offers or capture, with copy and design aligned to the goal.',
-  create_3t:'Portals and systems',create_3d:'Institutional portals, catalogs and apps when the project needs more than a page.',
+  create_3t:'Portals, systems and apps',create_3d:'Institutional portals, catalogs, systems and apps when the project needs more than a page.',
   sectors_eyebrow:'Sectors served',sectors_title:'I can already transform any sector. And I prove it with cases that could not be more different from each other.',
   sec_g1:'Professional services',sec_g2:'Retail & commerce',sec_g3:'Agro & industry',sec_g4:'High-end',sec_g5:'Tech & products',
   sec_pain:'The pain',sec_proof:'The proof',sec_next:'In progress',sec_live:'Live',sec_soon:'Soon',
@@ -788,7 +761,7 @@ const tEN={
   sec_g2h:'Sell without depending only on marketplaces',sec_g2p:'Fashion, crafts and local products need their own storefront that builds a brand, not just another ad.',sec_g2proof:'Handcrafted brand with its own domain and premium identity, selling direct.',
   sec_g3h:'Modernize a word-of-mouth sector',sec_g3p:'Farms, auctions, agribusiness and logistics gain authority with serious digital presence and a well-presented catalog.',sec_g3h2:'Agro project under evaluation',sec_g3proof:'Same engineering as the rest. Public case coming soon.',
   sec_g4h:'Translate sophistication to screen',sec_g4p:'Real estate, architecture, photography, aesthetics and personal brands live on perception. The site is the first proof of taste.',sec_g4proof:'Nocturnal editorial portfolio positioning the photographer in the luxury segment.',
-  sec_g5h:'Look like a real product',sec_g5p:'Apps, SaaS, digital products and communities need a presence that conveys technical solidity from the first second.',sec_g5proof:'Own ecosystems with real-time 3D, the highest level of complexity I offer.',
+  sec_g5h:'Look like a real product',sec_g5p:'Apps, SaaS, digital products and communities need a presence that conveys technical solidity from the first second.',sec_g5proof:'Own ecosystems with real-time 3D and a gamified app, the highest level of complexity I offer.',
   method_eyebrow:'Perception 5D Method',method_title:'From idea to a live asset, no improvisation and no surprises.',
   m1t:'Diagnosis',m1d:'I understand the business, the audience and what must be perceived. The project starts with strategy, not a template.',
   m2t:'Visual direction',m2d:'I define identity, references and tone. One direction, taken to the end, so it never looks generic or AI-made.',
@@ -809,37 +782,30 @@ const tEN={
   cta_eyebrow:'Let us build yours',cta_title:'If you made it this far, you already felt the difference.',
   cta_lead:'Tell me about your project. I reply with a clear direction and an honest proposal, at the same standard you saw here.',
   cta_btn1:'I want to elevate my digital presence →',cta_btn2:'See Vakon Universe live',
-  foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved',
+  foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved',foot_privacy:'Privacy Policy',
   d_challenge:'Challenge',d_solution:'Solution',d_proof:'What it proves',d_visit:'See live →'
 };
 let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v;
-  });
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
 };
 
-/* ===== HERO CANVAS (linha de luz, leve, sem dependencia externa) ===== */
+/* HERO CANVAS (linha de luz) */
 (function(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const c=document.getElementById('heroCanvas'),x=c.getContext('2d');let w,h,pts,mx=.5,my=.5,raf;
+  const c=document.getElementById('heroCanvas'),x=c.getContext('2d');let w,h,pts,mx=.5,my=.5;
   function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
     const n=Math.min(70,Math.floor(w*h/22000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))}
   function draw(){
     x.clearRect(0,0,w,h);
     for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
     for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
-        if(d<130){x.strokeStyle='rgba(168,255,96,'+(1-d/130)*.14+')';x.lineWidth=1;
-          x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}
-      }
-      const gx=(mx-.5)*30,gy=(my-.5)*30;
-      x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill();
-    }
-    raf=requestAnimationFrame(draw);
+      for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
+        if(d<130){x.strokeStyle='rgba(168,255,96,'+(1-d/130)*.14+')';x.lineWidth=1;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
+      const gx=(mx-.5)*30,gy=(my-.5)*30;x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill()}
+    requestAnimationFrame(draw);
   }
   addEventListener('resize',size);
   addEventListener('mousemove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
