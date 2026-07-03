@@ -167,11 +167,11 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .demo-section .wrap{max-width:var(--maxw);margin:0 auto}
 .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:8px}
 .card{background:var(--void-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden;
-  cursor:pointer;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;text-align:left;
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;text-align:left;
   display:flex;flex-direction:column;color:inherit;width:100%}
 .card:hover{transform:translateY(-6px);border-color:var(--neon-dim);box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .card.hidden{display:none}
-.card-cover{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,var(--void-3),var(--void))}
+.card-cover{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;background:linear-gradient(135deg,var(--void-3),var(--void))}
 .card-cover .cov-art{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;z-index:1}
 .card-cover .cov-art .k{font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.8vw,36px);color:var(--gold-lit);line-height:1.1}
 .card-cover .cov-art .k span{color:var(--text-hi)}
@@ -187,9 +187,11 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .card-name{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi);line-height:1.1}
 .card-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .card-desc{font-size:13.5px;line-height:1.65;color:var(--text-lo);font-weight:300;flex:1}
-.card-more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lit);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
-.card-more::after{content:'';width:0;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon);transition:width .3s var(--ease)}
-.card:hover .card-more::after{width:26px}
+.card-btn{margin-top:6px;width:100%;border:1px solid rgba(216,179,104,.4);background:none;color:var(--gold-lit);
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:13px 16px;border-radius:9px;
+  cursor:pointer;text-align:center;transition:border-color .22s,color .22s,background .22s,transform .2s}
+.card-btn:hover{border-color:var(--neon);color:var(--text-hi);background:rgba(168,255,96,.08);transform:translateY(-1px)}
+.card-btn:active{transform:translateY(0)}
 .empty-state{display:none;padding:60px 0;text-align:center;color:var(--ink-soft);font-size:14px}
 .empty-state.show{display:block}
 
@@ -322,71 +324,71 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <div class="wrap">
     <div class="demo-grid" id="demoGrid">
 
-      <button class="card" data-modal="m-rustica" data-niche="artesanato">
-        <div class="card-cover"><div class="cov-art"><div class="k">Rústica<br><span>Bottons Artesanais</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="artesanato">
+        <div class="card-cover" data-modal="m-rustica"><div class="cov-art"><div class="k">Rústica<br><span>Bottons Artesanais</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Rústica Bottons Artesanais</span>
           <span class="card-tag">Comércio · Artesanal</span>
           <span class="card-desc">Marca artesanal com vitrine própria e identidade premium — do produto feito à mão a uma experiência de compra que vende sozinha.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-rustica">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
-      <button class="card" data-modal="m-lume" data-niche="fotografia">
-        <div class="card-cover"><div class="cov-art"><div class="k">Lume<br><span>Estúdio Fotográfico</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="fotografia">
+        <div class="card-cover" data-modal="m-lume"><div class="cov-art"><div class="k">Lume<br><span>Estúdio Fotográfico</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Lume Estúdio Fotográfico</span>
           <span class="card-tag">Fotografia · Alto padrão</span>
           <span class="card-desc">Portfólio editorial noturno para um estúdio fotográfico — direção de arte que posiciona o trabalho no segmento de luxo.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-lume">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
-      <button class="card" data-modal="m-aurora" data-niche="contabilidade">
-        <div class="card-cover"><div class="cov-art"><div class="k">Aurora<br><span>Consultoria Contábil</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="contabilidade">
+        <div class="card-cover" data-modal="m-aurora"><div class="cov-art"><div class="k">Aurora<br><span>Consultoria Contábil</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Aurora Consultoria Contábil</span>
           <span class="card-tag">Serviços profissionais</span>
           <span class="card-desc">Contabilidade que passa a parecer consultoria premium — confiança resolvida antes da primeira reunião.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-aurora">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
-      <button class="card" data-modal="m-vakon" data-niche="produto-proprio">
-        <div class="card-cover"><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="produto-proprio">
+        <div class="card-cover" data-modal="m-vakon"><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span>Produto próprio · no ar</span></span>
           <span class="card-name">The Frozen Legacy</span>
           <span class="card-tag">Universo transmídia · 3D interativo</span>
           <span class="card-desc">Universo sci-fi autoral com 3D em tempo real no navegador — o nível mais alto de complexidade técnica que ofereço, sem sanitização porque é produto próprio.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-vakon">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
-      <button class="card" data-modal="m-aether" data-niche="imobiliario">
-        <div class="card-cover"><div class="cov-art"><div class="k">AETHER<br><span>Realty</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="imobiliario">
+        <div class="card-cover" data-modal="m-aether"><div class="cov-art"><div class="k">AETHER<br><span>Realty</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Template autoral</span></span>
           <span class="card-name">AETHER Realty</span>
           <span class="card-tag">Imobiliário · Alto padrão</span>
           <span class="card-desc">Vitrine imobiliária de alto padrão com catálogo curado de imóveis e integração de CRM — construída como template autoral do estúdio.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-aether">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
-      <button class="card" data-modal="m-cerrado" data-niche="agro">
-        <div class="card-cover"><div class="cov-art"><div class="k">Fazenda<br><span>Cerrado Alto</span></div></div><div class="glow"></div><div class="scan"></div></div>
+      <div class="card" data-niche="agro">
+        <div class="card-cover" data-modal="m-cerrado"><div class="cov-art"><div class="k">Fazenda<br><span>Cerrado Alto</span></div></div><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Fazenda Cerrado Alto</span>
           <span class="card-tag">Agropecuária · Pecuária premium</span>
           <span class="card-desc">Vitrine de plantel e leilões para pecuária premium — autoridade digital para um setor que ainda vende no boca a boca.</span>
-          <span class="card-more">Ver demonstração</span>
+          <button class="card-btn" data-modal="m-cerrado">Ver demonstração</button>
         </div>
-      </button>
+      </div>
 
     </div>
     <p class="empty-state" id="emptyState">Nenhum trabalho neste filtro ainda. Volte em breve.</p>
@@ -536,7 +538,7 @@ function openModal(id){
 }
 function closeModal(){mBack.classList.remove('show');document.body.classList.remove('locked');
   setTimeout(()=>mBack.classList.remove('open'),300);if(lastFocus)lastFocus.focus()}
-document.querySelectorAll('.card[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
+document.querySelectorAll('.card-cover[data-modal],.card-btn[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
 document.getElementById('modalX').onclick=closeModal;
 mBack.onclick=e=>{if(e.target===mBack)closeModal()};
 addEventListener('keydown',e=>{
