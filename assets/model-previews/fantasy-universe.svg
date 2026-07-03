@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="fuTitle">
+<title id="fuTitle">Prévia visual do modelo Fantasy Universe: universo transmídia autoral em 3D</title>
+<defs>
+<radialGradient id="fuBg" cx="50%" cy="42%" r="75%">
+<stop offset="0%" stop-color="#1a1240"/>
+<stop offset="55%" stop-color="#0d0a24"/>
+<stop offset="100%" stop-color="#050414"/>
+</radialGradient>
+<radialGradient id="fuPortal" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#c9a6ff" stop-opacity="0.9"/>
+<stop offset="35%" stop-color="#7a4fe0" stop-opacity="0.55"/>
+<stop offset="70%" stop-color="#3a2a8a" stop-opacity="0.2"/>
+<stop offset="100%" stop-color="#3a2a8a" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="fuRing" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#D8B368"/>
+<stop offset="100%" stop-color="#A8FF60"/>
+</linearGradient>
+</defs>
+<rect width="640" height="400" fill="url(#fuBg)"/>
+<!-- estrelas -->
+<g fill="#f4f2ec">
+<circle cx="60" cy="60" r="1.4" opacity="0.8"/>
+<circle cx="120" cy="30" r="1" opacity="0.6"/>
+<circle cx="540" cy="50" r="1.6" opacity="0.7"/>
+<circle cx="580" cy="110" r="1" opacity="0.5"/>
+<circle cx="40" cy="200" r="1.2" opacity="0.6"/>
+<circle cx="600" cy="260" r="1.4" opacity="0.7"/>
+<circle cx="90" cy="330" r="1" opacity="0.5"/>
+<circle cx="560" cy="340" r="1.2" opacity="0.6"/>
+<circle cx="300" cy="24" r="1" opacity="0.5"/>
+<circle cx="240" cy="360" r="1.2" opacity="0.5"/>
+</g>
+<!-- portal central -->
+<circle cx="320" cy="190" r="130" fill="url(#fuPortal)"/>
+<circle cx="320" cy="190" r="96" fill="none" stroke="url(#fuRing)" stroke-width="2" opacity="0.85"/>
+<circle cx="320" cy="190" r="112" fill="none" stroke="#D8B368" stroke-width="1" opacity="0.35" stroke-dasharray="1 5"/>
+<circle cx="320" cy="190" r="70" fill="none" stroke="#f4f2ec" stroke-width="1" opacity="0.35"/>
+<!-- cristais -->
+<g opacity="0.9">
+<polygon points="320,120 332,150 320,180 308,150" fill="#c9a6ff" opacity="0.8"/>
+<polygon points="260,220 272,244 260,268 248,244" fill="#7a4fe0" opacity="0.7"/>
+<polygon points="380,220 392,244 380,268 368,244" fill="#7a4fe0" opacity="0.7"/>
+</g>
+<!-- livro/arquivo mistico -->
+<g transform="translate(280,258)">
+<path d="M0 0 h80 v52 q-40 10 -80 0 z" fill="#150e30" stroke="#D8B368" stroke-width="1.4" opacity="0.85"/>
+<path d="M40 0 v52" stroke="#D8B368" stroke-width="1" opacity="0.5"/>
+<path d="M14 16 q26 -8 52 0" stroke="#A8FF60" stroke-width="1.2" fill="none" opacity="0.6"/>
+<path d="M14 28 q26 -8 52 0" stroke="#A8FF60" stroke-width="1.2" fill="none" opacity="0.4"/>
+</g>
+<!-- linha de mapa abstrato -->
+<polyline points="60,320 160,300 220,330 300,300 380,320 460,290 560,320" fill="none" stroke="#D8B368" stroke-width="1" opacity="0.3"/>
+<text x="70" y="380" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="34" fill="#f4f2ec" opacity="0.94">The Frozen Legacy</text>
+<text x="70" y="70" font-family="Arial, sans-serif" font-size="11" letter-spacing="4" fill="#D8B368" opacity="0.75">FANTASY UNIVERSE · 3D INTERATIVO</text>
+</svg>

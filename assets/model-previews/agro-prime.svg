@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="apTitle">
+<title id="apTitle">Prévia visual do modelo Agro Prime: vitrine de pecuária premium e leilões</title>
+<defs>
+<linearGradient id="apSky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#2b2411"/>
+<stop offset="60%" stop-color="#1b170c"/>
+<stop offset="100%" stop-color="#0f0d07"/>
+</linearGradient>
+<linearGradient id="apSun" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#D8B368"/>
+<stop offset="100%" stop-color="#8a6a2a"/>
+</linearGradient>
+<linearGradient id="apField" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#233318"/>
+<stop offset="100%" stop-color="#141d0f"/>
+</linearGradient>
+</defs>
+<rect width="640" height="400" fill="url(#apSky)"/>
+<circle cx="480" cy="120" r="60" fill="url(#apSun)" opacity="0.5"/>
+<!-- linhas topograficas -->
+<g stroke="#D8B368" stroke-opacity="0.18" fill="none">
+<path d="M-20 150 q120 -30 260 0 t420 0"/>
+<path d="M-20 180 q120 -24 260 0 t420 0"/>
+</g>
+<!-- horizonte / pasto -->
+<path d="M0 260 q160 -46 320 -8 t320 8 v140 h-640 z" fill="url(#apField)"/>
+<path d="M0 260 q160 -46 320 -8 t320 8" fill="none" stroke="#A8FF60" stroke-opacity="0.35" stroke-width="1.4"/>
+<!-- silhueta nobre de gado -->
+<g transform="translate(150,232)" fill="#0f0d07" opacity="0.88">
+<ellipse cx="40" cy="46" rx="46" ry="24"/>
+<circle cx="-8" cy="30" r="18"/>
+<path d="M-24 18 q-8 -14 -18 -10 q4 12 14 16 z"/>
+<path d="M4 16 q8 -14 18 -10 q-4 12 -14 16 z"/>
+<rect x="6" y="58" width="8" height="26" rx="3"/>
+<rect x="26" y="60" width="8" height="24" rx="3"/>
+<rect x="54" y="60" width="8" height="24" rx="3"/>
+<rect x="72" y="58" width="8" height="26" rx="3"/>
+</g>
+<g transform="translate(240,246)" fill="#161206" opacity="0.75">
+<ellipse cx="30" cy="34" rx="34" ry="18"/>
+<circle cx="-6" cy="22" r="13"/>
+</g>
+<!-- selo premium de leilao -->
+<g transform="translate(534,300)">
+<circle r="34" fill="none" stroke="#D8B368" stroke-width="1.6" opacity="0.8"/>
+<circle r="27" fill="none" stroke="#D8B368" stroke-width="1" opacity="0.4" stroke-dasharray="2 4"/>
+<path d="M-12 -2 l4 4 h16" stroke="#A8FF60" stroke-width="2" fill="none" opacity="0.7"/>
+<path d="M-12 8 l4 4 h16" stroke="#A8FF60" stroke-width="2" fill="none" opacity="0.7"/>
+<text x="0" y="-12" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" letter-spacing="1.5" fill="#D8B368" opacity="0.85">ELITE</text>
+</g>
+<text x="70" y="342" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="32" fill="#f4f2ec" opacity="0.94">Agro Prime</text>
+<text x="70" y="364" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#D8B368" opacity="0.8">AGRONEGÓCIO · PECUÁRIA PREMIUM</text>
+</svg>

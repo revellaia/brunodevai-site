@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="eaTitle">
+<title id="eaTitle">Prévia visual do modelo Executive Accounting: consultoria contábil executiva</title>
+<defs>
+<linearGradient id="eaBg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#0e1a1a"/>
+<stop offset="55%" stop-color="#0a1414"/>
+<stop offset="100%" stop-color="#070d0d"/>
+</linearGradient>
+<radialGradient id="eaGlow" cx="80%" cy="10%" r="65%">
+<stop offset="0%" stop-color="#1f6b52" stop-opacity="0.32"/>
+<stop offset="100%" stop-color="#1f6b52" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="eaPanel" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#16302c"/>
+<stop offset="100%" stop-color="#0e211e"/>
+</linearGradient>
+</defs>
+<rect width="640" height="400" fill="url(#eaBg)"/>
+<rect width="640" height="400" fill="url(#eaGlow)"/>
+<!-- painel dashboard -->
+<rect x="64" y="54" width="512" height="292" rx="10" fill="url(#eaPanel)" stroke="#D8B368" stroke-opacity="0.28"/>
+<line x1="64" y1="98" x2="576" y2="98" stroke="#f4f2ec" stroke-opacity="0.12"/>
+<circle cx="90" cy="76" r="5" fill="#A8FF60" opacity="0.6"/>
+<circle cx="110" cy="76" r="5" fill="#D8B368" opacity="0.6"/>
+<circle cx="130" cy="76" r="5" fill="#9fb3ae" opacity="0.5"/>
+<text x="150" y="80" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#9fb3ae" opacity="0.7">RELATÓRIO TRIMESTRAL</text>
+<!-- barras de grafico -->
+<g transform="translate(100,300)">
+<rect x="0" y="-60" width="26" height="60" rx="3" fill="#2a5049" />
+<rect x="40" y="-96" width="26" height="96" rx="3" fill="#2f5e55"/>
+<rect x="80" y="-132" width="26" height="132" rx="3" fill="#D8B368" opacity="0.85"/>
+<rect x="120" y="-84" width="26" height="84" rx="3" fill="#2a5049"/>
+<rect x="160" y="-150" width="26" height="150" rx="3" fill="#A8FF60" opacity="0.75"/>
+<rect x="200" y="-108" width="26" height="108" rx="3" fill="#2f5e55"/>
+</g>
+<!-- linha de tendencia -->
+<polyline points="96,244 156,206 216,232 276,168 336,190 396,138" fill="none" stroke="#D8B368" stroke-width="2" opacity="0.7"/>
+<circle cx="396" cy="138" r="4.5" fill="#D8B368"/>
+<!-- pilha de documentos -->
+<g transform="translate(452,150)">
+<rect x="0" y="18" width="86" height="112" rx="6" fill="#0e211e" stroke="#f4f2ec" stroke-opacity="0.2"/>
+<rect x="10" y="8" width="86" height="112" rx="6" fill="#16302c" stroke="#f4f2ec" stroke-opacity="0.25"/>
+<rect x="22" y="26" width="62" height="6" rx="3" fill="#D8B368" opacity="0.7"/>
+<rect x="22" y="40" width="46" height="5" rx="2.5" fill="#9fb3ae" opacity="0.5"/>
+<rect x="22" y="52" width="52" height="5" rx="2.5" fill="#9fb3ae" opacity="0.5"/>
+<rect x="22" y="64" width="38" height="5" rx="2.5" fill="#9fb3ae" opacity="0.5"/>
+<path d="M26 96 l10 10 20 -22" stroke="#A8FF60" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="64" y="392" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="30" fill="#f4f2ec" opacity="0.92">Executive Accounting</text>
+</svg>

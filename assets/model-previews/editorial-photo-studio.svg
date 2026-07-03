@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="epsTitle">
+<title id="epsTitle">Prévia visual do modelo Editorial Photo Studio: portfólio editorial de fotografia</title>
+<defs>
+<linearGradient id="epsBg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#241016"/>
+<stop offset="55%" stop-color="#160b10"/>
+<stop offset="100%" stop-color="#0d0709"/>
+</linearGradient>
+<radialGradient id="epsLight" cx="72%" cy="18%" r="60%">
+<stop offset="0%" stop-color="#f4e3d0" stop-opacity="0.30"/>
+<stop offset="100%" stop-color="#f4e3d0" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="epsFrame" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#3a2530"/>
+<stop offset="100%" stop-color="#241620"/>
+</linearGradient>
+</defs>
+<rect width="640" height="400" fill="url(#epsBg)"/>
+<rect width="640" height="400" fill="url(#epsLight)"/>
+<!-- moldura grande de fotografia -->
+<rect x="66" y="46" width="300" height="308" rx="4" fill="url(#epsFrame)" stroke="#D8B368" stroke-opacity="0.35"/>
+<rect x="86" y="66" width="260" height="268" fill="none" stroke="#f4f2ec" stroke-opacity="0.18"/>
+<!-- silhueta abstrata de retrato -->
+<ellipse cx="216" cy="176" rx="46" ry="58" fill="#4a2f38" opacity="0.7"/>
+<path d="M150 320 q66 -60 132 0 l0 14 -132 0 z" fill="#4a2f38" opacity="0.7"/>
+<!-- linha de luz suave -->
+<path d="M96 96 L336 320" stroke="#f4e3d0" stroke-width="1" opacity="0.15"/>
+<!-- silhueta de lente/camera -->
+<g transform="translate(470,150)">
+<circle r="70" fill="none" stroke="#D8B368" stroke-width="1.4" opacity="0.55"/>
+<circle r="52" fill="none" stroke="#D8B368" stroke-width="1" opacity="0.4"/>
+<circle r="34" fill="none" stroke="#f4f2ec" stroke-width="1.6" opacity="0.6"/>
+<circle r="16" fill="#0d0709" stroke="#A8FF60" stroke-width="1.4" opacity="0.55"/>
+<line x1="-70" y1="0" x2="-52" y2="0" stroke="#D8B368" stroke-width="1.2" opacity="0.5"/>
+<line x1="52" y1="0" x2="70" y2="0" stroke="#D8B368" stroke-width="1.2" opacity="0.5"/>
+<line x1="0" y1="-70" x2="0" y2="-52" stroke="#D8B368" stroke-width="1.2" opacity="0.5"/>
+<line x1="0" y1="52" x2="0" y2="70" stroke="#D8B368" stroke-width="1.2" opacity="0.5"/>
+</g>
+<!-- grid de galeria pequena -->
+<g transform="translate(400,262)" opacity="0.85">
+<rect width="52" height="70" fill="none" stroke="#f4f2ec" stroke-opacity="0.3"/>
+<rect x="62" width="52" height="70" fill="none" stroke="#f4f2ec" stroke-opacity="0.3"/>
+<rect x="124" width="52" height="70" fill="none" stroke="#f4f2ec" stroke-opacity="0.3"/>
+</g>
+<text x="66" y="382" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="30" fill="#f4f2ec" opacity="0.92">Editorial Photo Studio</text>
+</svg>
