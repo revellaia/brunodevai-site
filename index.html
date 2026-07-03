@@ -210,12 +210,28 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .badge{align-self:flex-start;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:40px;display:inline-flex;align-items:center;gap:7px}
 .badge.live{color:var(--neon);border:1px solid var(--neon-dim)}
 .badge.dev{color:var(--gold-lit);border:1px solid rgba(216,179,104,.35)}
+.badge.demo{color:var(--gold-lit);border:1px solid rgba(216,179,104,.4)}
 .card-name{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi);line-height:1.1}
 .card-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .card-desc{font-size:13.5px;line-height:1.65;color:var(--text-lo);font-weight:300;flex:1}
 .card-more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lit);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
 .card-more::after{content:'';width:0;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon);transition:width .3s var(--ease)}
 .card:hover .card-more::after{width:26px}
+
+/* MODELOS DISPONIVEIS */
+.models-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px}
+.models-grid .card{cursor:default}
+.models-grid .card:hover{transform:translateY(-6px);border-color:rgba(216,179,104,.3);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.card-actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.card-btn{flex:1;min-width:120px;border:1px solid rgba(216,179,104,.4);background:none;color:var(--gold-lit);
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:12px 14px;border-radius:9px;
+  cursor:pointer;text-align:center;text-decoration:none;display:inline-block;transition:border-color .22s,color .22s,background .22s,transform .2s}
+.card-btn:hover{border-color:var(--neon);color:var(--text-hi);background:rgba(168,255,96,.08);transform:translateY(-1px)}
+.card-btn.primary{background:var(--neon);color:var(--void);border-color:var(--neon)}
+.card-btn.primary:hover{box-shadow:0 0 20px var(--neon-dim);color:var(--void)}
+.card-cost-link{font-size:11px;letter-spacing:.06em;color:var(--gold-lit);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.card-cost-link:hover{color:var(--text-hi)}
+.card-note{font-size:11px;color:var(--text-lo);font-weight:300}
 
 /* MODAL */
 .modal-back{position:fixed;inset:0;z-index:1000;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
@@ -333,6 +349,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <div class="nav-links" id="navLinks">
     <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
     <a href="#cases" data-i18n="nav_cases">Cases</a>
+    <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
     <a href="trabalhos/" data-i18n="nav_trabalhos">Trabalhos</a>
     <a href="#setores" data-i18n="nav_sectors">Setores</a>
     <a href="#metodo" data-i18n="nav_method">Método</a>
@@ -351,6 +368,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <aside id="mobileDrawer" aria-label="Menu de navegação">
   <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
   <a href="#cases" data-i18n="nav_cases">Cases</a>
+  <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
   <a href="trabalhos/" data-i18n="nav_trabalhos">Trabalhos</a>
   <a href="#setores" data-i18n="nav_sectors">Setores</a>
   <a href="#metodo" data-i18n="nav_method">Método</a>
@@ -459,6 +477,114 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
+    </div>
+  </div>
+</section>
+
+<!-- MODELOS DISPONIVEIS -->
+<section class="light alt" id="modelos">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="models_eyebrow">Catálogo de modelos</span></div>
+    <h2 class="sec-title" data-i18n="models_title">Modelos Disponíveis</h2>
+    <p class="sec-lead" data-i18n="models_lead">Experiências digitais demonstrativas, criadas para mostrar possibilidades de presença, percepção e estrutura. Os nomes, imagens e informações foram adaptados para preservar privacidade e permitir uma visualização segura do potencial de cada projeto.</p>
+    <p class="sec-lead" data-i18n="models_lead2">Escolha um modelo como ponto de partida visual. A proposta final é sempre ajustada à identidade, ao nicho e ao posicionamento do cliente.</p>
+
+    <div class="models-grid">
+      <div class="card" data-model-id="model_ecommerce_artisanal" data-model-name="Craft Commerce" data-model-niche="E-commerce artesanal">
+        <div class="card-cover"><div class="cov-art"><div class="k">Craft<br><span>Commerce</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
+          <span class="card-name">Craft Commerce</span>
+          <span class="card-tag" data-i18n="model_craft_tag">E-commerce artesanal · Loja</span>
+          <span class="card-desc" data-i18n="model_craft_desc">Vitrine de marca artesanal com identidade própria: do produto feito à mão a uma experiência de compra que vende sozinha.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-craft-commerce" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+        </div>
+      </div>
+
+      <div class="card" data-model-id="model_photo_editorial" data-model-name="Editorial Photo Studio" data-model-niche="Fotografia premium">
+        <div class="card-cover"><div class="cov-art"><div class="k">Editorial<br><span>Photo Studio</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
+          <span class="card-name">Editorial Photo Studio</span>
+          <span class="card-tag" data-i18n="model_photo_tag">Fotografia · Alto padrão</span>
+          <span class="card-desc" data-i18n="model_photo_desc">Portfólio editorial noturno para estúdio fotográfico. Direção de arte que posiciona o trabalho no segmento de luxo.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-editorial-photo-studio" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+        </div>
+      </div>
+
+      <div class="card" data-model-id="model_accounting_executive" data-model-name="Executive Accounting" data-model-niche="Contabilidade / consultoria empresarial">
+        <div class="card-cover"><div class="cov-art"><div class="k">Executive<br><span>Accounting</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
+          <span class="card-name">Executive Accounting</span>
+          <span class="card-tag" data-i18n="model_acc_tag">Contabilidade · Consultoria</span>
+          <span class="card-desc" data-i18n="model_acc_desc">Contabilidade que passa a parecer consultoria premium, com confiança resolvida antes da primeira reunião.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-executive-accounting" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+        </div>
+      </div>
+
+      <div class="card" data-model-id="model_fantasy_universe" data-model-name="Fantasy Universe" data-model-niche="Universo autoral / entretenimento">
+        <div class="card-cover"><div class="cov-art"><div class="k">Fantasy<br><span>Universe</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge live"><span class="dot"></span><span data-i18n="models_badge_live">Produto próprio · no ar</span></span>
+          <span class="card-name">Fantasy Universe</span>
+          <span class="card-tag" data-i18n="model_fantasy_tag">Universo transmídia · 3D interativo</span>
+          <span class="card-desc" data-i18n="model_fantasy_desc">Universo sci-fi autoral com 3D em tempo real no navegador: o nível mais alto de complexidade técnica que ofereço.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-fantasy-universe" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note_live">Produto autoral próprio, sem cliente terceiro envolvido.</span>
+        </div>
+      </div>
+
+      <div class="card" data-model-id="model_real_estate_luxury" data-model-name="Luxury Estate" data-model-niche="Imobiliário alto padrão">
+        <div class="card-cover"><div class="cov-art"><div class="k">Luxury<br><span>Estate</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span data-i18n="models_badge_template">Template autoral</span></span>
+          <span class="card-name">Luxury Estate</span>
+          <span class="card-tag" data-i18n="model_luxury_tag">Imobiliário · Alto padrão</span>
+          <span class="card-desc" data-i18n="model_luxury_desc">Vitrine imobiliária de alto padrão com catálogo curado de imóveis e integração de CRM.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-luxury-estate" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+        </div>
+      </div>
+
+      <div class="card" data-model-id="model_agro_premium" data-model-name="Agro Prime" data-model-niche="Agronegócio premium">
+        <div class="card-cover"><div class="cov-art"><div class="k">Agro<br><span>Prime</span></div></div><div class="glow"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
+          <span class="card-name">Agro Prime</span>
+          <span class="card-tag" data-i18n="model_agro_tag">Agropecuária · Pecuária premium</span>
+          <span class="card-desc" data-i18n="model_agro_desc">Vitrine de plantel e leilões para pecuária premium. Autoridade digital para um setor que ainda vende no boca a boca.</span>
+          <div class="card-actions">
+            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn" href="trabalhos/#model-agro-prime" data-i18n="models_view">Ver modelo</a>
+          </div>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -589,6 +715,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       <h5 data-i18n="foot_work">Trabalho</h5>
       <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
       <a href="#cases" data-i18n="nav_cases">Cases</a>
+      <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
       <a href="trabalhos/" data-i18n="nav_trabalhos">Trabalhos</a>
       <a href="#setores" data-i18n="nav_sectors">Setores</a>
     </div>
@@ -600,7 +727,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       <a href="https://vakonuniverse.com" target="_blank" rel="noopener">Vakon Universe ↗</a>
     </div>
   </div>
-  <div class="foot-bottom">© <span id="yr"></span> Bruno Goebel · <span data-i18n="foot_rights">Todos os direitos reservados</span> · <a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
+  <div class="foot-bottom">© <span id="yr"></span> Bruno Goebel · <span data-i18n="foot_rights">Todos os direitos reservados. Layouts, textos e estruturas visuais protegidos, reprodução não autorizada é proibida.</span> · <a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
 </footer>
 
 <button id="toTop" aria-label="Voltar ao topo">↑</button>
@@ -624,6 +751,22 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* MODELOS DISPONIVEIS: quote/cost mailto links (WhatsApp real ainda nao confirmado, ver BRUNODEVAI_MODELS_QUOTE_FLOW_REPORT.md) */
+document.querySelectorAll('.models-grid .card[data-model-id]').forEach(card=>{
+  const name=card.dataset.modelName,niche=card.dataset.modelNiche;
+  const quoteLink=card.querySelector('[data-quote-link]'),costLink=card.querySelector('[data-cost-link]');
+  if(quoteLink){
+    const subject=encodeURIComponent('Interesse no modelo '+name);
+    const body=encodeURIComponent('Olá, Bruno. Tenho interesse no modelo '+name+' para o nicho '+niche+'. Gostaria de entender orçamento, custos e adaptação para minha marca.');
+    quoteLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject+'&body='+body;
+  }
+  if(costLink){
+    const subject2=encodeURIComponent('Custos e escopo do modelo '+name);
+    const body2=encodeURIComponent('Olá, Bruno. Quero entender custos e escopo do modelo '+name+' para o meu projeto.');
+    costLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject2+'&body='+body2;
+  }
+});
 
 /* NAV SCROLL + PROGRESS */
 const nav=document.getElementById('nav'),prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
@@ -722,7 +865,18 @@ addEventListener('keydown',e=>{
 
 /* I18N */
 const tEN={
-  nav_eco:'Ecosystems',nav_cases:'Cases',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a proposal',
+  nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a proposal',
+  models_eyebrow:'Model catalog',models_title:'Available Models',
+  models_lead:'Demonstrative digital experiences, built to show possibilities of presence, perception and structure. Names, images and information were adapted to preserve privacy and allow a safe view of each project’s potential.',
+  models_lead2:'Pick a model as a visual starting point. The final proposal is always tailored to the client’s identity, niche and positioning.',
+  models_badge:'Adapted demonstration',models_badge_live:'Own product · live',models_badge_template:'Original template',
+  models_view:'View model',models_cost:'Ask about cost and scope →',models_note:'Adapted demonstration, no real client data.',models_note_live:'Own authorial product, no third-party client involved.',
+  model_craft_tag:'Handcrafted e-commerce · Store',model_craft_desc:'Storefront for a handcrafted brand with its own identity: from handmade product to a shopping experience that sells on its own.',
+  model_photo_tag:'Photography · High-end',model_photo_desc:'Nocturnal editorial portfolio for a photography studio. Art direction that positions the work in the luxury segment.',
+  model_acc_tag:'Accounting · Consulting',model_acc_desc:'Accounting that now looks like premium consulting, with trust resolved before the first meeting.',
+  model_fantasy_tag:'Transmedia universe · interactive 3D',model_fantasy_desc:'Authorial sci-fi universe with real-time 3D in the browser: the highest level of technical complexity I offer.',
+  model_luxury_tag:'Real estate · High-end',model_luxury_desc:'High-end real estate showcase with a curated property catalog and CRM integration.',
+  model_agro_tag:'Livestock · Premium cattle',model_agro_desc:'Herd and auction showcase for premium cattle. Digital authority for a sector still selling by word of mouth.',
   hero_eyebrow:'Bruno Goebel · Digital studio · Ultra realistic websites',
   hero_title:'Your website should not just exist. It should <em>raise how the market values</em> your brand.',
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
@@ -769,7 +923,7 @@ const tEN={
   cta_eyebrow:'Let us build yours',cta_title:'If you made it this far, you already felt the difference.',
   cta_lead:'Tell me about your project. I reply with a clear direction and an honest proposal, at the same standard you saw here.',
   cta_btn1:'I want to elevate my digital presence →',cta_btn2:'See Vakon Universe live',
-  foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved',foot_privacy:'Privacy Policy',
+  foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved. Layouts, copy and visual structures are protected; unauthorized reproduction is prohibited.',foot_privacy:'Privacy Policy',
   d_challenge:'Challenge',d_solution:'Solution',d_proof:'What it proves',d_visit:'See live →'
 };
 let EN=false;const tPT={};
