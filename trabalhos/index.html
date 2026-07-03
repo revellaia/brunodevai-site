@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Trabalhos · Bruno Goebel · Portfólio demonstrativo de sites premium</title>
+
+<!-- SEO -->
+<meta name="description" content="Demonstrações adaptadas dos sites e ecossistemas digitais criados por Bruno Goebel: contabilidade, fotografia, artesanato, agro, imobiliário e produto autoral. Direção visual, estrutura e percepção, sem expor dados privados de clientes."/>
+<meta name="author" content="Bruno Goebel"/>
+<meta name="contact" content="bgmcruz1988@gmail.com"/>
+<link rel="canonical" href="https://brunodevai.com/trabalhos/"/>
+<meta name="robots" content="index, follow"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://brunodevai.com/trabalhos/"/>
+<meta property="og:title" content="Trabalhos · Bruno Goebel · Portfólio demonstrativo"/>
+<meta property="og:description" content="Demonstrações adaptadas de sites premium por setor: contabilidade, fotografia, artesanato, agro, imobiliário e produto autoral."/>
+<meta property="og:image" content="https://brunodevai.com/logo-brunodevai.png"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:site_name" content="Bruno Goebel"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Trabalhos · Bruno Goebel"/>
+<meta name="twitter:description" content="Demonstrações adaptadas de sites premium por setor, sem dados privados de clientes."/>
+<meta name="twitter:image" content="https://brunodevai.com/logo-brunodevai.png"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="../logo-brunodevai.png"/>
+<link rel="apple-touch-icon" href="../logo-brunodevai.png"/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<!-- Security (mesma política do site principal) -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"CollectionPage",
+  "name":"Trabalhos · Bruno Goebel",
+  "url":"https://brunodevai.com/trabalhos/",
+  "description":"Demonstrações adaptadas de sites e ecossistemas digitais criados por Bruno Goebel, organizadas por setor.",
+  "isPartOf":{"@type":"WebSite","name":"Bruno Goebel","url":"https://brunodevai.com/"}
+}
+</script>
+
+<style>
+/* ==========================================================
+   TOKENS (idênticos ao site principal, brunodevai.com)
+========================================================== */
+:root{
+  --cream:#fbf9f4; --cream-2:#f2eee4; --gold:#C5A059; --charcoal:#1b1c19;
+  --ink:#26261f; --ink-soft:#4d4d4d;
+  --void:#0c0d0b; --void-2:#141613; --void-3:#1c1f1a;
+  --gold-lit:#D8B368; --neon:#A8FF60; --neon-dim:rgba(168,255,96,.16);
+  --text-hi:#f4f2ec; --text-lo:#9a9b94;
+  --maxw:1240px; --ease:cubic-bezier(.22,.61,.36,1); --r:14px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+body.locked{overflow:hidden}
+h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--neon);color:var(--void)}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+
+#progress{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0;
+  background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .1s linear;box-shadow:0 0 10px var(--neon-dim)}
+#toTop{position:fixed;right:22px;bottom:22px;z-index:800;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--neon-dim);background:rgba(12,13,11,.85);color:var(--neon);
+  display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s,box-shadow .3s;backdrop-filter:blur(8px)}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{box-shadow:0 0 24px var(--neon-dim);transform:translateY(-2px)}
+
+/* NAV (idêntico ao site principal) */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;
+  justify-content:space-between;padding:14px clamp(18px,4vw,56px);
+  background:rgba(10,11,9,.78);backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(197,160,89,.16);transition:padding .3s,background .3s}
+nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-bottom-color:rgba(197,160,89,.26)}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 14px rgba(197,160,89,.4));transition:filter .3s}
+.logo:hover img{filter:drop-shadow(0 0 24px rgba(197,160,89,.7))}
+.nav-links{display:flex;gap:30px}
+.nav-links a{font-size:11px;color:var(--text-lo);letter-spacing:.09em;text-transform:uppercase;
+  font-weight:500;text-decoration:none;position:relative;padding-bottom:3px;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--neon);
+  box-shadow:0 0 8px var(--neon);transition:width .28s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text-hi)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-right{display:flex;gap:10px;align-items:center}
+.btn-cta{background:var(--neon);color:var(--void);font-size:9px;letter-spacing:.14em;font-weight:800;
+  padding:10px 18px;border:none;cursor:pointer;text-transform:uppercase;text-decoration:none;
+  transition:box-shadow .25s,transform .2s}
+.btn-cta:hover{box-shadow:0 0 26px var(--neon-dim);transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;z-index:620}
+.nav-burger span{width:22px;height:2px;background:var(--gold-lit);transition:.3s}
+.nav-burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.active span:nth-child(2){opacity:0}
+.nav-burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+#navOverlay{position:fixed;inset:0;z-index:610;background:rgba(4,5,4,.6);backdrop-filter:blur(3px);
+  opacity:0;pointer-events:none;transition:opacity .3s}
+#navOverlay.open{opacity:1;pointer-events:auto}
+#mobileDrawer{position:fixed;top:0;right:0;z-index:615;height:100vh;height:100dvh;
+  width:min(84vw,340px);background:var(--void-2);border-left:1px solid rgba(216,179,104,.2);
+  transform:translateX(100%);transition:transform .35s var(--ease);
+  display:flex;flex-direction:column;gap:8px;padding:96px 30px 30px;overflow-y:auto;overscroll-behavior:contain}
+#mobileDrawer.open{transform:translateX(0)}
+#mobileDrawer a{font-size:17px;color:var(--text-hi);text-decoration:none;letter-spacing:.02em;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
+#mobileDrawer a::after{content:'›';color:var(--gold-lit)}
+#mobileDrawer a:hover{color:var(--neon)}
+#mobileDrawer .drawer-cta{margin-top:18px;background:var(--neon);color:var(--void);font-weight:800;
+  text-align:center;justify-content:center;border-bottom:none;border-radius:6px;padding:16px}
+#mobileDrawer .drawer-cta::after{content:''}
+.drawer-foot{margin-top:auto;padding-top:20px;font-size:12px;color:var(--text-lo)}
+.drawer-foot a{font-size:12px;border-bottom:none;padding:6px 0}
+.drawer-foot a::after{content:''}
+
+/* PAGE HERO */
+.page-hero{position:relative;padding:clamp(140px,18vw,190px) clamp(18px,4vw,56px) clamp(60px,8vw,90px);
+  background:var(--void);color:var(--text-hi);overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.page-hero .wrap{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lit);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.page-hero h1{font-size:clamp(32px,5.4vw,64px);line-height:1.05;font-weight:500;letter-spacing:-.01em;max-width:20ch}
+.page-hero h1 em{font-style:italic;color:var(--gold-lit)}
+.page-hero .lead{margin-top:22px;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:var(--text-lo);max-width:62ch;font-weight:300}
+
+/* PRIVACY NOTE */
+.privacy-note{margin-top:34px;display:flex;gap:14px;align-items:flex-start;max-width:70ch;
+  border:1px solid rgba(216,179,104,.28);border-radius:var(--r);padding:18px 20px;background:rgba(216,179,104,.06)}
+.privacy-note .pn-icon{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--gold-lit);
+  color:var(--gold-lit);display:grid;place-items:center;font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.privacy-note p{font-size:13px;line-height:1.65;color:var(--text-lo);font-weight:300}
+.privacy-note a{color:var(--gold-lit);text-decoration:underline;text-underline-offset:2px}
+
+/* FILTERS */
+.filters-shell{background:var(--void);padding:0 clamp(18px,4vw,56px) clamp(50px,6vw,70px)}
+.filters-shell .wrap{max-width:var(--maxw);margin:0 auto}
+.filters{display:flex;flex-wrap:wrap;gap:10px}
+.f-tab{border:1px solid rgba(216,179,104,.3);background:none;color:var(--text-lo);font-size:12px;letter-spacing:.03em;
+  font-weight:600;padding:10px 18px;border-radius:40px;cursor:pointer;transition:all .22s}
+.f-tab[aria-pressed="true"]{background:var(--neon);color:var(--void);border-color:var(--neon)}
+.f-tab:hover{border-color:var(--neon);color:var(--text-hi)}
+.f-tab[aria-pressed="true"]:hover{color:var(--void)}
+
+/* GRID */
+.demo-section{background:var(--cream-2);padding:clamp(50px,7vw,80px) clamp(18px,4vw,56px)}
+.demo-section .wrap{max-width:var(--maxw);margin:0 auto}
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:8px}
+.card{background:var(--void-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);overflow:hidden;
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;text-align:left;
+  display:flex;flex-direction:column;color:inherit;width:100%;scroll-margin-top:100px}
+.card:hover{transform:translateY(-6px);border-color:var(--neon-dim);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.card.hidden{display:none}
+.card-cover{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;background:linear-gradient(135deg,var(--void-3),var(--void))}
+.card-cover .cov-art{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;z-index:1}
+.card-cover .cov-art .k{font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.8vw,36px);color:var(--gold-lit);line-height:1.1}
+.card-cover .cov-art .k span{color:var(--text-hi)}
+.card-cover .glow{position:absolute;inset:0;z-index:3;background:radial-gradient(50% 60% at 50% 30%,var(--neon-dim),transparent 70%);opacity:.4;transition:opacity .4s;pointer-events:none}
+.card:hover .glow{opacity:.9}
+.card-cover .scan{position:absolute;left:0;right:0;top:0;height:1px;z-index:4;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover .scan{opacity:.85;animation:scan 2.4s linear infinite}
+@keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(200px)}}
+.card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.badge{align-self:flex-start;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:40px;display:inline-flex;align-items:center;gap:7px}
+.badge.live{color:var(--neon);border:1px solid var(--neon-dim)}
+.badge.demo{color:var(--gold-lit);border:1px solid rgba(216,179,104,.4)}
+.card-name{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi);line-height:1.1}
+.card-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.card-desc{font-size:13.5px;line-height:1.65;color:var(--text-lo);font-weight:300;flex:1}
+.card-btn{margin-top:6px;width:100%;border:1px solid rgba(216,179,104,.4);background:none;color:var(--gold-lit);
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:13px 16px;border-radius:9px;
+  cursor:pointer;text-align:center;transition:border-color .22s,color .22s,background .22s,transform .2s}
+.card-btn:hover{border-color:var(--neon);color:var(--text-hi);background:rgba(168,255,96,.08);transform:translateY(-1px)}
+.card-btn:active{transform:translateY(0)}
+.empty-state{display:none;padding:60px 0;text-align:center;color:var(--ink-soft);font-size:14px}
+.empty-state.show{display:block}
+
+/* MODAL */
+.modal-back{position:fixed;inset:0;z-index:1000;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
+.modal-back.open{display:flex}
+.modal-back.show{opacity:1}
+.modal{background:var(--void-2);border:1px solid rgba(216,179,104,.22);border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow:auto;position:relative;color:var(--text-hi);transform:translateY(16px);transition:transform .35s var(--ease)}
+.modal-back.show .modal{transform:translateY(0)}
+.modal-cover{aspect-ratio:16/7;background:linear-gradient(135deg,var(--void-3),var(--void));position:relative;display:grid;place-items:center;overflow:hidden}
+.modal-cover .k{position:relative;z-index:2;font-family:'Bodoni Moda',serif;font-size:clamp(28px,4.6vw,48px);color:var(--gold-lit);text-shadow:0 4px 30px rgba(0,0,0,.6);text-align:center;padding:0 24px}
+.modal-cover .k span{color:var(--text-hi)}
+.modal-x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:var(--text-hi);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:border-color .2s}
+.modal-x:hover{border-color:var(--neon)}
+.modal-in{padding:30px clamp(22px,4vw,40px) 38px}
+.modal-in .badge{margin-bottom:14px}
+.modal-in h3{font-size:clamp(24px,3.2vw,34px);color:var(--text-hi);margin-bottom:6px}
+.modal-in .m-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.m-block{margin-bottom:20px}
+.m-block h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lit);margin-bottom:8px}
+.m-block p{font-size:14.5px;line-height:1.7;color:var(--text-lo);font-weight:300}
+.m-disclaimer{margin-top:6px;padding:14px 16px;border:1px solid rgba(216,179,104,.25);border-radius:10px;background:rgba(216,179,104,.05)}
+.m-disclaimer p{font-size:12.5px;color:var(--text-lo)}
+.m-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--neon);color:var(--void);font-weight:800;font-size:13px;letter-spacing:.04em;
+  padding:16px 30px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s,transform .2s}
+.btn-primary:hover{box-shadow:0 0 34px var(--neon-dim);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(216,179,104,.5);color:var(--gold-lit);font-weight:600;font-size:13px;
+  letter-spacing:.04em;padding:16px 28px;background:none;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;transition:border-color .25s,color .25s}
+.btn-ghost:hover{border-color:var(--neon);color:var(--text-hi)}
+
+/* CTA FINAL */
+.cta-final{text-align:center;background:var(--void);padding:clamp(60px,8vw,100px) clamp(18px,4vw,56px);color:var(--text-hi);position:relative;overflow:hidden}
+.cta-final .wrap{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+.cta-final .sec-title{font-size:clamp(26px,3.6vw,44px);font-weight:500;letter-spacing:-.01em;margin:0 auto;max-width:24ch}
+.cta-final .sec-lead{margin:18px auto 0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:var(--text-lo);max-width:56ch;font-weight:300}
+.cta-final .actions{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+
+/* FOOTER */
+footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197,160,89,.16)}
+.foot{max-width:var(--maxw);margin:0 auto;padding:56px clamp(18px,4vw,56px);display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot a{color:var(--gold-lit);text-decoration:none}
+.foot a:hover{color:var(--text-hi)}
+.foot-brand{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi)}
+.foot small{display:block;margin-top:10px;font-size:12px;color:var(--text-lo)}
+.foot-col h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
+.foot-col a{display:block;font-size:13px;margin-bottom:9px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.06);text-align:center;padding:20px;font-size:11px;color:var(--text-lo)}
+.foot-bottom a{color:var(--gold-lit);text-decoration:none}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+}
+@media(max-width:560px){
+  .logo img{height:46px}
+  .foot{flex-direction:column}
+  .nav-right .btn-cta{display:none}
+  .cta-final .actions{flex-direction:column;align-items:stretch}
+  .cta-final .btn-primary,.cta-final .btn-ghost{justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="../#top" aria-label="Bruno Goebel, início"><img src="../logo-brunodevai.png" alt="Bruno Goebel"/></a>
+  <div class="nav-links" id="navLinks">
+    <a href="../#ecossistemas">Ecossistemas</a>
+    <a href="../#cases">Cases</a>
+    <a href="./" class="active">Trabalhos</a>
+    <a href="../#setores">Setores</a>
+    <a href="../#metodo">Método</a>
+    <a href="../#contato">Contato</a>
+  </div>
+  <div class="nav-right">
+    <a class="btn-cta" href="../#contato">Solicitar proposta</a>
+    <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div id="navOverlay"></div>
+<aside id="mobileDrawer" aria-label="Menu de navegação">
+  <a href="../#ecossistemas">Ecossistemas</a>
+  <a href="../#cases">Cases</a>
+  <a href="./">Trabalhos</a>
+  <a href="../#setores">Setores</a>
+  <a href="../#metodo">Método</a>
+  <a href="../#contato">Contato</a>
+  <a class="drawer-cta" href="../#contato">Solicitar proposta</a>
+  <div class="drawer-foot"><a href="../privacy.html">Política de Privacidade</a></div>
+</aside>
+
+<!-- HERO -->
+<header class="page-hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow"><span>Portfólio demonstrativo</span></div>
+    <h1>Possibilidades reais de <em>direção visual</em>, estrutura e percepção digital.</h1>
+    <p class="lead">Uma seleção de experiências criadas por mim, organizadas por setor. Cada card mostra o nível de entrega que você pode esperar, sem depender de você já conhecer o cliente original.</p>
+    <div class="privacy-note">
+      <span class="pn-icon" aria-hidden="true">i</span>
+      <p>Algumas experiências abaixo foram adaptadas para demonstração, com nomes, imagens e informações substituídos para preservar a privacidade dos clientes. O objetivo é mostrar possibilidades reais de direção visual, estrutura e percepção digital, não reproduzir os sites reais. Para ver os cases reais no ar, com autorização dos clientes, <a href="../#cases">veja a seção Cases</a>.</p>
+    </div>
+    <div class="privacy-note terms-note">
+      <span class="pn-icon" aria-hidden="true">§</span>
+      <p>Os modelos exibidos abaixo são demonstrações visuais autorais da BrunoDevAI. A reprodução, cópia, redistribuição ou adaptação não autorizada do layout, dos textos e da estrutura é proibida. Cada modelo é identificado por um ID técnico interno para fins de autoria e rastreabilidade.</p>
+    </div>
+  </div>
+</header>
+
+<!-- FILTROS -->
+<section class="filters-shell">
+  <div class="wrap">
+    <div class="filters" id="filters" role="group" aria-label="Filtrar por nicho">
+      <button class="f-tab" data-filter="todos" aria-pressed="true">Todos</button>
+      <button class="f-tab" data-filter="artesanato" aria-pressed="false">Artesanato</button>
+      <button class="f-tab" data-filter="fotografia" aria-pressed="false">Fotografia</button>
+      <button class="f-tab" data-filter="contabilidade" aria-pressed="false">Contabilidade</button>
+      <button class="f-tab" data-filter="produto-proprio" aria-pressed="false">Produto autoral</button>
+      <button class="f-tab" data-filter="imobiliario" aria-pressed="false">Imobiliário</button>
+      <button class="f-tab" data-filter="agro" aria-pressed="false">Agro</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="demo-section">
+  <div class="wrap">
+    <div class="demo-grid" id="demoGrid">
+
+      <div class="card" id="model-artisan-shop" data-model-id="model_ecommerce_artisanal" data-niche="artesanato">
+        <div class="card-cover" data-modal="m-rustica"><div class="cov-art"><div class="k">Rústica<br><span>Bottons Artesanais</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span>Demonstração adaptada</span></span>
+          <span class="card-name">Rústica Bottons Artesanais</span>
+          <span class="card-tag">Comércio · Artesanal</span>
+          <span class="card-desc">Marca artesanal com vitrine própria e identidade premium: do produto feito à mão a uma experiência de compra que vende sozinha.</span>
+          <button class="card-btn" data-modal="m-rustica">Ver demonstração</button>
+        </div>
+      </div>
+
+      <div class="card" id="model-editorial-photo-studio" data-model-id="model_photo_editorial" data-niche="fotografia">
+        <div class="card-cover" data-modal="m-lume"><div class="cov-art"><div class="k">Lume<br><span>Estúdio Fotográfico</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span>Demonstração adaptada</span></span>
+          <span class="card-name">Lume Estúdio Fotográfico</span>
+          <span class="card-tag">Fotografia · Alto padrão</span>
+          <span class="card-desc">Portfólio editorial noturno para um estúdio fotográfico. Direção de arte que posiciona o trabalho no segmento de luxo.</span>
+          <button class="card-btn" data-modal="m-lume">Ver demonstração</button>
+        </div>
+      </div>
+
+      <div class="card" id="model-executive-accounting" data-model-id="model_accounting_executive" data-niche="contabilidade">
+        <div class="card-cover" data-modal="m-aurora"><div class="cov-art"><div class="k">Aurora<br><span>Consultoria Contábil</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span>Demonstração adaptada</span></span>
+          <span class="card-name">Aurora Consultoria Contábil</span>
+          <span class="card-tag">Serviços profissionais</span>
+          <span class="card-desc">Contabilidade que passa a parecer consultoria premium, com confiança resolvida antes da primeira reunião.</span>
+          <button class="card-btn" data-modal="m-aurora">Ver demonstração</button>
+        </div>
+      </div>
+
+      <div class="card" id="model-fantasy-universe" data-model-id="model_fantasy_universe" data-niche="produto-proprio">
+        <div class="card-cover" data-modal="m-vakon"><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge live"><span class="dot"></span><span>Produto próprio · no ar</span></span>
+          <span class="card-name">The Frozen Legacy</span>
+          <span class="card-tag">Universo transmídia · 3D interativo</span>
+          <span class="card-desc">Universo sci-fi autoral com 3D em tempo real no navegador: o nível mais alto de complexidade técnica que ofereço, sem sanitização porque é produto próprio.</span>
+          <button class="card-btn" data-modal="m-vakon">Ver demonstração</button>
+        </div>
+      </div>
+
+      <div class="card" id="model-luxury-estate" data-model-id="model_real_estate_luxury" data-niche="imobiliario">
+        <div class="card-cover" data-modal="m-aether"><div class="cov-art"><div class="k">AETHER<br><span>Realty</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span>Template autoral</span></span>
+          <span class="card-name">AETHER Realty</span>
+          <span class="card-tag">Imobiliário · Alto padrão</span>
+          <span class="card-desc">Vitrine imobiliária de alto padrão com catálogo curado de imóveis e integração de CRM, construída como template autoral do estúdio.</span>
+          <button class="card-btn" data-modal="m-aether">Ver demonstração</button>
+        </div>
+      </div>
+
+      <div class="card" id="model-agro-prime" data-model-id="model_agro_premium" data-niche="agro">
+        <div class="card-cover" data-modal="m-cerrado"><div class="cov-art"><div class="k">Fazenda<br><span>Cerrado Alto</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-body">
+          <span class="badge demo"><span>Demonstração adaptada</span></span>
+          <span class="card-name">Fazenda Cerrado Alto</span>
+          <span class="card-tag">Agropecuária · Pecuária premium</span>
+          <span class="card-desc">Vitrine de plantel e leilões para pecuária premium. Autoridade digital para um setor que ainda vende no boca a boca.</span>
+          <button class="card-btn" data-modal="m-cerrado">Ver demonstração</button>
+        </div>
+      </div>
+
+    </div>
+    <p class="empty-state" id="emptyState">Nenhum trabalho neste filtro ainda. Volte em breve.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="sec-title">Quero algo nesse nível para o meu negócio.</h2>
+    <p class="sec-lead">Me conte o seu projeto. Eu respondo com uma direção clara e uma proposta honesta, no mesmo padrão que você viu aqui.</p>
+    <div class="actions">
+      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20algo%20nesse%20nivel">Quero algo nesse nível →</a>
+      <a class="btn-ghost" href="../#cases">Ver cases reais no ar</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot">
+    <div>
+      <div class="foot-brand">Bruno Goebel</div>
+      <small>Sites ultra realistas e ecossistemas digitais.</small>
+      <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
+    </div>
+    <div class="foot-col">
+      <h5>Trabalho</h5>
+      <a href="../#ecossistemas">Ecossistemas</a>
+      <a href="../#cases">Cases</a>
+      <a href="./">Trabalhos</a>
+      <a href="../#setores">Setores</a>
+    </div>
+    <div class="foot-col">
+      <h5>Mais</h5>
+      <a href="../#metodo">Método</a>
+      <a href="../#seguranca">Segurança</a>
+      <a href="../privacy.html">Política de Privacidade</a>
+      <a href="https://vakonuniverse.com" target="_blank" rel="noopener">Vakon Universe ↗</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© <span id="yr"></span> Bruno Goebel · BrunoDevAI. Layouts, textos, estruturas visuais e experiências demonstrativas protegidos. Reprodução não autorizada é proibida. · <a href="../privacy.html">Política de Privacidade</a></div>
+</footer>
+
+<button id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<!-- MODAL -->
+<div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal" id="modalBox">
+    <div class="modal-cover" id="mCover"><div class="k" id="mCoverK"></div>
+      <button class="modal-x" id="modalX" aria-label="Fechar">✕</button></div>
+    <div class="modal-in">
+      <span class="badge" id="mBadge"><span id="mBadgeTxt"></span></span>
+      <h3 id="mTitle"></h3>
+      <div class="m-tag" id="mTag"></div>
+      <div class="m-block"><h4>O que este projeto demonstra</h4><p id="mProof"></p></div>
+      <div class="m-block"><h4>Direção visual</h4><p id="mArt"></p></div>
+      <div class="m-block m-disclaimer" id="mDisclaimerBlock"><p id="mDisclaimer"></p></div>
+      <div class="m-cta">
+        <a class="btn-primary" id="mLink" href="mailto:bgmcruz1988@gmail.com" target="_blank" rel="noopener">Quero algo nesse nível →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* NAV SCROLL + PROGRESS */
+const nav=document.getElementById('nav'),prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
+function onScroll(){
+  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  nav.classList.toggle('scrolled',y>40);
+  prog.style.width=(h>0?(y/h*100):0)+'%';
+  toTop.classList.toggle('show',y>innerHeight*0.6);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+/* MOBILE DRAWER */
+const burger=document.getElementById('burger'),drawer=document.getElementById('mobileDrawer'),overlay=document.getElementById('navOverlay');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');burger.classList.add('active');burger.setAttribute('aria-expanded','true');document.body.classList.add('locked')}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');burger.classList.remove('active');burger.setAttribute('aria-expanded','false');document.body.classList.remove('locked')}
+burger.onclick=()=>drawer.classList.contains('open')?closeDrawer():openDrawer();
+overlay.onclick=closeDrawer;
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer()});
+
+/* FILTERS */
+const filters=document.querySelectorAll('.f-tab'),cards=document.querySelectorAll('.card[data-niche]'),emptyState=document.getElementById('emptyState');
+filters.forEach(f=>f.addEventListener('click',()=>{
+  filters.forEach(x=>x.setAttribute('aria-pressed','false'));
+  f.setAttribute('aria-pressed','true');
+  const val=f.dataset.filter;
+  let visible=0;
+  cards.forEach(c=>{
+    const show=val==='todos'||c.dataset.niche===val;
+    c.classList.toggle('hidden',!show);
+    if(show)visible++;
+  });
+  emptyState.classList.toggle('show',visible===0);
+}));
+
+/* MODAL */
+const DOSSIE={
+  'm-rustica':{name:'Rústica Bottons Artesanais',tag:'Comércio · Artesanal',cover:'Rústica|Bottons',badge:'demo',badgeTxt:'Demonstração adaptada',
+    proof:'Provo que sei traduzir uma marca artesanal pequena e afetiva em um ativo comercial sério, com grid de produtos, identidade visual coerente e checkout direto por WhatsApp.',
+    art:'Ilustrações geométricas e originais no lugar de fotografia de produto, sem depender de nenhuma licença de terceiro, mantendo a mesma sensação de coleção premium.'},
+  'm-lume':{name:'Lume Estúdio Fotográfico',tag:'Fotografia · Alto padrão',cover:'Lume|Estúdio',badge:'demo',badgeTxt:'Demonstração adaptada',
+    proof:'Direção de arte de alto padrão aplicada a uma marca pessoal criativa: portfólio apresentado como obra, não como galeria comum.',
+    art:'Paleta editorial noturna (vinho, preto e dourado), tipografia serifada expressiva e composição que dá peso a cada imagem.'},
+  'm-aurora':{name:'Aurora Consultoria Contábil',tag:'Serviços profissionais',cover:'Aurora|Contábil',badge:'demo',badgeTxt:'Demonstração adaptada',
+    proof:'Elevo a percepção de um setor tradicionalmente sem graça. Design a serviço de confiança, hierarquia clara e copy que constrói autoridade antes da primeira reunião.',
+    art:'Paleta neutra e institucional, JSON-LD estruturado por padrão e composição que comunica solidez sem parecer corporativo genérico.'},
+  'm-vakon':{name:'The Frozen Legacy',tag:'Universo transmídia · 3D interativo',cover:'The Frozen|Legacy',badge:'live',badgeTxt:'Produto próprio · no ar',
+    proof:'Prova de que domino o nível mais alto de complexidade técnica que um projeto web pode pedir: 3D em tempo real no navegador, narrativa bilíngue e arquitetura de mundo contínuo. É produto autoral, por isso está no ar com o nome real.',
+    art:'Identidade sci-fi própria, tipografia de comando e uma experiência 3D construída do zero para o universo.'},
+  'm-aether':{name:'AETHER Realty',tag:'Imobiliário · Alto padrão',cover:'AETHER|Realty',badge:'demo',badgeTxt:'Template autoral',
+    proof:'Mostro como seria a presença digital de uma imobiliária de alto padrão: catálogo curado de imóveis, ficha técnica premium e integração de CRM.',
+    art:'Paleta clara e sofisticada, fotografia de banco licenciada e composição inspirada em revistas de arquitetura.'},
+  'm-cerrado':{name:'Fazenda Cerrado Alto',tag:'Agropecuária · Pecuária premium',cover:'Fazenda|Cerrado Alto',badge:'demo',badgeTxt:'Demonstração adaptada',
+    proof:'Autoridade digital para um setor que ainda vende no boca a boca: vitrine de plantel, catálogo de leilões e apresentação de marca como qualquer outro segmento premium.',
+    art:'Paleta terrosa e dourada do agro de alto padrão, com tipografia que remete a brasão/selo de fazenda.'}
+};
+const mBack=document.getElementById('modalBack'),mBox=document.getElementById('modalBox');
+let lastFocus=null;
+function coverHTML(s){const p=s.split('|');return p[0]+'<span> '+(p[1]||'')+'</span>'}
+function openModal(id){
+  const d=DOSSIE[id];if(!d)return;lastFocus=document.activeElement;
+  document.getElementById('mCoverK').innerHTML=coverHTML(d.cover);
+  document.getElementById('mTitle').textContent=d.name;
+  document.getElementById('mTag').textContent=d.tag;
+  document.getElementById('mProof').textContent=d.proof;
+  document.getElementById('mArt').textContent=d.art;
+  const badge=document.getElementById('mBadge');badge.className='badge '+d.badge;
+  if(d.badge==='live'){badge.innerHTML='<span class="dot"></span><span>'+d.badgeTxt+'</span>'}
+  else{badge.innerHTML='<span>'+d.badgeTxt+'</span>'}
+  const disc=document.getElementById('mDisclaimerBlock'),discP=document.getElementById('mDisclaimer');
+  if(d.badge==='demo'){
+    disc.style.display='block';
+    discP.textContent='Nome, imagens e informações desta demonstração foram adaptados para preservar a privacidade do cliente real. O objetivo é mostrar direção visual e estrutura, não reproduzir o site original.';
+  }else{
+    disc.style.display='none';
+  }
+  mBack.classList.add('open');requestAnimationFrame(()=>mBack.classList.add('show'));
+  document.body.classList.add('locked');document.getElementById('modalX').focus();
+}
+function closeModal(){mBack.classList.remove('show');document.body.classList.remove('locked');
+  setTimeout(()=>mBack.classList.remove('open'),300);if(lastFocus)lastFocus.focus()}
+document.querySelectorAll('.card-cover[data-modal],.card-btn[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
+document.getElementById('modalX').onclick=closeModal;
+mBack.onclick=e=>{if(e.target===mBack)closeModal()};
+addEventListener('keydown',e=>{
+  if(!mBack.classList.contains('open'))return;
+  if(e.key==='Escape')closeModal();
+  if(e.key==='Tab'){const f=mBox.querySelectorAll('button,a[href]');if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+});
+</script>
+</body>
+</html>
