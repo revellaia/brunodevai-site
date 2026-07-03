@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="asTitle">
+<title id="asTitle">Prévia visual do modelo Artisan Shop: vitrine de e-commerce artesanal</title>
+<defs>
+<linearGradient id="asBg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#2a2119"/>
+<stop offset="55%" stop-color="#1c1712"/>
+<stop offset="100%" stop-color="#120e0a"/>
+</linearGradient>
+<linearGradient id="asCard" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#3a2d20"/>
+<stop offset="100%" stop-color="#2a2016"/>
+</linearGradient>
+<radialGradient id="asGlow" cx="50%" cy="20%" r="70%">
+<stop offset="0%" stop-color="#C88A4A" stop-opacity="0.35"/>
+<stop offset="100%" stop-color="#C88A4A" stop-opacity="0"/>
+</radialGradient>
+<pattern id="asPaper" width="6" height="6" patternUnits="userSpaceOnUse">
+<rect width="6" height="6" fill="none"/>
+<circle cx="1" cy="1" r="0.4" fill="#ffffff" opacity="0.04"/>
+</pattern>
+</defs>
+<rect width="640" height="400" fill="url(#asBg)"/>
+<rect width="640" height="400" fill="url(#asPaper)"/>
+<rect width="640" height="400" fill="url(#asGlow)"/>
+<!-- grade de produtos artesanais -->
+<g>
+<rect x="70" y="86" width="130" height="150" rx="10" fill="url(#asCard)" stroke="#C88A4A" stroke-opacity="0.35"/>
+<circle cx="135" cy="150" r="34" fill="none" stroke="#D8B368" stroke-width="2" opacity="0.75"/>
+<path d="M117 150 q18 -26 36 0" stroke="#D8B368" stroke-width="2" fill="none" opacity="0.6"/>
+<rect x="88" y="196" width="94" height="8" rx="4" fill="#D8B368" opacity="0.5"/>
+<rect x="88" y="210" width="60" height="6" rx="3" fill="#9a8b74" opacity="0.5"/>
+
+<rect x="222" y="60" width="130" height="176" rx="10" fill="url(#asCard)" stroke="#C88A4A" stroke-opacity="0.4"/>
+<rect x="248" y="90" width="78" height="78" rx="6" fill="none" stroke="#D8B368" stroke-width="2" opacity="0.7"/>
+<path d="M248 168 l20 -34 18 20 16 -26 24 40" stroke="#A8FF60" stroke-width="2" fill="none" opacity="0.5"/>
+<rect x="240" y="196" width="94" height="8" rx="4" fill="#D8B368" opacity="0.5"/>
+<rect x="240" y="210" width="70" height="6" rx="3" fill="#9a8b74" opacity="0.5"/>
+
+<rect x="374" y="96" width="130" height="140" rx="10" fill="url(#asCard)" stroke="#C88A4A" stroke-opacity="0.35"/>
+<rect x="392" y="118" width="94" height="66" rx="6" fill="none" stroke="#D8B368" stroke-width="2" opacity="0.7"/>
+<circle cx="439" cy="151" r="16" fill="none" stroke="#A8FF60" stroke-width="2" opacity="0.5"/>
+<rect x="392" y="196" width="70" height="8" rx="4" fill="#D8B368" opacity="0.5"/>
+
+<rect x="440" y="60" width="112" height="16" rx="8" fill="#0c0d0b" opacity="0.001"/>
+</g>
+<!-- selo artesanal -->
+<g transform="translate(526,270)">
+<circle r="30" fill="none" stroke="#D8B368" stroke-width="1.5" opacity="0.7"/>
+<circle r="24" fill="none" stroke="#D8B368" stroke-width="1" opacity="0.4" stroke-dasharray="2 3"/>
+<path d="M-9 2 l6 7 12 -14" stroke="#A8FF60" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="70" y="310" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="34" fill="#f4f2ec" opacity="0.92">Artisan Shop</text>
+<text x="70" y="336" font-family="Arial, sans-serif" font-size="12" letter-spacing="3" fill="#D8B368" opacity="0.85">COMÉRCIO · ARTESANAL · LOJA AUTORAL</text>
+</svg>

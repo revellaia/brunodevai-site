@@ -175,6 +175,10 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .card-cover .cov-art{position:absolute;inset:0;display:grid;place-items:center;padding:22px;text-align:center;z-index:1}
 .card-cover .cov-art .k{font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.8vw,36px);color:var(--gold-lit);line-height:1.1}
 .card-cover .cov-art .k span{color:var(--text-hi)}
+.model-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s var(--ease);background:linear-gradient(135deg,var(--void-3),var(--void))}
+.card:hover .model-preview-img{transform:scale(1.045)}
+@media(prefers-reduced-motion:reduce){.card:hover .model-preview-img{transform:none}}
 .card-cover .glow{position:absolute;inset:0;z-index:3;background:radial-gradient(50% 60% at 50% 30%,var(--neon-dim),transparent 70%);opacity:.4;transition:opacity .4s;pointer-events:none}
 .card:hover .glow{opacity:.9}
 .card-cover .scan{position:absolute;left:0;right:0;top:0;height:1px;z-index:4;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .3s;pointer-events:none}
@@ -202,6 +206,8 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .modal{background:var(--void-2);border:1px solid rgba(216,179,104,.22);border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow:auto;position:relative;color:var(--text-hi);transform:translateY(16px);transition:transform .35s var(--ease)}
 .modal-back.show .modal{transform:translateY(0)}
 .modal-cover{aspect-ratio:16/7;background:linear-gradient(135deg,var(--void-3),var(--void));position:relative;display:grid;place-items:center;overflow:hidden}
+.modal-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.modal-cover .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,13,11,.2),rgba(12,13,11,.82))}
 .modal-cover .k{position:relative;z-index:2;font-family:'Bodoni Moda',serif;font-size:clamp(28px,4.6vw,48px);color:var(--gold-lit);text-shadow:0 4px 30px rgba(0,0,0,.6);text-align:center;padding:0 24px}
 .modal-cover .k span{color:var(--text-hi)}
 .modal-x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:var(--text-hi);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:border-color .2s}
@@ -329,7 +335,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <div class="demo-grid" id="demoGrid">
 
       <div class="card" id="model-artisan-shop" data-model-id="model_ecommerce_artisanal" data-niche="artesanato">
-        <div class="card-cover" data-modal="m-rustica"><div class="cov-art"><div class="k">Rústica<br><span>Bottons Artesanais</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-rustica"><img class="model-preview-img" src="../assets/model-previews/artisan-shop.svg" alt="Prévia visual do modelo Rústica Bottons Artesanais" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Rústica Bottons Artesanais</span>
@@ -340,7 +346,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
 
       <div class="card" id="model-editorial-photo-studio" data-model-id="model_photo_editorial" data-niche="fotografia">
-        <div class="card-cover" data-modal="m-lume"><div class="cov-art"><div class="k">Lume<br><span>Estúdio Fotográfico</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-lume"><img class="model-preview-img" src="../assets/model-previews/editorial-photo-studio.svg" alt="Prévia visual do modelo Lume Estúdio Fotográfico" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Lume Estúdio Fotográfico</span>
@@ -351,7 +357,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
 
       <div class="card" id="model-executive-accounting" data-model-id="model_accounting_executive" data-niche="contabilidade">
-        <div class="card-cover" data-modal="m-aurora"><div class="cov-art"><div class="k">Aurora<br><span>Consultoria Contábil</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-aurora"><img class="model-preview-img" src="../assets/model-previews/executive-accounting.svg" alt="Prévia visual do modelo Aurora Consultoria Contábil" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Aurora Consultoria Contábil</span>
@@ -362,7 +368,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
 
       <div class="card" id="model-fantasy-universe" data-model-id="model_fantasy_universe" data-niche="produto-proprio">
-        <div class="card-cover" data-modal="m-vakon"><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-vakon"><img class="model-preview-img" src="../assets/model-previews/fantasy-universe.svg" alt="Prévia visual do modelo The Frozen Legacy" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span>Produto próprio · no ar</span></span>
           <span class="card-name">The Frozen Legacy</span>
@@ -373,7 +379,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
 
       <div class="card" id="model-luxury-estate" data-model-id="model_real_estate_luxury" data-niche="imobiliario">
-        <div class="card-cover" data-modal="m-aether"><div class="cov-art"><div class="k">AETHER<br><span>Realty</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-aether"><img class="model-preview-img" src="../assets/model-previews/luxury-estate.svg" alt="Prévia visual do modelo AETHER Realty" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Template autoral</span></span>
           <span class="card-name">AETHER Realty</span>
@@ -384,7 +390,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       </div>
 
       <div class="card" id="model-agro-prime" data-model-id="model_agro_premium" data-niche="agro">
-        <div class="card-cover" data-modal="m-cerrado"><div class="cov-art"><div class="k">Fazenda<br><span>Cerrado Alto</span></div></div><div class="glow"></div><div class="scan"></div></div>
+        <div class="card-cover" data-modal="m-cerrado"><img class="model-preview-img" src="../assets/model-previews/agro-prime.svg" alt="Prévia visual do modelo Fazenda Cerrado Alto" loading="lazy" width="640" height="400"><div class="glow"></div><div class="scan"></div></div>
         <div class="card-body">
           <span class="badge demo"><span>Demonstração adaptada</span></span>
           <span class="card-name">Fazenda Cerrado Alto</span>
@@ -442,7 +448,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- MODAL -->
 <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="modal" id="modalBox">
-    <div class="modal-cover" id="mCover"><div class="k" id="mCoverK"></div>
+    <div class="modal-cover" id="mCover"><img id="mCoverImg" alt=""><div class="veil"></div><div class="k" id="mCoverK"></div>
       <button class="modal-x" id="modalX" aria-label="Fechar">✕</button></div>
     <div class="modal-in">
       <span class="badge" id="mBadge"><span id="mBadgeTxt"></span></span>
@@ -498,22 +504,22 @@ filters.forEach(f=>f.addEventListener('click',()=>{
 
 /* MODAL */
 const DOSSIE={
-  'm-rustica':{name:'Rústica Bottons Artesanais',tag:'Comércio · Artesanal',cover:'Rústica|Bottons',badge:'demo',badgeTxt:'Demonstração adaptada',
+  'm-rustica':{name:'Rústica Bottons Artesanais',tag:'Comércio · Artesanal',cover:'Rústica|Bottons',img:'../assets/model-previews/artisan-shop.svg',badge:'demo',badgeTxt:'Demonstração adaptada',
     proof:'Provo que sei traduzir uma marca artesanal pequena e afetiva em um ativo comercial sério, com grid de produtos, identidade visual coerente e checkout direto por WhatsApp.',
     art:'Ilustrações geométricas e originais no lugar de fotografia de produto, sem depender de nenhuma licença de terceiro, mantendo a mesma sensação de coleção premium.'},
-  'm-lume':{name:'Lume Estúdio Fotográfico',tag:'Fotografia · Alto padrão',cover:'Lume|Estúdio',badge:'demo',badgeTxt:'Demonstração adaptada',
+  'm-lume':{name:'Lume Estúdio Fotográfico',tag:'Fotografia · Alto padrão',cover:'Lume|Estúdio',img:'../assets/model-previews/editorial-photo-studio.svg',badge:'demo',badgeTxt:'Demonstração adaptada',
     proof:'Direção de arte de alto padrão aplicada a uma marca pessoal criativa: portfólio apresentado como obra, não como galeria comum.',
     art:'Paleta editorial noturna (vinho, preto e dourado), tipografia serifada expressiva e composição que dá peso a cada imagem.'},
-  'm-aurora':{name:'Aurora Consultoria Contábil',tag:'Serviços profissionais',cover:'Aurora|Contábil',badge:'demo',badgeTxt:'Demonstração adaptada',
+  'm-aurora':{name:'Aurora Consultoria Contábil',tag:'Serviços profissionais',cover:'Aurora|Contábil',img:'../assets/model-previews/executive-accounting.svg',badge:'demo',badgeTxt:'Demonstração adaptada',
     proof:'Elevo a percepção de um setor tradicionalmente sem graça. Design a serviço de confiança, hierarquia clara e copy que constrói autoridade antes da primeira reunião.',
     art:'Paleta neutra e institucional, JSON-LD estruturado por padrão e composição que comunica solidez sem parecer corporativo genérico.'},
-  'm-vakon':{name:'The Frozen Legacy',tag:'Universo transmídia · 3D interativo',cover:'The Frozen|Legacy',badge:'live',badgeTxt:'Produto próprio · no ar',
+  'm-vakon':{name:'The Frozen Legacy',tag:'Universo transmídia · 3D interativo',cover:'The Frozen|Legacy',img:'../assets/model-previews/fantasy-universe.svg',badge:'live',badgeTxt:'Produto próprio · no ar',
     proof:'Prova de que domino o nível mais alto de complexidade técnica que um projeto web pode pedir: 3D em tempo real no navegador, narrativa bilíngue e arquitetura de mundo contínuo. É produto autoral, por isso está no ar com o nome real.',
     art:'Identidade sci-fi própria, tipografia de comando e uma experiência 3D construída do zero para o universo.'},
-  'm-aether':{name:'AETHER Realty',tag:'Imobiliário · Alto padrão',cover:'AETHER|Realty',badge:'demo',badgeTxt:'Template autoral',
+  'm-aether':{name:'AETHER Realty',tag:'Imobiliário · Alto padrão',cover:'AETHER|Realty',img:'../assets/model-previews/luxury-estate.svg',badge:'demo',badgeTxt:'Template autoral',
     proof:'Mostro como seria a presença digital de uma imobiliária de alto padrão: catálogo curado de imóveis, ficha técnica premium e integração de CRM.',
     art:'Paleta clara e sofisticada, fotografia de banco licenciada e composição inspirada em revistas de arquitetura.'},
-  'm-cerrado':{name:'Fazenda Cerrado Alto',tag:'Agropecuária · Pecuária premium',cover:'Fazenda|Cerrado Alto',badge:'demo',badgeTxt:'Demonstração adaptada',
+  'm-cerrado':{name:'Fazenda Cerrado Alto',tag:'Agropecuária · Pecuária premium',cover:'Fazenda|Cerrado Alto',img:'../assets/model-previews/agro-prime.svg',badge:'demo',badgeTxt:'Demonstração adaptada',
     proof:'Autoridade digital para um setor que ainda vende no boca a boca: vitrine de plantel, catálogo de leilões e apresentação de marca como qualquer outro segmento premium.',
     art:'Paleta terrosa e dourada do agro de alto padrão, com tipografia que remete a brasão/selo de fazenda.'}
 };
@@ -523,6 +529,7 @@ function coverHTML(s){const p=s.split('|');return p[0]+'<span> '+(p[1]||'')+'</s
 function openModal(id){
   const d=DOSSIE[id];if(!d)return;lastFocus=document.activeElement;
   document.getElementById('mCoverK').innerHTML=coverHTML(d.cover);
+  const mImg=document.getElementById('mCoverImg');if(d.img){mImg.src=d.img;mImg.alt='Prévia visual do modelo '+d.name;mImg.style.display='block'}else{mImg.style.display='none'}
   document.getElementById('mTitle').textContent=d.name;
   document.getElementById('mTag').textContent=d.tag;
   document.getElementById('mProof').textContent=d.proof;
