@@ -166,6 +166,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-scene-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center;
   filter:brightness(.62) contrast(1.12) saturate(.78);opacity:.9;transform:scale(1.08);
   transition:filter .7s var(--ease),opacity .7s var(--ease),transform .9s var(--ease)}
+.hero.is-video-live .hero-scene-video{filter:brightness(.72) contrast(1.1) saturate(.86);opacity:.96;transform:scale(1.095)}
 .hero.is-awake .hero-scene-video{filter:brightness(.78) contrast(1.1) saturate(.9);opacity:1;transform:scale(1.105)}
 .hero-scene-vignette{position:absolute;inset:0;z-index:5;pointer-events:none;
   background:radial-gradient(55% 48% at 58% 42%,transparent 36%,rgba(0,0,0,.34) 68%,rgba(0,0,0,.8) 100%)}
@@ -475,7 +476,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <header class="hero" id="top">
   <canvas id="heroCanvas"></canvas>
   <figure class="hero-scene-media" aria-label="Cena autoral de Bruno trabalhando em um notebook e acompanhando uma notificacao no celular">
-    <video id="heroMotionVideo" class="hero-scene-video" poster="assets/hero/bruno-hero-poster.webp" muted playsinline preload="auto" width="1320" height="990" aria-label="Bruno digitando no notebook, pegando o celular e olhando para a tela">
+    <video id="heroMotionVideo" class="hero-scene-video hero-living-video" autoplay muted loop playsinline preload="auto" poster="assets/hero/bruno-hero-poster.webp" width="1320" height="990" aria-hidden="true" disablepictureinpicture>
       <source src="assets/hero/bruno-hero-cinematic.mp4" type="video/mp4"/>
     </video>
     <span class="hero-scene-vignette" aria-hidden="true"></span>
@@ -911,14 +912,13 @@ document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
-/* HERO FRAME MOTION */
+/* HERO LIVING VIDEO */
 (function(){
   const hero=document.getElementById('top');
   const video=document.getElementById('heroMotionVideo');
   if(!hero||!video)return;
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const mobile=matchMedia('(hover:none), (pointer:coarse)').matches||innerWidth<=900;
-  let duration=8,progress=.12,targetSpeed=0,speed=0,lastX=innerWidth*.58,lastY=innerHeight*.42,lastMove=0,visible=true,ready=false;
+  let visible=true,targetRate=1,rate=1,lastX=innerWidth*.58,lastY=innerHeight*.42,unlockBound=false;
   function setPointer(x,y){
     const rect=hero.getBoundingClientRect();
     const nx=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
@@ -927,50 +927,72 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     hero.style.setProperty('--my',ny.toFixed(3));
   }
   function wake(){hero.classList.add('is-awake')}
-  function sleep(){hero.classList.remove('is-awake');targetSpeed=0}
-  video.addEventListener('loadedmetadata',()=>{
-    duration=video.duration||8;
-    video.pause();
-    video.currentTime=duration*.12;
-    ready=true;
-  },{once:true});
+  function sleep(){hero.classList.remove('is-awake');targetRate=1}
+  function playLivingVideo(){
+    if(reduce||!visible)return;
+    video.muted=true;
+    video.loop=true;
+    video.playsInline=true;
+    const playPromise=video.play();
+    if(playPromise&&playPromise.catch){
+      playPromise.then(()=>{hero.classList.add('is-video-live');hero.classList.remove('is-video-blocked')})
+        .catch(()=>{hero.classList.add('is-video-blocked');bindUnlock()});
+    }else{
+      hero.classList.add('is-video-live');
+    }
+  }
+  function bindUnlock(){
+    if(unlockBound)return;
+    unlockBound=true;
+    const unlock=()=>{
+      playLivingVideo();
+      removeEventListener('pointerdown',unlock);
+      removeEventListener('touchstart',unlock);
+      removeEventListener('scroll',unlock);
+    };
+    addEventListener('pointerdown',unlock,{once:true,passive:true});
+    addEventListener('touchstart',unlock,{once:true,passive:true});
+    addEventListener('scroll',unlock,{once:true,passive:true});
+  }
   hero.addEventListener('pointermove',e=>{
-    if(reduce||mobile)return;
+    if(reduce)return;
     const dx=e.clientX-lastX,dy=e.clientY-lastY;
-    const velocity=Math.min(1.8,Math.hypot(dx,dy)/46);
-    targetSpeed=Math.max(targetSpeed,velocity*.075+.018);
-    lastX=e.clientX;lastY=e.clientY;lastMove=performance.now();
+    const velocity=Math.min(1,Math.hypot(dx,dy)/72);
+    targetRate=1+velocity*.18;
+    lastX=e.clientX;lastY=e.clientY;
     setPointer(e.clientX,e.clientY);wake();
   });
   hero.addEventListener('pointerleave',sleep);
-  function tick(now){
-    if(!reduce&&ready&&visible&&!mobile){
-      if(now-lastMove>120)targetSpeed*=.92;
-      speed+=(targetSpeed-speed)*.08;
-      if(speed>.0007){
-        progress=(progress+speed)%1;
-        const next=Math.max(.04,Math.min(duration-.08,progress*duration));
-        if(Math.abs(video.currentTime-next)>.035)video.currentTime=next;
-      }
-      if(speed<.003&&targetSpeed<.003)hero.classList.remove('is-awake');
+  function tick(){
+    if(!reduce&&visible&&!video.paused){
+      rate+=(targetRate-rate)*.08;
+      video.playbackRate=Math.max(.85,Math.min(1.2,rate));
+      targetRate+=(1-targetRate)*.045;
+      if(Math.abs(targetRate-1)<.01)hero.classList.remove('is-awake');
     }
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
   const vio=new IntersectionObserver(entries=>entries.forEach(entry=>{
     visible=entry.isIntersecting;
-    if(!visible){video.pause();sleep();return}
-    if(mobile&&!reduce){
-      video.loop=true;
-      const p=video.play();
-      if(p&&p.catch)p.catch(()=>{});
-      wake();
+    if(!visible){
+      video.pause();
+      sleep();
+      return;
     }
+    playLivingVideo();
   }),{threshold:.28});
   vio.observe(hero);
   if(reduce){
-    video.removeAttribute('loop');
+    video.removeAttribute('autoplay');
     video.pause();
+    hero.classList.add('is-reduced-motion');
+  }else{
+    video.addEventListener('loadeddata',playLivingVideo,{once:true});
+    playLivingVideo();
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible')playLivingVideo();
+    });
   }
 })();
 
