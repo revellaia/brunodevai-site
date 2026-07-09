@@ -180,7 +180,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-float-card span{display:block;color:var(--text-lo);font-size:11px;line-height:1.45}
 .hero-float-card::after{content:'';position:absolute;right:14px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 13px var(--neon)}
 .hero-float-card.one{left:49%;top:28%}
-.hero-float-card.two{right:7%;top:22%}
+.hero-float-card.two{left:37%;top:18%}
 .hero-float-card.three{right:10%;bottom:24%}
 .hero-gridline{position:absolute;left:0;right:0;top:42%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,179,104,.22),rgba(168,255,96,.34),transparent);opacity:.58}
 .hero-gridline::after{content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;border-radius:50%;background:rgba(168,255,96,.8);box-shadow:0 0 18px var(--neon)}
@@ -329,6 +329,25 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .sector-card h4{font-size:19px;margin:10px 0;color:var(--charcoal)}
 .sector-card p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);font-weight:300}
 .sector-card .items{margin-top:12px;font-size:12px;color:var(--gold);letter-spacing:.03em}
+.method-head{display:flex;align-items:flex-end;justify-content:flex-start;gap:28px}
+.method-head .sec-title{max-width:21ch}
+.method-signal{--square:10px;--offset:12px;--duration:2.4s;width:calc(3 * var(--offset) + var(--square));
+  height:calc(2 * var(--offset) + var(--square));position:relative;flex:0 0 auto;margin:0 4px 5px 0;opacity:.82;
+  filter:drop-shadow(0 0 12px rgba(168,255,96,.18))}
+.method-signal span{position:absolute;left:0;top:0;width:var(--square);height:var(--square);border-radius:2px;
+  background:linear-gradient(135deg,var(--neon),var(--gold-lit));box-shadow:0 0 13px rgba(168,255,96,.22);
+  animation:signalFade .42s ease-out both}
+.method-signal span:nth-child(1){transform:translate(0,0);animation:signalOne var(--duration) .2s ease-in-out infinite,signalFade .4s .08s ease-out both}
+.method-signal span:nth-child(2){transform:translate(0,var(--offset));animation:signalTwo var(--duration) .2s ease-in-out infinite,signalFade .4s .12s ease-out both}
+.method-signal span:nth-child(3){transform:translate(var(--offset),var(--offset));animation:signalThree var(--duration) .2s ease-in-out infinite,signalFade .4s .16s ease-out both}
+.method-signal span:nth-child(4){transform:translate(calc(2 * var(--offset)),var(--offset));animation:signalFour var(--duration) .2s ease-in-out infinite,signalFade .4s .2s ease-out both}
+.method-signal span:nth-child(5){transform:translate(calc(3 * var(--offset)),var(--offset));animation:signalFive var(--duration) .2s ease-in-out infinite,signalFade .4s .24s ease-out both}
+@keyframes signalOne{0%{transform:translate(0,0)}8.333%,100%{transform:translate(0,var(--offset))}}
+@keyframes signalTwo{0%{transform:translate(0,var(--offset))}8.333%{transform:translate(0,calc(2 * var(--offset)))}16.67%{transform:translate(var(--offset),calc(2 * var(--offset)))}25%,83.33%{transform:translate(var(--offset),var(--offset))}91.67%{transform:translate(var(--offset),0)}100%{transform:translate(0,0)}}
+@keyframes signalThree{0%,16.67%,100%{transform:translate(var(--offset),var(--offset))}25%{transform:translate(var(--offset),0)}33.33%{transform:translate(calc(2 * var(--offset)),0)}41.67%,66.67%{transform:translate(calc(2 * var(--offset)),var(--offset))}75%{transform:translate(calc(2 * var(--offset)),calc(2 * var(--offset)))}83.33%{transform:translate(var(--offset),calc(2 * var(--offset)))}91.67%{transform:translate(var(--offset),var(--offset))}}
+@keyframes signalFour{0%,33.33%{transform:translate(calc(2 * var(--offset)),var(--offset))}41.67%{transform:translate(calc(2 * var(--offset)),calc(2 * var(--offset)))}50%{transform:translate(calc(3 * var(--offset)),calc(2 * var(--offset)))}58.33%,100%{transform:translate(calc(3 * var(--offset)),var(--offset))}}
+@keyframes signalFive{0%,50%{transform:translate(calc(3 * var(--offset)),var(--offset))}58.33%{transform:translate(calc(3 * var(--offset)),0)}66.67%{transform:translate(calc(2 * var(--offset)),0)}75%,100%{transform:translate(calc(2 * var(--offset)),var(--offset))}}
+@keyframes signalFade{from{opacity:0;scale:.72}to{opacity:1;scale:1}}
 .method-list{margin-top:44px;border-top:1px solid rgba(27,28,25,.12);position:relative}
 .method-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid rgba(27,28,25,.12);align-items:baseline;position:relative}
 .method-item::before{content:'';position:absolute;left:0;top:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .6s var(--ease)}
@@ -398,6 +417,8 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   .hero-actions{flex-direction:column;align-items:stretch}
   .btn-primary,.btn-ghost{justify-content:center}
   .method-item{grid-template-columns:1fr;gap:6px}
+  .method-head{align-items:flex-start}
+  .method-signal{--square:8px;--offset:10px;margin-top:6px;margin-right:0}
   .sec-feats{grid-template-columns:1fr}
   .foot{flex-direction:column}
   .nav-right .btn-cta{display:none}
@@ -729,8 +750,13 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- METODO -->
 <section class="light" id="metodo">
   <div class="wrap">
-    <div class="eyebrow"><span data-i18n="method_eyebrow">Método Percepção 5D</span></div>
-    <h2 class="sec-title" data-i18n="method_title">Da ideia ao ativo no ar, sem improviso e sem surpresa.</h2>
+    <div class="method-head">
+      <div>
+        <div class="eyebrow"><span data-i18n="method_eyebrow">Método Percepção 5D</span></div>
+        <h2 class="sec-title" data-i18n="method_title">Da ideia ao ativo no ar, sem improviso e sem surpresa.</h2>
+      </div>
+      <div class="method-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
     <div class="method-list">
       <div class="method-item reveal"><div class="mk">1D</div><div><h3 data-i18n="m1t">Diagnóstico</h3><p data-i18n="m1d">Entendo o negócio, o público e o que precisa ser percebido. O projeto começa por estratégia, não por template.</p></div></div>
       <div class="method-item reveal"><div class="mk">2D</div><div><h3 data-i18n="m2t">Direção visual</h3><p data-i18n="m2d">Defino identidade, referência e tom. Uma direção única, levada até o fim, para não parecer genérico nem IA.</p></div></div>
