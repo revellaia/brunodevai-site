@@ -199,7 +199,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero h1 .ai-mark{font-style:normal;color:var(--neon);text-shadow:0 0 22px rgba(168,255,96,.18)}
 .hero-sub{margin-top:28px;font-size:clamp(15px,1.5vw,19px);line-height:1.7;color:var(--text-lo);max-width:56ch;font-weight:300}
 .hero-sub em{font-style:normal;color:var(--neon)}
-.hero-note{margin-top:20px;font-size:14px;line-height:1.65;color:rgba(244,242,236,.62);max-width:52ch;font-weight:300}
+.hero-note{margin-top:20px;font-size:14px;line-height:1.72;color:rgba(244,242,236,.68);max-width:54ch;font-weight:300}
 .hero-actions{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
 .btn-primary{background:var(--neon);color:var(--void);font-weight:800;font-size:13px;letter-spacing:.04em;
   padding:16px 30px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s,transform .2s}
@@ -262,7 +262,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .badge.demo{color:var(--gold-lit);border:1px solid rgba(216,179,104,.4)}
 .card-name{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi);line-height:1.1}
 .card-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-.card-desc{font-size:13.5px;line-height:1.65;color:var(--text-lo);font-weight:300;flex:1}
+.card-desc{font-size:13.5px;line-height:1.72;color:var(--text-lo);font-weight:300;flex:1}
 .card-more{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lit);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
 .card-more::after{content:'';width:0;height:1px;background:var(--neon);box-shadow:0 0 8px var(--neon);transition:width .3s var(--ease)}
 .card:hover .card-more::after{width:26px}
@@ -284,7 +284,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .card-btn.primary:hover{box-shadow:0 0 20px var(--neon-dim);color:var(--void)}
 .card-cost-link{font-size:11px;letter-spacing:.06em;color:var(--gold-lit);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .card-cost-link:hover{color:var(--text-hi)}
-.card-note{font-size:11px;color:var(--text-lo);font-weight:300}
+.card-note{font-size:11px;line-height:1.55;color:var(--text-lo);font-weight:300}
 
 /* MODAL */
 .modal-back{position:fixed;inset:0;z-index:1000;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
@@ -452,7 +452,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   </div>
   <div class="nav-right">
     <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
-    <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar proposta</a>
+    <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -468,7 +468,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <a href="#metodo" data-i18n="nav_method">Método</a>
   <a href="#seguranca" data-i18n="nav_security">Segurança</a>
   <a href="#contato" data-i18n="nav_contact">Contato</a>
-  <a class="drawer-cta" href="#contato" data-i18n="nav_cta">Solicitar proposta</a>
+  <a class="drawer-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
   <div class="drawer-foot"><a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
 </aside>
 
@@ -483,20 +483,20 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   </figure>
   <div class="hero-interface" aria-hidden="true">
     <span class="hero-gridline"></span>
-    <div class="hero-float-card one"><strong>Percepcao de valor</strong><span>Direcao visual para marcas que precisam parecer caras.</span></div>
-    <div class="hero-float-card two"><strong>Sites ultra realistas</strong><span>Identidade, movimento e tecnologia no mesmo plano.</span></div>
-    <div class="hero-float-card three"><strong>Design seguro</strong><span>Experiencia premium com base tecnica defensavel.</span></div>
+    <div class="hero-float-card one"><strong>Percepcao de valor</strong><span>Direcao visual para marcas que precisam sustentar preco.</span></div>
+    <div class="hero-float-card two"><strong>Sites ultra realistas</strong><span>Video, identidade e tecnologia trabalhando como uma cena.</span></div>
+    <div class="hero-float-card three"><strong>Design defensavel</strong><span>Estetica premium com criterio tecnico e seguranca desde a base.</span></div>
   </div>
   <div class="hero-inner">
     <div class="hero-copy hero-copy-rebuilt">
       <div class="hero-copy-live">
-        <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Ag&ecirc;ncia de IA &amp; Web Design Premium</span></div>
+        <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Web design premium com IA aplicada</span></div>
         <h1 data-i18n="hero2_title">Sites que n&atilde;o parecem <span class="ai-mark">IA.</span></h1>
-        <p class="hero-sub" data-i18n="hero2_sub">Experi&ecirc;ncias premium, cinematogr&aacute;ficas e vivas para marcas de <em>alto valor.</em></p>
-        <p class="hero-note" data-i18n="hero2_note">Unimos intelig&ecirc;ncia artificial, design estrat&eacute;gico e implementa&ccedil;&atilde;o premium para criar sites que geram autoridade, encantam e vendem &mdash; 24h por dia.</p>
+        <p class="hero-sub" data-i18n="hero2_sub">Experi&ecirc;ncias vivas, cinematogr&aacute;ficas e seguras para marcas que precisam parecer t&atilde;o valiosas quanto o que vendem.</p>
+        <p class="hero-note" data-i18n="hero2_note">Eu combino dire&ccedil;&atilde;o de arte, copy e engenharia para transformar presen&ccedil;a digital em autoridade comercial. Sem template, sem exagero, sem apar&ecirc;ncia de site pronto.</p>
         <div class="hero-actions">
-          <a class="btn-primary" href="#contato" data-i18n="hero2_cta1">Agendar diagn&oacute;stico &rarr;</a>
-          <a class="btn-ghost" href="#cases" data-i18n="hero2_cta2">Ver cases &rarr;</a>
+          <a class="btn-primary" href="#contato" data-i18n="hero2_cta1">Solicitar diagn&oacute;stico &rarr;</a>
+          <a class="btn-ghost" href="#cases" data-i18n="hero2_cta2">Ver provas no ar &rarr;</a>
         </div>
       </div>
     </div>
@@ -508,7 +508,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="dark position grain">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
-    <h2 class="sec-title" data-i18n="pos_title">Não sou uma agência genérica. Sou o criador do universo <em>The Frozen Legacy</em>, dentro do Vakon Universe. O mesmo padrão que uso nos meus produtos, aplico no seu site.</h2>
+    <h2 class="sec-title" data-i18n="pos_title">Não vendo páginas bonitas. Construo presença digital com direção, prova e engenharia, usando no seu site o mesmo critério que aplico nos meus próprios produtos.</h2>
     <div class="proof-strip">
       <span class="proof-item"><span class="dot"></span><b>The Frozen Legacy</b> · <span data-i18n="pos_p1s">no ar</span></span>
       <span class="proof-item"><span class="dot"></span><b>3 cases</b> · <span data-i18n="pos_p3s">clientes reais no ar</span></span>
@@ -521,8 +521,8 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <div class="wrap">
     <div class="catalog-head">
       <div>
-        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistemas próprios</span></div>
-        <h2 class="sec-title" data-i18n="eco_title">Prova de que atendo qualquer nível de complexidade.</h2>
+        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
+        <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
       </div>
       <div class="catalog-nav">
         <button class="cnav" data-row="ecoRow" data-dir="-1" aria-label="Anterior">‹</button>
@@ -536,7 +536,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">The Frozen Legacy</span>
           <span class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="vakon_desc">Universo sci-fi transmídia com a experiência The Frozen Legacy: 3D em tempo real no navegador, IP próprio, bilíngue e arquitetura de mundo contínuo.</span>
+          <span class="card-desc" data-i18n="vakon_desc">Universo sci-fi transmídia com 3D em tempo real no navegador, IP próprio, experiência bilíngue e arquitetura de mundo contínuo.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -550,7 +550,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <div class="catalog-head">
       <div>
         <div class="eyebrow"><span data-i18n="cases_eyebrow">Cases reais · clientes no ar</span></div>
-        <h2 class="sec-title" data-i18n="cases_title">Entregas para clientes reais, cada uma de um setor diferente.</h2>
+        <h2 class="sec-title" data-i18n="cases_title">Três provas reais de que a percepção muda quando o site tem direção.</h2>
       </div>
       <div class="catalog-nav">
         <button class="cnav" data-row="caseRow" data-dir="-1" aria-label="Anterior">‹</button>
@@ -564,7 +564,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Pires Contabilidade</span>
           <span class="card-tag" data-i18n="pires_tag">Serviços profissionais</span>
-          <span class="card-desc" data-i18n="pires_desc">Contabilidade que passou a parecer consultoria premium. Percepção de confiança resolvida antes da primeira reunião.</span>
+          <span class="card-desc" data-i18n="pires_desc">Contabilidade apresentada como consultoria séria: hierarquia, confiança e valor antes da primeira reunião.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -574,7 +574,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Paula Guimarães</span>
           <span class="card-tag" data-i18n="paula_tag">Fotografia · alto padrão</span>
-          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial noturno para fotógrafa. Direção de arte que posiciona o trabalho no segmento de luxo.</span>
+          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial noturno para fotografia autoral. A primeira impressão já comunica gosto, cuidado e preço.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -584,7 +584,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Ateliê Memoré</span>
           <span class="card-tag" data-i18n="memore_tag">Comércio · artesanal</span>
-          <span class="card-desc" data-i18n="memore_desc">Marca artesanal com domínio próprio e identidade premium. Do produto feito à mão a uma vitrine que vende sozinha.</span>
+          <span class="card-desc" data-i18n="memore_desc">Marca artesanal com domínio próprio, identidade clara e compra direta. Afeto de ateliê com presença de marca.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -595,105 +595,105 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <!-- MODELOS DISPONIVEIS -->
 <section class="light alt" id="modelos">
   <div class="wrap">
-    <div class="eyebrow"><span data-i18n="models_eyebrow">Catálogo de modelos</span></div>
-    <h2 class="sec-title" data-i18n="models_title">Modelos Disponíveis</h2>
-    <p class="sec-lead" data-i18n="models_lead">Experiências digitais demonstrativas, criadas para mostrar possibilidades de presença, percepção e estrutura. Os nomes, imagens e informações foram adaptados para preservar privacidade e permitir uma visualização segura do potencial de cada projeto.</p>
-    <p class="sec-lead" data-i18n="models_lead2">Escolha um modelo como ponto de partida visual. A proposta final é sempre ajustada à identidade, ao nicho e ao posicionamento do cliente.</p>
+    <div class="eyebrow"><span data-i18n="models_eyebrow">Modelos para visualizar valor</span></div>
+    <h2 class="sec-title" data-i18n="models_title">Bases autorais para projetos de alto padrão.</h2>
+    <p class="sec-lead" data-i18n="models_lead">Cada modelo mostra uma direção possível de presença digital: imagem, estrutura, tom e percepção de preço. Nomes, imagens e informações foram adaptados para preservar privacidade.</p>
+    <p class="sec-lead" data-i18n="models_lead2">Você escolhe a atmosfera. Eu ajusto a proposta ao seu nicho, sua oferta e o nível de confiança que a marca precisa transmitir.</p>
 
     <div class="models-grid">
       <div class="card" data-model-id="model_ecommerce_artisanal" data-model-name="Artisan Shop" data-model-niche="E-commerce artesanal / loja autoral">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/artisan-shop-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/artisan-shop-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/artisan-shop-premium.jpg" alt="Prévia IA premium do modelo Artisan Shop: vitrine de e-commerce artesanal sofisticada" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/artisan-shop-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/artisan-shop-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/artisan-shop-premium.jpg" alt="Prévia visual do modelo Artisan Shop: vitrine de e-commerce artesanal sofisticada" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
           <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
           <span class="card-name">Artisan Shop</span>
           <span class="card-tag" data-i18n="model_artisan_tag">E-commerce artesanal · Loja autoral</span>
-          <span class="card-desc" data-i18n="model_artisan_desc">Vitrine de marca artesanal com identidade própria: do produto feito à mão a uma experiência de compra que vende sozinha.</span>
+          <span class="card-desc" data-i18n="model_artisan_desc">Para marcas autorais que precisam vender sem parecer improvisadas: vitrine, narrativa de produto e compra direta em um ambiente próprio.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-artisan-shop" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
         </div>
       </div>
 
       <div class="card" data-model-id="model_photo_editorial" data-model-name="Editorial Photo Studio" data-model-niche="Fotografia premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/editorial-photo-studio-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/editorial-photo-studio-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/editorial-photo-studio-premium.jpg" alt="Prévia IA premium do modelo Editorial Photo Studio: portfólio fotográfico editorial de alto padrão" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/editorial-photo-studio-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/editorial-photo-studio-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/editorial-photo-studio-premium.jpg" alt="Prévia visual do modelo Editorial Photo Studio: portfólio fotográfico editorial de alto padrão" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
           <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
           <span class="card-name">Editorial Photo Studio</span>
           <span class="card-tag" data-i18n="model_photo_tag">Fotografia · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_photo_desc">Portfólio editorial noturno para estúdio fotográfico. Direção de arte que posiciona o trabalho no segmento de luxo.</span>
+          <span class="card-desc" data-i18n="model_photo_desc">Para fotografia, estética e marca pessoal: portfólio com atmosfera editorial, ritmo visual e percepção de agenda disputada.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-editorial-photo-studio" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
         </div>
       </div>
 
       <div class="card" data-model-id="model_accounting_executive" data-model-name="Executive Accounting" data-model-niche="Contabilidade / consultoria empresarial">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/executive-accounting-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/executive-accounting-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/executive-accounting-premium.jpg" alt="Prévia IA premium do modelo Executive Accounting: dashboard financeiro executivo e consultivo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/executive-accounting-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/executive-accounting-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/executive-accounting-premium.jpg" alt="Prévia visual do modelo Executive Accounting: painel financeiro executivo e consultivo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
           <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
           <span class="card-name">Executive Accounting</span>
           <span class="card-tag" data-i18n="model_acc_tag">Contabilidade · Consultoria</span>
-          <span class="card-desc" data-i18n="model_acc_desc">Contabilidade que passa a parecer consultoria premium, com confiança resolvida antes da primeira reunião.</span>
+          <span class="card-desc" data-i18n="model_acc_desc">Para serviços profissionais que vendem confiança: linguagem sóbria, prova de método e autoridade sem cara corporativa comum.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-executive-accounting" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
         </div>
       </div>
 
       <div class="card" data-model-id="model_fantasy_universe" data-model-name="Fantasy Universe" data-model-niche="Universo autoral / entretenimento">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/fantasy-universe-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/fantasy-universe-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/fantasy-universe-premium.jpg" alt="Prévia IA premium do modelo Fantasy Universe: portal cinematográfico para universo autoral" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/fantasy-universe-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/fantasy-universe-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/fantasy-universe-premium.jpg" alt="Prévia visual do modelo Fantasy Universe: portal cinematográfico para universo autoral" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="models_badge_live">Produto próprio · no ar</span></span>
           <span class="card-name">Fantasy Universe</span>
           <span class="card-tag" data-i18n="model_fantasy_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="model_fantasy_desc">Universo sci-fi autoral com 3D em tempo real no navegador: o nível mais alto de complexidade técnica que ofereço.</span>
+          <span class="card-desc" data-i18n="model_fantasy_desc">Para universos, produtos e comunidades que precisam parecer vivos: narrativa, profundidade visual e tecnologia no mesmo sistema.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-fantasy-universe" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
           <span class="card-note" data-i18n="models_note_live">Produto autoral próprio, sem cliente terceiro envolvido.</span>
         </div>
       </div>
 
       <div class="card" data-model-id="model_real_estate_luxury" data-model-name="Luxury Estate" data-model-niche="Imobiliário alto padrão">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/luxury-estate-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/luxury-estate-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/luxury-estate-premium.jpg" alt="Prévia IA premium do modelo Luxury Estate: arquitetura contemporânea e vitrine imobiliária de luxo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/luxury-estate-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/luxury-estate-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/luxury-estate-premium.jpg" alt="Prévia visual do modelo Luxury Estate: arquitetura contemporânea e vitrine imobiliária de luxo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge_template">Template autoral</span></span>
+          <span class="badge demo"><span data-i18n="models_badge_template">Base autoral</span></span>
           <span class="card-name">Luxury Estate</span>
           <span class="card-tag" data-i18n="model_luxury_tag">Imobiliário · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_luxury_desc">Vitrine imobiliária de alto padrão com catálogo curado de imóveis e integração de CRM.</span>
+          <span class="card-desc" data-i18n="model_luxury_desc">Para imobiliário e arquitetura de alto padrão: produto visualmente caro, ficha objetiva e caminho claro até o atendimento.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-luxury-estate" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
         </div>
       </div>
 
       <div class="card" data-model-id="model_agro_premium" data-model-name="Agro Prime" data-model-niche="Agronegócio premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/agro-prime-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/agro-prime-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/agro-prime-premium.jpg" alt="Prévia IA premium do modelo Agro Prime: agro de alto valor com horizonte rural e interface premium" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
+        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/agro-prime-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/agro-prime-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/agro-prime-premium.jpg" alt="Prévia visual do modelo Agro Prime: agro de alto valor com horizonte rural e interface premium" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
         <div class="card-body">
           <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
           <span class="card-name">Agro Prime</span>
           <span class="card-tag" data-i18n="model_agro_tag">Agropecuária · Pecuária premium</span>
-          <span class="card-desc" data-i18n="model_agro_desc">Vitrine de plantel e leilões para pecuária premium. Autoridade digital para um setor que ainda vende no boca a boca.</span>
+          <span class="card-desc" data-i18n="model_agro_desc">Para fazendas, leilões e agro de valor: tradição, prova técnica e catálogo com presença digital de marca séria.</span>
           <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Solicitar orçamento</a>
+            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
             <a class="card-btn" href="trabalhos/#model-agro-prime" data-i18n="models_view">Ver modelo</a>
           </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Consultar custos e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demonstração adaptada, sem dados reais de cliente.</span>
+          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
+          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
         </div>
       </div>
     </div>
@@ -704,11 +704,11 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="create_eyebrow">O que eu crio</span></div>
-    <h2 class="sec-title" data-i18n="create_title">Cada entrega é um ativo comercial, não um cartão de visita.</h2>
+    <h2 class="sec-title" data-i18n="create_title">Cada entrega precisa justificar confiança, preço e decisão.</h2>
     <div class="grid-3">
-      <div class="tile reveal"><div class="num">01</div><h3 data-i18n="create_1t">Sites premium</h3><p data-i18n="create_1d">Sites institucionais e de marca que elevam a percepção de valor e sustentam preço mais alto.</p></div>
-      <div class="tile reveal"><div class="num">02</div><h3 data-i18n="create_2t">Landing pages de alto padrão</h3><p data-i18n="create_2d">Páginas de conversão para lançamento, oferta ou captura, com copy e design alinhados ao objetivo.</p></div>
-      <div class="tile reveal"><div class="num">03</div><h3 data-i18n="create_3t">Portais, sistemas e apps</h3><p data-i18n="create_3d">Portais institucionais, catálogos, sistemas e aplicativos quando o projeto pede mais que uma página.</p></div>
+      <div class="tile reveal"><div class="num">01</div><h3 data-i18n="create_1t">Sites de marca</h3><p data-i18n="create_1d">Presença institucional para negócios que precisam parecer confiáveis antes da primeira conversa.</p></div>
+      <div class="tile reveal"><div class="num">02</div><h3 data-i18n="create_2t">Páginas de conversão</h3><p data-i18n="create_2d">Landing pages para oferta, lançamento ou captação, com argumento claro e CTA sem ruído.</p></div>
+      <div class="tile reveal"><div class="num">03</div><h3 data-i18n="create_3t">Portais e experiências</h3><p data-i18n="create_3d">Catálogos, portais, sistemas e interfaces vivas quando o projeto precisa virar produto digital.</p></div>
     </div>
   </div>
 </section>
@@ -717,7 +717,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light alt" id="setores">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="sectors_eyebrow">Setores atendidos</span></div>
-    <h2 class="sec-title" data-i18n="sectors_title">Já consigo transformar qualquer setor. E provo com casos que não poderiam ser mais diferentes entre si.</h2>
+    <h2 class="sec-title" data-i18n="sectors_title">O setor muda. A lógica não: parecer confiável, caro e fácil de escolher.</h2>
     <div class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-tab="t1" data-i18n="sec_g1">Serviços profissionais</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="t2" data-i18n="sec_g2">Comércio e varejo</button>
@@ -754,16 +754,16 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <div class="method-head">
       <div>
         <div class="eyebrow"><span data-i18n="method_eyebrow">Método Percepção 5D</span></div>
-        <h2 class="sec-title" data-i18n="method_title">Da ideia ao ativo no ar, sem improviso e sem surpresa.</h2>
+        <h2 class="sec-title" data-i18n="method_title">Um método para transformar atenção em confiança comercial.</h2>
       </div>
       <div class="method-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
     <div class="method-list">
-      <div class="method-item reveal"><div class="mk">1D</div><div><h3 data-i18n="m1t">Diagnóstico</h3><p data-i18n="m1d">Entendo o negócio, o público e o que precisa ser percebido. O projeto começa por estratégia, não por template.</p></div></div>
-      <div class="method-item reveal"><div class="mk">2D</div><div><h3 data-i18n="m2t">Direção visual</h3><p data-i18n="m2d">Defino identidade, referência e tom. Uma direção única, levada até o fim, para não parecer genérico nem IA.</p></div></div>
-      <div class="method-item reveal"><div class="mk">3D</div><div><h3 data-i18n="m3t">Design premium</h3><p data-i18n="m3d">Desenho a experiência completa, desktop e mobile, com acabamento de produto caro e microinterações próprias.</p></div></div>
-      <div class="method-item reveal"><div class="mk">4D</div><div><h3 data-i18n="m4t">Desenvolvimento seguro</h3><p data-i18n="m4d">Código limpo, validação no servidor quando há backend, e as boas práticas de segurança aplicadas desde o primeiro commit.</p></div></div>
-      <div class="method-item reveal"><div class="mk">5D</div><div><h3 data-i18n="m5t">Deploy e evolução</h3><p data-i18n="m5d">Publicação, SEO, backup e manutenção. O site nasce pronto para crescer, não para envelhecer em seis meses.</p></div></div>
+      <div class="method-item reveal"><div class="mk">1D</div><div><h3 data-i18n="m1t">Percepção</h3><p data-i18n="m1d">Defino o que o visitante precisa sentir em poucos segundos: confiança, desejo, autoridade ou urgência real.</p></div></div>
+      <div class="method-item reveal"><div class="mk">2D</div><div><h3 data-i18n="m2t">Experiência</h3><p data-i18n="m2d">Transformo essa intenção em jornada: primeira dobra, ritmo, prova, objeções e caminho natural até o contato.</p></div></div>
+      <div class="method-item reveal"><div class="mk">3D</div><div><h3 data-i18n="m3t">Memória</h3><p data-i18n="m3d">Crio uma assinatura visual que fica na cabeça, sem cara de template e sem depender de enfeite vazio.</p></div></div>
+      <div class="method-item reveal"><div class="mk">4D</div><div><h3 data-i18n="m4t">Valor</h3><p data-i18n="m4d">A copy, os detalhes e a estrutura precisam sustentar preço. O site deve explicar por que sua marca custa mais.</p></div></div>
+      <div class="method-item reveal"><div class="mk">5D</div><div><h3 data-i18n="m5t">Conversão</h3><p data-i18n="m5d">Depois vem a engenharia: performance, segurança, SEO e CTAs claros para transformar interesse em conversa comercial.</p></div></div>
     </div>
   </div>
 </section>
@@ -772,12 +772,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="dark grain" id="seguranca">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="sec_sec_eyebrow">Segurança e continuidade</span></div>
-    <h2 class="sec-title" data-i18n="sec_sec_title">Seu site não é só bonito. É defensável.</h2>
-    <p class="sec-lead" data-i18n="sec_sec_lead">Cada projeto nasce com proteção de dados, deploy seguro e as boas práticas que uso nos meus próprios ecossistemas. Formulários validados no servidor, backup e manutenção inclusos.</p>
+    <h2 class="sec-title" data-i18n="sec_sec_title">Bonito não basta. Precisa ser defensável.</h2>
+    <p class="sec-lead" data-i18n="sec_sec_lead">Design caro perde força se o site expõe dados, quebra no mobile ou depende de improviso. Por isso cada entrega já considera privacidade, segurança, backup e manutenção.</p>
     <div class="sec-feats">
       <div class="sec-feat"><div class="sk">LGPD</div><h4 data-i18n="sf1t">Dados protegidos</h4><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com dado pessoal.</p></div>
       <div class="sec-feat"><div class="sk">SSL</div><h4 data-i18n="sf2t">Conexão segura</h4><p data-i18n="sf2d">Certificado, HTTPS e headers de segurança configurados no deploy.</p></div>
-      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validação real</h4><p data-i18n="sf3d">Quando há formulário ou backend, a validação crítica acontece no servidor, nunca só no navegador.</p></div>
+      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validação real</h4><p data-i18n="sf3d">Quando há formulário ou backend, validação crítica fica no servidor. O navegador nunca é a fonte final de segurança.</p></div>
       <div class="sec-feat"><div class="sk">Backup</div><h4 data-i18n="sf4t">Continuidade</h4><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site seguir no ar sem sustos.</p></div>
     </div>
     <div class="stack-row">
@@ -796,12 +796,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="light alt">
   <div class="wrap">
     <div class="eyebrow"><span data-i18n="faq_eyebrow">Perguntas frequentes</span></div>
-    <h2 class="sec-title" data-i18n="faq_title">O que você provavelmente quer saber.</h2>
+    <h2 class="sec-title" data-i18n="faq_title">Antes de pedir proposta, vale saber.</h2>
     <div class="faq">
       <div class="faq-item"><button class="faq-q"><span data-i18n="faq1q">Quanto tempo leva um projeto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq1a">Depende do escopo. Uma landing premium sai em poucos dias, um site completo em algumas semanas. No diagnóstico eu dou o prazo real, sem promessa vazia.</p></div></div>
       <div class="faq-item"><button class="faq-q"><span data-i18n="faq2q">O site fica sendo meu?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq2a">Sim. Código, domínio e contas ficam no seu nome. Você não fica refém de ninguém para manter ou evoluir o seu ativo.</p></div></div>
       <div class="faq-item"><button class="faq-q"><span data-i18n="faq3q">Você faz manutenção depois?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq3a">Faço. Ofereço planos de evolução contínua, mas sem prender você: o site é construído para ser sustentável mesmo sem mim.</p></div></div>
-      <div class="faq-item"><button class="faq-q"><span data-i18n="faq4q">Por que não usar um template pronto?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq4a">Porque template parece template. O que faz sua marca ser percebida como cara é exatamente o que um tema pronto não entrega: direção própria, acabamento e prova real.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span data-i18n="faq4q">Por que não usar uma base pronta?</span><span class="pm">+</span></button><div class="faq-a"><p data-i18n="faq4a">Porque base pronta normalmente entrega aparência, não posicionamento. O que aumenta percepção de valor é direção própria, acabamento e prova real.</p></div></div>
     </div>
   </div>
 </section>
@@ -810,11 +810,11 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <section class="dark grain cta-final" id="contato">
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center"><span data-i18n="cta_eyebrow">Vamos construir o seu</span></div>
-    <h2 class="sec-title" data-i18n="cta_title">Se você chegou até aqui, já percebeu a diferença.</h2>
-    <p class="sec-lead" data-i18n="cta_lead">Me conte o seu projeto. Eu respondo com uma direção clara e uma proposta honesta, no mesmo padrão que você viu aqui.</p>
+    <h2 class="sec-title" data-i18n="cta_title">Se o seu site precisa vender valor, começamos pelo diagnóstico.</h2>
+    <p class="sec-lead" data-i18n="cta_lead">Me conte o que você vende, para quem vende e por que isso precisa parecer melhor. Eu respondo com uma direção clara e uma proposta honesta.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20elevar%20minha%20presenca%20digital" data-i18n="cta_btn1">Quero elevar minha presença digital →</a>
-      <a class="btn-ghost" href="https://vakonuniverse.com" target="_blank" rel="noopener" data-i18n="cta_btn2">Ver Vakon Universe ao vivo</a>
+      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20um%20diagnostico%20BrunoDevAI" data-i18n="cta_btn1">Pedir diagnóstico do meu projeto →</a>
+      <a class="btn-ghost" href="#modelos" data-i18n="cta_btn2">Comparar modelos</a>
     </div>
   </div>
 </section>
@@ -868,18 +868,18 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-/* MODELOS DISPONIVEIS: quote/cost mailto links (WhatsApp real ainda nao confirmado, ver BRUNODEVAI_MODELS_QUOTE_FLOW_REPORT.md) */
+/* MODELOS DISPONIVEIS: quote/cost mailto links */
 document.querySelectorAll('.models-grid .card[data-model-id]').forEach(card=>{
   const name=card.dataset.modelName,niche=card.dataset.modelNiche;
   const quoteLink=card.querySelector('[data-quote-link]'),costLink=card.querySelector('[data-cost-link]');
   if(quoteLink){
-    const subject=encodeURIComponent('Interesse no modelo '+name);
-    const body=encodeURIComponent('Olá, Bruno. Tenho interesse no modelo '+name+' para o nicho '+niche+'. Gostaria de entender orçamento, custos e adaptação para minha marca.');
+    const subject=encodeURIComponent('Diagnostico para o modelo '+name);
+    const body=encodeURIComponent('Olá, Bruno. Quero avaliar o modelo '+name+' para o nicho '+niche+'. Gostaria de entender investimento, escopo e adaptação para minha marca.');
     quoteLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject+'&body='+body;
   }
   if(costLink){
-    const subject2=encodeURIComponent('Custos e escopo do modelo '+name);
-    const body2=encodeURIComponent('Olá, Bruno. Quero entender custos e escopo do modelo '+name+' para o meu projeto.');
+    const subject2=encodeURIComponent('Investimento e escopo do modelo '+name);
+    const body2=encodeURIComponent('Olá, Bruno. Quero entender investimento, escopo e prazo do modelo '+name+' para o meu projeto.');
     costLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject2+'&body='+body2;
   }
 });
@@ -1065,42 +1065,42 @@ addEventListener('keydown',e=>{
 
 /* I18N */
 const tEN={
-  nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a proposal',
-  models_eyebrow:'Model catalog',models_title:'Available Models',
-  models_lead:'Demonstrative digital experiences, built to show possibilities of presence, perception and structure. Names, images and information were adapted to preserve privacy and allow a safe view of each project’s potential.',
-  models_lead2:'Pick a model as a visual starting point. The final proposal is always tailored to the client’s identity, niche and positioning.',
-  models_badge:'Adapted demonstration',models_badge_live:'Own product · live',models_badge_template:'Original template',
-  models_view:'View model',models_cost:'Ask about cost and scope →',models_note:'Adapted demonstration, no real client data.',models_note_live:'Own authorial product, no third-party client involved.',
-  model_artisan_tag:'Handcrafted e-commerce · Authorial store',model_artisan_desc:'Storefront for a handcrafted brand with its own identity: from handmade product to a shopping experience that sells on its own.',
-  model_photo_tag:'Photography · High-end',model_photo_desc:'Nocturnal editorial portfolio for a photography studio. Art direction that positions the work in the luxury segment.',
-  model_acc_tag:'Accounting · Consulting',model_acc_desc:'Accounting that now looks like premium consulting, with trust resolved before the first meeting.',
-  model_fantasy_tag:'Transmedia universe · interactive 3D',model_fantasy_desc:'Authorial sci-fi universe with real-time 3D in the browser: the highest level of technical complexity I offer.',
-  model_luxury_tag:'Real estate · High-end',model_luxury_desc:'High-end real estate showcase with a curated property catalog and CRM integration.',
-  model_agro_tag:'Livestock · Premium cattle',model_agro_desc:'Herd and auction showcase for premium cattle. Digital authority for a sector still selling by word of mouth.',
+  nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a diagnosis',
+  models_eyebrow:'Models to visualize value',models_title:'Authorial bases for high-end projects.',
+  models_lead:'Each model shows a possible direction for digital presence: image, structure, tone and price perception. Names, images and information were adapted to preserve privacy.',
+  models_lead2:'You choose the atmosphere. I tailor the proposal to your niche, offer and the level of trust the brand needs to transmit.',
+  models_badge:'Adapted demonstration',models_badge_live:'Own product · live',models_badge_template:'Authorial base',
+  models_view:'View model',models_cost:'Understand investment and scope →',models_note:'Sanitized demo: no real client data.',models_note_live:'Own authorial product, no third-party client involved.',
+  model_artisan_tag:'Handcrafted e-commerce · Authorial store',model_artisan_desc:'For authorial brands that need to sell without looking improvised: storefront, product narrative and direct purchase in their own environment.',
+  model_photo_tag:'Photography · High-end',model_photo_desc:'For photography, aesthetics and personal brands: editorial atmosphere, visual rhythm and the perception of a demanded agenda.',
+  model_acc_tag:'Accounting · Consulting',model_acc_desc:'For professional services that sell trust: sober language, proof of method and authority without the usual corporate look.',
+  model_fantasy_tag:'Transmedia universe · interactive 3D',model_fantasy_desc:'For universes, products and communities that need to feel alive: narrative, visual depth and technology in one system.',
+  model_luxury_tag:'Real estate · High-end',model_luxury_desc:'For high-end real estate and architecture: visually expensive product, objective technical sheet and a clear path to contact.',
+  model_agro_tag:'Livestock · Premium cattle',model_agro_desc:'For farms, auctions and high-value agribusiness: tradition, technical proof and catalog with serious brand presence.',
   hero_eyebrow:'Bruno Goebel · Digital studio · Ultra realistic websites',
   hero_title:'Your website should not just exist. It should <em>raise how the market values</em> your brand.',
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
   hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',
-  hero2_eyebrow:'AI agency & premium web design',
+  hero2_eyebrow:'Premium web design with applied AI',
   hero2_title:'Websites that do not look like <span class="ai-mark">AI.</span>',
-  hero2_sub:'Premium, cinematic and living experiences for <em>high-value</em> brands.',
-  hero2_note:'We combine artificial intelligence, strategic design and premium implementation to create websites that build authority, delight and sell 24/7.',
-  hero2_cta1:'Schedule a diagnosis →',hero2_cta2:'See cases →',
+  hero2_sub:'Living, cinematic and secure experiences for brands that need to look as valuable as what they sell.',
+  hero2_note:'I combine art direction, copy and engineering to turn digital presence into commercial authority. No template, no exaggeration, no ready-made website look.',
+  hero2_cta1:'Request a diagnosis →',hero2_cta2:'See live proof →',
   pos_eyebrow:'Who builds your site',
-  pos_title:'I am not a generic agency. I am the creator of the <em>The Frozen Legacy</em> universe, inside Vakon Universe. The same standard I use on my products, I apply to your site.',
+  pos_title:'I do not sell pretty pages. I build digital presence with direction, proof and engineering, using on your site the same criteria I apply to my own products.',
   pos_p1s:'live',pos_p3s:'real clients live',
-  eco_eyebrow:'Own ecosystems',eco_title:'Proof that I handle any level of complexity.',
-  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'Sci-fi transmedia universe with The Frozen Legacy experience: real-time 3D in the browser, own IP, bilingual and continuous world architecture.',
-  cases_eyebrow:'Real cases · clients live',cases_title:'Deliveries for real clients, each in a different sector.',
-  pires_tag:'Professional services',pires_desc:'Accounting that now looks like premium consulting. Trust resolved before the first meeting.',
-  paula_tag:'Photography · high-end',paula_desc:'Nocturnal editorial portfolio for a photographer. Art direction that positions the work in the luxury segment.',
-  memore_tag:'Retail · handcrafted',memore_desc:'Handcrafted brand with its own domain and premium identity. From handmade product to a storefront that sells on its own.',
+  eco_eyebrow:'Own ecosystem',eco_title:'When the project needs world, narrative and technology, I build that too.',
+  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'Sci-fi transmedia universe with real-time 3D in the browser, own IP, bilingual experience and continuous world architecture.',
+  cases_eyebrow:'Real cases · clients live',cases_title:'Three real proofs that perception changes when the site has direction.',
+  pires_tag:'Professional services',pires_desc:'Accounting presented as serious consulting: hierarchy, trust and value before the first meeting.',
+  paula_tag:'Photography · high-end',paula_desc:'Nocturnal editorial portfolio for authorial photography. The first impression already communicates taste, care and price.',
+  memore_tag:'Retail · handcrafted',memore_desc:'Handcrafted brand with its own domain, clear identity and direct purchase. Atelier warmth with brand presence.',
   more:'Open dossier',badge_live:'Live',
-  create_eyebrow:'What I build',create_title:'Every delivery is a commercial asset, not a business card.',
-  create_1t:'Premium websites',create_1d:'Institutional and brand sites that raise perceived value and sustain a higher price.',
-  create_2t:'High-end landing pages',create_2d:'Conversion pages for launches, offers or capture, with copy and design aligned to the goal.',
-  create_3t:'Portals, systems and apps',create_3d:'Institutional portals, catalogs, systems and apps when the project needs more than a page.',
-  sectors_eyebrow:'Sectors served',sectors_title:'I can already transform any sector. And I prove it with cases that could not be more different from each other.',
+  create_eyebrow:'What I build',create_title:'Every delivery must justify trust, price and decision.',
+  create_1t:'Brand websites',create_1d:'Institutional presence for businesses that need to look trustworthy before the first conversation.',
+  create_2t:'Conversion pages',create_2d:'Landing pages for offers, launches or lead capture, with a clear argument and CTA without noise.',
+  create_3t:'Portals and experiences',create_3d:'Catalogs, portals, systems and living interfaces when the project needs to become a digital product.',
+  sectors_eyebrow:'Sectors served',sectors_title:'The sector changes. The logic does not: look trustworthy, valuable and easy to choose.',
   sec_g1:'Professional services',sec_g2:'Retail & commerce',sec_g3:'Agro & industry',sec_g4:'High-end',sec_g5:'Tech & products',
   sec_pain:'The pain',sec_proof:'The proof',sec_next:'In progress',sec_live:'Live',sec_soon:'Soon',
   sec_g1h:'Look trustworthy and expensive enough',sec_g1p:'Accounting, law, consulting, health and education sell trust. The site must justify the price before the first meeting.',sec_g1proof:'A traditionally dull sector became a brand with premium consulting perception.',
@@ -1108,26 +1108,26 @@ const tEN={
   sec_g3h:'Modernize a word-of-mouth sector',sec_g3p:'Farms, auctions, agribusiness and logistics gain authority with serious digital presence and a well-presented catalog.',sec_g3h2:'Agro project under evaluation',sec_g3proof:'Same engineering as the rest. Public case coming soon.',
   sec_g4h:'Translate sophistication to screen',sec_g4p:'Real estate, architecture, photography, aesthetics and personal brands live on perception. The site is the first proof of taste.',sec_g4proof:'Nocturnal editorial portfolio positioning the photographer in the luxury segment.',
   sec_g5h:'Look like a real product',sec_g5p:'Apps, SaaS, digital products and communities need a presence that conveys technical solidity from the first second.',sec_g5proof:'An authorial universe with real-time 3D, the highest level of complexity I offer.',
-  method_eyebrow:'Perception 5D Method',method_title:'From idea to a live asset, no improvisation and no surprises.',
-  m1t:'Diagnosis',m1d:'I understand the business, the audience and what must be perceived. The project starts with strategy, not a template.',
-  m2t:'Visual direction',m2d:'I define identity, references and tone. One direction, taken to the end, so it never looks generic or AI-made.',
-  m3t:'Premium design',m3d:'I design the full experience, desktop and mobile, with expensive-product finish and signature microinteractions.',
-  m4t:'Secure development',m4d:'Clean code, server-side validation when there is a backend, and security best practices from the first commit.',
-  m5t:'Deploy and evolution',m5d:'Publishing, SEO, backup and maintenance. The site is born ready to grow, not to age in six months.',
-  sec_sec_eyebrow:'Security and continuity',sec_sec_title:'Your site is not just beautiful. It is defensible.',
-  sec_sec_lead:'Every project is born with data protection, secure deploy and the same best practices I use on my own ecosystems. Server-validated forms, backup and maintenance included.',
+  method_eyebrow:'Perception 5D Method',method_title:'A method to turn attention into commercial trust.',
+  m1t:'Perception',m1d:'I define what the visitor needs to feel in seconds: trust, desire, authority or real urgency.',
+  m2t:'Experience',m2d:'I turn that intent into a journey: first fold, rhythm, proof, objections and the natural path to contact.',
+  m3t:'Memory',m3d:'I create a visual signature that stays in mind, without looking like a template and without empty decoration.',
+  m4t:'Value',m4d:'Copy, details and structure must sustain price. The site should explain why your brand costs more.',
+  m5t:'Conversion',m5d:'Then comes engineering: performance, security, SEO and clear CTAs to turn interest into a commercial conversation.',
+  sec_sec_eyebrow:'Security and continuity',sec_sec_title:'Beautiful is not enough. It must be defensible.',
+  sec_sec_lead:'Expensive design loses strength if the site exposes data, breaks on mobile or depends on improvisation. That is why every delivery already considers privacy, security, backup and maintenance.',
   sf1t:'Protected data',sf1d:'Lawful collection, privacy notice and care with personal data.',
   sf2t:'Secure connection',sf2d:'Certificate, HTTPS and security headers configured at deploy.',
-  sf3t:'Real validation',sf3d:'When there is a form or backend, critical validation happens on the server, never only in the browser.',
+  sf3t:'Real validation',sf3d:'When there is a form or backend, critical validation stays on the server. The browser is never the final source of security.',
   sf4t:'Continuity',sf4d:'Backup, monitoring and maintenance so the site stays live without trouble.',
-  faq_eyebrow:'Frequently asked',faq_title:'What you probably want to know.',
+  faq_eyebrow:'Frequently asked',faq_title:'Before requesting a proposal, it is worth knowing.',
   faq1q:'How long does a project take?',faq1a:'It depends on scope. A premium landing takes a few days, a full site a few weeks. In the diagnosis I give the real timeline, no empty promises.',
   faq2q:'Do I own the site?',faq2a:'Yes. Code, domain and accounts are in your name. You are never hostage to anyone to maintain or evolve your asset.',
   faq3q:'Do you maintain it afterwards?',faq3a:'I do. I offer continuous evolution plans, without locking you in: the site is built to be sustainable even without me.',
-  faq4q:'Why not use a ready template?',faq4a:'Because a template looks like a template. What makes your brand feel expensive is exactly what a ready theme cannot deliver: own direction, finish and real proof.',
-  cta_eyebrow:'Let us build yours',cta_title:'If you made it this far, you already felt the difference.',
-  cta_lead:'Tell me about your project. I reply with a clear direction and an honest proposal, at the same standard you saw here.',
-  cta_btn1:'I want to elevate my digital presence →',cta_btn2:'See Vakon Universe live',
+  faq4q:'Why not use a ready base?',faq4a:'Because a ready base usually delivers appearance, not positioning. What raises perceived value is own direction, finish and real proof.',
+  cta_eyebrow:'Let us build yours',cta_title:'If your site needs to sell value, we start with the diagnosis.',
+  cta_lead:'Tell me what you sell, who you sell to and why it needs to look better. I reply with a clear direction and an honest proposal.',
+  cta_btn1:'Request a diagnosis for my project →',cta_btn2:'Compare models',
   foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved. Layouts, copy and visual structures are protected; unauthorized reproduction is prohibited.',foot_privacy:'Privacy Policy',
   d_challenge:'Challenge',d_solution:'Solution',d_proof:'What it proves',d_visit:'See live →'
 };
