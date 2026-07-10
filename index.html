@@ -180,12 +180,12 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-float-card strong{display:block;color:var(--text-hi);font-size:12px;letter-spacing:.02em;margin-bottom:5px}
 .hero-float-card span{display:block;color:var(--text-lo);font-size:11px;line-height:1.45}
 .hero-float-card::after{content:'';position:absolute;right:14px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 13px var(--neon)}
-.hero-float-card.one{left:49%;top:28%}
-.hero-float-card.two{left:37%;top:18%}
-.hero-float-card.three{right:10%;bottom:24%}
-.hero-float-card.four{right:7%;top:15%}
-.hero-float-card.five{right:32%;top:58%}
-.hero-float-card.six{left:46%;bottom:8%}
+.hero-float-card.one{left:30%;top:8%}
+.hero-float-card.two{left:60%;top:20%}
+.hero-float-card.three{left:30%;top:40%}
+.hero-float-card.four{left:62%;bottom:14%}
+.hero-float-card.five{left:30%;bottom:20%}
+.hero-float-card.six{left:60%;top:56%}
 .hero-float-card strong.is-typing-node::after,.hero-float-card span.is-typing-node::after{
   content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
   background:var(--neon);box-shadow:0 0 6px var(--neon);animation:hfcCaret .85s steps(1) infinite}
@@ -412,12 +412,14 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     radial-gradient(90% 74% at 50% 50%,transparent 42%,rgba(0,0,0,.72) 100%)}
   .hero-scene-media::after{opacity:.1}
   .hero-scene-video{object-position:62% center;transform:scale(1.05)}
-  .hero-interface{position:relative;inset:auto;order:3;display:flex;gap:10px;pointer-events:auto;
-    width:100%;box-sizing:border-box;margin:16px 0 0;padding:2px 18px 8px;overflow-x:auto;overflow-y:hidden;
-    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
-  .hero-interface::-webkit-scrollbar{display:none}
+  .hero-interface{position:absolute;inset:0;display:block;pointer-events:none}
   .hero-gridline{display:none}
-  .hero-float-card{position:static;flex:0 0 auto;width:196px;min-width:196px;max-width:196px;scroll-snap-align:start;transform:none!important}
+  .hero-float-card{position:absolute!important;left:12px!important;right:12px!important;bottom:12px!important;top:auto!important;
+    width:auto;max-width:none;min-width:0;opacity:0;visibility:hidden;transform:none!important;transition:opacity .45s var(--ease)}
+  .hero-float-card.is-active-mobile{opacity:1;visibility:visible}
+  .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:7;pointer-events:none}
+  .hero-card-dots span{width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.28);transition:background .3s,transform .3s}
+  .hero-card-dots span.is-active{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
   .hero h1{font-size:clamp(34px,8.8vw,64px);max-width:14ch}
   .hero-sub{max-width:58ch}
   .hero-scroll{display:none}
@@ -495,16 +497,16 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       <source src="assets/hero/bruno-hero-new-loop.mp4?v=hero-live-202607" type="video/mp4"/>
     </video>
     <span class="hero-scene-vignette" aria-hidden="true"></span>
+    <div class="hero-interface" aria-hidden="true">
+      <span class="hero-gridline"></span>
+      <div class="hero-float-card one"><strong data-i18n="hfc1t">Percepção de valor</strong><span data-i18n="hfc1d">Antes da proposta, o cliente já decidiu se confia no que vê.</span></div>
+      <div class="hero-float-card two"><strong data-i18n="hfc2t">Sites ultra realistas</strong><span data-i18n="hfc2d">Presença digital com atmosfera, profundidade e acabamento de alto padrão.</span></div>
+      <div class="hero-float-card three"><strong data-i18n="hfc3t">Design defensável</strong><span data-i18n="hfc3d">Cada detalhe precisa sustentar valor, confiança e decisão.</span></div>
+      <div class="hero-float-card four"><strong data-i18n="hfc4t">Ecossistema de alto valor</strong><span data-i18n="hfc4d">Sites que organizam narrativa, oferta, prova e experiência em uma presença única.</span></div>
+      <div class="hero-float-card five"><strong data-i18n="hfc5t">Prova, não promessa</strong><span data-i18n="hfc5d">Cases, modelos e estrutura visual trabalhando para reduzir dúvida e aumentar confiança.</span></div>
+      <div class="hero-float-card six"><strong data-i18n="hfc6t">Engenharia invisível</strong><span data-i18n="hfc6d">Segurança, performance e estabilidade sem roubar a cena da marca.</span></div>
+    </div>
   </figure>
-  <div class="hero-interface" aria-hidden="true">
-    <span class="hero-gridline"></span>
-    <div class="hero-float-card one"><strong data-i18n="hfc1t">Percepção de valor</strong><span data-i18n="hfc1d">Antes da proposta, o cliente já decidiu se confia no que vê.</span></div>
-    <div class="hero-float-card two"><strong data-i18n="hfc2t">Sites ultra realistas</strong><span data-i18n="hfc2d">Presença digital com atmosfera, profundidade e acabamento de alto padrão.</span></div>
-    <div class="hero-float-card three"><strong data-i18n="hfc3t">Design defensável</strong><span data-i18n="hfc3d">Cada detalhe precisa sustentar valor, confiança e decisão.</span></div>
-    <div class="hero-float-card four"><strong data-i18n="hfc4t">Ecossistema de alto valor</strong><span data-i18n="hfc4d">Sites que organizam narrativa, oferta, prova e experiência em uma presença única.</span></div>
-    <div class="hero-float-card five"><strong data-i18n="hfc5t">Prova, não promessa</strong><span data-i18n="hfc5d">Cases, modelos e estrutura visual trabalhando para reduzir dúvida e aumentar confiança.</span></div>
-    <div class="hero-float-card six"><strong data-i18n="hfc6t">Engenharia invisível</strong><span data-i18n="hfc6d">Segurança, performance e estabilidade sem roubar a cena da marca.</span></div>
-  </div>
   <div class="hero-inner">
     <div class="hero-copy hero-copy-rebuilt">
       <div class="hero-copy-live">
@@ -948,6 +950,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   if(!hero||!video)return;
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
   let visible=true,targetRate=1,rate=1,lastX=innerWidth*.58,lastY=innerHeight*.42;
+  let playPending=false;
 
   function getHeroVideoState(){
     return{exists:!!video,paused:video.paused,currentTime:video.currentTime,duration:video.duration,
@@ -955,6 +958,13 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
       playsInline:video.playsInline,controls:video.controls,src:video.currentSrc,error:video.error};
   }
   window.__heroVideoState=getHeroVideoState;
+
+  /* Evita a corrida classica do Chrome "play() request interrupted by pause()":
+     nunca pausa enquanto uma promise de play() ainda esta em voo. */
+  function safePause(){
+    if(playPending)return;
+    video.pause();
+  }
 
   function setPointer(x,y){
     const rect=hero.getBoundingClientRect();
@@ -979,8 +989,10 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     }
     if(!visible)return false;
     if(!video.paused&&video.currentTime>0)return true;
-    video.muted=true;video.autoplay=true;video.loop=true;video.playsInline=true;video.controls=false;
+    video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.playsInline=true;video.controls=false;
+    video.setAttribute('muted','');video.setAttribute('autoplay','');video.setAttribute('loop','');video.setAttribute('playsinline','');
     try{
+      playPending=true;
       await video.play();
       hero.classList.add('is-video-live');
       hero.classList.remove('is-video-blocked');
@@ -991,6 +1003,8 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
       hero.dataset.videoState='blocked';
       console.warn('[hero-video] play blocked:',reason,err&&err.name,err&&err.message);
       return false;
+    }finally{
+      playPending=false;
     }
   }
   window.__ensureHeroVideoPlaying=ensureHeroVideoPlaying;
@@ -1004,6 +1018,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     document.addEventListener('scroll',retry('document-scroll'),{once:true,passive:true});
     document.addEventListener('keydown',retry('document-keydown'),{once:true,passive:true});
     document.addEventListener('touchstart',retry('document-touchstart'),{once:true,passive:true});
+    document.addEventListener('pointerdown',retry('document-pointerdown'),{once:true,passive:true});
     hero.addEventListener('mouseenter',retry('hero-mouseenter'),{once:true,passive:true});
   }
   bindUnlockTriggers();
@@ -1029,26 +1044,51 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   }
   requestAnimationFrame(tick);
 
+  let pauseDebounce=null;
   const vio=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    const wasVisible=visible;
-    visible=entry.isIntersecting;
-    if(!visible){
-      if(wasVisible)video.pause();
-      sleep();
+    const ratio=entry.intersectionRatio;
+    const reallyGone=!entry.isIntersecting&&ratio<=.03;
+    if(pauseDebounce){clearTimeout(pauseDebounce);pauseDebounce=null}
+    if(reallyGone){
+      pauseDebounce=setTimeout(()=>{
+        visible=false;
+        safePause();
+        sleep();
+      },400);
       return;
     }
+    visible=true;
     ensureHeroVideoPlaying('intersection-visible');
-  }),{threshold:[0,.05,.28],rootMargin:'120px 0px'});
+  }),{threshold:[0,.03,.05,.28],rootMargin:'120px 0px'});
   vio.observe(hero);
 
   ['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(evt=>{
     video.addEventListener(evt,()=>ensureHeroVideoPlaying('video-'+evt),{once:true});
   });
+  document.addEventListener('DOMContentLoaded',()=>ensureHeroVideoPlaying('dom-content-loaded'),{once:true});
   window.addEventListener('load',()=>ensureHeroVideoPlaying('window-load'));
   window.addEventListener('pageshow',()=>ensureHeroVideoPlaying('pageshow'));
   document.addEventListener('visibilitychange',()=>{
-    if(document.visibilityState==='visible')ensureHeroVideoPlaying('visibilitychange');
+    if(document.visibilityState==='visible'){
+      ensureHeroVideoPlaying('visibilitychange');
+      armWatchdog(6);
+    }
   });
+
+  /* Watchdog: recupera pausa indevida sem depender de gesto do usuario.
+     Cobre a corrida play()/pause() do IntersectionObserver e qualquer
+     bloqueio silencioso da primeira tentativa de autoplay. */
+  let watchdogTicks=0,watchdogTimer=null;
+  function armWatchdog(maxTicks){
+    watchdogTicks=0;
+    if(watchdogTimer)clearInterval(watchdogTimer);
+    if(reduce)return;
+    watchdogTimer=setInterval(()=>{
+      watchdogTicks++;
+      if(watchdogTicks>maxTicks){clearInterval(watchdogTimer);watchdogTimer=null;return}
+      if(visible&&video.paused&&!playPending)ensureHeroVideoPlaying('watchdog');
+    },800);
+  }
 
   if(reduce){
     video.removeAttribute('autoplay');
@@ -1056,14 +1096,16 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     hero.classList.add('is-reduced-motion');
   }else{
     ensureHeroVideoPlaying('init');
+    armWatchdog(15);
   }
 })();
 
 /* HERO FLOAT CARDS - LIVE TYPING */
 (function(){
-  const cards=document.querySelectorAll('.hero-float-card');
+  const cards=[...document.querySelectorAll('.hero-float-card')];
   if(!cards.length)return;
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const isMobile=matchMedia('(max-width:900px)').matches;
 
   function typeNode(node,text,speed,done){
     node.textContent='';
@@ -1080,23 +1122,61 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     })();
   }
 
-  function typeCard(card){
-    if(card.dataset.typed==='1')return;
-    card.dataset.typed='1';
+  /* dataset.raw guarda o texto do idioma atual; o toggle EN/PT limpa esse
+     cache (ver langBtn.onclick) para que a proxima digitacao pegue o texto
+     novo em vez de repetir o idioma anterior. */
+  function typeCard(card,done){
     const strong=card.querySelector('strong'),span=card.querySelector('span');
-    const titleText=strong.textContent,descText=span.textContent;
-    typeNode(strong,titleText,26,function(){
-      typeNode(span,descText,13);
+    if(!strong.dataset.raw)strong.dataset.raw=strong.textContent;
+    if(!span.dataset.raw)span.dataset.raw=span.textContent;
+    typeNode(strong,strong.dataset.raw,26,function(){
+      typeNode(span,span.dataset.raw,13,done);
     });
   }
 
+  function typeCardOnce(card){
+    if(card.dataset.typed==='1')return;
+    card.dataset.typed='1';
+    typeCard(card);
+  }
+
   if(reduce){
-    cards.forEach(typeCard);
+    if(isMobile)cards[0].classList.add('is-active-mobile');
+    cards.forEach(card=>{
+      const strong=card.querySelector('strong'),span=card.querySelector('span');
+      strong.dataset.raw=strong.dataset.raw||strong.textContent;
+      span.dataset.raw=span.dataset.raw||span.textContent;
+      strong.textContent=strong.dataset.raw;
+      span.textContent=span.dataset.raw;
+    });
+    return;
+  }
+
+  if(isMobile){
+    const stage=cards[0].closest('.hero-interface');
+    const dotsWrap=document.createElement('div');
+    dotsWrap.className='hero-card-dots';
+    dotsWrap.setAttribute('aria-hidden','true');
+    cards.forEach(()=>dotsWrap.appendChild(document.createElement('span')));
+    if(stage)stage.appendChild(dotsWrap);
+    const dots=[...dotsWrap.children];
+    window.__heroCardDots=dotsWrap;
+
+    let active=0,rotateTimer=null;
+    function showCard(i){
+      cards.forEach((c,idx)=>c.classList.toggle('is-active-mobile',idx===i));
+      dots.forEach((d,idx)=>d.classList.toggle('is-active',idx===i));
+      typeCard(cards[i],()=>{
+        if(rotateTimer)clearTimeout(rotateTimer);
+        rotateTimer=setTimeout(()=>{active=(i+1)%cards.length;showCard(active)},1900);
+      });
+    }
+    showCard(0);
     return;
   }
 
   const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting)typeCard(entry.target);
+    if(entry.isIntersecting)typeCardOnce(entry.target);
   }),{threshold:.4});
   cards.forEach((card,idx)=>{
     setTimeout(()=>io.observe(card),idx*180);
@@ -1255,7 +1335,7 @@ let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null){el._typeEpoch=(el._typeEpoch||0)+1;el.classList.remove('is-typing-node');el.innerHTML=v}});
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null){el._typeEpoch=(el._typeEpoch||0)+1;el.classList.remove('is-typing-node');delete el.dataset.raw;el.innerHTML=v}});
 };
 
 /* HERO CANVAS (linha de luz) */
