@@ -183,6 +183,13 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-float-card.one{left:49%;top:28%}
 .hero-float-card.two{left:37%;top:18%}
 .hero-float-card.three{right:10%;bottom:24%}
+.hero-float-card.four{right:7%;top:15%}
+.hero-float-card.five{right:32%;top:58%}
+.hero-float-card.six{left:46%;bottom:8%}
+.hero-float-card strong.is-typing-node::after,.hero-float-card span.is-typing-node::after{
+  content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
+  background:var(--neon);box-shadow:0 0 6px var(--neon);animation:hfcCaret .85s steps(1) infinite}
+@keyframes hfcCaret{50%{opacity:0}}
 .hero-gridline{position:absolute;left:0;right:0;top:42%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,179,104,.22),rgba(168,255,96,.34),transparent);opacity:.58}
 .hero-gridline::after{content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;border-radius:50%;background:rgba(168,255,96,.8);box-shadow:0 0 18px var(--neon)}
 .hero-inner{position:relative;z-index:8;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,56px);width:100%}
@@ -402,7 +409,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     radial-gradient(90% 74% at 50% 50%,transparent 42%,rgba(0,0,0,.72) 100%)}
   .hero-scene-media::after{opacity:.1}
   .hero-scene-video{object-position:62% center;transform:scale(1.05)}
-  .hero-interface{display:none}
+  .hero-interface{position:relative;inset:auto;order:3;display:flex;gap:10px;pointer-events:auto;
+    width:100%;box-sizing:border-box;margin:16px 0 0;padding:2px 18px 8px;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .hero-interface::-webkit-scrollbar{display:none}
+  .hero-gridline{display:none}
+  .hero-float-card{position:static;flex:0 0 auto;width:196px;min-width:196px;max-width:196px;scroll-snap-align:start;transform:none!important}
   .hero h1{font-size:clamp(34px,8.8vw,64px);max-width:14ch}
   .hero-sub{max-width:58ch}
   .hero-scroll{display:none}
@@ -483,9 +495,12 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   </figure>
   <div class="hero-interface" aria-hidden="true">
     <span class="hero-gridline"></span>
-    <div class="hero-float-card one"><strong>Percepcao de valor</strong><span>Direcao visual para marcas que precisam sustentar preco.</span></div>
-    <div class="hero-float-card two"><strong>Sites ultra realistas</strong><span>Video, identidade e tecnologia trabalhando como uma cena.</span></div>
-    <div class="hero-float-card three"><strong>Design defensavel</strong><span>Estetica premium com criterio tecnico e seguranca desde a base.</span></div>
+    <div class="hero-float-card one"><strong>Percepção de valor</strong><span>Direção visual para marcas que precisam sustentar preço.</span></div>
+    <div class="hero-float-card two"><strong>Sites ultra realistas</strong><span>Vídeo, identidade e tecnologia trabalhando como uma cena.</span></div>
+    <div class="hero-float-card three"><strong>Design defensável</strong><span>Estética premium com critério técnico e segurança desde a base.</span></div>
+    <div class="hero-float-card four"><strong>Ecossistema de alto valor</strong><span>Da vitrine ao produto digital, cada projeto segue o mesmo padrão de autoridade visual.</span></div>
+    <div class="hero-float-card five"><strong>Prova, não promessa</strong><span>Cases reais no ar substituem portfólio de mockup genérico.</span></div>
+    <div class="hero-float-card six"><strong>Engenharia invisível</strong><span>Performance, segurança e SEO sustentando a experiência sem aparecer.</span></div>
   </div>
   <div class="hero-inner">
     <div class="hero-copy hero-copy-rebuilt">
@@ -1029,6 +1044,48 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   }else{
     ensureHeroVideoPlaying('init');
   }
+})();
+
+/* HERO FLOAT CARDS — LIVE TYPING */
+(function(){
+  const cards=document.querySelectorAll('.hero-float-card');
+  if(!cards.length)return;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function typeNode(node,text,speed,done){
+    node.textContent='';
+    if(reduce){node.textContent=text;done&&done();return}
+    node.classList.add('is-typing-node');
+    let i=0;
+    (function step(){
+      node.textContent=text.slice(0,i);
+      i++;
+      if(i<=text.length){setTimeout(step,speed)}
+      else{node.classList.remove('is-typing-node');done&&done()}
+    })();
+  }
+
+  function typeCard(card){
+    if(card.dataset.typed==='1')return;
+    card.dataset.typed='1';
+    const strong=card.querySelector('strong'),span=card.querySelector('span');
+    const titleText=strong.textContent,descText=span.textContent;
+    typeNode(strong,titleText,26,function(){
+      typeNode(span,descText,13);
+    });
+  }
+
+  if(reduce){
+    cards.forEach(typeCard);
+    return;
+  }
+
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting)typeCard(entry.target);
+  }),{threshold:.4});
+  cards.forEach((card,idx)=>{
+    setTimeout(()=>io.observe(card),idx*180);
+  });
 })();
 
 /* CATALOG ARROWS */
