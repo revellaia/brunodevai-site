@@ -109,6 +109,15 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .btn-lang{border:1px solid var(--gold);color:var(--gold-lit);font-size:9px;letter-spacing:.15em;
   font-weight:700;padding:7px 12px;background:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .btn-lang:hover{background:var(--gold);color:var(--void)}
+.motion-toggle{display:inline-flex;align-items:center;background:none;border:none;padding:4px;margin:0;
+  cursor:pointer;opacity:.5;transition:opacity .25s}
+.motion-toggle:hover,.motion-toggle:focus-visible{opacity:1}
+.motion-toggle-track{position:relative;display:block;width:30px;height:16px;border-radius:20px;
+  background:rgba(216,179,104,.16);border:1px solid rgba(216,179,104,.32);transition:background .25s,border-color .25s}
+.motion-toggle-knob{position:absolute;top:1px;left:1px;width:12px;height:12px;border-radius:50%;
+  background:var(--gold-lit);transition:transform .25s var(--ease),background .25s,box-shadow .25s}
+.motion-toggle[aria-checked="true"] .motion-toggle-track{background:rgba(168,255,96,.2);border-color:rgba(168,255,96,.5)}
+.motion-toggle[aria-checked="true"] .motion-toggle-knob{transform:translateX(14px);background:var(--neon);box-shadow:0 0 7px var(--neon)}
 .btn-cta{background:var(--neon);color:var(--void);font-size:9px;letter-spacing:.14em;font-weight:800;
   padding:10px 18px;border:none;cursor:pointer;text-transform:uppercase;text-decoration:none;
   transition:box-shadow .25s,transform .2s}
@@ -441,12 +450,14 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   .foot{flex-direction:column}
   .nav-right .btn-cta{display:none}
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
-  #heroCanvas{display:none}
-  .hero{background:radial-gradient(60% 60% at 70% 30%,var(--void-3),var(--void))}
-  .hero-scene-media,.hero-scene-video,.hero-float-card{transform:none!important}
-}
+/* Controlado por JS (html.motion-reduced), nao pelo media query cru, para que o
+   toggle "experiencia completa" consiga sobrepor a preferencia do sistema quando
+   o visitante pedir explicitamente. Sem JS, o navegador ainda respeita o proprio
+   comportamento nativo de autoplay do <video>, entao nao ha regressao real. */
+html.motion-reduced *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+html.motion-reduced #heroCanvas{display:none}
+html.motion-reduced .hero{background:radial-gradient(60% 60% at 70% 30%,var(--void-3),var(--void))}
+html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html.motion-reduced .hero-float-card{transform:none!important}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -468,6 +479,9 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <a href="#contato" data-i18n="nav_contact">Contato</a>
   </div>
   <div class="nav-right">
+    <button class="motion-toggle" id="motionToggle" type="button" role="switch" aria-checked="true" aria-label="Movimento completo ativo. Clique para reduzir.">
+      <span class="motion-toggle-track"><span class="motion-toggle-knob"></span></span>
+    </button>
     <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
     <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
@@ -943,12 +957,72 @@ document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
+/* MOTION POLICY - System / Full / Reduced
+   Padrao (sem escolha salva) e SYSTEM: respeita a preferencia real do sistema
+   operacional do visitante, por acessibilidade. O controle discreto no topo
+   deixa qualquer visitante (inclusive alguem com movimento reduzido ligado no
+   proprio sistema, como o Bruno) ativar a experiencia completa manualmente -
+   a escolha fica salva localmente (localStorage), entao so precisa clicar uma
+   vez por navegador. Nada e enviado ao servidor. */
+window.BrunoMotion=(function(){
+  const KEY='brunodevai:motion-preference';
+  const mql=matchMedia('(prefers-reduced-motion:reduce)');
+  const listeners=[];
+
+  function getMotionMode(){
+    let saved=null;
+    try{saved=localStorage.getItem(KEY)}catch(e){}
+    if(saved==='full'||saved==='reduced'||saved==='system')return saved;
+    return 'system';
+  }
+  function shouldReduceMotion(){
+    const mode=getMotionMode();
+    if(mode==='full')return false;
+    if(mode==='reduced')return true;
+    return mql.matches;
+  }
+  function setMotionMode(mode){
+    try{
+      if(mode==='system')localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY,mode);
+    }catch(e){}
+    notify();
+  }
+  function notify(){
+    const reduced=shouldReduceMotion(),mode=getMotionMode();
+    listeners.forEach(fn=>{try{fn(reduced,mode)}catch(e){console.warn('[motion] listener error',e)}});
+  }
+  function onChange(fn){listeners.push(fn)}
+
+  mql.addEventListener('change',()=>{if(getMotionMode()==='system')notify()});
+
+  return{getMotionMode,shouldReduceMotion,setMotionMode,onChange};
+})();
+
+/* Estado do hero nunca fica indefinido: seta data-motion-preference/data-motion-state
+   de imediato e a cada troca de modo, antes mesmo do video/typewriter existirem. */
+(function(){
+  const hero=document.getElementById('top');
+  if(!hero)return;
+  const Motion=window.BrunoMotion;
+  function apply(){
+    const reduced=Motion.shouldReduceMotion();
+    hero.dataset.motionPreference=Motion.getMotionMode();
+    hero.dataset.motionState=reduced?'reduced':'full';
+    document.documentElement.classList.toggle('motion-reduced',reduced);
+  }
+  hero.dataset.motionState='initializing';
+  apply();
+  Motion.onChange(apply);
+})();
+
 /* HERO LIVING VIDEO */
 (function(){
   const hero=document.getElementById('top');
   const video=document.getElementById('heroMotionVideo');
   if(!hero||!video)return;
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const Motion=window.BrunoMotion;
+  function reduce(){return Motion.shouldReduceMotion()}
   let visible=true,targetRate=1,rate=1,lastX=innerWidth*.58,lastY=innerHeight*.42;
   let playPending=false;
 
@@ -981,10 +1055,12 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
      Chrome pode ser bloqueado silenciosamente em sessoes novas/baixo engajamento,
      e o unico jeito confiavel de recuperar e reter tentar em varios eventos. */
   async function ensureHeroVideoPlaying(reason){
-    if(reduce){
+    if(reduce()){
       video.pause();
+      video.removeAttribute('autoplay');
       hero.classList.remove('is-video-live');
       hero.classList.add('is-reduced-motion');
+      hero.dataset.videoState='poster';
       return false;
     }
     if(!visible)return false;
@@ -995,7 +1071,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
       playPending=true;
       await video.play();
       hero.classList.add('is-video-live');
-      hero.classList.remove('is-video-blocked');
+      hero.classList.remove('is-video-blocked','is-reduced-motion');
       hero.dataset.videoState='playing';
       return true;
     }catch(err){
@@ -1024,7 +1100,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   bindUnlockTriggers();
 
   hero.addEventListener('pointermove',e=>{
-    if(reduce)return;
+    if(reduce())return;
     const dx=e.clientX-lastX,dy=e.clientY-lastY;
     const velocity=Math.min(1,Math.hypot(dx,dy)/72);
     targetRate=1+velocity*.18;
@@ -1034,7 +1110,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   });
   hero.addEventListener('pointerleave',sleep);
   function tick(){
-    if(!reduce&&visible&&!video.paused){
+    if(!reduce()&&visible&&!video.paused){
       rate+=(targetRate-rate)*.08;
       video.playbackRate=Math.max(.85,Math.min(1.2,rate));
       targetRate+=(1-targetRate)*.045;
@@ -1082,7 +1158,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   function armWatchdog(maxTicks){
     watchdogTicks=0;
     if(watchdogTimer)clearInterval(watchdogTimer);
-    if(reduce)return;
+    if(reduce())return;
     watchdogTimer=setInterval(()=>{
       watchdogTicks++;
       if(watchdogTicks>maxTicks){clearInterval(watchdogTimer);watchdogTimer=null;return}
@@ -1090,26 +1166,79 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
     },800);
   }
 
-  if(reduce){
+  /* Reage a troca de modo pelo toggle (ou por mudanca do sistema, se modo=system) */
+  Motion.onChange(function(isReduced){
+    if(isReduced){
+      if(watchdogTimer){clearInterval(watchdogTimer);watchdogTimer=null}
+      video.pause();
+      video.removeAttribute('autoplay');
+      hero.classList.remove('is-video-live');
+      hero.classList.add('is-reduced-motion');
+      hero.dataset.videoState='poster';
+    }else{
+      hero.classList.remove('is-reduced-motion');
+      ensureHeroVideoPlaying('motion-override-full');
+      armWatchdog(15);
+    }
+  });
+
+  if(reduce()){
     video.removeAttribute('autoplay');
     video.pause();
     hero.classList.add('is-reduced-motion');
+    hero.dataset.videoState='poster';
   }else{
     ensureHeroVideoPlaying('init');
     armWatchdog(15);
   }
 })();
 
-/* HERO FLOAT CARDS - LIVE TYPING */
+/* HERO MOTION DEBUG - diagnostico de primeira mao, sem coletar dado sensivel */
+window.__brunoHeroMotionDebug=function(){
+  const video=document.querySelector('#heroMotionVideo');
+  const hero=document.querySelector('.hero');
+  const cards=[...document.querySelectorAll('.hero-float-card')];
+  return{
+    video:{
+      exists:!!video,paused:video&&video.paused,currentTime:video&&video.currentTime,duration:video&&video.duration,
+      readyState:video&&video.readyState,error:video&&video.error,muted:video&&video.muted,defaultMuted:video&&video.defaultMuted,
+      autoplay:video&&video.autoplay,loop:video&&video.loop,playsInline:video&&video.playsInline,controls:video&&video.controls,
+      src:video&&video.currentSrc
+    },
+    document:{
+      hidden:document.hidden,visibilityState:document.visibilityState,
+      reducedMotion:window.matchMedia('(prefers-reduced-motion:reduce)').matches,
+      saveData:(navigator.connection&&navigator.connection.saveData)||null,
+      effectiveType:(navigator.connection&&navigator.connection.effectiveType)||null
+    },
+    hero:{
+      exists:!!hero,className:hero&&hero.className,dataset:hero?{...hero.dataset}:null,
+      rect:hero&&hero.getBoundingClientRect()
+    },
+    cards:cards.map(card=>{
+      const style=getComputedStyle(card);
+      return{
+        text:(card.textContent||'').trim().slice(0,80),className:card.className,
+        display:style.display,visibility:style.visibility,opacity:style.opacity,
+        transform:style.transform,animationName:style.animationName,animationPlayState:style.animationPlayState,
+        transitionProperty:style.transitionProperty,rect:card.getBoundingClientRect()
+      };
+    })
+  };
+};
+
+/* HERO FLOAT CARDS - LIVE TYPING (reage a troca de modo em tempo real) */
 (function(){
   const cards=[...document.querySelectorAll('.hero-float-card')];
   if(!cards.length)return;
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const hero=document.querySelector('.hero');
+  const Motion=window.BrunoMotion;
   const isMobile=matchMedia('(max-width:900px)').matches;
+
+  let desktopIO=null,dotsWrap=null,rotateTimer=null,activeMobileIdx=0,currentlyReduced=null;
 
   function typeNode(node,text,speed,done){
     node.textContent='';
-    if(reduce){node.textContent=text;done&&done();return}
     node.classList.add('is-typing-node');
     const epoch=(node._typeEpoch=(node._typeEpoch||0)+1);
     let i=0;
@@ -1125,62 +1254,102 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
   /* dataset.raw guarda o texto do idioma atual; o toggle EN/PT limpa esse
      cache (ver langBtn.onclick) para que a proxima digitacao pegue o texto
      novo em vez de repetir o idioma anterior. */
-  function typeCard(card,done){
+  function rawTextOf(card){
     const strong=card.querySelector('strong'),span=card.querySelector('span');
     if(!strong.dataset.raw)strong.dataset.raw=strong.textContent;
     if(!span.dataset.raw)span.dataset.raw=span.textContent;
-    typeNode(strong,strong.dataset.raw,26,function(){
-      typeNode(span,span.dataset.raw,13,done);
-    });
+    return{strong,span,titleText:strong.dataset.raw,descText:span.dataset.raw};
   }
-
+  function typeCard(card,done){
+    const{strong,span,titleText,descText}=rawTextOf(card);
+    typeNode(strong,titleText,26,function(){typeNode(span,descText,13,done)});
+  }
   function typeCardOnce(card){
     if(card.dataset.typed==='1')return;
     card.dataset.typed='1';
     typeCard(card);
   }
-
-  if(reduce){
-    if(isMobile)cards[0].classList.add('is-active-mobile');
-    cards.forEach(card=>{
-      const strong=card.querySelector('strong'),span=card.querySelector('span');
-      strong.dataset.raw=strong.dataset.raw||strong.textContent;
-      span.dataset.raw=span.dataset.raw||span.textContent;
-      strong.textContent=strong.dataset.raw;
-      span.textContent=span.dataset.raw;
-    });
-    return;
+  function showStaticText(card){
+    const{strong,span,titleText,descText}=rawTextOf(card);
+    strong._typeEpoch=(strong._typeEpoch||0)+1;
+    span._typeEpoch=(span._typeEpoch||0)+1;
+    strong.classList.remove('is-typing-node');
+    span.classList.remove('is-typing-node');
+    strong.textContent=titleText;
+    span.textContent=descText;
+  }
+  function stopAllTyping(){
+    cards.forEach(showStaticText);
+  }
+  function teardownDesktop(){
+    if(desktopIO){desktopIO.disconnect();desktopIO=null}
+  }
+  function teardownMobile(){
+    if(rotateTimer){clearTimeout(rotateTimer);rotateTimer=null}
   }
 
-  if(isMobile){
-    const stage=cards[0].closest('.hero-interface');
-    const dotsWrap=document.createElement('div');
-    dotsWrap.className='hero-card-dots';
-    dotsWrap.setAttribute('aria-hidden','true');
-    cards.forEach(()=>dotsWrap.appendChild(document.createElement('span')));
-    if(stage)stage.appendChild(dotsWrap);
-    const dots=[...dotsWrap.children];
-    window.__heroCardDots=dotsWrap;
+  function applyReduced(){
+    teardownDesktop();teardownMobile();
+    stopAllTyping();
+    cards.forEach(c=>{c.dataset.typed='';c.classList.remove('is-active-mobile')});
+    if(isMobile&&cards[0])cards[0].classList.add('is-active-mobile');
+    if(hero)hero.dataset.typewriterState='static';
+  }
 
-    let active=0,rotateTimer=null;
-    function showCard(i){
-      cards.forEach((c,idx)=>c.classList.toggle('is-active-mobile',idx===i));
-      dots.forEach((d,idx)=>d.classList.toggle('is-active',idx===i));
-      typeCard(cards[i],()=>{
-        if(rotateTimer)clearTimeout(rotateTimer);
-        rotateTimer=setTimeout(()=>{active=(i+1)%cards.length;showCard(active)},1900);
-      });
+  function applyFull(){
+    teardownDesktop();teardownMobile();
+    cards.forEach(c=>{c.dataset.typed=''});
+    if(hero)hero.dataset.typewriterState='running';
+
+    if(isMobile){
+      if(!dotsWrap){
+        const stage=cards[0].closest('.hero-interface');
+        dotsWrap=document.createElement('div');
+        dotsWrap.className='hero-card-dots';
+        dotsWrap.setAttribute('aria-hidden','true');
+        cards.forEach(()=>dotsWrap.appendChild(document.createElement('span')));
+        if(stage)stage.appendChild(dotsWrap);
+        window.__heroCardDots=dotsWrap;
+      }
+      const dots=[...dotsWrap.children];
+      activeMobileIdx=0;
+      (function showCard(i){
+        cards.forEach((c,idx)=>c.classList.toggle('is-active-mobile',idx===i));
+        dots.forEach((d,idx)=>d.classList.toggle('is-active',idx===i));
+        typeCard(cards[i],()=>{
+          if(rotateTimer)clearTimeout(rotateTimer);
+          rotateTimer=setTimeout(()=>{activeMobileIdx=(i+1)%cards.length;showCard(activeMobileIdx)},1900);
+        });
+      })(0);
+      return;
     }
-    showCard(0);
-    return;
+
+    let doneCount=0;
+    desktopIO=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting)typeCardOnce(entry.target);
+    }),{threshold:.4});
+    cards.forEach((card,idx)=>{
+      setTimeout(()=>{
+        if(desktopIO)desktopIO.observe(card);
+      },idx*180);
+    });
+    // marca 'done' quando a ultima digitacao (por indice) provavelmente terminou
+    setTimeout(()=>{if(hero&&hero.dataset.typewriterState==='running')hero.dataset.typewriterState='done'},cards.length*180+2600);
   }
 
-  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(entry.isIntersecting)typeCardOnce(entry.target);
-  }),{threshold:.4});
-  cards.forEach((card,idx)=>{
-    setTimeout(()=>io.observe(card),idx*180);
-  });
+  function apply(isReduced){
+    if(currentlyReduced===isReduced)return;
+    currentlyReduced=isReduced;
+    try{
+      if(isReduced)applyReduced();else applyFull();
+    }catch(err){
+      if(hero)hero.dataset.typewriterState='error';
+      console.warn('[hero-typewriter] apply failed:',err&&err.message);
+    }
+  }
+
+  apply(Motion.shouldReduceMotion());
+  Motion.onChange(function(isReduced){apply(isReduced)});
 })();
 
 /* CATALOG ARROWS */
@@ -1336,26 +1505,60 @@ document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.inn
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null){el._typeEpoch=(el._typeEpoch||0)+1;el.classList.remove('is-typing-node');delete el.dataset.raw;el.innerHTML=v}});
+  updateMotionToggleUI();
 };
 
-/* HERO CANVAS (linha de luz) */
+/* Toggle discreto de movimento (System/Full/Reduced) */
+const motionCopy={
+  pt:{onLabel:'Movimento completo ativo. Clique para reduzir.',offLabel:'Movimento reduzido ativo. Clique para ativar a experiência completa.'},
+  en:{onLabel:'Full motion active. Click to reduce.',offLabel:'Reduced motion active. Click to enable the full experience.'}
+};
+function updateMotionToggleUI(){
+  const btn=document.getElementById('motionToggle');
+  if(!btn)return;
+  const reduced=window.BrunoMotion.shouldReduceMotion();
+  const copy=motionCopy[EN?'en':'pt'];
+  btn.setAttribute('aria-checked',reduced?'false':'true');
+  btn.setAttribute('aria-label',reduced?copy.offLabel:copy.onLabel);
+}
 (function(){
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const c=document.getElementById('heroCanvas'),x=c.getContext('2d');let w,h,pts,mx=.5,my=.5;
+  const btn=document.getElementById('motionToggle');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    const reduced=window.BrunoMotion.shouldReduceMotion();
+    window.BrunoMotion.setMotionMode(reduced?'full':'reduced');
+    updateMotionToggleUI();
+  });
+  window.BrunoMotion.onChange(updateMotionToggleUI);
+  updateMotionToggleUI();
+})();
+
+/* HERO CANVAS (linha de luz) - reage a troca de modo em tempo real */
+(function(){
+  const c=document.getElementById('heroCanvas');
+  if(!c)return;
+  const x=c.getContext('2d');
+  const Motion=window.BrunoMotion;
+  let w,h,pts,mx=.5,my=.5,rafId=null,running=false;
   function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
     const n=Math.min(70,Math.floor(w*h/22000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))}
   function draw(){
+    if(!running)return;
     x.clearRect(0,0,w,h);
     for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
     for(let i=0;i<pts.length;i++){
       for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
         if(d<130){x.strokeStyle='rgba(168,255,96,'+(1-d/130)*.14+')';x.lineWidth=1;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
       const gx=(mx-.5)*30,gy=(my-.5)*30;x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill()}
-    requestAnimationFrame(draw);
+    rafId=requestAnimationFrame(draw);
   }
+  function start(){if(running)return;running=true;if(!pts)size();draw()}
+  function stop(){running=false;if(rafId){cancelAnimationFrame(rafId);rafId=null}if(w&&h)x.clearRect(0,0,w,h)}
   addEventListener('resize',size);
   addEventListener('mousemove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
-  size();draw();
+  size();
+  if(!Motion.shouldReduceMotion())start();
+  Motion.onChange(function(isReduced){if(isReduced)stop();else start()});
 })();
 </script>
 </body>
