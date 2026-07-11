@@ -67,6 +67,7 @@
   --gold-lit:#D8B368; --neon:#A8FF60; --neon-dim:rgba(168,255,96,.16);
   --text-hi:#f4f2ec; --text-lo:#9a9b94;
   --maxw:1240px; --ease:cubic-bezier(.22,.61,.36,1); --r:14px;
+  --hero-motion-duration-factor:1.15; --hero-motion-velocity-factor:.85;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
@@ -110,7 +111,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   font-weight:700;padding:7px 12px;background:none;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .btn-lang:hover{background:var(--gold);color:var(--void)}
 .motion-control{position:relative;display:flex;align-items:center}
-.motion-trigger{display:grid;place-items:center;width:40px;height:40px;background:none;border:1px solid rgba(216,179,104,.28);
+.motion-trigger{display:grid;place-items:center;width:44px;height:44px;background:none;border:1px solid rgba(216,179,104,.28);
   border-radius:50%;cursor:pointer;opacity:.55;transition:opacity .25s,border-color .25s,background .25s}
 .motion-trigger:hover,.motion-trigger:focus-visible,.motion-trigger[aria-expanded="true"]{opacity:1;border-color:rgba(168,255,96,.5);background:rgba(168,255,96,.08)}
 .motion-trigger-dot{width:8px;height:8px;border-radius:50%;background:var(--gold-lit);transition:background .25s,box-shadow .25s}
@@ -120,6 +121,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   min-width:172px;padding:6px;border-radius:10px;border:1px solid rgba(216,179,104,.24);
   background:rgba(12,13,11,.96);backdrop-filter:blur(18px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
 .motion-menu[hidden]{display:none}
+.motion-options{display:flex;flex-direction:column;gap:2px}
 .motion-option{display:flex;align-items:center;gap:9px;min-height:44px;padding:0 12px;border:none;background:none;
   color:var(--text-lo);font-size:12.5px;letter-spacing:.02em;text-align:left;border-radius:7px;cursor:pointer;
   transition:background .18s,color .18s}
@@ -171,7 +173,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
              linear-gradient(180deg,rgba(12,13,11,.76) 0%,transparent 28%,rgba(12,13,11,.42) 74%,var(--void) 100%)}
 .hero-scene-media{position:absolute;z-index:3;top:84px;right:-7vw;bottom:-2vh;width:min(72vw,1040px);margin:0;pointer-events:none;
   opacity:.94;transform:translate3d(calc((var(--mx) - .5)*-18px),calc((var(--my) - .5)*-10px),0);
-  transition:opacity .5s var(--ease);filter:drop-shadow(-42px 36px 80px rgba(0,0,0,.72))}
+  transition:opacity calc(.5s * var(--hero-motion-duration-factor)) var(--ease);filter:drop-shadow(-42px 36px 80px rgba(0,0,0,.72))}
 .hero-scene-media::before{content:'';position:absolute;inset:-8% -8% -4% -24%;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,var(--void) 0%,rgba(12,13,11,.72) 20%,transparent 42%),
              radial-gradient(72% 58% at 64% 42%,transparent 38%,rgba(0,0,0,.72) 100%);
@@ -183,7 +185,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   opacity:.18;mask:linear-gradient(90deg,transparent 0%,#000 26%,#000 92%,transparent 100%)}
 .hero-scene-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center;
   filter:brightness(.62) contrast(1.12) saturate(.78);opacity:.9;transform:scale(1.08);
-  transition:filter .7s var(--ease),opacity .7s var(--ease),transform .9s var(--ease)}
+  transition:filter calc(.7s * var(--hero-motion-duration-factor)) var(--ease),opacity calc(.7s * var(--hero-motion-duration-factor)) var(--ease),transform calc(.9s * var(--hero-motion-duration-factor)) var(--ease)}
 .hero.is-video-live .hero-scene-video{filter:brightness(.72) contrast(1.1) saturate(.86);opacity:.96;transform:scale(1.095)}
 .hero.is-awake .hero-scene-video{filter:brightness(.78) contrast(1.1) saturate(.9);opacity:1;transform:scale(1.105)}
 .hero-scene-vignette{position:absolute;inset:0;z-index:5;pointer-events:none;
@@ -193,7 +195,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   background:linear-gradient(135deg,rgba(12,13,11,.62),rgba(12,13,11,.28));backdrop-filter:blur(14px);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 20px 60px rgba(0,0,0,.36);border-radius:8px;
   color:rgba(244,242,236,.78);transform:translate3d(calc((var(--mx) - .5)*18px),calc((var(--my) - .5)*12px),0);
-  transition:border-color .4s var(--ease),opacity .4s var(--ease)}
+  transition:border-color calc(.4s * var(--hero-motion-duration-factor)) var(--ease),opacity calc(.4s * var(--hero-motion-duration-factor)) var(--ease)}
 .hero.is-awake .hero-float-card{border-color:rgba(168,255,96,.24)}
 .hero-float-card strong{display:block;color:var(--text-hi);font-size:12px;letter-spacing:.02em;margin-bottom:5px}
 .hero-float-card span{display:block;color:var(--text-lo);font-size:11px;line-height:1.45}
@@ -206,7 +208,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-float-card.six{left:60%;top:56%}
 .hero-float-card strong.is-typing-node::after,.hero-float-card span.is-typing-node::after{
   content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
-  background:var(--neon);box-shadow:0 0 6px var(--neon);animation:hfcCaret .85s steps(1) infinite}
+  background:var(--neon);box-shadow:0 0 6px var(--neon);animation:hfcCaret calc(.85s * var(--hero-motion-duration-factor)) steps(1) infinite}
 @keyframes hfcCaret{50%{opacity:0}}
 .hero-gridline{position:absolute;left:0;right:0;top:42%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,179,104,.22),rgba(168,255,96,.34),transparent);opacity:.58}
 .hero-gridline::after{content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;border-radius:50%;background:rgba(168,255,96,.8);box-shadow:0 0 18px var(--neon)}
@@ -235,7 +237,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .btn-ghost:hover{border-color:var(--neon);color:var(--text-hi)}
 .hero-scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
   font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero-scroll .line{width:1px;height:34px;background:linear-gradient(var(--neon),transparent);animation:pulse 2.2s infinite}
+.hero-scroll .line{width:1px;height:34px;background:linear-gradient(var(--neon),transparent);animation:pulse calc(2.2s * var(--hero-motion-duration-factor)) infinite}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
 /* DARK SHELL */
@@ -503,13 +505,15 @@ html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html
   </div>
   <div class="nav-right">
     <div class="motion-control" id="motionControl">
-      <button class="motion-trigger" id="motionTrigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="motionMenu" aria-label="Preferência de movimento: automática">
+      <button class="motion-trigger" id="motionTrigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="motionMenu" aria-label="Preferência de movimento: automática">
         <span class="motion-trigger-dot" aria-hidden="true"></span>
       </button>
-      <div class="motion-menu" id="motionMenu" role="radiogroup" aria-label="Preferência de movimento" hidden>
-        <button class="motion-option" type="button" role="radio" data-mode="system" aria-checked="true">Automática</button>
-        <button class="motion-option" type="button" role="radio" data-mode="full" aria-checked="false">Completa</button>
-        <button class="motion-option" type="button" role="radio" data-mode="reduced" aria-checked="false">Reduzida</button>
+      <div class="motion-menu" id="motionMenu" role="dialog" aria-modal="false" aria-label="Preferência de movimento" hidden>
+        <div class="motion-options" id="motionOptions" role="radiogroup" aria-label="Preferência de movimento">
+          <button class="motion-option" type="button" role="radio" data-mode="system" aria-checked="true">Automática</button>
+          <button class="motion-option" type="button" role="radio" data-mode="full" aria-checked="false">Completa</button>
+          <button class="motion-option" type="button" role="radio" data-mode="reduced" aria-checked="false">Reduzida</button>
+        </div>
       </div>
     </div>
     <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
@@ -987,91 +991,163 @@ document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
-/* MOTION POLICY - System / Full / Reduced
-   Padrao (sem escolha salva) e SYSTEM: respeita a preferencia real do sistema
-   operacional do visitante, por acessibilidade. O controle discreto no topo
-   deixa qualquer visitante (inclusive alguem com movimento reduzido ligado no
-   proprio sistema, como o Bruno) ativar a experiencia completa manualmente -
-   a escolha fica salva localmente (localStorage), entao so precisa clicar uma
-   vez por navegador. Nada e enviado ao servidor. */
+/* MOTION POLICY V2 - uma unica fonte de verdade, geracao atomica e registry.
+   Recursos criados por uma sessao nunca podem executar na geracao seguinte. */
+const MOTION_TUNING=Object.freeze({
+  videoPlaybackRate:.90,
+  animationDurationMultiplier:1.15,
+  velocityMultiplier:.85,
+  typewriterIntervalMultiplier:1.12,
+  cardDwellMultiplier:1.15
+});
+window.MOTION_TUNING=MOTION_TUNING;
+document.documentElement.style.setProperty('--hero-motion-duration-factor',String(MOTION_TUNING.animationDurationMultiplier));
+document.documentElement.style.setProperty('--hero-motion-velocity-factor',String(MOTION_TUNING.velocityMultiplier));
+
 window.BrunoMotion=(function(){
   const KEY='brunodevai:motion-preference';
   const VALID=['system','full','reduced'];
+  const REASONS=['mode-change','language-change','destroy','restart','visibility','system-preference-change','error'];
   const mql=matchMedia('(prefers-reduced-motion:reduce)');
   const listeners=[];
+  const resources={timeouts:new Set(),intervals:new Set(),rafs:new Set(),observers:new Set(),cleanups:new Set()};
+  const stats={timeoutsScheduled:0,timeoutsCancelled:0,timeoutsExecuted:0,staleCallbacksRejected:0,
+    intervalsScheduled:0,intervalsCancelled:0,rafsScheduled:0,rafsCancelled:0,observersRegistered:0,cleanupsRegistered:0};
+  const hero=document.getElementById('top');
 
-  /* Normaliza qualquer valor invalido/corrompido de localStorage (null,
-     string vazia, JSON, maiusculas, lixo) de volta para 'system' e
-     sobrescreve o valor salvo, para nunca deixar o estado indefinido. */
-  function getMotionMode(){
+  function readPreference(){
     let saved=null;
-    try{saved=localStorage.getItem(KEY)}catch(e){return 'system'}
-    if(VALID.indexOf(saved)!==-1)return saved;
-    if(saved!=null){
-      try{localStorage.setItem(KEY,'system')}catch(e){}
-    }
-    return 'system';
+    try{saved=localStorage.getItem(KEY)}catch(e){return'system'}
+    if(VALID.includes(saved))return saved;
+    if(saved!=null){try{localStorage.setItem(KEY,'system')}catch(e){}}
+    return'system';
   }
-  function shouldReduceMotion(){
-    const mode=getMotionMode();
-    if(mode==='full')return false;
-    if(mode==='reduced')return true;
-    return mql.matches;
+  function resolveEffective(preference){
+    if(preference==='full')return'full';
+    if(preference==='reduced')return'reduced';
+    return mql.matches?'reduced':'full';
   }
-  function setMotionMode(mode){
-    const clean=VALID.indexOf(mode)!==-1?mode:'system';
-    try{
-      if(clean==='system')localStorage.removeItem(KEY);
-      else localStorage.setItem(KEY,clean);
-    }catch(e){}
-    notify();
-  }
-  function notify(){
-    const reduced=shouldReduceMotion(),mode=getMotionMode();
-    listeners.forEach(fn=>{try{fn(reduced,mode)}catch(e){console.warn('[motion] listener error',e)}});
-  }
-  function onChange(fn){listeners.push(fn)}
+  const state={preference:readPreference(),effective:'full',generation:1,transitioning:false,pending:null,lastReason:'restart'};
+  state.effective=resolveEffective(state.preference);
 
-  /* Cleanup/fallback do listener de mudanca do sistema: addEventListener e o
-     padrao moderno, mas engines antigas (Safari <14) so tem addListener/
-     removeListener. So notifica quando o modo salvo e 'system', para nunca
-     sobrescrever uma escolha explicita full/reduced do visitante. */
-  function handleSystemChange(){if(getMotionMode()==='system')notify()}
-  let mqlBound=false;
-  function bindSystemListener(){
-    if(mqlBound)return;
-    mqlBound=true;
-    if(typeof mql.addEventListener==='function')mql.addEventListener('change',handleSystemChange);
-    else if(typeof mql.addListener==='function')mql.addListener(handleSystemChange);
+  function getMotionMode(){return state.preference}
+  function getEffectiveMotionMode(){return state.effective}
+  function shouldReduceMotion(){return state.effective==='reduced'}
+  function getGeneration(){return state.generation}
+  function isCurrentGeneration(generation){return generation===state.generation}
+  function normalizeReason(reason){return REASONS.includes(reason)?reason:'restart'}
+  function context(){return{preference:state.preference,effective:state.effective,reduced:shouldReduceMotion(),generation:state.generation,reason:state.lastReason}}
+
+  function scheduleTimeout(callback,delay,generation=state.generation){
+    stats.timeoutsScheduled++;
+    const id=setTimeout(()=>{
+      resources.timeouts.delete(id);stats.timeoutsExecuted++;
+      if(!isCurrentGeneration(generation)){stats.staleCallbacksRejected++;return}
+      callback();
+    },delay);
+    resources.timeouts.add(id);return id;
   }
+  function clearScheduledTimeout(id){
+    if(id==null)return;
+    if(resources.timeouts.delete(id))stats.timeoutsCancelled++;
+    clearTimeout(id);
+  }
+  function scheduleInterval(callback,delay,generation=state.generation){
+    stats.intervalsScheduled++;
+    const id=setInterval(()=>{
+      if(!isCurrentGeneration(generation)){stats.staleCallbacksRejected++;clearScheduledInterval(id);return}
+      callback();
+    },delay);
+    resources.intervals.add(id);return id;
+  }
+  function clearScheduledInterval(id){
+    if(id==null)return;
+    if(resources.intervals.delete(id))stats.intervalsCancelled++;
+    clearInterval(id);
+  }
+  function scheduleRaf(callback,generation=state.generation){
+    stats.rafsScheduled++;
+    const id=requestAnimationFrame(timestamp=>{
+      resources.rafs.delete(id);
+      if(!isCurrentGeneration(generation)){stats.staleCallbacksRejected++;return}
+      callback(timestamp);
+    });
+    resources.rafs.add(id);return id;
+  }
+  function clearScheduledRaf(id){
+    if(id==null)return;
+    if(resources.rafs.delete(id))stats.rafsCancelled++;
+    cancelAnimationFrame(id);
+  }
+  function registerObserver(observer){resources.observers.add(observer);stats.observersRegistered++;return observer}
+  function registerCleanup(cleanup){resources.cleanups.add(cleanup);stats.cleanupsRegistered++;return cleanup}
+  function cancelAllMotionResources(){
+    [...resources.timeouts].forEach(clearScheduledTimeout);
+    [...resources.intervals].forEach(clearScheduledInterval);
+    [...resources.rafs].forEach(clearScheduledRaf);
+    resources.observers.forEach(observer=>{try{observer.disconnect()}catch(e){}});resources.observers.clear();
+    resources.cleanups.forEach(cleanup=>{try{cleanup()}catch(e){}});resources.cleanups.clear();
+  }
+  function syncDatasets(motionState){
+    if(!hero)return;
+    hero.dataset.motionPreference=state.preference;
+    hero.dataset.motionState=motionState||state.effective;
+    hero.dataset.motionGeneration=String(state.generation);
+    document.documentElement.classList.toggle('motion-reduced',state.effective==='reduced');
+  }
+  function persistPreference(preference){
+    try{if(preference==='system')localStorage.removeItem(KEY);else localStorage.setItem(KEY,preference)}catch(e){}
+  }
+  function cancelMotionSession(options={}){
+    state.lastReason=normalizeReason(options.reason);
+    state.generation++;
+    cancelAllMotionResources();
+    syncDatasets('transitioning');
+    return state.generation;
+  }
+  function applyMotionMode(preference,reason='mode-change',persist=true){
+    const clean=VALID.includes(preference)?preference:'system';
+    if(state.transitioning){state.pending={preference:clean,reason,persist};return context()}
+    state.transitioning=true;
+    cancelMotionSession({reason});
+    if(persist)persistPreference(clean);
+    state.preference=clean;
+    state.effective=resolveEffective(clean);
+    syncDatasets('transitioning');
+    const next=context();
+    let listenerFailed=false;
+    listeners.slice().forEach(fn=>{try{fn(next.reduced,next.preference,next)}catch(error){
+      listenerFailed=true;console.warn('[motion] listener error',error);
+    }});
+    state.transitioning=false;
+    syncDatasets(listenerFailed?'error':state.effective);
+    const pending=state.pending;state.pending=null;
+    if(pending)applyMotionMode(pending.preference,pending.reason,pending.persist);
+    return context();
+  }
+  function setMotionMode(preference){return applyMotionMode(preference,'mode-change',true)}
+  function restart(reason='restart'){return applyMotionMode(state.preference,reason,false)}
+  function onChange(fn){listeners.push(fn);return()=>{const i=listeners.indexOf(fn);if(i>=0)listeners.splice(i,1)}}
+  function debug(){return{...context(),transitioning:state.transitioning,lastReason:state.lastReason,
+    active:{timeouts:resources.timeouts.size,intervals:resources.intervals.size,rafs:resources.rafs.size,observers:resources.observers.size,cleanups:resources.cleanups.size},stats:{...stats}}}
+
+  function handleSystemChange(){if(state.preference==='system')restart('system-preference-change')}
+  if(typeof mql.addEventListener==='function')mql.addEventListener('change',handleSystemChange);
+  else if(typeof mql.addListener==='function')mql.addListener(handleSystemChange);
   function destroy(){
-    if(!mqlBound)return;
-    mqlBound=false;
+    cancelMotionSession({reason:'destroy'});
     if(typeof mql.removeEventListener==='function')mql.removeEventListener('change',handleSystemChange);
     else if(typeof mql.removeListener==='function')mql.removeListener(handleSystemChange);
     listeners.length=0;
   }
-  bindSystemListener();
 
-  return{getMotionMode,shouldReduceMotion,setMotionMode,onChange,destroy};
+  syncDatasets(state.effective);
+  return{getMotionMode,getEffectiveMotionMode,shouldReduceMotion,getGeneration,isCurrentGeneration,
+    setMotionMode,applyMotionMode,restart,onChange,destroy,context,scheduleTimeout,clearScheduledTimeout,
+    scheduleInterval,clearScheduledInterval,scheduleRaf,clearScheduledRaf,registerObserver,registerCleanup,
+    cancelMotionSession,cancelAllMotionResources,debug};
 })();
-
-/* Estado do hero nunca fica indefinido: seta data-motion-preference/data-motion-state
-   de imediato e a cada troca de modo, antes mesmo do video/typewriter existirem. */
-(function(){
-  const hero=document.getElementById('top');
-  if(!hero)return;
-  const Motion=window.BrunoMotion;
-  function apply(){
-    const reduced=Motion.shouldReduceMotion();
-    hero.dataset.motionPreference=Motion.getMotionMode();
-    hero.dataset.motionState=reduced?'reduced':'full';
-    document.documentElement.classList.toggle('motion-reduced',reduced);
-  }
-  hero.dataset.motionState='initializing';
-  apply();
-  Motion.onChange(apply);
-})();
+window.__brunoMotionResources=()=>window.BrunoMotion.debug();
 
 /* HERO LIVING VIDEO */
 (function(){
@@ -1079,40 +1155,36 @@ window.BrunoMotion=(function(){
   const video=document.getElementById('heroMotionVideo');
   if(!hero||!video)return;
   const Motion=window.BrunoMotion;
-  function reduce(){return Motion.shouldReduceMotion()}
-  let visible=true,targetRate=1,rate=1,lastX=innerWidth*.58,lastY=innerHeight*.42;
-  let playPending=false;
+  let visible=true,playGeneration=null,watchdogTimer=null,pauseDebounce=null;
 
   function getHeroVideoState(){
     return{exists:!!video,paused:video.paused,currentTime:video.currentTime,duration:video.duration,
       readyState:video.readyState,autoplay:video.autoplay,muted:video.muted,loop:video.loop,
-      playsInline:video.playsInline,controls:video.controls,src:video.currentSrc,error:video.error};
+      playsInline:video.playsInline,controls:video.controls,playbackRate:video.playbackRate,
+      defaultPlaybackRate:video.defaultPlaybackRate,src:video.currentSrc,error:video.error};
   }
   window.__heroVideoState=getHeroVideoState;
 
-  /* Evita a corrida classica do Chrome "play() request interrupted by pause()":
-     nunca pausa enquanto uma promise de play() ainda esta em voo. */
-  function safePause(){
-    if(playPending)return;
-    video.pause();
-  }
-
   function setPointer(x,y){
     const rect=hero.getBoundingClientRect();
-    const nx=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
-    const ny=Math.max(0,Math.min(1,(y-rect.top)/rect.height));
+    const rawX=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
+    const rawY=Math.max(0,Math.min(1,(y-rect.top)/rect.height));
+    const nx=.5+(rawX-.5)*MOTION_TUNING.velocityMultiplier;
+    const ny=.5+(rawY-.5)*MOTION_TUNING.velocityMultiplier;
     hero.style.setProperty('--mx',nx.toFixed(3));
     hero.style.setProperty('--my',ny.toFixed(3));
   }
   function wake(){hero.classList.add('is-awake')}
-  function sleep(){hero.classList.remove('is-awake');targetRate=1}
+  function sleep(){hero.classList.remove('is-awake')}
+  function safePause(){if(playGeneration==null)video.pause()}
+  function applyPlaybackRate(){
+    video.defaultPlaybackRate=MOTION_TUNING.videoPlaybackRate;
+    video.playbackRate=MOTION_TUNING.videoPlaybackRate;
+  }
 
-  /* Gatilho robusto de reproducao: chamado em multiplos pontos do ciclo de vida
-     e em qualquer primeiro gesto real do visitante, pois o autoplay mudo do
-     Chrome pode ser bloqueado silenciosamente em sessoes novas/baixo engajamento,
-     e o unico jeito confiavel de recuperar e reter tentar em varios eventos. */
-  async function ensureHeroVideoPlaying(reason){
-    if(reduce()){
+  async function ensureHeroVideoPlaying(reason,generation=Motion.getGeneration()){
+    if(!Motion.isCurrentGeneration(generation))return false;
+    if(Motion.shouldReduceMotion()){
       video.pause();
       video.removeAttribute('autoplay');
       hero.classList.remove('is-video-live');
@@ -1121,23 +1193,28 @@ window.BrunoMotion=(function(){
       return false;
     }
     if(!visible)return false;
-    if(!video.paused&&video.currentTime>0)return true;
+    applyPlaybackRate();
+    if(!video.paused&&video.currentTime>0){hero.dataset.videoState='playing';return true}
     video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.playsInline=true;video.controls=false;
     video.setAttribute('muted','');video.setAttribute('autoplay','');video.setAttribute('loop','');video.setAttribute('playsinline','');
     try{
-      playPending=true;
+      playGeneration=generation;
       await video.play();
+      if(!Motion.isCurrentGeneration(generation))return false;
+      if(Motion.shouldReduceMotion()){video.pause();return false}
+      applyPlaybackRate();
       hero.classList.add('is-video-live');
       hero.classList.remove('is-video-blocked','is-reduced-motion');
       hero.dataset.videoState='playing';
       return true;
     }catch(err){
+      if(!Motion.isCurrentGeneration(generation))return false;
       hero.classList.add('is-video-blocked');
       hero.dataset.videoState='blocked';
       console.warn('[hero-video] play blocked:',reason,err&&err.name,err&&err.message);
       return false;
     }finally{
-      playPending=false;
+      if(playGeneration===generation)playGeneration=null;
     }
   }
   window.__ensureHeroVideoPlaying=ensureHeroVideoPlaying;
@@ -1146,7 +1223,7 @@ window.BrunoMotion=(function(){
   function bindUnlockTriggers(){
     if(unlockBound)return;
     unlockBound=true;
-    const retry=reason=>()=>ensureHeroVideoPlaying(reason);
+    const retry=reason=>()=>ensureHeroVideoPlaying(reason,Motion.getGeneration());
     document.addEventListener('click',retry('document-click'),{once:true,passive:true});
     document.addEventListener('scroll',retry('document-scroll'),{once:true,passive:true});
     document.addEventListener('keydown',retry('document-keydown'),{once:true,passive:true});
@@ -1157,107 +1234,53 @@ window.BrunoMotion=(function(){
   bindUnlockTriggers();
 
   hero.addEventListener('pointermove',e=>{
-    if(reduce())return;
-    const dx=e.clientX-lastX,dy=e.clientY-lastY;
-    const velocity=Math.min(1,Math.hypot(dx,dy)/72);
-    targetRate=1+velocity*.18;
-    lastX=e.clientX;lastY=e.clientY;
+    if(Motion.shouldReduceMotion())return;
     setPointer(e.clientX,e.clientY);wake();
-    if(video.paused)ensureHeroVideoPlaying('hero-pointermove');
+    if(video.paused)ensureHeroVideoPlaying('hero-pointermove',Motion.getGeneration());
   });
   hero.addEventListener('pointerleave',sleep);
-  /* O loop so se reagenda enquanto full estiver ativo: reduced encerra o RAF
-     por completo (nao so pula o trabalho), e volta a full reagenda uma unica
-     vez. Sem isso, o loop rodava para sempre na taxa de atualizacao do
-     monitor mesmo sem fazer nada util. */
-  let tickRafId=null;
-  function tick(){
-    if(reduce()){tickRafId=null;return}
-    if(visible&&!video.paused){
-      rate+=(targetRate-rate)*.08;
-      video.playbackRate=Math.max(.85,Math.min(1.2,rate));
-      targetRate+=(1-targetRate)*.045;
-      if(Math.abs(targetRate-1)<.01)hero.classList.remove('is-awake');
-    }
-    tickRafId=requestAnimationFrame(tick);
-  }
-  function startTick(){if(tickRafId==null)tickRafId=requestAnimationFrame(tick)}
-  function stopTick(){if(tickRafId!=null){cancelAnimationFrame(tickRafId);tickRafId=null}}
-  if(!reduce())startTick();
 
-  let pauseDebounce=null;
-  const vio=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    const ratio=entry.intersectionRatio;
-    const reallyGone=!entry.isIntersecting&&ratio<=.03;
-    if(pauseDebounce){clearTimeout(pauseDebounce);pauseDebounce=null}
-    if(reallyGone){
-      pauseDebounce=setTimeout(()=>{
-        visible=false;
-        safePause();
-        sleep();
-      },400);
+  function armWatchdog(maxTicks,generation){
+    let ticks=0;
+    if(watchdogTimer)Motion.clearScheduledInterval(watchdogTimer);
+    watchdogTimer=Motion.scheduleInterval(()=>{
+      ticks++;
+      if(ticks>maxTicks){Motion.clearScheduledInterval(watchdogTimer);watchdogTimer=null;return}
+      if(visible&&video.paused&&playGeneration==null)ensureHeroVideoPlaying('watchdog',generation);
+    },800,generation);
+  }
+  function startSession(ctx){
+    watchdogTimer=null;pauseDebounce=null;
+    if(ctx.reduced){
+      video.pause();video.removeAttribute('autoplay');sleep();
+      hero.classList.remove('is-video-live');hero.classList.add('is-reduced-motion');hero.dataset.videoState='poster';
       return;
     }
-    visible=true;
-    ensureHeroVideoPlaying('intersection-visible');
-  }),{threshold:[0,.03,.05,.28],rootMargin:'120px 0px'});
-  vio.observe(hero);
-
-  ['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(evt=>{
-    video.addEventListener(evt,()=>ensureHeroVideoPlaying('video-'+evt),{once:true});
-  });
-  document.addEventListener('DOMContentLoaded',()=>ensureHeroVideoPlaying('dom-content-loaded'),{once:true});
-  window.addEventListener('load',()=>ensureHeroVideoPlaying('window-load'));
-  window.addEventListener('pageshow',()=>ensureHeroVideoPlaying('pageshow'));
-  document.addEventListener('visibilitychange',()=>{
-    if(document.visibilityState==='visible'){
-      ensureHeroVideoPlaying('visibilitychange');
-      armWatchdog(6);
-    }
-  });
-
-  /* Watchdog: recupera pausa indevida sem depender de gesto do usuario.
-     Cobre a corrida play()/pause() do IntersectionObserver e qualquer
-     bloqueio silencioso da primeira tentativa de autoplay. */
-  let watchdogTicks=0,watchdogTimer=null;
-  function armWatchdog(maxTicks){
-    watchdogTicks=0;
-    if(watchdogTimer)clearInterval(watchdogTimer);
-    if(reduce())return;
-    watchdogTimer=setInterval(()=>{
-      watchdogTicks++;
-      if(watchdogTicks>maxTicks){clearInterval(watchdogTimer);watchdogTimer=null;return}
-      if(visible&&video.paused&&!playPending)ensureHeroVideoPlaying('watchdog');
-    },800);
+    applyPlaybackRate();hero.classList.remove('is-reduced-motion');
+    const vio=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!Motion.isCurrentGeneration(ctx.generation))return;
+      const reallyGone=!entry.isIntersecting&&entry.intersectionRatio<=.03;
+      if(pauseDebounce){Motion.clearScheduledTimeout(pauseDebounce);pauseDebounce=null}
+      if(reallyGone){
+        pauseDebounce=Motion.scheduleTimeout(()=>{visible=false;safePause();sleep()},400,ctx.generation);
+      }else{
+        visible=true;ensureHeroVideoPlaying('intersection-visible',ctx.generation);
+      }
+    }),{threshold:[0,.03,.05,.28],rootMargin:'120px 0px'}));
+    vio.observe(hero);
+    ensureHeroVideoPlaying(ctx.reason||'motion-session',ctx.generation);
+    armWatchdog(15,ctx.generation);
   }
 
-  /* Reage a troca de modo pelo toggle (ou por mudanca do sistema, se modo=system) */
-  Motion.onChange(function(isReduced){
-    if(isReduced){
-      if(watchdogTimer){clearInterval(watchdogTimer);watchdogTimer=null}
-      stopTick();
-      video.pause();
-      video.removeAttribute('autoplay');
-      hero.classList.remove('is-video-live');
-      hero.classList.add('is-reduced-motion');
-      hero.dataset.videoState='poster';
-    }else{
-      hero.classList.remove('is-reduced-motion');
-      ensureHeroVideoPlaying('motion-override-full');
-      armWatchdog(15);
-      startTick();
-    }
-  });
-
-  if(reduce()){
-    video.removeAttribute('autoplay');
-    video.pause();
-    hero.classList.add('is-reduced-motion');
-    hero.dataset.videoState='poster';
-  }else{
-    ensureHeroVideoPlaying('init');
-    armWatchdog(15);
-  }
+  ['loadedmetadata','loadeddata','canplay','canplaythrough','play'].forEach(evt=>video.addEventListener(evt,()=>{
+    if(Motion.shouldReduceMotion()){video.pause();return}
+    applyPlaybackRate();ensureHeroVideoPlaying('video-'+evt,Motion.getGeneration());
+  }));
+  window.addEventListener('load',()=>{if(!Motion.shouldReduceMotion())ensureHeroVideoPlaying('window-load',Motion.getGeneration())});
+  window.addEventListener('pageshow',()=>Motion.restart('visibility'));
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')Motion.restart('visibility')});
+  Motion.onChange((isReduced,preference,ctx)=>startSession(ctx));
+  startSession(Motion.context());
 })();
 
 /* HERO MOTION DEBUG - diagnostico de primeira mao, sem coletar dado sensivel */
@@ -1270,7 +1293,7 @@ window.__brunoHeroMotionDebug=function(){
       exists:!!video,paused:video&&video.paused,currentTime:video&&video.currentTime,duration:video&&video.duration,
       readyState:video&&video.readyState,error:video&&video.error,muted:video&&video.muted,defaultMuted:video&&video.defaultMuted,
       autoplay:video&&video.autoplay,loop:video&&video.loop,playsInline:video&&video.playsInline,controls:video&&video.controls,
-      src:video&&video.currentSrc
+      playbackRate:video&&video.playbackRate,defaultPlaybackRate:video&&video.defaultPlaybackRate,src:video&&video.currentSrc
     },
     document:{
       hidden:document.hidden,visibilityState:document.visibilityState,
@@ -1282,6 +1305,7 @@ window.__brunoHeroMotionDebug=function(){
       exists:!!hero,className:hero&&hero.className,dataset:hero?{...hero.dataset}:null,
       rect:hero&&hero.getBoundingClientRect()
     },
+    resources:window.BrunoMotion&&window.BrunoMotion.debug(),
     cards:cards.map(card=>{
       const style=getComputedStyle(card);
       return{
@@ -1300,29 +1324,27 @@ window.__brunoHeroMotionDebug=function(){
   if(!cards.length)return;
   const hero=document.querySelector('.hero');
   const Motion=window.BrunoMotion;
-  const isMobile=matchMedia('(max-width:900px)').matches;
+  const mobileMql=matchMedia('(max-width:900px)');
+  let dotsWrap=null,rotateTimer=null,activeMobileIdx=0,lastMobile=mobileMql.matches;
 
-  let desktopIO=null,dotsWrap=null,rotateTimer=null,activeMobileIdx=0,currentlyReduced=null,carouselIO=null;
-
-  function typeNode(node,text,speed,done){
+  function isMobile(){return mobileMql.matches}
+  function typeNode(node,text,speed,done,generation){
     node.textContent='';
     node.classList.add('is-typing-node');
     const epoch=(node._typeEpoch=(node._typeEpoch||0)+1);
     let i=0;
     (function step(){
-      if(node._typeEpoch!==epoch){
-        /* interrompido externamente (troca de idioma no meio da digitacao):
-           quem interrompeu ja aplicou o texto final correto via innerHTML,
-           entao so garantimos que a cadeia (typeCard -> rotacao) continue em
-           vez de morrer em silencio - e a causa raiz do carrossel travar. */
+      if(!Motion.isCurrentGeneration(generation)||Motion.shouldReduceMotion()||node._typeEpoch!==epoch){
         node.classList.remove('is-typing-node');
-        done&&done();
         return;
       }
       node.textContent=text.slice(0,i);
       i++;
-      if(i<=text.length){setTimeout(step,speed)}
-      else{node.classList.remove('is-typing-node');done&&done()}
+      if(i<=text.length)Motion.scheduleTimeout(step,speed,generation);
+      else{
+        node.classList.remove('is-typing-node');
+        if(Motion.isCurrentGeneration(generation)&&!Motion.shouldReduceMotion()&&done)done();
+      }
     })();
   }
 
@@ -1336,14 +1358,16 @@ window.__brunoHeroMotionDebug=function(){
     if(!node.dataset.raw)node.dataset.raw=node.textContent;
     return node.dataset.raw;
   }
-  function typeCard(card,done){
+  function typeCard(card,done,generation){
     const strong=card.querySelector('strong'),span=card.querySelector('span');
-    typeNode(strong,freshRaw(strong),26,function(){typeNode(span,freshRaw(span),13,done)});
+    const titleSpeed=Math.round(26*MOTION_TUNING.typewriterIntervalMultiplier);
+    const bodySpeed=Math.round(13*MOTION_TUNING.typewriterIntervalMultiplier);
+    typeNode(strong,freshRaw(strong),titleSpeed,()=>typeNode(span,freshRaw(span),bodySpeed,done,generation),generation);
   }
-  function typeCardOnce(card){
+  function typeCardOnce(card,generation){
     if(card.dataset.typed==='1')return;
     card.dataset.typed='1';
-    typeCard(card);
+    typeCard(card,null,generation);
   }
   function showStaticText(card){
     const strong=card.querySelector('strong'),span=card.querySelector('span');
@@ -1357,16 +1381,14 @@ window.__brunoHeroMotionDebug=function(){
   function stopAllTyping(){
     cards.forEach(showStaticText);
   }
-  function teardownDesktop(){
-    if(desktopIO){desktopIO.disconnect();desktopIO=null}
-  }
-  function teardownMobile(){
-    if(rotateTimer){clearTimeout(rotateTimer);rotateTimer=null}
-  }
-  function teardownCarousel(){
-    if(carouselIO){carouselIO.disconnect();carouselIO=null}
+  function resetReducedCarouselAccessibility(){
     const stage=cards[0].closest('.hero-interface');
-    if(stage){stage.removeAttribute('role');stage.removeAttribute('aria-label');stage.removeAttribute('tabindex')}
+    if(stage){stage.removeAttribute('role');stage.removeAttribute('aria-label');stage.removeAttribute('tabindex');stage.setAttribute('aria-hidden','true')}
+    cards.forEach(card=>{card.removeAttribute('aria-current');card.removeAttribute('aria-hidden')});
+    if(dotsWrap){
+      dotsWrap.setAttribute('aria-hidden','true');
+      [...dotsWrap.children].forEach(dot=>{dot.tabIndex=-1;dot.removeAttribute('aria-current');dot.classList.remove('is-active')});
+    }
   }
 
   const langLabel={
@@ -1388,11 +1410,15 @@ window.__brunoHeroMotionDebug=function(){
     const stage=cards[0].closest('.hero-scene-media')||cards[0].closest('.hero-interface');
     dotsWrap=document.createElement('div');
     dotsWrap.className='hero-card-dots';
+    dotsWrap.setAttribute('role','group');
+    dotsWrap.setAttribute('aria-label',langLabel[lang()].region);
     cards.forEach((c,i)=>{
+      if(!c.id)c.id='hero-value-card-'+(i+1);
       const d=document.createElement('button');
       d.type='button';
       d.className='hero-card-dot';
       d.tabIndex=-1;
+      d.setAttribute('aria-controls',c.id);
       d.addEventListener('click',()=>goToCard(i));
       dotsWrap.appendChild(d);
     });
@@ -1403,23 +1429,36 @@ window.__brunoHeroMotionDebug=function(){
   function setDotsMode(interactive){
     const dots=[...ensureDotsWrap().children];
     dots.forEach((d,i)=>{
-      d.tabIndex=interactive?0:-1;
+      d.tabIndex=interactive&&(i===activeMobileIdx)?0:-1;
       d.setAttribute('aria-label',langLabel[lang()].dot(i,cards.length));
+    });
+  }
+  function updateManualActive(i){
+    activeMobileIdx=i;
+    const dots=[...ensureDotsWrap().children];
+    dots.forEach((dot,idx)=>{
+      const active=idx===i;
+      dot.classList.toggle('is-active',active);
+      if(active)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');
+      dot.tabIndex=active?0:-1;
     });
   }
   function goToCard(i){
     const stage=cards[0].closest('.hero-interface');
-    if(!stage||!cards[i])return;
-    cards[i].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'});
+    if(!stage||!cards[i]||!Motion.shouldReduceMotion())return;
+    const left=Math.max(0,cards[i].offsetLeft-stage.offsetLeft);
+    stage.scrollTo({left,behavior:'auto'});
+    updateManualActive(i);
   }
 
-  function applyReduced(){
-    teardownDesktop();teardownMobile();teardownCarousel();
+  function applyReduced(ctx){
+    rotateTimer=null;
     stopAllTyping();
     cards.forEach(c=>{c.dataset.typed='';c.classList.remove('is-active-mobile')});
-    if(!isMobile){
+    resetReducedCarouselAccessibility();
+    if(!isMobile()){
       if(hero)hero.dataset.typewriterState='static';
-      if(hero)hero.dataset.carouselState='static';
+      if(hero)hero.dataset.carouselState='inactive';
       return;
     }
     /* Reduced no mobile: nenhuma rotacao automatica, mas os 6 cards ficam
@@ -1427,8 +1466,9 @@ window.__brunoHeroMotionDebug=function(){
        ou teclado - nunca so 1 de 6. */
     const stage=cards[0].closest('.hero-interface');
     const dots=ensureDotsWrap();
+    dots.setAttribute('aria-label',langLabel[lang()].region);
     dots.removeAttribute('aria-hidden');
-    setDotsMode(true);
+    activeMobileIdx=0;setDotsMode(true);updateManualActive(0);
     if(stage){
       stage.removeAttribute('aria-hidden');
       stage.setAttribute('role','region');
@@ -1437,82 +1477,84 @@ window.__brunoHeroMotionDebug=function(){
       if(!stage._motionKeydownBound){
         stage._motionKeydownBound=true;
         stage.addEventListener('keydown',e=>{
-          if(e.key==='ArrowRight'){stage.scrollBy({left:216,behavior:'smooth'});e.preventDefault()}
-          else if(e.key==='ArrowLeft'){stage.scrollBy({left:-216,behavior:'smooth'});e.preventDefault()}
+          if(!Motion.shouldReduceMotion()||!isMobile())return;
+          if(e.key==='ArrowRight'){goToCard((activeMobileIdx+1)%cards.length);e.preventDefault()}
+          else if(e.key==='ArrowLeft'){goToCard((activeMobileIdx-1+cards.length)%cards.length);e.preventDefault()}
         });
       }
-      carouselIO=new IntersectionObserver(entries=>entries.forEach(entry=>{
-        if(entry.intersectionRatio>0.55){
+      const carouselIO=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
+        if(Motion.isCurrentGeneration(ctx.generation)&&entry.intersectionRatio>0.55){
           const idx=cards.indexOf(entry.target);
           if(idx===-1)return;
-          cards.forEach((c,i)=>c.setAttribute('aria-current',i===idx?'true':'false'));
-          [...dots.children].forEach((d,i)=>d.classList.toggle('is-active',i===idx));
+          updateManualActive(idx);
         }
-      }),{root:stage,threshold:[0,.55,1]});
+      }),{root:stage,threshold:[0,.55,1]}));
       cards.forEach(c=>carouselIO.observe(c));
     }
-    cards[0].setAttribute('aria-current','true');
     if(hero){hero.dataset.typewriterState='static';hero.dataset.carouselState='manual'}
   }
 
-  function applyFull(){
-    teardownDesktop();teardownMobile();teardownCarousel();
-    cards.forEach(c=>{c.dataset.typed=''});
+  function applyFull(ctx){
+    rotateTimer=null;resetReducedCarouselAccessibility();stopAllTyping();
+    cards.forEach(c=>{c.dataset.typed='';c.classList.remove('is-active-mobile')});
     if(hero)hero.dataset.typewriterState='running';
 
-    if(isMobile){
+    if(isMobile()){
       const dots=ensureDotsWrap();
       dots.setAttribute('aria-hidden','true');
       setDotsMode(false);
       const dotEls=[...dots.children];
       activeMobileIdx=0;
-      if(hero)hero.dataset.carouselState='running';
+      if(hero)hero.dataset.carouselState='automatic';
       (function showCard(i){
+        if(!Motion.isCurrentGeneration(ctx.generation)||Motion.shouldReduceMotion())return;
         cards.forEach((c,idx)=>c.classList.toggle('is-active-mobile',idx===i));
         dotEls.forEach((d,idx)=>d.classList.toggle('is-active',idx===i));
         typeCard(cards[i],()=>{
-          if(rotateTimer)clearTimeout(rotateTimer);
-          rotateTimer=setTimeout(()=>{activeMobileIdx=(i+1)%cards.length;showCard(activeMobileIdx)},1900);
-        });
+          if(!Motion.isCurrentGeneration(ctx.generation)||Motion.shouldReduceMotion())return;
+          if(rotateTimer)Motion.clearScheduledTimeout(rotateTimer);
+          const dwell=Math.round(1900*MOTION_TUNING.cardDwellMultiplier);
+          rotateTimer=Motion.scheduleTimeout(()=>{activeMobileIdx=(i+1)%cards.length;showCard(activeMobileIdx)},dwell,ctx.generation);
+        },ctx.generation);
       })(0);
       return;
     }
-    if(hero)hero.dataset.carouselState='static';
+    if(hero)hero.dataset.carouselState='inactive';
 
-    desktopIO=new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(entry.isIntersecting)typeCardOnce(entry.target);
-    }),{threshold:.4});
+    const desktopIO=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(Motion.isCurrentGeneration(ctx.generation)&&entry.isIntersecting)typeCardOnce(entry.target,ctx.generation);
+    }),{threshold:.4}));
     cards.forEach((card,idx)=>{
-      setTimeout(()=>{
-        if(desktopIO)desktopIO.observe(card);
-      },idx*180);
+      Motion.scheduleTimeout(()=>desktopIO.observe(card),idx*180,ctx.generation);
     });
-    // marca 'done' quando a ultima digitacao (por indice) provavelmente terminou
-    setTimeout(()=>{if(hero&&hero.dataset.typewriterState==='running')hero.dataset.typewriterState='done'},cards.length*180+2600);
+    Motion.scheduleTimeout(()=>{
+      if(hero&&Motion.isCurrentGeneration(ctx.generation)&&hero.dataset.typewriterState==='running')hero.dataset.typewriterState='done';
+    },cards.length*180+Math.round(2600*MOTION_TUNING.typewriterIntervalMultiplier),ctx.generation);
   }
 
-  function apply(isReduced){
-    if(currentlyReduced===isReduced)return;
-    currentlyReduced=isReduced;
+  function apply(isReduced,ctx){
     try{
-      if(isReduced)applyReduced();else applyFull();
+      if(isReduced)applyReduced(ctx);else applyFull(ctx);
     }catch(err){
       if(hero)hero.dataset.typewriterState='error';
       console.warn('[hero-typewriter] apply failed:',err&&err.message);
     }
   }
 
-  apply(Motion.shouldReduceMotion());
-  Motion.onChange(function(isReduced){apply(isReduced)});
+  apply(Motion.shouldReduceMotion(),Motion.context());
+  Motion.onChange(function(isReduced,preference,ctx){apply(isReduced,ctx)});
+  const handleViewportChange=()=>{if(lastMobile!==isMobile()){lastMobile=isMobile();Motion.restart('restart')}};
+  if(typeof mobileMql.addEventListener==='function')mobileMql.addEventListener('change',handleViewportChange);
+  else if(typeof mobileMql.addListener==='function')mobileMql.addListener(handleViewportChange);
 
-  /* Chamado pelo langBtn.onclick para atualizar os aria-label do carrossel
-     manual (reduced+mobile) sem precisar recriar a instancia. */
   window.__heroCardsRefreshI18n=function(){
-    if(currentlyReduced&&isMobile){
+    if(dotsWrap)dotsWrap.setAttribute('aria-label',langLabel[lang()].region);
+    if(Motion.shouldReduceMotion()&&isMobile()){
       const stage=cards[0].closest('.hero-interface');
       if(stage)stage.setAttribute('aria-label',langLabel[lang()].region);
       setDotsMode(true);
     }
+    Motion.restart('language-change');
   };
 })();
 
@@ -1691,6 +1733,9 @@ function updateMotionControlUI(){
   const copy=motionCopy[document.documentElement.lang==='en'?'en':'pt'];
   control.dataset.activeMode=effectiveReduced?'reduced':'full';
   trigger.setAttribute('aria-label',copy.triggerState[mode]);
+  const menu=document.getElementById('motionMenu'),group=document.getElementById('motionOptions');
+  if(menu)menu.setAttribute('aria-label',copy.trigger);
+  if(group)group.setAttribute('aria-label',copy.trigger);
   document.querySelectorAll('#motionMenu .motion-option').forEach(opt=>{
     const isChecked=opt.dataset.mode===mode;
     opt.setAttribute('aria-checked',isChecked?'true':'false');
@@ -1708,25 +1753,30 @@ function updateMotionControlUI(){
     menu.hidden=false;
     trigger.setAttribute('aria-expanded','true');
     const checked=options.find(o=>o.getAttribute('aria-checked')==='true')||options[0];
-    checked.focus();
+    try{checked.focus({preventScroll:true})}catch(e){checked.focus()}
   }
   function closeMenu(returnFocus){
     menu.hidden=true;
     trigger.setAttribute('aria-expanded','false');
-    if(returnFocus)trigger.focus();
+    if(returnFocus){try{trigger.focus({preventScroll:true})}catch(e){trigger.focus()}}
   }
   trigger.addEventListener('click',()=>{
     if(menu.hidden)openMenu();else closeMenu(false);
   });
   options.forEach((opt,idx)=>{
+    const select=()=>window.BrunoMotion.setMotionMode(opt.dataset.mode);
     opt.addEventListener('click',()=>{
-      window.BrunoMotion.setMotionMode(opt.dataset.mode);
-      updateMotionControlUI();
+      select();
       closeMenu(true);
     });
     opt.addEventListener('keydown',e=>{
-      if(e.key==='ArrowDown'){options[(idx+1)%options.length].focus();e.preventDefault()}
-      else if(e.key==='ArrowUp'){options[(idx-1+options.length)%options.length].focus();e.preventDefault()}
+      let next=null;
+      if(e.key==='ArrowDown'||e.key==='ArrowRight')next=options[(idx+1)%options.length];
+      else if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=options[(idx-1+options.length)%options.length];
+      else if(e.key==='Home')next=options[0];
+      else if(e.key==='End')next=options[options.length-1];
+      if(next){window.BrunoMotion.setMotionMode(next.dataset.mode);next.focus({preventScroll:true});e.preventDefault()}
+      else if(e.key==='Enter'||e.key===' '){select();closeMenu(true);e.preventDefault()}
       else if(e.key==='Escape'){closeMenu(true);e.preventDefault()}
     });
   });
@@ -1747,26 +1797,27 @@ function updateMotionControlUI(){
   if(!c)return;
   const x=c.getContext('2d');
   const Motion=window.BrunoMotion;
-  let w,h,pts,mx=.5,my=.5,rafId=null,running=false;
+  let w,h,pts,mx=.5,my=.5,rafId=null,running=false,sessionGeneration=Motion.getGeneration();
   function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
-    const n=Math.min(70,Math.floor(w*h/22000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}))}
+    const velocity=.25*MOTION_TUNING.velocityMultiplier;
+    const n=Math.min(70,Math.floor(w*h/22000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*velocity,vy:(Math.random()-.5)*velocity}))}
   function draw(){
-    if(!running)return;
+    if(!running||!Motion.isCurrentGeneration(sessionGeneration)||Motion.shouldReduceMotion()){running=false;rafId=null;return}
     x.clearRect(0,0,w,h);
     for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
     for(let i=0;i<pts.length;i++){
       for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
         if(d<130){x.strokeStyle='rgba(168,255,96,'+(1-d/130)*.14+')';x.lineWidth=1;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
-      const gx=(mx-.5)*30,gy=(my-.5)*30;x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill()}
-    rafId=requestAnimationFrame(draw);
+      const gx=(mx-.5)*30*MOTION_TUNING.velocityMultiplier,gy=(my-.5)*30*MOTION_TUNING.velocityMultiplier;x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill()}
+    rafId=Motion.scheduleRaf(draw,sessionGeneration);
   }
-  function start(){if(running)return;running=true;if(!pts)size();draw()}
-  function stop(){running=false;if(rafId){cancelAnimationFrame(rafId);rafId=null}if(w&&h)x.clearRect(0,0,w,h)}
+  function start(ctx){if(running)return;sessionGeneration=ctx.generation;running=true;if(!pts)size();draw()}
+  function stop(){running=false;if(rafId){Motion.clearScheduledRaf(rafId);rafId=null}if(w&&h)x.clearRect(0,0,w,h)}
   addEventListener('resize',size);
   addEventListener('mousemove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
   size();
-  if(!Motion.shouldReduceMotion())start();
-  Motion.onChange(function(isReduced){if(isReduced)stop();else start()});
+  if(!Motion.shouldReduceMotion())start(Motion.context());
+  Motion.onChange(function(isReduced,preference,ctx){stop();if(!isReduced)start(ctx)});
 })();
 </script>
 </body>
