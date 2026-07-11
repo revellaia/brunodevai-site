@@ -192,6 +192,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   background:radial-gradient(55% 48% at 58% 42%,transparent 36%,rgba(0,0,0,.34) 68%,rgba(0,0,0,.8) 100%)}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .hero-frame-motion{position:absolute;left:clamp(18px,4vw,56px);right:clamp(18px,4vw,56px);bottom:28px;z-index:9;display:flex;align-items:center;gap:14px;pointer-events:none}
+.hero-frame-motion:focus-visible{outline:2px solid var(--neon);outline-offset:6px;border-radius:6px;pointer-events:auto}
 .hero-frame-rail{position:relative;display:block;width:min(260px,24vw);height:2px;background:rgba(244,242,236,.2);overflow:hidden}
 .hero-frame-rail::before{content:'';position:absolute;inset:0 auto 0 0;width:var(--frame-progress,12%);background:linear-gradient(90deg,var(--gold-lit),var(--neon));box-shadow:0 0 12px rgba(168,255,96,.5);transition:width .16s var(--ease)}
 .hero-frame-status{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,242,236,.48);white-space:nowrap;transition:color .25s}
@@ -513,7 +514,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
     </video>
     <span class="hero-scene-vignette" aria-hidden="true"></span>
   </figure>
-    <div class="hero-frame-motion" role="region" aria-label="Frame motion do hero">
+    <div class="hero-frame-motion" role="region" aria-label="Frame motion do hero" tabindex="0">
       <span class="hero-frame-rail" role="progressbar" aria-label="Progresso da cena" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12"></span>
       <span class="hero-frame-status" aria-live="polite" data-i18n="hero_frame_hint">Mova o cursor para explorar</span>
     </div>
@@ -1113,7 +1114,8 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   const video=document.getElementById('heroMotionVideo');
   const rail=document.querySelector('.hero-frame-rail');
   const status=document.querySelector('.hero-frame-status');
-  if(!hero||!video||!rail||!status)return;
+  const region=document.querySelector('.hero-frame-motion');
+  if(!hero||!video||!rail||!status||!region)return;
   const Motion=window.BrunoMotion;
   const coarseMql=matchMedia('(pointer:coarse)');
   let duration=10,ready=false,visible=true,targetTime=1.2,rafId=null,generation=Motion.getGeneration();
@@ -1175,6 +1177,14 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
     hero.classList.remove('is-awake');
   }
   function onPointerLeave(){hero.classList.remove('is-awake')}
+  function onKeydown(event){
+    if(Motion.shouldReduceMotion()||!ready)return;
+    const step=duration*.06;
+    if(event.key==='ArrowRight'){setTarget(targetTime+step);event.preventDefault()}
+    else if(event.key==='ArrowLeft'){setTarget(targetTime-step);event.preventDefault()}
+    else if(event.key==='Home'){setTarget(0);event.preventDefault()}
+    else if(event.key==='End'){setTarget(duration);event.preventDefault()}
+  }
   function onScroll(){
     if(!coarseMql.matches||Motion.shouldReduceMotion()||!visible||!ready)return;
     const rect=hero.getBoundingClientRect();
@@ -1208,6 +1218,9 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   hero.addEventListener('pointerup',onPointerUp,{passive:true});
   hero.addEventListener('pointercancel',onPointerUp,{passive:true});
   hero.addEventListener('pointerleave',onPointerLeave,{passive:true});
+  region.addEventListener('keydown',onKeydown);
+  region.addEventListener('focus',()=>hero.classList.add('is-awake'));
+  region.addEventListener('blur',()=>hero.classList.remove('is-awake'));
   addEventListener('scroll',onScroll,{passive:true});
   const observer=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!Motion.isCurrentGeneration(generation))return;
