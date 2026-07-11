@@ -191,9 +191,9 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   background:radial-gradient(55% 48% at 58% 42%,transparent 36%,rgba(0,0,0,.34) 68%,rgba(0,0,0,.8) 100%)}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .hero-interface{position:absolute;inset:0;z-index:6;pointer-events:none}
-.hero-hotspots{position:absolute;inset:0;z-index:8;pointer-events:auto}
+.hero-hotspots{position:absolute;inset:0;z-index:8;pointer-events:none}
 .hero-hotspot{--hotspot-x:50%;--hotspot-y:50%;position:absolute;left:var(--hotspot-x);top:var(--hotspot-y);width:44px;height:44px;
-  padding:0;border:0;background:transparent;cursor:pointer;transform:translate3d(-50%,-50%,0);display:grid;place-items:center;color:var(--neon)}
+  padding:0;border:0;background:transparent;cursor:pointer;transform:translate3d(-50%,-50%,0);display:grid;place-items:center;color:var(--neon);pointer-events:auto}
 .hero-hotspot::before{content:'';width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,242,236,.64);
   background:rgba(12,13,11,.48);box-shadow:0 0 0 1px rgba(168,255,96,.16),0 0 16px rgba(168,255,96,.16);
   transition:transform .22s var(--ease),border-color .22s,background .22s}
@@ -424,7 +424,11 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot-bottom a{color:var(--gold-lit);text-decoration:none}
 
 /* RESPONSIVE */
-@media(max-width:1179px){
+/* Espelha exatamente a condicao de capability() em JS: fluid quando
+   width<1180px OU pointer:coarse, em qualquer largura (ex.: iPad Pro
+   landscape em 1366px, sem pointer fino, precisa da faixa manual e nao
+   do layout de hotspots absolutos). */
+@media(max-width:1179px),(pointer:coarse){
   .hero-hotspots{display:none}
   .hero-interface{pointer-events:auto}
   .hero-hotspot-panels{position:absolute;inset:auto 0 12px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
@@ -1336,7 +1340,7 @@ window.__brunoHeroMotionDebug=function(){
   const panels=strip?[...strip.querySelectorAll('.hero-hotspot-panel')]:[];
   if(!hero||!stage||!strip||buttons.length!==6||panels.length!==6)return;
   const Motion=window.BrunoMotion,desktopMql=matchMedia('(min-width:1180px)'),fineMql=matchMedia('(pointer:fine)');
-  let activeId=null,activeCardIndex=0,lastCapability=null;
+  let activeId=null,activeCardIndex=0,lastCapability=null,suppressNextFocusActivate=false;
   const copy={pt:{stage:'Destaques da proposta de valor',group:'Explore seis destaques',region:'Cards de proposta de valor. Deslize ou use as setas do teclado.',close:'Fechar destaque',dot:(i,n)=>'Ir para o card '+(i+1)+' de '+n},en:{stage:'Value proposition highlights',group:'Explore six highlights',region:'Value proposition cards. Swipe or use the arrow keys.',close:'Close highlight',dot:(i,n)=>'Go to card '+(i+1)+' of '+n}};
   const language=()=>document.documentElement.lang==='en'?'en':'pt';
   const capability=()=>Motion.shouldReduceMotion()?'still-premium':(desktopMql.matches&&fineMql.matches?'cinematic':'fluid');
@@ -1345,13 +1349,13 @@ window.__brunoHeroMotionDebug=function(){
   stage.appendChild(dots);const dotButtons=[...dots.children];
   function updateDots(index){activeCardIndex=Math.max(0,Math.min(panels.length-1,index));dotButtons.forEach((dot,i)=>{const selected=i===activeCardIndex;dot.classList.toggle('is-active',selected);dot.tabIndex=selected?0:-1;if(selected)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')})}
   function activate(id){if(capability()!=='cinematic')return;activeId=id;buttons.forEach(button=>{const selected=button.dataset.hotspotId===id;button.setAttribute('aria-expanded',selected?'true':'false');button.setAttribute('aria-pressed',selected?'true':'false')});panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==id});hero.dataset.hotspotState='open'}
-  function closeHotspot(){activeId=null;buttons.forEach(button=>{button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});if(capability()==='cinematic')panels.forEach(panel=>{panel.hidden=true});hero.dataset.hotspotState='closed'}
+  function closeHotspot(){const trigger=buttons.find(button=>button.dataset.hotspotId===activeId);const focusWasInsidePanel=trigger&&document.activeElement&&strip.contains(document.activeElement);activeId=null;buttons.forEach(button=>{button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});if(capability()==='cinematic')panels.forEach(panel=>{panel.hidden=true});hero.dataset.hotspotState='closed';if(trigger&&focusWasInsidePanel){suppressNextFocusActivate=true;trigger.focus()}}
   function goToCard(index){if(capability()==='cinematic')return;const panel=panels[index];if(!panel)return;strip.scrollTo({left:panel.offsetLeft-strip.offsetLeft,behavior:Motion.shouldReduceMotion()?'auto':'smooth'});updateDots(index)}
   function nearestCard(){let best=0,distance=Infinity;panels.forEach((panel,index)=>{const delta=Math.abs((panel.offsetLeft-strip.offsetLeft)-strip.scrollLeft);if(delta<distance){distance=delta;best=index}});updateDots(best)}
   function updateI18n(){const labels=copy[language()];stage.setAttribute('aria-label',labels.stage);hotspotGroup.setAttribute('aria-label',labels.group);strip.setAttribute('aria-label',labels.region);dots.setAttribute('aria-label',labels.region);buttons.forEach(button=>{const label=button.querySelector('.sr-only');if(label)button.setAttribute('aria-label',label.textContent.trim())});panels.forEach(panel=>{const title=panel.querySelector('strong');if(title)panel.setAttribute('aria-label',title.textContent.trim());const close=panel.querySelector('.hero-hotspot-close');if(close)close.setAttribute('aria-label',labels.close)});dotButtons.forEach((dot,i)=>dot.setAttribute('aria-label',labels.dot(i,panels.length)))}
   function applyCapability(){const next=capability(),changed=lastCapability!==next;lastCapability=next;hero.dataset.capabilityMode=next;hero.dataset.typewriterState='static';hero.dataset.carouselState=next==='cinematic'?'inactive':'manual';if(next==='cinematic'){strip.tabIndex=-1;dots.setAttribute('aria-hidden','true');dotButtons.forEach(dot=>dot.tabIndex=-1);if(changed)closeHotspot();else panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==activeId});buttons.forEach(button=>button.tabIndex=0)}else{activeId=null;buttons.forEach(button=>{button.tabIndex=-1;button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});panels.forEach(panel=>{panel.hidden=false});strip.tabIndex=0;dots.removeAttribute('aria-hidden');updateDots(activeCardIndex);hero.dataset.hotspotState='manual'}updateI18n()}
   stage.addEventListener('pointerover',event=>{const button=event.target.closest('.hero-hotspot');if(button&&fineMql.matches)activate(button.dataset.hotspotId)});
-  stage.addEventListener('focusin',event=>{const button=event.target.closest('.hero-hotspot');if(button)activate(button.dataset.hotspotId)});
+  stage.addEventListener('focusin',event=>{const button=event.target.closest('.hero-hotspot');if(!button)return;if(suppressNextFocusActivate){suppressNextFocusActivate=false;return}activate(button.dataset.hotspotId)});
   stage.addEventListener('click',event=>{const button=event.target.closest('.hero-hotspot');if(button){activate(button.dataset.hotspotId);return}if(event.target.closest('.hero-hotspot-close')){closeHotspot();return}const dot=event.target.closest('.hero-card-dot');if(dot)goToCard(Number(dot.dataset.cardIndex))});
   stage.addEventListener('keydown',event=>{if(event.key==='Escape'&&capability()==='cinematic'){closeHotspot();return}if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;const step=event.key==='ArrowRight'?1:-1;if(capability()==='cinematic'){const current=Math.max(0,buttons.indexOf(document.activeElement)),next=(current+step+buttons.length)%buttons.length;buttons[next].focus();activate(buttons[next].dataset.hotspotId)}else goToCard((activeCardIndex+step+panels.length)%panels.length);event.preventDefault()});
   strip.addEventListener('pointerup',nearestCard,{passive:true});strip.addEventListener('touchend',nearestCard,{passive:true});
