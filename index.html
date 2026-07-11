@@ -201,7 +201,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero-float-card span{display:block;color:var(--text-lo);font-size:11px;line-height:1.45}
 .hero-float-card::after{content:'';position:absolute;right:14px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 13px var(--neon)}
 .hero-float-card.one{left:30%;top:8%}
-.hero-float-card.two{left:60%;top:20%}
+.hero-float-card.two{left:30%;top:24%}
 .hero-float-card.three{left:30%;top:40%}
 .hero-float-card.four{left:62%;bottom:14%}
 .hero-float-card.five{left:30%;bottom:20%}
@@ -994,7 +994,7 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 /* MOTION POLICY V2 - uma unica fonte de verdade, geracao atomica e registry.
    Recursos criados por uma sessao nunca podem executar na geracao seguinte. */
 const MOTION_TUNING=Object.freeze({
-  videoPlaybackRate:.90,
+  videoPlaybackRate:1,
   animationDurationMultiplier:1.15,
   velocityMultiplier:.85,
   typewriterIntervalMultiplier:1.12,
@@ -1358,11 +1358,23 @@ window.__brunoHeroMotionDebug=function(){
     if(!node.dataset.raw)node.dataset.raw=node.textContent;
     return node.dataset.raw;
   }
+  /* A animacao de escrita roda no maximo uma vez por carregamento de pagina
+     (data-typed-once-load nunca e limpo durante a sessao). Reaparicoes do
+     mesmo card - rotacao mobile, restart por aba/idioma/modo - mostram o
+     texto pronto instantaneamente. */
   function typeCard(card,done,generation){
+    if(card.dataset.typedOnceLoad==='1'){
+      showStaticText(card);
+      if(done)done();
+      return;
+    }
     const strong=card.querySelector('strong'),span=card.querySelector('span');
     const titleSpeed=Math.round(26*MOTION_TUNING.typewriterIntervalMultiplier);
     const bodySpeed=Math.round(13*MOTION_TUNING.typewriterIntervalMultiplier);
-    typeNode(strong,freshRaw(strong),titleSpeed,()=>typeNode(span,freshRaw(span),bodySpeed,done,generation),generation);
+    typeNode(strong,freshRaw(strong),titleSpeed,()=>typeNode(span,freshRaw(span),bodySpeed,()=>{
+      card.dataset.typedOnceLoad='1';
+      if(done)done();
+    },generation),generation);
   }
   function typeCardOnce(card,generation){
     if(card.dataset.typed==='1')return;
