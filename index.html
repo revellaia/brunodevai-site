@@ -186,38 +186,17 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
   filter:brightness(.62) contrast(1.12) saturate(.78);opacity:.9;transform:scale(1.08);
   transition:filter calc(.7s * var(--hero-motion-duration-factor)) var(--ease),opacity calc(.7s * var(--hero-motion-duration-factor)) var(--ease),transform calc(.9s * var(--hero-motion-duration-factor)) var(--ease)}
 .hero.is-video-live .hero-scene-video{filter:brightness(.72) contrast(1.1) saturate(.86);opacity:.96;transform:scale(1.095)}
+.hero.is-frame-ready .hero-scene-video{filter:brightness(.72) contrast(1.1) saturate(.86);opacity:.96;transform:scale(1.095)}
 .hero.is-awake .hero-scene-video{filter:brightness(.78) contrast(1.1) saturate(.9);opacity:1;transform:scale(1.105)}
 .hero-scene-vignette{position:absolute;inset:0;z-index:5;pointer-events:none;
   background:radial-gradient(55% 48% at 58% 42%,transparent 36%,rgba(0,0,0,.34) 68%,rgba(0,0,0,.8) 100%)}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-.hero-interface{position:absolute;inset:0;z-index:6;pointer-events:none}
-.hero-hotspots{position:absolute;inset:0;z-index:8;pointer-events:none}
-.hero-hotspot{--hotspot-x:50%;--hotspot-y:50%;position:absolute;left:var(--hotspot-x);top:var(--hotspot-y);width:44px;height:44px;
-  padding:0;border:0;background:transparent;cursor:pointer;transform:translate3d(-50%,-50%,0);display:grid;place-items:center;color:var(--neon);pointer-events:auto}
-.hero-hotspot::before{content:'';width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,242,236,.64);
-  background:rgba(12,13,11,.48);box-shadow:0 0 0 1px rgba(168,255,96,.16),0 0 16px rgba(168,255,96,.16);
-  transition:transform .22s var(--ease),border-color .22s,background .22s}
-.hero-hotspot::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px rgba(168,255,96,.72)}
-.hero-hotspot:hover::before,.hero-hotspot:focus-visible::before,.hero-hotspot[aria-expanded="true"]::before{
-  transform:scale(1.12);border-color:var(--neon);background:rgba(168,255,96,.1)}
-.hero-hotspot:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:50%}
-.hero-hotspot[aria-expanded="true"]::after{background:var(--text-hi)}
-.hero-hotspot-panels{position:absolute;inset:0;z-index:7;pointer-events:none}
-.hero-hotspot-panel{--panel-x:48%;--panel-y:20%;position:absolute;left:var(--panel-x);top:var(--panel-y);width:min(236px,26vw);min-height:104px;
-  padding:17px 48px 17px 18px;border:1px solid rgba(168,255,96,.42);border-radius:8px;color:rgba(244,242,236,.82);
-  background:linear-gradient(135deg,rgba(12,13,11,.9),rgba(12,13,11,.7));box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 18px 42px rgba(0,0,0,.34);
-  opacity:1;transform:translate3d(0,0,0);pointer-events:auto;transition:opacity .22s var(--ease),transform .22s var(--ease)}
-.hero-hotspot-panel[hidden]{display:none}
-.hero-hotspot-panel::before{content:'';position:absolute;left:0;top:17px;width:2px;height:30px;background:var(--neon);box-shadow:0 0 12px rgba(168,255,96,.42)}
-.hero-hotspot-panel strong{display:block;color:var(--text-hi);font-size:12px;letter-spacing:.02em;margin-bottom:6px}
-.hero-hotspot-panel span{display:block;color:var(--text-lo);font-size:11px;line-height:1.5}
-.hero-hotspot-close{position:absolute;right:4px;top:4px;width:44px;height:44px;border:0;background:transparent;color:rgba(244,242,236,.54);
-  display:grid;place-items:center;font-size:18px;line-height:1;cursor:pointer;transition:color .18s}
-.hero-hotspot-close:hover,.hero-hotspot-close:focus-visible{color:var(--neon)}
-.hero-card-dots{display:none}
-@starting-style{.hero-hotspot-panel:not([hidden]){opacity:0;transform:translate3d(0,8px,0)}}
-.hero-gridline{position:absolute;left:0;right:0;top:42%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,179,104,.22),rgba(168,255,96,.34),transparent);opacity:.58}
-.hero-gridline::after{content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;border-radius:50%;background:rgba(168,255,96,.8);box-shadow:0 0 18px var(--neon)}
+.hero-frame-motion{position:absolute;left:clamp(18px,4vw,56px);right:clamp(18px,4vw,56px);bottom:28px;z-index:9;display:flex;align-items:center;gap:14px;pointer-events:none}
+.hero-frame-rail{position:relative;display:block;width:min(260px,24vw);height:2px;background:rgba(244,242,236,.2);overflow:hidden}
+.hero-frame-rail::before{content:'';position:absolute;inset:0 auto 0 0;width:var(--frame-progress,12%);background:linear-gradient(90deg,var(--gold-lit),var(--neon));box-shadow:0 0 12px rgba(168,255,96,.5);transition:width .16s var(--ease)}
+.hero-frame-status{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,242,236,.48);white-space:nowrap;transition:color .25s}
+.hero.is-awake .hero-frame-status{color:var(--neon)}
+.hero.is-awake .hero-frame-rail{box-shadow:0 0 16px rgba(168,255,96,.16)}
 .hero-inner{position:relative;z-index:8;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,56px);width:100%;pointer-events:none}
 .hero-actions,.hero-actions a{pointer-events:auto}
 .hero-copy{position:relative;z-index:2;max-width:min(54vw,670px)}
@@ -424,36 +403,6 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot-bottom a{color:var(--gold-lit);text-decoration:none}
 
 /* RESPONSIVE */
-/* Espelha exatamente a condicao de capability() em JS: fluid quando
-   width<1180px OU pointer:coarse, em qualquer largura (ex.: iPad Pro
-   landscape em 1366px, sem pointer fino, precisa da faixa manual e nao
-   do layout de hotspots absolutos). */
-@media(max-width:1179px),(pointer:coarse){
-  .hero-hotspots{display:none}
-  .hero-interface{pointer-events:auto}
-  .hero-hotspot-panels{position:absolute;inset:auto 0 12px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 12px 2px;pointer-events:auto;scrollbar-width:none}
-  .hero-hotspot-panels::-webkit-scrollbar{display:none}
-  .hero-hotspot-panel,.hero-hotspot-panel[hidden]{position:relative;display:block;left:auto;top:auto;flex:0 0 min(250px,78vw);width:min(250px,78vw);
-    min-height:112px;scroll-snap-align:start;opacity:1;transform:none}
-  .hero-hotspot-close{display:none}
-  .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:9;pointer-events:auto}
-  .hero-card-dot{width:22px;height:22px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center}
-  .hero-card-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.34);transition:background .2s,transform .2s}
-  .hero-card-dot.is-active::before{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
-}
-html.motion-reduced .hero-hotspots{display:none}
-html.motion-reduced .hero-interface{pointer-events:auto}
-html.motion-reduced .hero-hotspot-panels{position:absolute;inset:auto 0 12px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 12px 2px;pointer-events:auto;scrollbar-width:none}
-html.motion-reduced .hero-hotspot-panels::-webkit-scrollbar{display:none}
-html.motion-reduced .hero-hotspot-panel,html.motion-reduced .hero-hotspot-panel[hidden]{position:relative;display:block;left:auto;top:auto;
-  flex:0 0 min(250px,78vw);width:min(250px,78vw);min-height:112px;scroll-snap-align:start;opacity:1;transform:none}
-html.motion-reduced .hero-hotspot-close{display:none}
-html.motion-reduced .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:9;pointer-events:auto}
-html.motion-reduced .hero-card-dot{width:22px;height:22px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center}
-html.motion-reduced .hero-card-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.34)}
-html.motion-reduced .hero-card-dot.is-active::before{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
 @media(max-width:900px){
   .nav-links{display:none}
   .nav-burger{display:flex}
@@ -469,8 +418,9 @@ html.motion-reduced .hero-card-dot.is-active::before{background:var(--neon);box-
     radial-gradient(90% 74% at 50% 50%,transparent 42%,rgba(0,0,0,.72) 100%)}
   .hero-scene-media::after{opacity:.1}
   .hero-scene-video{object-position:62% center;transform:scale(1.05)}
-  .hero-interface{position:relative;z-index:7;order:3;inset:auto;width:calc(100% - 20px);height:130px;margin:-142px 10px 12px;display:block;pointer-events:auto}
-  .hero-gridline{display:none}
+  .hero-frame-motion{position:relative;left:auto;right:auto;bottom:auto;order:3;margin:-48px 18px 28px;z-index:8;gap:10px}
+  .hero-frame-rail{width:min(180px,48vw)}
+  .hero-frame-status{font-size:8px;letter-spacing:.12em}
   .hero h1{font-size:clamp(34px,8.8vw,64px);max-width:14ch}
   .hero-sub{max-width:58ch}
   .hero-scroll{display:none}
@@ -498,7 +448,8 @@ html.motion-reduced .hero-card-dot.is-active::before{background:var(--neon);box-
    comportamento nativo de autoplay do <video>, entao nao ha regressao real. */
 html.motion-reduced *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 html.motion-reduced .hero{background:radial-gradient(60% 60% at 70% 30%,var(--void-3),var(--void))}
-html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html.motion-reduced .hero-hotspot-panel{transform:none!important}
+html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video{transform:none!important}
+html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -556,30 +507,15 @@ html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html
 <!-- HERO -->
 <header class="hero" id="top">
   <figure class="hero-scene-media" aria-label="Cena autoral de Bruno trabalhando em um notebook e acompanhando uma notificacao no celular">
-    <video id="heroMotionVideo" class="hero-scene-video hero-living-video" autoplay muted loop playsinline preload="auto" poster="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" width="1444" height="1080" aria-hidden="true" disablepictureinpicture>
+    <video id="heroMotionVideo" class="hero-scene-video hero-frame-video" muted playsinline preload="auto" poster="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" width="1444" height="1080" aria-label="Cena cinematográfica de Bruno trabalhando em um notebook e acompanhando uma notificação no celular" disablepictureinpicture>
       <source media="(max-width: 900px)" src="assets/hero/bruno-hero-cinematic-v4-mobile.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
       <source src="assets/hero/bruno-hero-cinematic-v4-desktop.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
     </video>
     <span class="hero-scene-vignette" aria-hidden="true"></span>
   </figure>
-    <div class="hero-interface" aria-label="Destaques da proposta de valor">
-      <span class="hero-gridline" aria-hidden="true"></span>
-      <div class="hero-hotspots" role="group" aria-label="Explore seis destaques">
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc1" style="--hotspot-x:64%;--hotspot-y:24%" aria-controls="hfc1-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc1t">Percepção de valor</span></button>
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc2" style="--hotspot-x:60%;--hotspot-y:42%" aria-controls="hfc2-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc2t">Sites ultra realistas</span></button>
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc3" style="--hotspot-x:67%;--hotspot-y:59%" aria-controls="hfc3-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc3t">Design defensável</span></button>
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc6" style="--hotspot-x:96%;--hotspot-y:26%" aria-controls="hfc6-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc6t">Engenharia invisível</span></button>
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc5" style="--hotspot-x:96%;--hotspot-y:60%" aria-controls="hfc5-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc5t">Prova, não promessa</span></button>
-        <button class="hero-hotspot" type="button" data-hotspot-id="hfc4" style="--hotspot-x:90%;--hotspot-y:82%" aria-controls="hfc4-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc4t">Ecossistema de alto valor</span></button>
-      </div>
-      <div class="hero-hotspot-panels" tabindex="0" role="region" aria-label="Cards de proposta de valor">
-        <article class="hero-hotspot-panel" id="hfc1-panel" data-hotspot-id="hfc1" style="--panel-x:63%;--panel-y:15%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc1t">Percepção de valor</strong><span data-i18n="hfc1d">Antes da proposta, o cliente já decidiu se confia no que vê.</span></article>
-        <article class="hero-hotspot-panel" id="hfc2-panel" data-hotspot-id="hfc2" style="--panel-x:62%;--panel-y:33%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc2t">Sites ultra realistas</strong><span data-i18n="hfc2d">Presença digital com atmosfera, profundidade e acabamento de alto padrão.</span></article>
-        <article class="hero-hotspot-panel" id="hfc3-panel" data-hotspot-id="hfc3" style="--panel-x:64%;--panel-y:50%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc3t">Design defensável</strong><span data-i18n="hfc3d">Cada detalhe precisa sustentar valor, confiança e decisão.</span></article>
-        <article class="hero-hotspot-panel" id="hfc6-panel" data-hotspot-id="hfc6" style="--panel-x:71%;--panel-y:17%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc6t">Engenharia invisível</strong><span data-i18n="hfc6d">Segurança, performance e estabilidade sem roubar a cena da marca.</span></article>
-        <article class="hero-hotspot-panel" id="hfc5-panel" data-hotspot-id="hfc5" style="--panel-x:72%;--panel-y:61%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc5t">Prova, não promessa</strong><span data-i18n="hfc5d">Cases, modelos e estrutura visual trabalhando para reduzir dúvida e aumentar confiança.</span></article>
-        <article class="hero-hotspot-panel" id="hfc4-panel" data-hotspot-id="hfc4" style="--panel-x:70%;--panel-y:75%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc4t">Ecossistema de alto valor</strong><span data-i18n="hfc4d">Sites que organizam narrativa, oferta, prova e experiência em uma presença única.</span></article>
-      </div>
+    <div class="hero-frame-motion" role="region" aria-label="Frame motion do hero">
+      <span class="hero-frame-rail" role="progressbar" aria-label="Progresso da cena" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12"></span>
+      <span class="hero-frame-status" aria-live="polite" data-i18n="hero_frame_hint">Mova o cursor para explorar</span>
     </div>
   <div class="hero-inner">
     <div class="hero-copy hero-copy-rebuilt">
@@ -1171,196 +1107,117 @@ window.BrunoMotion=(function(){
 })();
 window.__brunoMotionResources=()=>window.BrunoMotion.debug();
 
-/* HERO LIVING VIDEO */
+/* HERO FRAME MOTION */
 (function(){
   const hero=document.getElementById('top');
   const video=document.getElementById('heroMotionVideo');
-  if(!hero||!video)return;
+  const rail=document.querySelector('.hero-frame-rail');
+  const status=document.querySelector('.hero-frame-status');
+  if(!hero||!video||!rail||!status)return;
   const Motion=window.BrunoMotion;
-  let visible=true,playGeneration=null,watchdogTimer=null,pauseDebounce=null;
-
-  function getHeroVideoState(){
-    return{exists:!!video,paused:video.paused,currentTime:video.currentTime,duration:video.duration,
-      readyState:video.readyState,autoplay:video.autoplay,muted:video.muted,loop:video.loop,
-      playsInline:video.playsInline,controls:video.controls,playbackRate:video.playbackRate,
-      defaultPlaybackRate:video.defaultPlaybackRate,src:video.currentSrc,error:video.error};
-  }
-  window.__heroVideoState=getHeroVideoState;
-
-  function wake(){hero.classList.add('is-awake')}
-  function sleep(){hero.classList.remove('is-awake')}
-  function safePause(){if(playGeneration==null)video.pause()}
-  function applyPlaybackRate(){
-    video.defaultPlaybackRate=MOTION_TUNING.videoPlaybackRate;
-    video.playbackRate=MOTION_TUNING.videoPlaybackRate;
-  }
-
-  async function ensureHeroVideoPlaying(reason,generation=Motion.getGeneration()){
-    if(!Motion.isCurrentGeneration(generation))return false;
-    if(Motion.shouldReduceMotion()){
-      video.pause();
-      video.removeAttribute('autoplay');
-      hero.classList.remove('is-video-live');
-      hero.classList.add('is-reduced-motion');
-      hero.dataset.videoState='poster';
-      return false;
-    }
-    if(!visible)return false;
-    applyPlaybackRate();
-    if(!video.paused&&video.currentTime>0){hero.dataset.videoState='playing';return true}
-    video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.playsInline=true;video.controls=false;
-    video.setAttribute('muted','');video.setAttribute('autoplay','');video.setAttribute('loop','');video.setAttribute('playsinline','');
-    try{
-      playGeneration=generation;
-      await video.play();
-      if(!Motion.isCurrentGeneration(generation))return false;
-      if(Motion.shouldReduceMotion()){video.pause();return false}
-      applyPlaybackRate();
-      hero.classList.add('is-video-live');
-      hero.classList.remove('is-video-blocked','is-reduced-motion');
-      hero.dataset.videoState='playing';
-      return true;
-    }catch(err){
-      if(!Motion.isCurrentGeneration(generation))return false;
-      hero.classList.add('is-video-blocked');
-      hero.dataset.videoState='blocked';
-      console.warn('[hero-video] play blocked:',reason,err&&err.name,err&&err.message);
-      return false;
-    }finally{
-      if(playGeneration===generation)playGeneration=null;
-    }
-  }
-  window.__ensureHeroVideoPlaying=ensureHeroVideoPlaying;
-
-  let unlockBound=false;
-  function bindUnlockTriggers(){
-    if(unlockBound)return;
-    unlockBound=true;
-    const retry=reason=>()=>ensureHeroVideoPlaying(reason,Motion.getGeneration());
-    document.addEventListener('click',retry('document-click'),{once:true,passive:true});
-    document.addEventListener('scroll',retry('document-scroll'),{once:true,passive:true});
-    document.addEventListener('keydown',retry('document-keydown'),{once:true,passive:true});
-    document.addEventListener('touchstart',retry('document-touchstart'),{once:true,passive:true});
-    document.addEventListener('pointerdown',retry('document-pointerdown'),{once:true,passive:true});
-    hero.addEventListener('mouseenter',retry('hero-mouseenter'),{once:true,passive:true});
-  }
-  bindUnlockTriggers();
-
-  hero.addEventListener('pointerenter',()=>{if(!Motion.shouldReduceMotion())wake()});
-  hero.addEventListener('pointerleave',sleep);
-
-  function armWatchdog(maxTicks,generation){
-    let ticks=0;
-    if(watchdogTimer)Motion.clearScheduledInterval(watchdogTimer);
-    watchdogTimer=Motion.scheduleInterval(()=>{
-      ticks++;
-      if(ticks>maxTicks){Motion.clearScheduledInterval(watchdogTimer);watchdogTimer=null;return}
-      if(visible&&video.paused&&playGeneration==null)ensureHeroVideoPlaying('watchdog',generation);
-    },800,generation);
-  }
-  function startSession(ctx){
-    watchdogTimer=null;pauseDebounce=null;
-    if(ctx.reduced){
-      video.pause();video.removeAttribute('autoplay');sleep();
-      hero.classList.remove('is-video-live');hero.classList.add('is-reduced-motion');hero.dataset.videoState='poster';
-      return;
-    }
-    applyPlaybackRate();hero.classList.remove('is-reduced-motion');
-    const vio=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(!Motion.isCurrentGeneration(ctx.generation))return;
-      const reallyGone=!entry.isIntersecting&&entry.intersectionRatio<=.03;
-      if(pauseDebounce){Motion.clearScheduledTimeout(pauseDebounce);pauseDebounce=null}
-      if(reallyGone){
-        pauseDebounce=Motion.scheduleTimeout(()=>{visible=false;safePause();sleep()},400,ctx.generation);
-      }else{
-        visible=true;ensureHeroVideoPlaying('intersection-visible',ctx.generation);
-      }
-    }),{threshold:[0,.03,.05,.28],rootMargin:'120px 0px'}));
-    vio.observe(hero);
-    ensureHeroVideoPlaying(ctx.reason||'motion-session',ctx.generation);
-    armWatchdog(6,ctx.generation);
-  }
-
-  ['loadedmetadata','loadeddata','canplay','canplaythrough','play'].forEach(evt=>video.addEventListener(evt,()=>{
-    if(Motion.shouldReduceMotion()){video.pause();return}
-    applyPlaybackRate();ensureHeroVideoPlaying('video-'+evt,Motion.getGeneration());
-  }));
-  window.addEventListener('load',()=>{if(!Motion.shouldReduceMotion())ensureHeroVideoPlaying('window-load',Motion.getGeneration())});
-  window.addEventListener('pageshow',()=>Motion.restart('visibility'));
-  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')Motion.restart('visibility')});
-  Motion.onChange((isReduced,preference,ctx)=>startSession(ctx));
-  startSession(Motion.context());
-})();
-
-/* HERO MOTION DEBUG - diagnostico de primeira mao, sem coletar dado sensivel */
-window.__brunoHeroMotionDebug=function(){
-  const video=document.querySelector('#heroMotionVideo');
-  const hero=document.querySelector('.hero');
-  const cards=[...document.querySelectorAll('.hero-hotspot-panel')];
-  return{
-    video:{
-      exists:!!video,paused:video&&video.paused,currentTime:video&&video.currentTime,duration:video&&video.duration,
-      readyState:video&&video.readyState,error:video&&video.error,muted:video&&video.muted,defaultMuted:video&&video.defaultMuted,
-      autoplay:video&&video.autoplay,loop:video&&video.loop,playsInline:video&&video.playsInline,controls:video&&video.controls,
-      playbackRate:video&&video.playbackRate,defaultPlaybackRate:video&&video.defaultPlaybackRate,src:video&&video.currentSrc
-    },
-    document:{
-      hidden:document.hidden,visibilityState:document.visibilityState,
-      reducedMotion:window.matchMedia('(prefers-reduced-motion:reduce)').matches,
-      saveData:(navigator.connection&&navigator.connection.saveData)||null,
-      effectiveType:(navigator.connection&&navigator.connection.effectiveType)||null
-    },
-    hero:{
-      exists:!!hero,className:hero&&hero.className,dataset:hero?{...hero.dataset}:null,
-      rect:hero&&hero.getBoundingClientRect()
-    },
-    resources:window.BrunoMotion&&window.BrunoMotion.debug(),
-    hotspots:[...document.querySelectorAll('.hero-hotspot')].map(button=>({
-      id:button.dataset.hotspotId,expanded:button.getAttribute('aria-expanded'),rect:button.getBoundingClientRect()
-    })),
-    cards:cards.map(card=>{
-      const style=getComputedStyle(card);
-      return{
-        text:(card.textContent||'').trim().slice(0,80),className:card.className,
-        display:style.display,visibility:style.visibility,opacity:style.opacity,
-        transform:style.transform,animationName:style.animationName,animationPlayState:style.animationPlayState,
-        transitionProperty:style.transitionProperty,rect:card.getBoundingClientRect()
-      };
-    })
-  };
-};
-
-/* CINEMATIC HOTSPOTS - interaction driven; no autoplay, timers or RAF loops */
-(function(){
-  const hero=document.getElementById('top');
-  const stage=hero&&hero.querySelector('.hero-interface');
-  const hotspotGroup=stage&&stage.querySelector('.hero-hotspots');
-  const strip=stage&&stage.querySelector('.hero-hotspot-panels');
-  const buttons=hotspotGroup?[...hotspotGroup.querySelectorAll('.hero-hotspot')]:[];
-  const panels=strip?[...strip.querySelectorAll('.hero-hotspot-panel')]:[];
-  if(!hero||!stage||!strip||buttons.length!==6||panels.length!==6)return;
-  const Motion=window.BrunoMotion,desktopMql=matchMedia('(min-width:1180px)'),fineMql=matchMedia('(pointer:fine)');
-  let activeId=null,activeCardIndex=0,lastCapability=null,suppressNextFocusActivate=false;
-  const copy={pt:{stage:'Destaques da proposta de valor',group:'Explore seis destaques',region:'Cards de proposta de valor. Deslize ou use as setas do teclado.',close:'Fechar destaque',dot:(i,n)=>'Ir para o card '+(i+1)+' de '+n},en:{stage:'Value proposition highlights',group:'Explore six highlights',region:'Value proposition cards. Swipe or use the arrow keys.',close:'Close highlight',dot:(i,n)=>'Go to card '+(i+1)+' of '+n}};
+  const coarseMql=matchMedia('(pointer:coarse)');
+  let duration=10,ready=false,visible=true,targetTime=1.2,rafId=null,generation=Motion.getGeneration();
+  let touchStartX=0,touchStartY=0,touchScrubbing=false;
+  const clamp=(value,min=0,max=1)=>Math.max(min,Math.min(max,value));
   const language=()=>document.documentElement.lang==='en'?'en':'pt';
-  const capability=()=>Motion.shouldReduceMotion()?'still-premium':(desktopMql.matches&&fineMql.matches?'cinematic':'fluid');
-  const dots=document.createElement('div');dots.className='hero-card-dots';dots.setAttribute('role','group');
-  panels.forEach((panel,index)=>{const dot=document.createElement('button');dot.type='button';dot.className='hero-card-dot';dot.dataset.cardIndex=String(index);dot.setAttribute('aria-controls',panel.id);dots.appendChild(dot)});
-  stage.appendChild(dots);const dotButtons=[...dots.children];
-  function updateDots(index){activeCardIndex=Math.max(0,Math.min(panels.length-1,index));dotButtons.forEach((dot,i)=>{const selected=i===activeCardIndex;dot.classList.toggle('is-active',selected);dot.tabIndex=selected?0:-1;if(selected)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')})}
-  function activate(id){if(capability()!=='cinematic')return;activeId=id;buttons.forEach(button=>{const selected=button.dataset.hotspotId===id;button.setAttribute('aria-expanded',selected?'true':'false');button.setAttribute('aria-pressed',selected?'true':'false')});panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==id});hero.dataset.hotspotState='open'}
-  function closeHotspot(){const trigger=buttons.find(button=>button.dataset.hotspotId===activeId);const focusWasInsidePanel=trigger&&document.activeElement&&strip.contains(document.activeElement);activeId=null;buttons.forEach(button=>{button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});if(capability()==='cinematic')panels.forEach(panel=>{panel.hidden=true});hero.dataset.hotspotState='closed';if(trigger&&focusWasInsidePanel){suppressNextFocusActivate=true;trigger.focus()}}
-  function goToCard(index){if(capability()==='cinematic')return;const panel=panels[index];if(!panel)return;strip.scrollTo({left:panel.offsetLeft-strip.offsetLeft,behavior:Motion.shouldReduceMotion()?'auto':'smooth'});updateDots(index)}
-  function nearestCard(){let best=0,distance=Infinity;panels.forEach((panel,index)=>{const delta=Math.abs((panel.offsetLeft-strip.offsetLeft)-strip.scrollLeft);if(delta<distance){distance=delta;best=index}});updateDots(best)}
-  function updateI18n(){const labels=copy[language()];stage.setAttribute('aria-label',labels.stage);hotspotGroup.setAttribute('aria-label',labels.group);strip.setAttribute('aria-label',labels.region);dots.setAttribute('aria-label',labels.region);buttons.forEach(button=>{const label=button.querySelector('.sr-only');if(label)button.setAttribute('aria-label',label.textContent.trim())});panels.forEach(panel=>{const title=panel.querySelector('strong');if(title)panel.setAttribute('aria-label',title.textContent.trim());const close=panel.querySelector('.hero-hotspot-close');if(close)close.setAttribute('aria-label',labels.close)});dotButtons.forEach((dot,i)=>dot.setAttribute('aria-label',labels.dot(i,panels.length)))}
-  function applyCapability(){const next=capability(),changed=lastCapability!==next;lastCapability=next;hero.dataset.capabilityMode=next;hero.dataset.typewriterState='static';hero.dataset.carouselState=next==='cinematic'?'inactive':'manual';if(next==='cinematic'){strip.tabIndex=-1;dots.setAttribute('aria-hidden','true');dotButtons.forEach(dot=>dot.tabIndex=-1);if(changed)closeHotspot();else panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==activeId});buttons.forEach(button=>button.tabIndex=0)}else{activeId=null;buttons.forEach(button=>{button.tabIndex=-1;button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});panels.forEach(panel=>{panel.hidden=false});strip.tabIndex=0;dots.removeAttribute('aria-hidden');updateDots(activeCardIndex);hero.dataset.hotspotState='manual'}updateI18n()}
-  stage.addEventListener('pointerover',event=>{const button=event.target.closest('.hero-hotspot');if(button&&fineMql.matches)activate(button.dataset.hotspotId)});
-  stage.addEventListener('focusin',event=>{const button=event.target.closest('.hero-hotspot');if(!button)return;if(suppressNextFocusActivate){suppressNextFocusActivate=false;return}activate(button.dataset.hotspotId)});
-  stage.addEventListener('click',event=>{const button=event.target.closest('.hero-hotspot');if(button){activate(button.dataset.hotspotId);return}if(event.target.closest('.hero-hotspot-close')){closeHotspot();return}const dot=event.target.closest('.hero-card-dot');if(dot)goToCard(Number(dot.dataset.cardIndex))});
-  stage.addEventListener('keydown',event=>{if(event.key==='Escape'&&capability()==='cinematic'){closeHotspot();return}if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;const step=event.key==='ArrowRight'?1:-1;if(capability()==='cinematic'){const current=Math.max(0,buttons.indexOf(document.activeElement)),next=(current+step+buttons.length)%buttons.length;buttons[next].focus();activate(buttons[next].dataset.hotspotId)}else goToCard((activeCardIndex+step+panels.length)%panels.length);event.preventDefault()});
-  strip.addEventListener('pointerup',nearestCard,{passive:true});strip.addEventListener('touchend',nearestCard,{passive:true});
-  const mediaChanged=()=>applyCapability();[desktopMql,fineMql].forEach(mql=>{if(mql.addEventListener)mql.addEventListener('change',mediaChanged);else mql.addListener(mediaChanged)});Motion.onChange(applyCapability);
-  window.__heroHotspotsRefreshI18n=updateI18n;window.__heroHotspotsDebug=()=>({capability:capability(),activeId,activeCardIndex,buttons:buttons.length,panels:panels.length});updateDots(0);applyCapability();
+  const labels={pt:{hint:'Mova o cursor para explorar',touch:'Deslize para explorar',still:'Cena estática'},en:{hint:'Move to explore',touch:'Swipe to explore',still:'Static scene'}};
+  function setProgress(time){
+    const pct=clamp(duration?time/duration:.12)*100;
+    rail.style.setProperty('--frame-progress',pct.toFixed(2)+'%');
+    rail.setAttribute('aria-valuenow',String(Math.round(pct)));
+  }
+  function setStatus(kind){
+    status.textContent=labels[language()][kind||((coarseMql.matches)?'touch':'hint')];
+  }
+  function stopRaf(){
+    if(rafId!=null){Motion.clearScheduledRaf(rafId);rafId=null}
+  }
+  function step(){
+    rafId=null;
+    if(!ready||!visible||Motion.shouldReduceMotion()||!Motion.isCurrentGeneration(generation))return;
+    const diff=targetTime-video.currentTime;
+    if(Math.abs(diff)<=.008){video.currentTime=targetTime;return}
+    video.currentTime+=diff*.2;
+    if(Math.abs(targetTime-video.currentTime)>.008)schedule();
+  }
+  function schedule(){
+    if(rafId==null&&ready&&!Motion.shouldReduceMotion())rafId=Motion.scheduleRaf(step,generation);
+  }
+  function setTarget(time,awake=true){
+    if(!ready)return;
+    targetTime=clamp(time/duration,0.04,0.96)*duration;
+    setProgress(targetTime);
+    if(awake){hero.classList.add('is-awake');setStatus()}
+    schedule();
+  }
+  function pointerTime(x){
+    const rect=hero.getBoundingClientRect();
+    return clamp((x-rect.left)/Math.max(1,rect.width))*duration;
+  }
+  function onPointerDown(event){
+    if(Motion.shouldReduceMotion())return;
+    if(event.pointerType==='touch'){touchStartX=event.clientX;touchStartY=event.clientY;touchScrubbing=false;return}
+    if(event.pointerType==='mouse'||event.pointerType==='pen')setTarget(pointerTime(event.clientX));
+  }
+  function onPointerMove(event){
+    if(Motion.shouldReduceMotion()||!visible)return;
+    if(event.pointerType==='touch'){
+      const dx=event.clientX-touchStartX,dy=event.clientY-touchStartY;
+      if(!touchScrubbing&&Math.abs(dx)<10)return;
+      if(!touchScrubbing&&Math.abs(dx)<=Math.abs(dy))return;
+      touchScrubbing=true;
+      event.preventDefault();
+    }
+    setTarget(pointerTime(event.clientX));
+  }
+  function onPointerUp(event){
+    if(event.pointerType==='touch')touchScrubbing=false;
+    hero.classList.remove('is-awake');
+  }
+  function onPointerLeave(){hero.classList.remove('is-awake')}
+  function onScroll(){
+    if(!coarseMql.matches||Motion.shouldReduceMotion()||!visible||!ready)return;
+    const rect=hero.getBoundingClientRect();
+    const progress=clamp((innerHeight-rect.top)/(innerHeight+rect.height));
+    setTarget(progress*duration,false);
+  }
+  function applySession(ctx){
+    generation=ctx.generation;stopRaf();
+    video.pause();video.removeAttribute('autoplay');video.removeAttribute('loop');video.muted=true;video.defaultMuted=true;video.playsInline=true;video.controls=false;
+    video.setAttribute('muted','');video.setAttribute('playsinline','');
+    if(ctx.reduced){
+      hero.classList.remove('is-awake','is-frame-ready');hero.classList.add('is-reduced-motion');hero.dataset.capabilityMode='still-premium';hero.dataset.videoState='poster';
+      if(ready){targetTime=duration*.12;video.currentTime=targetTime;setProgress(targetTime)}setStatus('still');return;
+    }
+    hero.classList.remove('is-reduced-motion');hero.classList.add('is-frame-ready');hero.dataset.capabilityMode='frame-motion';hero.dataset.videoState='frame-motion';
+    setStatus();
+    if(ready){setProgress(targetTime);schedule()}
+  }
+  function onMetadata(){
+    duration=Number.isFinite(video.duration)&&video.duration>0?video.duration:10;
+    ready=true;
+    if(Motion.shouldReduceMotion())targetTime=duration*.12;
+    else targetTime=clamp(targetTime/duration,.04,.96)*duration;
+    video.pause();video.currentTime=targetTime;setProgress(targetTime);applySession(Motion.context());
+  }
+  window.__heroVideoState=()=>({exists:true,paused:video.paused,currentTime:video.currentTime,duration:video.duration,readyState:video.readyState,autoplay:video.autoplay,loop:video.loop,playsInline:video.playsInline,controls:video.controls,src:video.currentSrc,frameMotion:true});
+  window.__heroFrameMotionState=()=>({ready,duration,currentTime:video.currentTime,targetTime,capability:hero.dataset.capabilityMode,activeRaf:rafId!=null});
+  video.addEventListener('loadedmetadata',onMetadata,{once:true});
+  hero.addEventListener('pointerdown',onPointerDown,{passive:true});
+  hero.addEventListener('pointermove',onPointerMove,{passive:false});
+  hero.addEventListener('pointerup',onPointerUp,{passive:true});
+  hero.addEventListener('pointercancel',onPointerUp,{passive:true});
+  hero.addEventListener('pointerleave',onPointerLeave,{passive:true});
+  addEventListener('scroll',onScroll,{passive:true});
+  const observer=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(!Motion.isCurrentGeneration(generation))return;
+    visible=entry.isIntersecting&&entry.intersectionRatio>.08;
+    if(!visible){stopRaf();video.pause()}else if(!Motion.shouldReduceMotion())schedule();
+  }),{threshold:[0,.08,.28],rootMargin:'80px 0px'}));
+  observer.observe(hero);
+  Motion.onChange((isReduced,preference,ctx)=>applySession(ctx));
+  if(video.readyState>=1)onMetadata();else applySession(Motion.context());
+  window.__heroFrameMotionRefreshI18n=()=>setStatus(Motion.shouldReduceMotion()?'still':null);
 })();
 
 /* CATALOG ARROWS */
@@ -1447,7 +1304,7 @@ const tEN={
   hero_eyebrow:'Bruno Goebel · Digital studio · Ultra realistic websites',
   hero_title:'Your website should not just exist. It should <em>raise how the market values</em> your brand.',
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
-  hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',
+  hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',hero_frame_hint:'Move to explore',
   hero2_eyebrow:'Art direction, engineering and perceived value',
   hero2_title:'Websites with real presence.<br>Not the appearance of <span class="ai-mark">AI.</span>',
   hero2_sub:'Ultra-realistic, cinematic and secure websites for brands that need to convey value, trust and authority before the first contact.',
@@ -1504,12 +1361,6 @@ const tEN={
   cta_btn1:'Request a diagnosis for my project →',cta_btn2:'Compare models',
   foot_tag:'Ultra realistic websites and digital ecosystems.',foot_work:'Work',foot_more:'More',foot_rights:'All rights reserved. Layouts, copy and visual structures are protected. Unauthorized reproduction is prohibited.',foot_privacy:'Privacy Policy',
   d_challenge:'Challenge',d_solution:'Solution',d_proof:'What it proves',d_visit:'See live →',
-  hfc1t:'Perceived value',hfc1d:'Before the proposal, the client has already decided whether to trust what they see.',
-  hfc2t:'Ultra realistic websites',hfc2d:'Digital presence with atmosphere, depth and high-end finish.',
-  hfc3t:'Defensible design',hfc3d:'Every detail needs to sustain value, trust and decision.',
-  hfc4t:'High-value ecosystem',hfc4d:'Websites that organize narrative, offer, proof and experience into a single presence.',
-  hfc5t:'Proof, not promise',hfc5d:'Cases, models and visual structure working to reduce doubt and increase trust.',
-  hfc6t:'Invisible engineering',hfc6d:'Security, performance and stability without stealing the brand spotlight.'
 };
 let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
@@ -1517,17 +1368,17 @@ document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
   updateMotionControlUI();
-  if(window.__heroHotspotsRefreshI18n)window.__heroHotspotsRefreshI18n();
+  if(window.__heroFrameMotionRefreshI18n)window.__heroFrameMotionRefreshI18n();
 };
 
 /* Controle de movimento com 3 opcoes explicitas (Sistema/Completa/Reduzida) -
    substitui o toggle binario anterior, que nao deixava o visitante voltar
    para "seguir o sistema" depois da primeira escolha (bloqueio S1 do Codex). */
 const motionCopy={
-  pt:{trigger:'Preferência de movimento',system:'Automática',full:'Completa',reduced:'Reduzida',
-    triggerState:{system:'Preferência de movimento: automática',full:'Preferência de movimento: completa',reduced:'Preferência de movimento: reduzida'}},
-  en:{trigger:'Motion preference',system:'Automatic',full:'Full',reduced:'Reduced',
-    triggerState:{system:'Motion preference: automatic',full:'Motion preference: full',reduced:'Motion preference: reduced'}}
+  pt:{trigger:'Preferência de movimento',system:'Automática',full:'Frame motion',reduced:'Reduzida',
+    triggerState:{system:'Preferência de movimento: automática',full:'Preferência de movimento: frame motion',reduced:'Preferência de movimento: reduzida'}},
+  en:{trigger:'Motion preference',system:'Automatic',full:'Frame motion',reduced:'Reduced',
+    triggerState:{system:'Motion preference: automatic',full:'Motion preference: frame motion',reduced:'Motion preference: reduced'}}
 };
 function updateMotionControlUI(){
   const control=document.getElementById('motionControl');
