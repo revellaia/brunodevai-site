@@ -67,7 +67,7 @@
   --gold-lit:#D8B368; --neon:#A8FF60; --neon-dim:rgba(168,255,96,.16);
   --text-hi:#f4f2ec; --text-lo:#9a9b94;
   --maxw:1240px; --ease:cubic-bezier(.22,.61,.36,1); --r:14px;
-  --hero-motion-duration-factor:1.15; --hero-motion-velocity-factor:.85;
+  --hero-motion-duration-factor:1;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
@@ -162,7 +162,6 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 /* HERO */
 .hero{--mx:.58;--my:.42;position:relative;min-height:100vh;min-height:100dvh;background:var(--void);color:var(--text-hi);
   display:flex;align-items:center;overflow:hidden;padding-top:88px;isolation:isolate}
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.46;mix-blend-mode:screen}
 .hero::before{content:'';position:absolute;inset:22px clamp(16px,3.4vw,56px) 22px;z-index:2;pointer-events:none;
   border:1px solid rgba(216,179,104,.18);border-radius:30px;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 0 120px rgba(0,0,0,.6)}
@@ -171,8 +170,8 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
              radial-gradient(40% 54% at calc(var(--mx)*100%) calc(var(--my)*100%),rgba(168,255,96,.12),transparent 62%),
              radial-gradient(88% 80% at 78% 42%,transparent 0%,rgba(0,0,0,.2) 58%,var(--void) 100%),
              linear-gradient(180deg,rgba(12,13,11,.76) 0%,transparent 28%,rgba(12,13,11,.42) 74%,var(--void) 100%)}
-.hero-scene-media{position:absolute;z-index:3;top:84px;right:-7vw;bottom:-2vh;width:min(72vw,1040px);margin:0;pointer-events:none;
-  opacity:.94;transform:translate3d(calc((var(--mx) - .5)*-18px),calc((var(--my) - .5)*-10px),0);
+.hero-scene-media{position:absolute;z-index:3;top:84px;right:-7vw;bottom:-2vh;width:min(72vw,1040px);margin:0;pointer-events:auto;
+  opacity:.94;transform:translate3d(0,0,0);
   transition:opacity calc(.5s * var(--hero-motion-duration-factor)) var(--ease);filter:drop-shadow(-42px 36px 80px rgba(0,0,0,.72))}
 .hero-scene-media::before{content:'';position:absolute;inset:-8% -8% -4% -24%;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,var(--void) 0%,rgba(12,13,11,.72) 20%,transparent 42%),
@@ -190,29 +189,37 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .hero.is-awake .hero-scene-video{filter:brightness(.78) contrast(1.1) saturate(.9);opacity:1;transform:scale(1.105)}
 .hero-scene-vignette{position:absolute;inset:0;z-index:5;pointer-events:none;
   background:radial-gradient(55% 48% at 58% 42%,transparent 36%,rgba(0,0,0,.34) 68%,rgba(0,0,0,.8) 100%)}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .hero-interface{position:absolute;inset:0;z-index:6;pointer-events:none}
-.hero-float-card{position:absolute;min-width:178px;max-width:230px;padding:15px 17px;border:1px solid rgba(216,179,104,.18);
-  background:linear-gradient(135deg,rgba(12,13,11,.62),rgba(12,13,11,.28));backdrop-filter:blur(14px);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 20px 60px rgba(0,0,0,.36);border-radius:8px;
-  color:rgba(244,242,236,.78);transform:translate3d(calc((var(--mx) - .5)*18px),calc((var(--my) - .5)*12px),0);
-  transition:border-color calc(.4s * var(--hero-motion-duration-factor)) var(--ease),opacity calc(.4s * var(--hero-motion-duration-factor)) var(--ease)}
-.hero.is-awake .hero-float-card{border-color:rgba(168,255,96,.24)}
-.hero-float-card strong{display:block;color:var(--text-hi);font-size:12px;letter-spacing:.02em;margin-bottom:5px}
-.hero-float-card span{display:block;color:var(--text-lo);font-size:11px;line-height:1.45}
-.hero-float-card::after{content:'';position:absolute;right:14px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 13px var(--neon)}
-.hero-float-card.one{left:30%;top:8%}
-.hero-float-card.two{left:30%;top:24%}
-.hero-float-card.three{left:30%;top:40%}
-.hero-float-card.four{left:62%;bottom:14%}
-.hero-float-card.five{left:30%;bottom:20%}
-.hero-float-card.six{left:60%;top:56%}
-.hero-float-card strong.is-typing-node::after,.hero-float-card span.is-typing-node::after{
-  content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
-  background:var(--neon);box-shadow:0 0 6px var(--neon);animation:hfcCaret calc(.85s * var(--hero-motion-duration-factor)) steps(1) infinite}
-@keyframes hfcCaret{50%{opacity:0}}
+.hero-hotspots{position:absolute;inset:0;z-index:8;pointer-events:auto}
+.hero-hotspot{--hotspot-x:50%;--hotspot-y:50%;position:absolute;left:var(--hotspot-x);top:var(--hotspot-y);width:44px;height:44px;
+  padding:0;border:0;background:transparent;cursor:pointer;transform:translate3d(-50%,-50%,0);display:grid;place-items:center;color:var(--neon)}
+.hero-hotspot::before{content:'';width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,242,236,.64);
+  background:rgba(12,13,11,.48);box-shadow:0 0 0 1px rgba(168,255,96,.16),0 0 16px rgba(168,255,96,.16);
+  transition:transform .22s var(--ease),border-color .22s,background .22s}
+.hero-hotspot::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px rgba(168,255,96,.72)}
+.hero-hotspot:hover::before,.hero-hotspot:focus-visible::before,.hero-hotspot[aria-expanded="true"]::before{
+  transform:scale(1.12);border-color:var(--neon);background:rgba(168,255,96,.1)}
+.hero-hotspot:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:50%}
+.hero-hotspot[aria-expanded="true"]::after{background:var(--text-hi)}
+.hero-hotspot-panels{position:absolute;inset:0;z-index:7;pointer-events:none}
+.hero-hotspot-panel{--panel-x:48%;--panel-y:20%;position:absolute;left:var(--panel-x);top:var(--panel-y);width:min(236px,26vw);min-height:104px;
+  padding:17px 48px 17px 18px;border:1px solid rgba(168,255,96,.42);border-radius:8px;color:rgba(244,242,236,.82);
+  background:linear-gradient(135deg,rgba(12,13,11,.9),rgba(12,13,11,.7));box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 18px 42px rgba(0,0,0,.34);
+  opacity:1;transform:translate3d(0,0,0);pointer-events:auto;transition:opacity .22s var(--ease),transform .22s var(--ease)}
+.hero-hotspot-panel[hidden]{display:none}
+.hero-hotspot-panel::before{content:'';position:absolute;left:0;top:17px;width:2px;height:30px;background:var(--neon);box-shadow:0 0 12px rgba(168,255,96,.42)}
+.hero-hotspot-panel strong{display:block;color:var(--text-hi);font-size:12px;letter-spacing:.02em;margin-bottom:6px}
+.hero-hotspot-panel span{display:block;color:var(--text-lo);font-size:11px;line-height:1.5}
+.hero-hotspot-close{position:absolute;right:4px;top:4px;width:44px;height:44px;border:0;background:transparent;color:rgba(244,242,236,.54);
+  display:grid;place-items:center;font-size:18px;line-height:1;cursor:pointer;transition:color .18s}
+.hero-hotspot-close:hover,.hero-hotspot-close:focus-visible{color:var(--neon)}
+.hero-card-dots{display:none}
+@starting-style{.hero-hotspot-panel:not([hidden]){opacity:0;transform:translate3d(0,8px,0)}}
 .hero-gridline{position:absolute;left:0;right:0;top:42%;height:1px;background:linear-gradient(90deg,transparent,rgba(216,179,104,.22),rgba(168,255,96,.34),transparent);opacity:.58}
 .hero-gridline::after{content:'';position:absolute;left:50%;top:-5px;width:9px;height:9px;border-radius:50%;background:rgba(168,255,96,.8);box-shadow:0 0 18px var(--neon)}
-.hero-inner{position:relative;z-index:8;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,56px);width:100%}
+.hero-inner{position:relative;z-index:8;max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,56px);width:100%;pointer-events:none}
+.hero-actions,.hero-actions a{pointer-events:auto}
 .hero-copy{position:relative;z-index:2;max-width:min(54vw,670px)}
 .hero-copy-rebuilt>.hero-eyebrow,.hero-copy-rebuilt>h1,.hero-copy-rebuilt>.hero-sub,.hero-copy-rebuilt>.hero-actions{display:none}
 .hero-copy-live{display:block}
@@ -417,6 +424,32 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot-bottom a{color:var(--gold-lit);text-decoration:none}
 
 /* RESPONSIVE */
+@media(max-width:1179px){
+  .hero-hotspots{display:none}
+  .hero-interface{pointer-events:auto}
+  .hero-hotspot-panels{position:absolute;inset:auto 0 12px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 12px 2px;pointer-events:auto;scrollbar-width:none}
+  .hero-hotspot-panels::-webkit-scrollbar{display:none}
+  .hero-hotspot-panel,.hero-hotspot-panel[hidden]{position:relative;display:block;left:auto;top:auto;flex:0 0 min(250px,78vw);width:min(250px,78vw);
+    min-height:112px;scroll-snap-align:start;opacity:1;transform:none}
+  .hero-hotspot-close{display:none}
+  .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:9;pointer-events:auto}
+  .hero-card-dot{width:22px;height:22px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center}
+  .hero-card-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.34);transition:background .2s,transform .2s}
+  .hero-card-dot.is-active::before{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
+}
+html.motion-reduced .hero-hotspots{display:none}
+html.motion-reduced .hero-interface{pointer-events:auto}
+html.motion-reduced .hero-hotspot-panels{position:absolute;inset:auto 0 12px;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 12px 2px;pointer-events:auto;scrollbar-width:none}
+html.motion-reduced .hero-hotspot-panels::-webkit-scrollbar{display:none}
+html.motion-reduced .hero-hotspot-panel,html.motion-reduced .hero-hotspot-panel[hidden]{position:relative;display:block;left:auto;top:auto;
+  flex:0 0 min(250px,78vw);width:min(250px,78vw);min-height:112px;scroll-snap-align:start;opacity:1;transform:none}
+html.motion-reduced .hero-hotspot-close{display:none}
+html.motion-reduced .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:9;pointer-events:auto}
+html.motion-reduced .hero-card-dot{width:22px;height:22px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center}
+html.motion-reduced .hero-card-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.34)}
+html.motion-reduced .hero-card-dot.is-active::before{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
 @media(max-width:900px){
   .nav-links{display:none}
   .nav-burger{display:flex}
@@ -427,33 +460,13 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   .hero-inner{display:block;padding-top:0;order:1}
   .hero-copy{max-width:100%}
   .hero-scene-media{position:relative;z-index:6;order:2;top:auto;right:auto;bottom:auto;width:calc(100% - 28px);height:clamp(250px,64vw,520px);
-    margin:28px auto 0;opacity:.96;filter:drop-shadow(0 26px 50px rgba(0,0,0,.62));border-radius:10px;overflow:hidden;pointer-events:none}
+    margin:28px auto 0;opacity:.96;filter:drop-shadow(0 26px 50px rgba(0,0,0,.62));border-radius:10px;overflow:hidden;pointer-events:auto}
   .hero-scene-media::before{background:linear-gradient(180deg,transparent 0%,rgba(12,13,11,.14) 58%,rgba(12,13,11,.72) 100%),
     radial-gradient(90% 74% at 50% 50%,transparent 42%,rgba(0,0,0,.72) 100%)}
   .hero-scene-media::after{opacity:.1}
   .hero-scene-video{object-position:62% center;transform:scale(1.05)}
-  .hero-interface{position:absolute;inset:0;display:block;pointer-events:none}
+  .hero-interface{position:relative;z-index:7;order:3;inset:auto;width:calc(100% - 20px);height:130px;margin:-142px 10px 12px;display:block;pointer-events:auto}
   .hero-gridline{display:none}
-  .hero-float-card{position:absolute!important;left:12px!important;right:12px!important;bottom:12px!important;top:auto!important;
-    width:auto;max-width:none;min-width:0;opacity:0;visibility:hidden;transform:none!important;transition:opacity .45s var(--ease)}
-  .hero-float-card.is-active-mobile{opacity:1;visibility:visible}
-  .hero-card-dots{position:absolute;right:12px;top:12px;display:flex;gap:5px;z-index:7;pointer-events:none}
-  .hero-card-dot{width:16px;height:16px;padding:0;border:none;background:none;cursor:pointer;display:grid;place-items:center;pointer-events:auto}
-  .hero-card-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(244,242,236,.28);transition:background .3s,transform .3s}
-  .hero-card-dot.is-active::before{background:var(--neon);box-shadow:0 0 8px var(--neon);transform:scale(1.3)}
-  .hero-card-dots[aria-hidden="true"] .hero-card-dot{pointer-events:none}
-
-  /* REDUCED no mobile: os 6 cards viram um carrossel manual (scroll-snap),
-     nunca so 1 card visivel - correcao do bloqueio S1 do Codex. */
-  html.motion-reduced .hero-interface{
-    inset:auto 0 12px 0;display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;
-    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:0 12px;pointer-events:auto}
-  html.motion-reduced .hero-interface::-webkit-scrollbar{display:none}
-  html.motion-reduced .hero-float-card{position:static!important;flex:0 0 auto;
-    width:200px!important;min-width:200px!important;max-width:200px!important;
-    opacity:1!important;visibility:visible!important;scroll-snap-align:start}
-  html.motion-reduced .hero-card-dots{pointer-events:auto}
-  html.motion-reduced .hero-card-dot{pointer-events:auto}
   .hero h1{font-size:clamp(34px,8.8vw,64px);max-width:14ch}
   .hero-sub{max-width:58ch}
   .hero-scroll{display:none}
@@ -480,9 +493,8 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
    o visitante pedir explicitamente. Sem JS, o navegador ainda respeita o proprio
    comportamento nativo de autoplay do <video>, entao nao ha regressao real. */
 html.motion-reduced *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
-html.motion-reduced #heroCanvas{display:none}
 html.motion-reduced .hero{background:radial-gradient(60% 60% at 70% 30%,var(--void-3),var(--void))}
-html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html.motion-reduced .hero-float-card{transform:none!important}
+html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html.motion-reduced .hero-hotspot-panel{transform:none!important}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -539,22 +551,32 @@ html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video,html
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <canvas id="heroCanvas"></canvas>
   <figure class="hero-scene-media" aria-label="Cena autoral de Bruno trabalhando em um notebook e acompanhando uma notificacao no celular">
     <video id="heroMotionVideo" class="hero-scene-video hero-living-video" autoplay muted loop playsinline preload="auto" poster="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" width="1444" height="1080" aria-hidden="true" disablepictureinpicture>
-      <source src="assets/hero/bruno-hero-new-loop.mp4?v=hero-live-202607" type="video/mp4"/>
+      <source media="(max-width: 900px)" src="assets/hero/bruno-hero-cinematic-v4-mobile.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
+      <source src="assets/hero/bruno-hero-cinematic-v4-desktop.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
     </video>
     <span class="hero-scene-vignette" aria-hidden="true"></span>
-    <div class="hero-interface" aria-hidden="true">
-      <span class="hero-gridline"></span>
-      <div class="hero-float-card one"><strong data-i18n="hfc1t">Percepção de valor</strong><span data-i18n="hfc1d">Antes da proposta, o cliente já decidiu se confia no que vê.</span></div>
-      <div class="hero-float-card two"><strong data-i18n="hfc2t">Sites ultra realistas</strong><span data-i18n="hfc2d">Presença digital com atmosfera, profundidade e acabamento de alto padrão.</span></div>
-      <div class="hero-float-card three"><strong data-i18n="hfc3t">Design defensável</strong><span data-i18n="hfc3d">Cada detalhe precisa sustentar valor, confiança e decisão.</span></div>
-      <div class="hero-float-card four"><strong data-i18n="hfc4t">Ecossistema de alto valor</strong><span data-i18n="hfc4d">Sites que organizam narrativa, oferta, prova e experiência em uma presença única.</span></div>
-      <div class="hero-float-card five"><strong data-i18n="hfc5t">Prova, não promessa</strong><span data-i18n="hfc5d">Cases, modelos e estrutura visual trabalhando para reduzir dúvida e aumentar confiança.</span></div>
-      <div class="hero-float-card six"><strong data-i18n="hfc6t">Engenharia invisível</strong><span data-i18n="hfc6d">Segurança, performance e estabilidade sem roubar a cena da marca.</span></div>
-    </div>
   </figure>
+    <div class="hero-interface" aria-label="Destaques da proposta de valor">
+      <span class="hero-gridline" aria-hidden="true"></span>
+      <div class="hero-hotspots" role="group" aria-label="Explore seis destaques">
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc1" style="--hotspot-x:64%;--hotspot-y:24%" aria-controls="hfc1-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc1t">Percepção de valor</span></button>
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc2" style="--hotspot-x:60%;--hotspot-y:42%" aria-controls="hfc2-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc2t">Sites ultra realistas</span></button>
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc3" style="--hotspot-x:67%;--hotspot-y:59%" aria-controls="hfc3-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc3t">Design defensável</span></button>
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc6" style="--hotspot-x:96%;--hotspot-y:26%" aria-controls="hfc6-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc6t">Engenharia invisível</span></button>
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc5" style="--hotspot-x:96%;--hotspot-y:60%" aria-controls="hfc5-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc5t">Prova, não promessa</span></button>
+        <button class="hero-hotspot" type="button" data-hotspot-id="hfc4" style="--hotspot-x:90%;--hotspot-y:82%" aria-controls="hfc4-panel" aria-expanded="false" aria-pressed="false"><span class="sr-only" data-i18n="hfc4t">Ecossistema de alto valor</span></button>
+      </div>
+      <div class="hero-hotspot-panels" tabindex="0" role="region" aria-label="Cards de proposta de valor">
+        <article class="hero-hotspot-panel" id="hfc1-panel" data-hotspot-id="hfc1" style="--panel-x:63%;--panel-y:15%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc1t">Percepção de valor</strong><span data-i18n="hfc1d">Antes da proposta, o cliente já decidiu se confia no que vê.</span></article>
+        <article class="hero-hotspot-panel" id="hfc2-panel" data-hotspot-id="hfc2" style="--panel-x:62%;--panel-y:33%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc2t">Sites ultra realistas</strong><span data-i18n="hfc2d">Presença digital com atmosfera, profundidade e acabamento de alto padrão.</span></article>
+        <article class="hero-hotspot-panel" id="hfc3-panel" data-hotspot-id="hfc3" style="--panel-x:64%;--panel-y:50%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc3t">Design defensável</strong><span data-i18n="hfc3d">Cada detalhe precisa sustentar valor, confiança e decisão.</span></article>
+        <article class="hero-hotspot-panel" id="hfc6-panel" data-hotspot-id="hfc6" style="--panel-x:71%;--panel-y:17%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc6t">Engenharia invisível</strong><span data-i18n="hfc6d">Segurança, performance e estabilidade sem roubar a cena da marca.</span></article>
+        <article class="hero-hotspot-panel" id="hfc5-panel" data-hotspot-id="hfc5" style="--panel-x:72%;--panel-y:61%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc5t">Prova, não promessa</strong><span data-i18n="hfc5d">Cases, modelos e estrutura visual trabalhando para reduzir dúvida e aumentar confiança.</span></article>
+        <article class="hero-hotspot-panel" id="hfc4-panel" data-hotspot-id="hfc4" style="--panel-x:70%;--panel-y:75%" hidden><button class="hero-hotspot-close" type="button" aria-label="Fechar destaque">&times;</button><strong data-i18n="hfc4t">Ecossistema de alto valor</strong><span data-i18n="hfc4d">Sites que organizam narrativa, oferta, prova e experiência em uma presença única.</span></article>
+      </div>
+    </div>
   <div class="hero-inner">
     <div class="hero-copy hero-copy-rebuilt">
       <div class="hero-copy-live">
@@ -995,14 +1017,10 @@ document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
    Recursos criados por uma sessao nunca podem executar na geracao seguinte. */
 const MOTION_TUNING=Object.freeze({
   videoPlaybackRate:1,
-  animationDurationMultiplier:1.15,
-  velocityMultiplier:.85,
-  typewriterIntervalMultiplier:1.12,
-  cardDwellMultiplier:1.15
+  animationDurationMultiplier:1
 });
 window.MOTION_TUNING=MOTION_TUNING;
 document.documentElement.style.setProperty('--hero-motion-duration-factor',String(MOTION_TUNING.animationDurationMultiplier));
-document.documentElement.style.setProperty('--hero-motion-velocity-factor',String(MOTION_TUNING.velocityMultiplier));
 
 window.BrunoMotion=(function(){
   const KEY='brunodevai:motion-preference';
@@ -1165,15 +1183,6 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   }
   window.__heroVideoState=getHeroVideoState;
 
-  function setPointer(x,y){
-    const rect=hero.getBoundingClientRect();
-    const rawX=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
-    const rawY=Math.max(0,Math.min(1,(y-rect.top)/rect.height));
-    const nx=.5+(rawX-.5)*MOTION_TUNING.velocityMultiplier;
-    const ny=.5+(rawY-.5)*MOTION_TUNING.velocityMultiplier;
-    hero.style.setProperty('--mx',nx.toFixed(3));
-    hero.style.setProperty('--my',ny.toFixed(3));
-  }
   function wake(){hero.classList.add('is-awake')}
   function sleep(){hero.classList.remove('is-awake')}
   function safePause(){if(playGeneration==null)video.pause()}
@@ -1233,11 +1242,7 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   }
   bindUnlockTriggers();
 
-  hero.addEventListener('pointermove',e=>{
-    if(Motion.shouldReduceMotion())return;
-    setPointer(e.clientX,e.clientY);wake();
-    if(video.paused)ensureHeroVideoPlaying('hero-pointermove',Motion.getGeneration());
-  });
+  hero.addEventListener('pointerenter',()=>{if(!Motion.shouldReduceMotion())wake()});
   hero.addEventListener('pointerleave',sleep);
 
   function armWatchdog(maxTicks,generation){
@@ -1269,7 +1274,7 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
     }),{threshold:[0,.03,.05,.28],rootMargin:'120px 0px'}));
     vio.observe(hero);
     ensureHeroVideoPlaying(ctx.reason||'motion-session',ctx.generation);
-    armWatchdog(15,ctx.generation);
+    armWatchdog(6,ctx.generation);
   }
 
   ['loadedmetadata','loadeddata','canplay','canplaythrough','play'].forEach(evt=>video.addEventListener(evt,()=>{
@@ -1287,7 +1292,7 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
 window.__brunoHeroMotionDebug=function(){
   const video=document.querySelector('#heroMotionVideo');
   const hero=document.querySelector('.hero');
-  const cards=[...document.querySelectorAll('.hero-float-card')];
+  const cards=[...document.querySelectorAll('.hero-hotspot-panel')];
   return{
     video:{
       exists:!!video,paused:video&&video.paused,currentTime:video&&video.currentTime,duration:video&&video.duration,
@@ -1306,6 +1311,9 @@ window.__brunoHeroMotionDebug=function(){
       rect:hero&&hero.getBoundingClientRect()
     },
     resources:window.BrunoMotion&&window.BrunoMotion.debug(),
+    hotspots:[...document.querySelectorAll('.hero-hotspot')].map(button=>({
+      id:button.dataset.hotspotId,expanded:button.getAttribute('aria-expanded'),rect:button.getBoundingClientRect()
+    })),
     cards:cards.map(card=>{
       const style=getComputedStyle(card);
       return{
@@ -1318,256 +1326,37 @@ window.__brunoHeroMotionDebug=function(){
   };
 };
 
-/* HERO FLOAT CARDS - LIVE TYPING (reage a troca de modo em tempo real) */
+/* CINEMATIC HOTSPOTS - interaction driven; no autoplay, timers or RAF loops */
 (function(){
-  const cards=[...document.querySelectorAll('.hero-float-card')];
-  if(!cards.length)return;
-  const hero=document.querySelector('.hero');
-  const Motion=window.BrunoMotion;
-  const mobileMql=matchMedia('(max-width:900px)');
-  let dotsWrap=null,rotateTimer=null,activeMobileIdx=0,lastMobile=mobileMql.matches;
-
-  function isMobile(){return mobileMql.matches}
-  function typeNode(node,text,speed,done,generation){
-    node.textContent='';
-    node.classList.add('is-typing-node');
-    const epoch=(node._typeEpoch=(node._typeEpoch||0)+1);
-    let i=0;
-    (function step(){
-      if(!Motion.isCurrentGeneration(generation)||Motion.shouldReduceMotion()||node._typeEpoch!==epoch){
-        node.classList.remove('is-typing-node');
-        return;
-      }
-      node.textContent=text.slice(0,i);
-      i++;
-      if(i<=text.length)Motion.scheduleTimeout(step,speed,generation);
-      else{
-        node.classList.remove('is-typing-node');
-        if(Motion.isCurrentGeneration(generation)&&!Motion.shouldReduceMotion()&&done)done();
-      }
-    })();
-  }
-
-  /* dataset.raw guarda o texto do idioma atual; o toggle EN/PT limpa esse
-     cache (ver langBtn.onclick) para que a proxima digitacao pegue o texto
-     novo em vez de repetir o idioma anterior. Lido de forma preguicosa (no
-     momento exato de cada chamada a typeNode) para que uma troca de idioma
-     no meio da cadeia strong->span sempre use o texto mais recente, nunca
-     um valor capturado antes da interrupcao. */
-  function freshRaw(node){
-    if(!node.dataset.raw)node.dataset.raw=node.textContent;
-    return node.dataset.raw;
-  }
-  /* A animacao de escrita roda no maximo uma vez por carregamento de pagina
-     (data-typed-once-load nunca e limpo durante a sessao). Reaparicoes do
-     mesmo card - rotacao mobile, restart por aba/idioma/modo - mostram o
-     texto pronto instantaneamente. */
-  function typeCard(card,done,generation){
-    if(card.dataset.typedOnceLoad==='1'){
-      showStaticText(card);
-      if(done)done();
-      return;
-    }
-    const strong=card.querySelector('strong'),span=card.querySelector('span');
-    const titleSpeed=Math.round(26*MOTION_TUNING.typewriterIntervalMultiplier);
-    const bodySpeed=Math.round(13*MOTION_TUNING.typewriterIntervalMultiplier);
-    typeNode(strong,freshRaw(strong),titleSpeed,()=>typeNode(span,freshRaw(span),bodySpeed,()=>{
-      card.dataset.typedOnceLoad='1';
-      if(done)done();
-    },generation),generation);
-  }
-  function typeCardOnce(card,generation){
-    if(card.dataset.typed==='1')return;
-    card.dataset.typed='1';
-    typeCard(card,null,generation);
-  }
-  function showStaticText(card){
-    const strong=card.querySelector('strong'),span=card.querySelector('span');
-    strong._typeEpoch=(strong._typeEpoch||0)+1;
-    span._typeEpoch=(span._typeEpoch||0)+1;
-    strong.classList.remove('is-typing-node');
-    span.classList.remove('is-typing-node');
-    strong.textContent=freshRaw(strong);
-    span.textContent=freshRaw(span);
-  }
-  function stopAllTyping(){
-    cards.forEach(showStaticText);
-  }
-  function resetReducedCarouselAccessibility(){
-    const stage=cards[0].closest('.hero-interface');
-    if(stage){stage.removeAttribute('role');stage.removeAttribute('aria-label');stage.removeAttribute('tabindex');stage.setAttribute('aria-hidden','true')}
-    cards.forEach(card=>{card.removeAttribute('aria-current');card.removeAttribute('aria-hidden')});
-    if(dotsWrap){
-      dotsWrap.setAttribute('aria-hidden','true');
-      [...dotsWrap.children].forEach(dot=>{dot.tabIndex=-1;dot.removeAttribute('aria-current');dot.classList.remove('is-active')});
-    }
-  }
-
-  const langLabel={
-    pt:{region:'Cards de proposta de valor. Deslize ou use as setas do teclado.',dot:function(i,n){return'Ir para o card '+(i+1)+' de '+n}},
-    en:{region:'Value proposition cards. Swipe or use arrow keys.',dot:function(i,n){return'Go to card '+(i+1)+' of '+n}}
-  };
-  /* Le o idioma atual via document.documentElement.lang (mantido pelo
-     langBtn.onclick) em vez da variavel global EN, para nunca esbarrar em
-     temporal dead zone independente da ordem de execucao dos scripts. */
-  function lang(){return document.documentElement.lang==='en'?'en':'pt'}
-
-  function ensureDotsWrap(){
-    if(dotsWrap)return dotsWrap;
-    /* Anexado ao palco do poster/video (.hero-scene-media), nao a faixa de
-       scroll (.hero-interface): a faixa tem overflow-x:auto no modo reduced,
-       e overflow-x/y andam juntos por spec, entao qualquer conteudo
-       posicionado fora da propria caixa da faixa fica cortado e inclicavel.
-       Fora da faixa, os dots ficam sempre visiveis e clicaveis. */
-    const stage=cards[0].closest('.hero-scene-media')||cards[0].closest('.hero-interface');
-    dotsWrap=document.createElement('div');
-    dotsWrap.className='hero-card-dots';
-    dotsWrap.setAttribute('role','group');
-    dotsWrap.setAttribute('aria-label',langLabel[lang()].region);
-    cards.forEach((c,i)=>{
-      if(!c.id)c.id='hero-value-card-'+(i+1);
-      const d=document.createElement('button');
-      d.type='button';
-      d.className='hero-card-dot';
-      d.tabIndex=-1;
-      d.setAttribute('aria-controls',c.id);
-      d.addEventListener('click',()=>goToCard(i));
-      dotsWrap.appendChild(d);
-    });
-    if(stage)stage.appendChild(dotsWrap);
-    window.__heroCardDots=dotsWrap;
-    return dotsWrap;
-  }
-  function setDotsMode(interactive){
-    const dots=[...ensureDotsWrap().children];
-    dots.forEach((d,i)=>{
-      d.tabIndex=interactive&&(i===activeMobileIdx)?0:-1;
-      d.setAttribute('aria-label',langLabel[lang()].dot(i,cards.length));
-    });
-  }
-  function updateManualActive(i){
-    activeMobileIdx=i;
-    const dots=[...ensureDotsWrap().children];
-    dots.forEach((dot,idx)=>{
-      const active=idx===i;
-      dot.classList.toggle('is-active',active);
-      if(active)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');
-      dot.tabIndex=active?0:-1;
-    });
-  }
-  function goToCard(i){
-    const stage=cards[0].closest('.hero-interface');
-    if(!stage||!cards[i]||!Motion.shouldReduceMotion())return;
-    const left=Math.max(0,cards[i].offsetLeft-stage.offsetLeft);
-    stage.scrollTo({left,behavior:'auto'});
-    updateManualActive(i);
-  }
-
-  function applyReduced(ctx){
-    rotateTimer=null;
-    stopAllTyping();
-    cards.forEach(c=>{c.dataset.typed='';c.classList.remove('is-active-mobile')});
-    resetReducedCarouselAccessibility();
-    if(!isMobile()){
-      if(hero)hero.dataset.typewriterState='static';
-      if(hero)hero.dataset.carouselState='inactive';
-      return;
-    }
-    /* Reduced no mobile: nenhuma rotacao automatica, mas os 6 cards ficam
-       todos no DOM, visiveis e acessiveis via swipe manual, dots clicaveis
-       ou teclado - nunca so 1 de 6. */
-    const stage=cards[0].closest('.hero-interface');
-    const dots=ensureDotsWrap();
-    dots.setAttribute('aria-label',langLabel[lang()].region);
-    dots.removeAttribute('aria-hidden');
-    activeMobileIdx=0;setDotsMode(true);updateManualActive(0);
-    if(stage){
-      stage.removeAttribute('aria-hidden');
-      stage.setAttribute('role','region');
-      stage.setAttribute('aria-label',langLabel[lang()].region);
-      stage.tabIndex=0;
-      if(!stage._motionKeydownBound){
-        stage._motionKeydownBound=true;
-        stage.addEventListener('keydown',e=>{
-          if(!Motion.shouldReduceMotion()||!isMobile())return;
-          if(e.key==='ArrowRight'){goToCard((activeMobileIdx+1)%cards.length);e.preventDefault()}
-          else if(e.key==='ArrowLeft'){goToCard((activeMobileIdx-1+cards.length)%cards.length);e.preventDefault()}
-        });
-      }
-      const carouselIO=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
-        if(Motion.isCurrentGeneration(ctx.generation)&&entry.intersectionRatio>0.55){
-          const idx=cards.indexOf(entry.target);
-          if(idx===-1)return;
-          updateManualActive(idx);
-        }
-      }),{root:stage,threshold:[0,.55,1]}));
-      cards.forEach(c=>carouselIO.observe(c));
-    }
-    if(hero){hero.dataset.typewriterState='static';hero.dataset.carouselState='manual'}
-  }
-
-  function applyFull(ctx){
-    rotateTimer=null;resetReducedCarouselAccessibility();stopAllTyping();
-    cards.forEach(c=>{c.dataset.typed='';c.classList.remove('is-active-mobile')});
-    if(hero)hero.dataset.typewriterState='running';
-
-    if(isMobile()){
-      const dots=ensureDotsWrap();
-      dots.setAttribute('aria-hidden','true');
-      setDotsMode(false);
-      const dotEls=[...dots.children];
-      activeMobileIdx=0;
-      if(hero)hero.dataset.carouselState='automatic';
-      (function showCard(i){
-        if(!Motion.isCurrentGeneration(ctx.generation)||Motion.shouldReduceMotion())return;
-        cards.forEach((c,idx)=>c.classList.toggle('is-active-mobile',idx===i));
-        dotEls.forEach((d,idx)=>d.classList.toggle('is-active',idx===i));
-        typeCard(cards[i],()=>{
-          if(!Motion.isCurrentGeneration(ctx.generation)||Motion.shouldReduceMotion())return;
-          if(rotateTimer)Motion.clearScheduledTimeout(rotateTimer);
-          const dwell=Math.round(1900*MOTION_TUNING.cardDwellMultiplier);
-          rotateTimer=Motion.scheduleTimeout(()=>{activeMobileIdx=(i+1)%cards.length;showCard(activeMobileIdx)},dwell,ctx.generation);
-        },ctx.generation);
-      })(0);
-      return;
-    }
-    if(hero)hero.dataset.carouselState='inactive';
-
-    const desktopIO=Motion.registerObserver(new IntersectionObserver(entries=>entries.forEach(entry=>{
-      if(Motion.isCurrentGeneration(ctx.generation)&&entry.isIntersecting)typeCardOnce(entry.target,ctx.generation);
-    }),{threshold:.4}));
-    cards.forEach((card,idx)=>{
-      Motion.scheduleTimeout(()=>desktopIO.observe(card),idx*180,ctx.generation);
-    });
-    Motion.scheduleTimeout(()=>{
-      if(hero&&Motion.isCurrentGeneration(ctx.generation)&&hero.dataset.typewriterState==='running')hero.dataset.typewriterState='done';
-    },cards.length*180+Math.round(2600*MOTION_TUNING.typewriterIntervalMultiplier),ctx.generation);
-  }
-
-  function apply(isReduced,ctx){
-    try{
-      if(isReduced)applyReduced(ctx);else applyFull(ctx);
-    }catch(err){
-      if(hero)hero.dataset.typewriterState='error';
-      console.warn('[hero-typewriter] apply failed:',err&&err.message);
-    }
-  }
-
-  apply(Motion.shouldReduceMotion(),Motion.context());
-  Motion.onChange(function(isReduced,preference,ctx){apply(isReduced,ctx)});
-  const handleViewportChange=()=>{if(lastMobile!==isMobile()){lastMobile=isMobile();Motion.restart('restart')}};
-  if(typeof mobileMql.addEventListener==='function')mobileMql.addEventListener('change',handleViewportChange);
-  else if(typeof mobileMql.addListener==='function')mobileMql.addListener(handleViewportChange);
-
-  window.__heroCardsRefreshI18n=function(){
-    if(dotsWrap)dotsWrap.setAttribute('aria-label',langLabel[lang()].region);
-    if(Motion.shouldReduceMotion()&&isMobile()){
-      const stage=cards[0].closest('.hero-interface');
-      if(stage)stage.setAttribute('aria-label',langLabel[lang()].region);
-      setDotsMode(true);
-    }
-    Motion.restart('language-change');
-  };
+  const hero=document.getElementById('top');
+  const stage=hero&&hero.querySelector('.hero-interface');
+  const hotspotGroup=stage&&stage.querySelector('.hero-hotspots');
+  const strip=stage&&stage.querySelector('.hero-hotspot-panels');
+  const buttons=hotspotGroup?[...hotspotGroup.querySelectorAll('.hero-hotspot')]:[];
+  const panels=strip?[...strip.querySelectorAll('.hero-hotspot-panel')]:[];
+  if(!hero||!stage||!strip||buttons.length!==6||panels.length!==6)return;
+  const Motion=window.BrunoMotion,desktopMql=matchMedia('(min-width:1180px)'),fineMql=matchMedia('(pointer:fine)');
+  let activeId=null,activeCardIndex=0,lastCapability=null;
+  const copy={pt:{stage:'Destaques da proposta de valor',group:'Explore seis destaques',region:'Cards de proposta de valor. Deslize ou use as setas do teclado.',close:'Fechar destaque',dot:(i,n)=>'Ir para o card '+(i+1)+' de '+n},en:{stage:'Value proposition highlights',group:'Explore six highlights',region:'Value proposition cards. Swipe or use the arrow keys.',close:'Close highlight',dot:(i,n)=>'Go to card '+(i+1)+' of '+n}};
+  const language=()=>document.documentElement.lang==='en'?'en':'pt';
+  const capability=()=>Motion.shouldReduceMotion()?'still-premium':(desktopMql.matches&&fineMql.matches?'cinematic':'fluid');
+  const dots=document.createElement('div');dots.className='hero-card-dots';dots.setAttribute('role','group');
+  panels.forEach((panel,index)=>{const dot=document.createElement('button');dot.type='button';dot.className='hero-card-dot';dot.dataset.cardIndex=String(index);dot.setAttribute('aria-controls',panel.id);dots.appendChild(dot)});
+  stage.appendChild(dots);const dotButtons=[...dots.children];
+  function updateDots(index){activeCardIndex=Math.max(0,Math.min(panels.length-1,index));dotButtons.forEach((dot,i)=>{const selected=i===activeCardIndex;dot.classList.toggle('is-active',selected);dot.tabIndex=selected?0:-1;if(selected)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')})}
+  function activate(id){if(capability()!=='cinematic')return;activeId=id;buttons.forEach(button=>{const selected=button.dataset.hotspotId===id;button.setAttribute('aria-expanded',selected?'true':'false');button.setAttribute('aria-pressed',selected?'true':'false')});panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==id});hero.dataset.hotspotState='open'}
+  function closeHotspot(){activeId=null;buttons.forEach(button=>{button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});if(capability()==='cinematic')panels.forEach(panel=>{panel.hidden=true});hero.dataset.hotspotState='closed'}
+  function goToCard(index){if(capability()==='cinematic')return;const panel=panels[index];if(!panel)return;strip.scrollTo({left:panel.offsetLeft-strip.offsetLeft,behavior:Motion.shouldReduceMotion()?'auto':'smooth'});updateDots(index)}
+  function nearestCard(){let best=0,distance=Infinity;panels.forEach((panel,index)=>{const delta=Math.abs((panel.offsetLeft-strip.offsetLeft)-strip.scrollLeft);if(delta<distance){distance=delta;best=index}});updateDots(best)}
+  function updateI18n(){const labels=copy[language()];stage.setAttribute('aria-label',labels.stage);hotspotGroup.setAttribute('aria-label',labels.group);strip.setAttribute('aria-label',labels.region);dots.setAttribute('aria-label',labels.region);buttons.forEach(button=>{const label=button.querySelector('.sr-only');if(label)button.setAttribute('aria-label',label.textContent.trim())});panels.forEach(panel=>{const title=panel.querySelector('strong');if(title)panel.setAttribute('aria-label',title.textContent.trim());const close=panel.querySelector('.hero-hotspot-close');if(close)close.setAttribute('aria-label',labels.close)});dotButtons.forEach((dot,i)=>dot.setAttribute('aria-label',labels.dot(i,panels.length)))}
+  function applyCapability(){const next=capability(),changed=lastCapability!==next;lastCapability=next;hero.dataset.capabilityMode=next;hero.dataset.typewriterState='static';hero.dataset.carouselState=next==='cinematic'?'inactive':'manual';if(next==='cinematic'){strip.tabIndex=-1;dots.setAttribute('aria-hidden','true');dotButtons.forEach(dot=>dot.tabIndex=-1);if(changed)closeHotspot();else panels.forEach(panel=>{panel.hidden=panel.dataset.hotspotId!==activeId});buttons.forEach(button=>button.tabIndex=0)}else{activeId=null;buttons.forEach(button=>{button.tabIndex=-1;button.setAttribute('aria-expanded','false');button.setAttribute('aria-pressed','false')});panels.forEach(panel=>{panel.hidden=false});strip.tabIndex=0;dots.removeAttribute('aria-hidden');updateDots(activeCardIndex);hero.dataset.hotspotState='manual'}updateI18n()}
+  stage.addEventListener('pointerover',event=>{const button=event.target.closest('.hero-hotspot');if(button&&fineMql.matches)activate(button.dataset.hotspotId)});
+  stage.addEventListener('focusin',event=>{const button=event.target.closest('.hero-hotspot');if(button)activate(button.dataset.hotspotId)});
+  stage.addEventListener('click',event=>{const button=event.target.closest('.hero-hotspot');if(button){activate(button.dataset.hotspotId);return}if(event.target.closest('.hero-hotspot-close')){closeHotspot();return}const dot=event.target.closest('.hero-card-dot');if(dot)goToCard(Number(dot.dataset.cardIndex))});
+  stage.addEventListener('keydown',event=>{if(event.key==='Escape'&&capability()==='cinematic'){closeHotspot();return}if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;const step=event.key==='ArrowRight'?1:-1;if(capability()==='cinematic'){const current=Math.max(0,buttons.indexOf(document.activeElement)),next=(current+step+buttons.length)%buttons.length;buttons[next].focus();activate(buttons[next].dataset.hotspotId)}else goToCard((activeCardIndex+step+panels.length)%panels.length);event.preventDefault()});
+  strip.addEventListener('pointerup',nearestCard,{passive:true});strip.addEventListener('touchend',nearestCard,{passive:true});
+  const mediaChanged=()=>applyCapability();[desktopMql,fineMql].forEach(mql=>{if(mql.addEventListener)mql.addEventListener('change',mediaChanged);else mql.addListener(mediaChanged)});Motion.onChange(applyCapability);
+  window.__heroHotspotsRefreshI18n=updateI18n;window.__heroHotspotsDebug=()=>({capability:capability(),activeId,activeCardIndex,buttons:buttons.length,panels:panels.length});updateDots(0);applyCapability();
 })();
 
 /* CATALOG ARROWS */
@@ -1722,9 +1511,9 @@ let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null){el._typeEpoch=(el._typeEpoch||0)+1;el.classList.remove('is-typing-node');delete el.dataset.raw;el.innerHTML=v}});
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
   updateMotionControlUI();
-  if(window.__heroCardsRefreshI18n)window.__heroCardsRefreshI18n();
+  if(window.__heroHotspotsRefreshI18n)window.__heroHotspotsRefreshI18n();
 };
 
 /* Controle de movimento com 3 opcoes explicitas (Sistema/Completa/Reduzida) -
@@ -1803,34 +1592,6 @@ function updateMotionControlUI(){
   updateMotionControlUI();
 })();
 
-/* HERO CANVAS (linha de luz) - reage a troca de modo em tempo real */
-(function(){
-  const c=document.getElementById('heroCanvas');
-  if(!c)return;
-  const x=c.getContext('2d');
-  const Motion=window.BrunoMotion;
-  let w,h,pts,mx=.5,my=.5,rafId=null,running=false,sessionGeneration=Motion.getGeneration();
-  function size(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
-    const velocity=.25*MOTION_TUNING.velocityMultiplier;
-    const n=Math.min(70,Math.floor(w*h/22000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*velocity,vy:(Math.random()-.5)*velocity}))}
-  function draw(){
-    if(!running||!Motion.isCurrentGeneration(sessionGeneration)||Motion.shouldReduceMotion()){running=false;rafId=null;return}
-    x.clearRect(0,0,w,h);
-    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
-        if(d<130){x.strokeStyle='rgba(168,255,96,'+(1-d/130)*.14+')';x.lineWidth=1;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}
-      const gx=(mx-.5)*30*MOTION_TUNING.velocityMultiplier,gy=(my-.5)*30*MOTION_TUNING.velocityMultiplier;x.fillStyle='rgba(216,179,104,.5)';x.beginPath();x.arc(pts[i].x+gx,pts[i].y+gy,1.3,0,7);x.fill()}
-    rafId=Motion.scheduleRaf(draw,sessionGeneration);
-  }
-  function start(ctx){if(running)return;sessionGeneration=ctx.generation;running=true;if(!pts)size();draw()}
-  function stop(){running=false;if(rafId){Motion.clearScheduledRaf(rafId);rafId=null}if(w&&h)x.clearRect(0,0,w,h)}
-  addEventListener('resize',size);
-  addEventListener('mousemove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
-  size();
-  if(!Motion.shouldReduceMotion())start(Motion.context());
-  Motion.onChange(function(isReduced,preference,ctx){stop();if(!isReduced)start(ctx)});
-})();
 </script>
 </body>
 </html>
