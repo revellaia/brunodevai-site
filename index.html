@@ -502,32 +502,61 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .positioning-film .proof-item:last-child{border-bottom:0}
 .positioning-film .proof-item .dot{order:2}
 
-.ecosystem-section{background:#090b0d}
-.ecosystem-section .wrap{padding-top:clamp(88px,10vw,150px);padding-bottom:clamp(88px,10vw,150px)}
-.ecosystem-stage{position:relative;min-height:820px;width:100%;border:1px solid rgba(138,169,192,.18);
-  background:#0b1014;color:var(--text-hi);text-align:left;overflow:hidden}
+.ecosystem-section{background:#07090b}
+.ecosystem-section .wrap{max-width:1500px;padding:clamp(72px,7vw,108px) clamp(18px,3.5vw,52px)}
+.ecosystem-stage{position:relative;min-height:850px;width:100%;border:1px solid rgba(160,193,215,.2);
+  background:#091016;color:var(--text-hi);text-align:left;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.4)}
 .ecosystem-stage::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:
-  radial-gradient(60% 80% at 78% 20%,rgba(95,140,172,.2),transparent 64%),
-  linear-gradient(90deg,#0b1014 0%,rgba(11,16,20,.95) 35%,rgba(11,16,20,.54) 58%,rgba(11,16,20,.08) 84%)}
-.ecosystem-stage::after{content:'';position:absolute;inset:22px;z-index:3;pointer-events:none;border:1px solid rgba(217,231,239,.08)}
+  radial-gradient(70% 90% at 76% 28%,rgba(115,163,193,.16),transparent 66%),
+  linear-gradient(90deg,rgba(5,9,13,.98) 0%,rgba(5,9,13,.86) 38%,rgba(5,9,13,.26) 68%,rgba(5,9,13,.4) 100%),
+  linear-gradient(180deg,rgba(5,8,11,.46),transparent 38%,rgba(5,8,11,.92) 100%)}
+.ecosystem-stage::after{content:'';position:absolute;inset:20px;z-index:5;pointer-events:none;border:1px solid rgba(217,231,239,.1)}
 .ecosystem-media{position:absolute;inset:0;z-index:0}
-.ecosystem-media img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.8) contrast(1.08);transition:transform .8s var(--ease),filter .8s var(--ease)}
-.ecosystem-stage:hover .ecosystem-media img{transform:scale(1.025);filter:saturate(.95) contrast(1.04)}
-.ecosystem-copy{position:relative;z-index:2;padding:clamp(48px,6vw,76px);width:min(72%,900px)}
-.ecosystem-copy .sec-title{font-size:clamp(40px,4.2vw,64px);line-height:.97;max-width:18ch}
-.ecosystem-copy .sec-lead{font-size:14px;line-height:1.7;max-width:54ch}
-.ecosystem-copy .badge{margin-bottom:24px}
-.ecosystem-title{font-size:clamp(44px,5.2vw,78px);line-height:.92;letter-spacing:-.025em;max-width:9ch}
-.ecosystem-title span{color:#93bad4}
-.ecosystem-copy p{margin-top:24px;color:rgba(230,238,242,.68);font-size:15px;line-height:1.72;max-width:46ch}
-.ecosystem-meta{margin-top:32px;display:flex;gap:8px 24px;flex-wrap:wrap;color:#b9d7e9;font-size:10px;letter-spacing:.13em;text-transform:uppercase}
-.ecosystem-open{width:min(100%,520px);margin-top:32px;padding:22px 0 0;border:0;border-top:1px solid rgba(147,186,212,.24);background:transparent;
-  display:grid;justify-items:start;text-align:left;color:var(--text-hi);cursor:pointer}
-.ecosystem-open .badge{margin-bottom:15px}
-.ecosystem-name{font:500 clamp(30px,3vw,46px)/1 'DM Serif Display',serif}
-.ecosystem-open .card-tag{margin-top:10px}
-.ecosystem-open .card-desc{margin-top:13px;max-width:48ch}
-.ecosystem-actions{display:flex;gap:26px;margin-top:22px;color:#b9d7e9;font-size:9px;font-weight:750;letter-spacing:.14em;text-transform:uppercase}
+.ecosystem-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:saturate(.7) contrast(1.12) brightness(.72);
+  transform:scale(1.015);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.ecosystem-stage:hover .ecosystem-media img{transform:scale(1.035);filter:saturate(.78) contrast(1.1) brightness(.76)}
+.ecosystem-snow{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;mask-image:linear-gradient(90deg,transparent,black 24%,black)}
+.ecosystem-snow::before,.ecosystem-snow::after{content:'';position:absolute;inset:-220px 0 0;background-repeat:repeat;will-change:background-position}
+.ecosystem-snow::before{opacity:.42;background-image:
+  radial-gradient(circle,rgba(238,248,255,.85) 0 1px,transparent 1.5px),
+  radial-gradient(circle,rgba(238,248,255,.62) 0 1.4px,transparent 1.9px),
+  radial-gradient(circle,rgba(238,248,255,.42) 0 .8px,transparent 1.3px);
+  background-size:73px 73px,119px 119px,47px 47px;background-position:11px -90px,53px -160px,7px -40px;
+  animation:ecosystemSnow 16s linear infinite}
+.ecosystem-snow::after{opacity:.2;filter:blur(.5px);background-image:
+  radial-gradient(circle,rgba(255,255,255,.8) 0 2px,transparent 2.7px),
+  radial-gradient(circle,rgba(255,255,255,.5) 0 1.5px,transparent 2.2px);
+  background-size:181px 181px,137px 137px;background-position:40px -120px,90px -60px;
+  animation:ecosystemSnow 25s linear infinite reverse}
+@keyframes ecosystemSnow{to{background-position:58px 900px,4px 760px,41px 820px}}
+.ecosystem-copy{position:relative;z-index:4;padding:clamp(48px,5vw,70px);width:min(62%,820px)}
+.ecosystem-eyebrows{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ecosystem-eyebrows .eyebrow{margin:0}
+.ecosystem-international{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid rgba(168,209,235,.3);
+  color:#d6e9f5;background:rgba(8,19,27,.4);font:700 9px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.ecosystem-international>span:first-child{color:#8fd3ff}
+.ecosystem-copy .sec-title{margin-top:24px;font-size:clamp(42px,4.4vw,66px);line-height:.96;max-width:17ch}
+.ecosystem-copy .sec-lead{margin-top:24px;color:rgba(226,238,246,.72);font-size:14px;line-height:1.7;max-width:58ch}
+.ecosystem-project{position:absolute;z-index:4;left:clamp(34px,5vw,70px);right:clamp(34px,5vw,70px);bottom:48px;display:grid;
+  grid-template-columns:minmax(300px,.86fr) minmax(440px,1.14fr);border:1px solid rgba(169,205,228,.22);
+  background:linear-gradient(100deg,rgba(7,13,18,.94),rgba(11,23,31,.78));backdrop-filter:blur(18px);box-shadow:0 18px 70px rgba(0,0,0,.34)}
+.ecosystem-project-main{padding:26px 30px;border-right:1px solid rgba(169,205,228,.18)}
+.ecosystem-project-main .badge{margin-bottom:12px}
+.ecosystem-name{font:500 clamp(30px,3vw,44px)/1 'DM Serif Display',serif}
+.ecosystem-project-main .card-tag{margin-top:8px;color:#b9d7e9}
+.ecosystem-project-main .card-desc{margin-top:10px;max-width:54ch;color:rgba(230,238,242,.65);font-size:12px;line-height:1.55}
+.ecosystem-actions{display:flex;gap:10px;margin-top:17px}
+.ecosystem-actions a,.ecosystem-actions button{min-height:40px;padding:0 15px;border:1px solid rgba(147,186,212,.35);background:transparent;color:#dcecf5;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;font:750 9px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase}
+.ecosystem-actions a{background:#d6e9f5;border-color:#d6e9f5;color:#091016}
+.ecosystem-actions a:hover,.ecosystem-actions button:hover{border-color:#fff}
+.ecosystem-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:stretch}
+.ecosystem-highlights>div{padding:27px 24px;border-right:1px solid rgba(169,205,228,.15);border-bottom:1px solid rgba(169,205,228,.15)}
+.ecosystem-highlights>div:nth-child(even){border-right:0}
+.ecosystem-highlights>div:nth-child(n+3){border-bottom:0}
+.ecosystem-highlights strong{display:block;color:#f2f7fa;font:500 clamp(28px,2.7vw,42px)/1 'DM Serif Display',serif}
+.ecosystem-highlights strong.ecosystem-enterprise{font:750 clamp(13px,1.35vw,19px)/1 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.ecosystem-highlights span{display:block;margin-top:8px;color:#9fc5dc;font-size:8px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase}
 
 .cases-stage .wrap{padding-top:clamp(90px,10vw,150px);padding-bottom:clamp(90px,10vw,150px)}
 .cases-stage .catalog-head{margin-bottom:44px}
@@ -696,6 +725,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .concept-final .concept-action{margin-top:32px}
 
 html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{display:none}
+html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow::after{animation:none;opacity:.1}
 
 @media(max-width:900px){
   .cinematic-hero{display:grid;min-height:100vh;min-height:100dvh;padding:118px 0 92px}
@@ -716,10 +746,14 @@ html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{di
   .positioning-veil{background:linear-gradient(180deg,rgba(8,9,7,.62),rgba(8,9,7,.74) 45%,rgba(8,9,7,.98) 100%)}
   .positioning-film .proof-strip{grid-template-columns:1fr 1fr;gap:0 22px}
 
-  .ecosystem-stage{min-height:780px}
-  .ecosystem-media{inset:0}
-  .ecosystem-stage::before{background:linear-gradient(180deg,rgba(11,16,20,.14),rgba(11,16,20,.96) 70%)}
-  .ecosystem-copy{width:min(86%,640px);padding:42px 34px}
+  .ecosystem-stage{min-height:1040px}
+  .ecosystem-stage::before{background:linear-gradient(180deg,rgba(5,9,13,.72),rgba(5,9,13,.44) 35%,rgba(5,9,13,.97) 74%)}
+  .ecosystem-media img{object-position:58% center}
+  .ecosystem-copy{width:min(92%,720px);padding:48px 38px}
+  .ecosystem-project{grid-template-columns:1fr;left:38px;right:38px;bottom:38px}
+  .ecosystem-project-main{border-right:0;border-bottom:1px solid rgba(169,205,228,.18)}
+  .ecosystem-highlights{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ecosystem-highlights>div{border-bottom:0}
 
   .concept-intro-copy{grid-template-columns:1fr;gap:18px}
   .presence-controls{justify-content:flex-start}
@@ -753,10 +787,22 @@ html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{di
   .positioning-film .sec-title{font-size:clamp(38px,11vw,54px)}
   .positioning-film .proof-strip{grid-template-columns:1fr}
 
-  .ecosystem-stage{min-height:780px}
+  .ecosystem-section .wrap{padding:58px 10px}
+  .ecosystem-stage{min-height:1220px}
   .ecosystem-stage::after{inset:12px}
+  .ecosystem-media img{object-position:62% center;filter:saturate(.66) contrast(1.12) brightness(.62)}
+  .ecosystem-snow{mask-image:linear-gradient(180deg,transparent,black 18%,black 78%,transparent)}
   .ecosystem-copy{width:100%;padding:36px 24px}
-  .ecosystem-title{font-size:clamp(44px,13vw,62px)}
+  .ecosystem-eyebrows{align-items:flex-start;gap:12px}
+  .ecosystem-copy .sec-title{font-size:clamp(39px,11vw,52px);max-width:13ch}
+  .ecosystem-copy .sec-lead{font-size:13px;line-height:1.62}
+  .ecosystem-project{left:22px;right:22px;bottom:26px}
+  .ecosystem-project-main{padding:22px 20px}
+  .ecosystem-actions{flex-direction:column}
+  .ecosystem-actions a,.ecosystem-actions button{width:100%;justify-content:center}
+  .ecosystem-highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ecosystem-highlights>div{padding:20px 17px;border-bottom:1px solid rgba(169,205,228,.15)}
+  .ecosystem-highlights>div:nth-child(n+3){border-bottom:0}
 
   .cases-stage .catalog-head{align-items:flex-start;flex-direction:column}
   .cases-stage .catalog-row{margin-right:-18px}
@@ -884,7 +930,9 @@ html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{di
 <section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
   <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
     <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" alt="" width="1280" height="720" loading="lazy"/>
-    <video id="positioningVideo" class="cinematic-video" data-src="assets/cinematic/engineering-drive.mp4" muted autoplay loop playsinline preload="none" poster="assets/cinematic/engineering-drive.webp" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture></video>
+    <video id="positioningVideo" class="cinematic-video" muted autoplay loop playsinline preload="none" poster="assets/cinematic/engineering-drive.webp" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture>
+      <source src="assets/cinematic/engineering-drive.mp4" type="video/mp4"/>
+    </video>
   </figure>
   <div class="cinematic-veil positioning-veil" aria-hidden="true"></div>
   <div class="wrap positioning-content">
@@ -907,22 +955,36 @@ html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{di
 <section class="dark grain cinematic-act ecosystem-section" id="ecossistemas" data-cinematic-act="3">
   <div class="wrap">
     <div class="ecosystem-stage">
-      <div class="ecosystem-copy">
-        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
-        <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
-        <p class="sec-lead" data-i18n="eco_lead">Nem todo site precisa ser apenas uma vitrine. Alguns projetos precisam de profundidade, atmosfera, interação e sensação de universo próprio. Foi assim com The Frozen Legacy: um ecossistema transmídia com 3D em tempo real, experiência bilíngue, narrativa contínua e presença digital autoral.</p>
-        <button class="ecosystem-open" type="button" data-modal="m-vakon">
-          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="ecosystem-name">The Frozen Legacy</span>
-          <span class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="vakon_desc">Um projeto autoral que une narrativa, tecnologia e experiência visual para transformar uma marca em um universo vivo.</span>
-          <span class="ecosystem-actions"><span data-i18n="vakon_enter">Entrar no universo</span><span data-i18n="vakon_know">Conhecer o projeto</span></span>
-        </button>
-      </div>
       <figure class="ecosystem-media">
-        <img src="assets/cover-vakon.jpg" alt="Cidade glacial de The Frozen Legacy sob uma lua monumental" width="1280" height="720" loading="lazy"/>
+        <img src="assets/cinematic/glacial-city.webp" alt="Cidade glacial monumental de The Frozen Legacy, construída ao redor de um abismo iluminado" width="1672" height="941" loading="lazy"/>
       </figure>
-      <div class="ecosystem-rail" aria-hidden="true">Design · envolvimento · autoral</div>
+      <div class="ecosystem-snow" aria-hidden="true"></div>
+      <div class="ecosystem-copy">
+        <div class="ecosystem-eyebrows">
+          <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
+          <span class="ecosystem-international"><span aria-hidden="true">01</span><span data-i18n="eco_international">1º projeto internacional</span></span>
+        </div>
+        <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
+        <p class="sec-lead" data-i18n="eco_lead">The Frozen Legacy é uma prova de que a BrunoDev.AI também opera em nível de ecossistema. Um projeto internacional construído com profundidade narrativa, direção visual, experiência digital e padrão técnico de alto nível.</p>
+      </div>
+      <div class="ecosystem-project">
+        <div class="ecosystem-project-main">
+          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
+          <h3 class="ecosystem-name">The Frozen Legacy</h3>
+          <p class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</p>
+          <p class="card-desc" data-i18n="vakon_desc">Um projeto autoral de escala internacional, desenvolvido para unir narrativa, tecnologia e experiência visual em um ecossistema digital vivo.</p>
+          <div class="ecosystem-actions">
+            <a href="https://vakonuniverse.com" target="_blank" rel="noopener"><span data-i18n="vakon_enter">Entrar no universo</span> <span aria-hidden="true">↗</span></a>
+            <button type="button" data-modal="m-vakon"><span data-i18n="vakon_know">Conhecer o projeto</span> <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="ecosystem-highlights" aria-label="Destaques do projeto">
+          <div><strong>60</strong><span data-i18n="eco_days">dias de trabalho</span></div>
+          <div><strong>36</strong><span data-i18n="eco_months">meses de monitoramento</span></div>
+          <div><strong>AAA</strong><span>High-Fidelity Triple AAA</span></div>
+          <div><strong class="ecosystem-enterprise">Enterprise</strong><span data-i18n="eco_standard">Padrão de grandes empresas</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1928,8 +1990,10 @@ const tEN={
   pos_lead2:'I build websites with the same standard I apply to my own products: visual direction, narrative, proof, technology and security in a single delivery, made for brands that do not want to look ordinary.',
   pos_p1s:'Own product live',pos_p2s:'Real cases published',pos_p3s:'Active clients',pos_p4s:'Secure structure',
   eco_eyebrow:'Own ecosystem',eco_title:'When the project needs world, narrative and technology, I build that too.',
-  eco_lead:'Not every site needs to be just a storefront. Some projects need depth, atmosphere, interaction and the feeling of their own universe. That was the case with The Frozen Legacy: a transmedia ecosystem with real-time 3D, a bilingual experience, continuous narrative and authorial digital presence.',
-  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An authorial project that unites narrative, technology and visual experience to turn a brand into a living universe.',
+  eco_international:'First international project',
+  eco_lead:'The Frozen Legacy proves that BrunoDev.AI also operates at ecosystem level. An international project built with narrative depth, visual direction, digital experience and a high technical standard.',
+  eco_days:'days of work',eco_months:'months of monitoring',eco_standard:'Major company standard',
+  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An international-scale authorial project developed to unite narrative, technology and visual experience in a living digital ecosystem.',
   vakon_enter:'Enter the universe',vakon_know:'Discover the project',
   cases_eyebrow:'Real cases · clients live',cases_title:'Perception changes when the site has direction.',
   cases_lead:'Three real proofs that a well-built site does not just inform: it positions, differentiates and prepares the client to trust.',
