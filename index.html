@@ -30,7 +30,10 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="logo-brunodevai.png"/>
 <link rel="apple-touch-icon" href="logo-brunodevai.png"/>
-<link rel="preload" as="image" href="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-mobile-portrait.webp" media="(max-width: 600px) and (orientation: portrait)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-tablet-portrait.webp" media="(min-width: 601px) and (max-width: 1024px) and (orientation: portrait)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-landscape-sm.webp" media="(max-width: 1194px) and (orientation: landscape)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape.webp" media="(min-width: 1195px)" fetchpriority="high"/>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -83,7 +86,7 @@ img{display:block;max-width:100%}
 /* PROGRESS + BACK TO TOP */
 #progress{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0;
   background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .1s linear;box-shadow:0 0 10px var(--neon-dim)}
-#toTop{position:fixed;right:22px;bottom:22px;z-index:800;width:46px;height:46px;border-radius:50%;
+#toTop{position:fixed;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:800;width:46px;height:46px;border-radius:50%;
   border:1px solid var(--neon-dim);background:rgba(12,13,11,.85);color:var(--neon);
   display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s,box-shadow .3s;backdrop-filter:blur(8px)}
@@ -93,9 +96,13 @@ img{display:block;max-width:100%}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;
   justify-content:space-between;padding:14px clamp(18px,4vw,56px);
+  padding-top:max(14px,env(safe-area-inset-top));padding-left:max(clamp(18px,4vw,56px),env(safe-area-inset-left));
+  padding-right:max(clamp(18px,4vw,56px),env(safe-area-inset-right));
   background:rgba(10,11,9,.78);backdrop-filter:blur(22px);
   border-bottom:1px solid rgba(197,160,89,.16);transition:padding .3s,background .3s}
-nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-bottom-color:rgba(197,160,89,.26)}
+nav.scrolled{padding:9px clamp(18px,4vw,56px);padding-top:max(9px,env(safe-area-inset-top));
+  padding-left:max(clamp(18px,4vw,56px),env(safe-area-inset-left));padding-right:max(clamp(18px,4vw,56px),env(safe-area-inset-right));
+  background:rgba(8,9,7,.94);border-bottom-color:rgba(197,160,89,.26)}
 .logo{display:flex;align-items:center;text-decoration:none}
 .logo img{height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 14px rgba(197,160,89,.4));transition:filter .3s}
 .logo:hover img{filter:drop-shadow(0 0 24px rgba(197,160,89,.7))}
@@ -146,7 +153,8 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 #mobileDrawer{position:fixed;top:0;right:0;z-index:615;height:100vh;height:100dvh;
   width:min(84vw,340px);background:var(--void-2);border-left:1px solid rgba(216,179,104,.2);
   transform:translateX(100%);transition:transform .35s var(--ease);
-  display:flex;flex-direction:column;gap:8px;padding:96px 30px 30px;overflow-y:auto;overscroll-behavior:contain}
+  display:flex;flex-direction:column;gap:8px;padding:max(96px,calc(env(safe-area-inset-top) + 76px)) max(30px,env(safe-area-inset-right)) max(30px,env(safe-area-inset-bottom)) 30px;
+  overflow-y:auto;overscroll-behavior:contain}
 #mobileDrawer.open{transform:translateX(0)}
 #mobileDrawer a{font-size:17px;color:var(--text-hi);text-decoration:none;letter-spacing:.02em;
   padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
@@ -386,7 +394,13 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .faq-item.open .pm{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
 .faq-a p{padding:0 0 22px;font-size:14px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:70ch}
-.cta-final{text-align:center}
+.cta-final{text-align:center;position:relative;isolation:isolate;overflow:hidden}
+.cta-atmosphere{position:absolute;inset:0;z-index:0;margin:0;overflow:hidden}
+.cta-atmosphere img{width:100%;height:100%;object-fit:cover;object-position:center 58%;filter:saturate(.62) brightness(.28) contrast(1.14);transform:scale(1.035)}
+.cta-final::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(70% 72% at 50% 48%,rgba(12,13,11,.52),var(--void) 100%),
+    linear-gradient(180deg,var(--void),rgba(12,13,11,.62) 42%,var(--void))}
+.cta-final .wrap{z-index:2;min-height:min(760px,82svh);display:flex;flex-direction:column;justify-content:center}
 .cta-final .sec-title{margin:0 auto;max-width:24ch}
 .cta-final .sec-lead{margin:18px auto 0}
 .cta-final .cta-subtitle{color:var(--text-hi);font-weight:500;font-size:clamp(16px,1.7vw,20px);margin-top:10px}
@@ -457,7 +471,8 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 /* CINEMATIC HOME V2 */
 .cinematic-act{position:relative;isolation:isolate;overflow:hidden}
 .cinematic-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--void)}
-.cinematic-poster,.cinematic-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.adaptive-poster-picture{position:absolute;inset:0;display:block}
+.cinematic-poster,.cinematic-video{position:absolute;inset:0;width:100%;height:100%;object-fit:var(--media-fit,cover);object-position:var(--media-position,center)}
 .cinematic-poster{z-index:0}
 .cinematic-video{z-index:1;opacity:0;transition:opacity .9s var(--ease);background:transparent}
 .cinematic-video[data-media-ready="true"]{opacity:1}
@@ -513,8 +528,8 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .ecosystem-stage::after{content:'';position:absolute;inset:20px;z-index:5;pointer-events:none;border:1px solid rgba(217,231,239,.1)}
 .ecosystem-media{position:absolute;inset:0;z-index:0}
 .ecosystem-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:saturate(.7) contrast(1.12) brightness(.72);
-  transform:scale(1.015);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
-.ecosystem-stage:hover .ecosystem-media img{transform:scale(1.035);filter:saturate(.78) contrast(1.1) brightness(.76)}
+  transform:translate3d(0,var(--eco-shift,0px),0) scale(1.035);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.ecosystem-stage:hover .ecosystem-media img{transform:translate3d(0,var(--eco-shift,0px),0) scale(1.052);filter:saturate(.78) contrast(1.1) brightness(.76)}
 .ecosystem-snow{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;mask-image:linear-gradient(90deg,transparent,black 24%,black)}
 .ecosystem-snow::before,.ecosystem-snow::after{content:'';position:absolute;inset:-220px 0 0;background-repeat:repeat;will-change:background-position}
 .ecosystem-snow::before{opacity:.42;background-image:
@@ -599,8 +614,9 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .presence-arrow:disabled{opacity:.3;cursor:not-allowed;transform:none}
 .presence-carousel{outline:none}
 .presence-carousel:focus-visible{outline:2px solid var(--concept-accent);outline-offset:8px}
-.presence-track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+.presence-track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;touch-action:pan-x pan-y pinch-zoom;cursor:grab;
   scroll-behavior:smooth;scrollbar-width:none;padding:4px max(0px,calc((100vw - 1440px)/2)) 24px 0}
+.presence-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
 .presence-track::-webkit-scrollbar{display:none}
 .concept-slide{--slide-accent:#d6b54f;--slide-bg:#10140e;--slide-ink:#f4f2ec;position:relative;isolation:isolate;overflow:hidden;
   flex:0 0 min(1160px,calc(100vw - clamp(44px,9vw,136px)));height:clamp(620px,76vh,790px);scroll-snap-align:start;
@@ -608,7 +624,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .concept-canvas{position:absolute;inset:0;isolation:isolate}
 .concept-media{position:absolute;z-index:0;overflow:hidden;background:#080908}
 .concept-media::after{content:'';position:absolute;inset:0;background:var(--media-overlay,linear-gradient(90deg,rgba(0,0,0,.75),transparent));pointer-events:none}
-.concept-media img,.concept-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.concept-media img,.concept-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:var(--media-fit,cover);object-position:var(--media-position,center)}
 .concept-media img{z-index:0}
 .concept-media video{z-index:1;opacity:0;transition:opacity .7s var(--ease)}
 .concept-media video[data-media-ready="true"]{opacity:1}
@@ -726,13 +742,14 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 
 html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{display:none}
 html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow::after{animation:none;opacity:.1}
+html.motion-reduced .ecosystem-stage{--eco-shift:0px}
 
 @media(max-width:900px){
   .cinematic-hero{display:grid;min-height:100vh;min-height:100dvh;padding:118px 0 92px}
   .cinematic-hero::before{inset:76px 10px 16px;border-radius:10px}
   .cinematic-hero .hero-inner{order:initial;padding-top:0}
   .cinematic-hero .hero-copy{max-width:92%}
-  .cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:62% center}
+  .cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:var(--media-position,62% center)}
   .cinematic-veil-hero{background:linear-gradient(180deg,rgba(7,9,8,.75) 0%,rgba(7,9,8,.52) 28%,rgba(7,9,8,.7) 58%,rgba(7,9,8,.98) 100%)}
   .cinematic-hero h1{font-size:clamp(42px,9vw,70px);max-width:13ch}
   .cinematic-hero .hero-note{display:none}
@@ -782,7 +799,7 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
   .hero-signature span:last-child{display:none}
 
   .positioning-film{min-height:900px}
-  .positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:60% center}
+  .positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:var(--media-position,60% center)}
   .positioning-content{padding-top:112px;padding-bottom:70px}
   .positioning-film .sec-title{font-size:clamp(38px,11vw,54px)}
   .positioning-film .proof-strip{grid-template-columns:1fr}
@@ -820,7 +837,7 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
   .concept-fiori .concept-media,.concept-nativa .concept-media,.concept-blue .concept-media{inset:0}
   .concept-media::after,.concept-fiori .concept-media::after,.concept-nativa .concept-media::after,.concept-blue .concept-media::after{
     background:linear-gradient(180deg,rgba(0,0,0,.08) 22%,rgba(0,0,0,.38) 50%,var(--slide-bg) 100%)}
-  .concept-media img,.concept-media video{object-position:center}
+  .concept-media img,.concept-media video{object-position:var(--media-position,center)}
   .concept-nativa .concept-media img,.concept-nativa .concept-media video,.concept-blue .concept-media img,.concept-blue .concept-media video{object-fit:cover}
   .concept-copy,.concept-axis .concept-copy,.concept-fiori .concept-copy,.concept-cavallo .concept-copy,
   .concept-nativa .concept-copy,.concept-sertao .concept-copy,.concept-blue .concept-copy{
@@ -835,6 +852,25 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
     left:22px;right:22px;bottom:24px;width:auto;padding:0;border:0;justify-content:space-between;gap:12px}
   .concept-metric:nth-child(n+3){display:none}
   .concept-motif{display:none}
+  .concept-axis .concept-media::before{content:'';position:absolute;inset:64px 14px 42%;z-index:2;pointer-events:none;
+    background:repeating-linear-gradient(90deg,rgba(213,166,78,.14) 0 1px,transparent 1px 68px),
+      repeating-linear-gradient(0deg,rgba(135,184,135,.1) 0 1px,transparent 1px 68px);
+    border:1px solid rgba(213,166,78,.18);mask-image:linear-gradient(180deg,#000,transparent)}
+  .concept-fiori .concept-media{inset:0 0 34% 18%;border-bottom:1px solid color-mix(in srgb,var(--slide-accent) 44%,transparent);
+    border-left:1px solid color-mix(in srgb,var(--slide-accent) 28%,transparent)}
+  .concept-fiori .concept-media::after{background:linear-gradient(180deg,rgba(17,27,19,.02),rgba(17,27,19,.72) 74%,var(--slide-bg))}
+  .concept-fiori .concept-copy{border-left:1px solid var(--slide-accent);padding-left:17px}
+  .concept-cavallo .concept-media::before{content:'';position:absolute;z-index:2;right:24px;top:92px;width:104px;height:104px;
+    border:1px solid rgba(201,154,90,.42);border-radius:50%;box-shadow:0 0 0 14px rgba(201,154,90,.04)}
+  .concept-cavallo .concept-copy{right:42px}
+  .concept-nativa .concept-copy{padding:18px;background:linear-gradient(90deg,rgba(5,12,8,.68),rgba(5,12,8,.18));border-left:2px solid var(--slide-accent)}
+  .concept-nativa .concept-nav{background:linear-gradient(180deg,rgba(5,12,8,.7),transparent)}
+  .concept-sertao .concept-media{inset:0 0 38%}
+  .concept-sertao .concept-media::after{background:linear-gradient(180deg,rgba(26,14,8,.03),rgba(26,14,8,.64) 76%,var(--slide-bg))}
+  .concept-sertao .concept-copy{border-top:1px solid rgba(208,139,53,.34);padding-top:16px}
+  .concept-blue .concept-media{inset:0 0 30% 11%;border-bottom-left-radius:110px;border-left:1px solid rgba(119,214,255,.28)}
+  .concept-blue .concept-media::after{background:linear-gradient(180deg,rgba(3,22,38,.02),rgba(3,22,38,.68) 74%,var(--slide-bg))}
+  .concept-blue .concept-copy{padding-left:16px;border-left:1px solid rgba(119,214,255,.5)}
 
   .concept-dialog-top{height:62px}
   .concept-expanded-hero{min-height:calc(86vh - 62px)}
@@ -845,6 +881,84 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
   .concept-proof-inner{grid-template-columns:1fr;gap:30px}
   .concept-service{grid-template-columns:42px 1fr}
 }
+
+/* Adaptive experience: tablet portrait is an authored middle composition. */
+@media(min-width:601px) and (max-width:1024px) and (orientation:portrait){
+  .cinematic-hero{min-height:100svh;min-height:100dvh;padding-top:max(124px,calc(env(safe-area-inset-top) + 106px));padding-bottom:84px}
+  .cinematic-hero .hero-copy{max-width:min(78vw,680px)}
+  .cinematic-hero h1{font-size:clamp(54px,8.2vw,76px)}
+  .cinematic-veil-hero{background:linear-gradient(180deg,rgba(7,9,8,.76),rgba(7,9,8,.42) 34%,rgba(7,9,8,.72) 62%,var(--void) 100%)}
+  .positioning-film{min-height:980px}
+  .positioning-content{padding-top:150px;padding-bottom:86px}
+  .ecosystem-stage{min-height:1120px}
+  .ecosystem-media img{object-position:58% center}
+  .concept-slide{height:min(900px,82svh);min-height:760px}
+  .concept-copy h3{font-size:clamp(48px,7vw,66px)}
+  .concept-action{min-height:48px}
+}
+
+/* Landscape phones and compact tablets keep the film active, but recompose around a short viewport. */
+@media(max-width:1194px) and (orientation:landscape) and (max-height:600px){
+  nav{padding-top:max(7px,env(safe-area-inset-top));padding-bottom:7px}
+  nav.scrolled{padding-top:max(6px,env(safe-area-inset-top));padding-bottom:6px}
+  .logo img{height:42px}
+  .cinematic-hero{display:flex;align-items:flex-start;min-height:580px;padding:max(72px,calc(env(safe-area-inset-top) + 64px)) 0 max(52px,env(safe-area-inset-bottom))}
+  .cinematic-hero .hero-copy{max-width:min(72vw,660px)}
+  .cinematic-hero h1{font-size:clamp(36px,5.2vw,46px);line-height:.96;max-width:18ch}
+  .cinematic-hero .hero-sub{font-size:12.5px;line-height:1.5;max-width:64ch;margin-top:14px}
+  .cinematic-hero .hero-note{display:none}
+  .cinematic-hero .hero-actions{margin-top:14px;flex-direction:row}
+  .cinematic-hero .btn-primary,.cinematic-hero .btn-ghost{width:auto;min-height:46px;padding:12px 18px}
+  .hero-trust{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:680px}
+  .hero-trust>span{min-height:38px;padding:7px 10px;border-bottom:0;border-right:1px solid rgba(255,255,255,.08);font-size:8px}
+  .cinematic-veil-hero{background:linear-gradient(90deg,rgba(7,9,8,.95),rgba(7,9,8,.72) 52%,rgba(7,9,8,.18) 84%),
+    linear-gradient(180deg,rgba(7,9,8,.4),transparent 52%,rgba(7,9,8,.78))}
+
+  .positioning-film{min-height:650px}
+  .positioning-content{padding-top:102px;padding-bottom:46px;gap:24px}
+  .positioning-film .sec-title{font-size:clamp(36px,5.8vw,52px);max-width:19ch}
+  .positioning-film .sec-lead{font-size:13px;line-height:1.55;margin-top:11px;max-width:56ch}
+  .positioning-film .proof-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+  .ecosystem-section .wrap{padding:42px max(10px,env(safe-area-inset-left)) 42px max(10px,env(safe-area-inset-right))}
+  .ecosystem-stage{min-height:880px}
+  .ecosystem-copy{width:66%;padding:38px 44px}
+  .ecosystem-copy .sec-title{font-size:clamp(38px,5.7vw,58px)}
+  .ecosystem-project{grid-template-columns:1.25fr 1fr;left:42px;right:42px;bottom:34px}
+  .ecosystem-highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+  .concept-slide{height:620px;max-height:none}
+  .concept-copy p{font-size:12px;line-height:1.5;-webkit-line-clamp:2}
+  .concept-actions{margin-top:14px}
+  .concept-action{min-height:46px}
+  .concept-metrics{bottom:20px}
+  .concept-expanded-hero{min-height:560px}
+}
+
+@media(max-width:600px){
+  nav{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  .cinematic-hero{min-height:100svh;min-height:100dvh;padding-top:max(104px,calc(env(safe-area-inset-top) + 88px));
+    padding-bottom:max(76px,calc(env(safe-area-inset-bottom) + 58px))}
+  .cinematic-hero .hero-actions a,.ecosystem-actions a,.ecosystem-actions button,.concept-action{min-height:48px}
+  .presence-carousel{padding-bottom:max(88px,calc(env(safe-area-inset-bottom) + 64px))}
+  .concept-dialog-top{padding-top:env(safe-area-inset-top);height:calc(62px + env(safe-area-inset-top))}
+  .concept-dialog-close{min-width:48px;min-height:48px}
+  .ecosystem-media img{transform:translate3d(0,var(--eco-shift,0px),0) scale(1.08)}
+}
+
+@media(min-width:1800px){
+  .cinematic-hero .hero-inner,.positioning-content{max-width:1480px}
+  .cinematic-hero .hero-copy{max-width:760px}
+  .concept-slide{flex-basis:min(1380px,calc(100vw - 220px));height:min(830px,78vh)}
+  .ecosystem-stage{max-width:1480px;margin-inline:auto}
+}
+
+html[data-network="constrained"] .cinematic-video,
+html[data-network="constrained"] .concept-media video{transition-duration:.2s}
+html[data-capability="lite"] .ecosystem-snow::after{display:none}
+html[data-capability="lite"] .ecosystem-snow::before{opacity:.22}
+html[data-capability="lite"] .cinematic-veil,
+html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 </style>
 </head>
 <body>
@@ -900,10 +1014,13 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
 <!-- HERO -->
 <header class="hero cinematic-act cinematic-hero" id="top" data-cinematic-act="1">
   <figure class="cinematic-media cinematic-media-landscape" aria-label="Lago entre montanhas, uma paisagem que traduz amplitude, direção e presença">
-    <img class="cinematic-poster" src="assets/cinematic/presence-landscape.webp" alt="" width="1280" height="720" fetchpriority="high"/>
-    <video id="heroPrimaryVideo" class="cinematic-video" muted autoplay loop playsinline preload="metadata" poster="assets/cinematic/presence-landscape.webp" width="1280" height="720" aria-label="Travessia cinematográfica por um lago entre montanhas" disablepictureinpicture>
-      <source src="assets/cinematic/presence-landscape.mp4" type="video/mp4"/>
-    </video>
+    <picture class="adaptive-poster-picture">
+      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+      <img class="cinematic-poster" src="assets/cinematic/presence-landscape.webp" data-adaptive-poster="presence-landscape" alt="" width="1280" height="720" fetchpriority="high"/>
+    </picture>
+    <video id="heroPrimaryVideo" class="cinematic-video" data-media-key="presence-landscape" data-adaptive-priority="critical" muted autoplay loop playsinline preload="metadata" width="1280" height="720" aria-label="Travessia cinematográfica por um lago entre montanhas" disablepictureinpicture></video>
   </figure>
   <div class="cinematic-veil cinematic-veil-hero" aria-hidden="true"></div>
   <div class="hero-inner">
@@ -929,10 +1046,13 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
 <!-- POSICIONAMENTO -->
 <section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
   <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
-    <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" alt="" width="1280" height="720" loading="lazy"/>
-    <video id="positioningVideo" class="cinematic-video" muted autoplay loop playsinline preload="none" poster="assets/cinematic/engineering-drive.webp" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture>
-      <source src="assets/cinematic/engineering-drive.mp4" type="video/mp4"/>
-    </video>
+    <picture class="adaptive-poster-picture">
+      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-mobile-portrait.webp"/>
+      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-tablet-portrait.webp"/>
+      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/engineering-drive-landscape-sm.webp"/>
+      <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" data-adaptive-poster="engineering-drive" alt="" width="1280" height="720" loading="lazy"/>
+    </picture>
+    <video id="positioningVideo" class="cinematic-video" data-media-key="engineering-drive" muted autoplay loop playsinline preload="none" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture></video>
   </figure>
   <div class="cinematic-veil positioning-veil" aria-hidden="true"></div>
   <div class="wrap positioning-content">
@@ -1005,7 +1125,7 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
     </div>
     <div class="catalog-row" id="caseRow">
       <button class="card" data-modal="m-pires">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-pires.jpg" alt="Site da Pires Contabilidade"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-pires-640.webp" data-srcset="assets/cinematic/case-pires-640.webp 640w, assets/cinematic/case-pires-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Site da Pires Contabilidade" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Pires Contabilidade</span>
@@ -1015,7 +1135,7 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
         </div>
       </button>
       <button class="card" data-modal="m-paula">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-paula.jpg" alt="Site da fotógrafa Paula Guimarães"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimarães</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-paula-640.webp" data-srcset="assets/cinematic/case-paula-640.webp 640w, assets/cinematic/case-paula-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Site da fotógrafa Paula Guimarães" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimarães</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Paula Guimarães</span>
@@ -1025,7 +1145,7 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
         </div>
       </button>
       <button class="card" data-modal="m-memore">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-memore-live.jpg" alt="Loja do Ateliê Memoré"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Ateliê<br><span>Memoré</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-memore-640.webp" data-srcset="assets/cinematic/case-memore-640.webp 640w, assets/cinematic/case-memore-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Loja do Ateliê Memoré" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Ateliê<br><span>Memoré</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Ateliê Memoré</span>
@@ -1175,6 +1295,12 @@ html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow:
 
 <!-- CTA FINAL -->
 <section class="dark grain cta-final" id="contato">
+  <picture class="cta-atmosphere" aria-hidden="true">
+    <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+    <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+    <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+    <img src="assets/cinematic/presence-landscape.webp" alt="" width="1280" height="720" loading="lazy"/>
+  </picture>
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center"><span data-i18n="cta_eyebrow">Vamos construir o seu</span></div>
     <h2 class="sec-title" data-i18n="cta_title">Seu site já comunica algo sobre sua marca.</h2>
@@ -1288,7 +1414,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 
 /* LAZY IMG */
-const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
+const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.srcset)im.srcset=im.dataset.srcset;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
 /* MOTION POLICY V2 - uma unica fonte de verdade, geracao atomica e registry.
@@ -1570,6 +1696,152 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   window.__heroFrameMotionRefreshI18n=()=>setStatus(Motion.shouldReduceMotion()?'still':null);
 })();
 
+/* ADAPTIVE MEDIA: curated source, poster, crop and network policy per orientation. */
+const createAdaptiveSet=(base,desktopPosition='50% 50%')=>Object.freeze({
+  desktop:Object.freeze({
+    videoSrc:`assets/cinematic/${base}.mp4`,
+    posterSrc:`assets/cinematic/${base}.webp`,
+    width:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?720:1280,
+    height:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?1280:720,
+    objectPosition:desktopPosition,
+    fit:'cover'
+  }),
+  tabletPortrait:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-tablet-portrait.mp4`,
+    posterSrc:`assets/cinematic/${base}-tablet-portrait.webp`,
+    width:768,height:960,objectPosition:'50% 50%',fit:'cover'
+  }),
+  mobilePortrait:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-mobile-portrait.mp4`,
+    posterSrc:`assets/cinematic/${base}-mobile-portrait.webp`,
+    width:720,height:1280,objectPosition:'50% 50%',fit:'cover'
+  }),
+  landscapeSm:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-landscape-sm.mp4`,
+    posterSrc:`assets/cinematic/${base}-landscape-sm.webp`,
+    width:960,height:540,objectPosition:'50% 50%',fit:'cover'
+  })
+});
+
+const ADAPTIVE_MEDIA_SETS=Object.freeze({
+  'presence-landscape':createAdaptiveSet('presence-landscape','46% 50%'),
+  'engineering-drive':createAdaptiveSet('engineering-drive','55% 50%'),
+  'concept-terra-axis':createAdaptiveSet('concept-terra-axis','64% 50%'),
+  'concept-valle-fiori':createAdaptiveSet('concept-valle-fiori','54% 50%'),
+  'concept-cavallo-alto':createAdaptiveSet('concept-cavallo-alto','18% 50%'),
+  'concept-nativa-reserve':createAdaptiveSet('concept-nativa-reserve','50% 50%'),
+  'concept-sertao-prime':createAdaptiveSet('concept-sertao-prime','55% 50%'),
+  'concept-blue-sanctuary':createAdaptiveSet('concept-blue-sanctuary','50% 50%')
+});
+
+window.AdaptiveMedia=(function(){
+  const registry=new Set();
+  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection||null;
+  let refreshTimer=0;
+
+  function isConstrained(){
+    return Boolean(connection&&(connection.saveData||/^(slow-2g|2g)$/.test(connection.effectiveType||'')));
+  }
+  function profileName(){
+    const portrait=innerHeight>innerWidth;
+    if(portrait&&innerWidth<=600)return'mobilePortrait';
+    if(portrait&&innerWidth<=1024)return'tabletPortrait';
+    if(!portrait&&innerWidth<=1194)return'landscapeSm';
+    return'desktop';
+  }
+  function resolve(key){
+    const set=ADAPTIVE_MEDIA_SETS[key];
+    if(!set)return null;
+    const profile=profileName();
+    return{...set[profile],profile,key,constrained:isConstrained()};
+  }
+  function setPresentation(element,media){
+    if(!element||!media)return;
+    element.style.setProperty('--media-position',media.objectPosition);
+    element.style.setProperty('--media-fit',media.fit);
+  }
+  function load(video,preserveTime=0,resume=false){
+    if(!video||!video.dataset.src||window.BrunoMotion.shouldReduceMotion())return;
+    const source=new URL(video.dataset.src,document.baseURI).href;
+    if(video.currentSrc===source&&video.dataset.mediaLoaded==='true')return;
+    video.dataset.mediaLoaded='loading';
+    video.src=video.dataset.src;
+    video.load();
+    if(preserveTime>0){
+      video.addEventListener('loadedmetadata',()=>{
+        if(Number.isFinite(video.duration)&&video.duration>0)video.currentTime=Math.min(preserveTime,Math.max(0,video.duration-.12));
+        if(resume&&document.visibilityState==='visible'&&!window.BrunoMotion.shouldReduceMotion())video.play().catch(()=>{});
+      },{once:true});
+    }
+  }
+  function unload(video){
+    if(!video||!video.getAttribute('src'))return;
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    video.dataset.mediaLoaded='false';
+    video.removeAttribute('data-media-ready');
+  }
+  function apply(entry,force=false){
+    const media=resolve(entry.key);
+    if(!media)return;
+    const previous=entry.video.dataset.mediaProfile||'';
+    entry.video.dataset.src=media.videoSrc;
+    entry.video.dataset.mediaProfile=media.profile;
+    entry.video.poster=media.posterSrc;
+    entry.video.preload=media.constrained?'none':(entry.video.dataset.adaptivePriority==='critical'?'metadata':'none');
+    entry.video.width=media.width;
+    entry.video.height=media.height;
+    setPresentation(entry.video,media);
+    if(entry.poster){
+      if(entry.poster.getAttribute('src')!==media.posterSrc)entry.poster.src=media.posterSrc;
+      entry.poster.width=media.width;
+      entry.poster.height=media.height;
+      setPresentation(entry.poster,media);
+    }
+    if(!force&&previous===media.profile)return;
+    if(previous&&entry.video.dataset.mediaLoaded!=='false'&&entry.video.getAttribute('src')){
+      const time=entry.video.currentTime||0;
+      const resume=!entry.video.paused;
+      const keepWarm=resume||entry.video.dataset.activeMedia==='true'||entry.video.dataset.adaptivePriority==='critical';
+      if(keepWarm)load(entry.video,time,resume);else unload(entry.video);
+    }
+    entry.video.dispatchEvent(new CustomEvent('adaptiveprofilechange',{detail:media}));
+  }
+  function register(video,poster,key){
+    if(!video||!key)return null;
+    const existing=[...registry].find(entry=>entry.video===video);
+    if(existing){existing.poster=poster||existing.poster;apply(existing);return existing}
+    const entry={video,poster,key};
+    registry.add(entry);
+    video.dataset.mediaLoaded='false';
+    video.addEventListener('loadeddata',()=>video.dataset.mediaLoaded='true');
+    apply(entry,true);
+    return entry;
+  }
+  function refresh(){
+    registry.forEach(entry=>{
+      if(!entry.video.isConnected){registry.delete(entry);return}
+      apply(entry);
+    });
+    document.documentElement.dataset.network=isConstrained()?'constrained':'standard';
+    const memory=Number(navigator.deviceMemory||8);
+    const cores=Number(navigator.hardwareConcurrency||8);
+    document.documentElement.dataset.capability=memory<=4||cores<=4?'lite':'full';
+    dispatchEvent(new CustomEvent('adaptivemediarefresh',{detail:{profile:profileName(),constrained:isConstrained()}}));
+  }
+  function scheduleRefresh(){
+    clearTimeout(refreshTimer);
+    refreshTimer=setTimeout(refresh,160);
+  }
+  addEventListener('resize',scheduleRefresh,{passive:true});
+  addEventListener('orientationchange',scheduleRefresh,{passive:true});
+  if(window.visualViewport)visualViewport.addEventListener('resize',scheduleRefresh,{passive:true});
+  if(connection&&connection.addEventListener)connection.addEventListener('change',refresh);
+  refresh();
+  return{register,resolve,load,unload,refresh,isConstrained,profileName};
+})();
+
 /* CINEMATIC MEDIA: poster-first, viewport-aware and always muted */
 (function(){
   const items=[
@@ -1577,11 +1849,7 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
     {video:document.getElementById('positioningVideo'),root:document.querySelector('.positioning-film'),eager:false}
   ].filter(item=>item.video&&item.root);
   function load(item){
-    const video=item.video;
-    if(!video.currentSrc&&!video.querySelector('source')&&video.dataset.src){
-      video.src=video.dataset.src;
-      video.load();
-    }
+    window.AdaptiveMedia.load(item.video);
   }
   function play(item){
     load(item);
@@ -1590,9 +1858,12 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
     }
   }
   items.forEach(item=>{
+    const key=item.video.dataset.mediaKey;
+    const poster=item.root.querySelector(`[data-adaptive-poster="${key}"]`);
+    window.AdaptiveMedia.register(item.video,poster,key);
     item.video.addEventListener('loadeddata',()=>item.video.dataset.mediaReady='true');
     item.video.addEventListener('error',()=>{item.video.dataset.mediaError='true';item.video.removeAttribute('data-media-ready')});
-    if(item.eager)load(item);
+    if(item.eager&&!window.BrunoMotion.shouldReduceMotion())load(item);
   });
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
     const item=items.find(candidate=>candidate.root===entry.target);
@@ -1609,12 +1880,45 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   }));
 })();
 
+/* Frozen depth: restrained section-local parallax, with a premium static reduced-motion state. */
+(function(){
+  const section=document.getElementById('ecossistemas');
+  const stage=section?.querySelector('.ecosystem-stage');
+  if(!section||!stage)return;
+  let visible=false;
+  let raf=0;
+  function draw(){
+    raf=0;
+    if(!visible||window.BrunoMotion.shouldReduceMotion()){
+      stage.style.setProperty('--eco-shift','0px');
+      return;
+    }
+    const rect=section.getBoundingClientRect();
+    const span=innerHeight+rect.height;
+    const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/span));
+    const amplitude=innerWidth<=600?14:22;
+    stage.style.setProperty('--eco-shift',`${((progress-.5)*amplitude).toFixed(2)}px`);
+  }
+  function schedule(){
+    if(!raf)raf=requestAnimationFrame(draw);
+  }
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    visible=entry.isIntersecting;
+    schedule();
+  }),{rootMargin:'80px 0px'});
+  observer.observe(section);
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',schedule,{passive:true});
+  window.BrunoMotion.onChange(schedule);
+})();
+
 /**
  * @typedef {Object} SiteConcept
  * @property {string} id
  * @property {string} name
  * @property {string} variant
  * @property {{bg:string,accent:string,ink:string,soft:string}} theme
+ * @property {string} mediaKey
  * @property {string} videoSrc
  * @property {string} posterSrc
  * @property {{pt:string,en:string}} sector
@@ -1629,7 +1933,7 @@ const SITE_CONCEPTS=[
   {
     id:'terra-axis',name:'Terra Axis',variant:'axis',
     theme:{bg:'#07120e',accent:'#d5a64e',ink:'#f1eee5',soft:'#87b887'},
-    videoSrc:'assets/cinematic/concept-terra-axis.mp4',posterSrc:'assets/cinematic/concept-terra-axis.webp',
+    mediaKey:'concept-terra-axis',videoSrc:'assets/cinematic/concept-terra-axis.mp4',posterSrc:'assets/cinematic/concept-terra-axis.webp',
     sector:{pt:'Tecnologia para o agronegócio',en:'Technology for agribusiness'},
     headline:{pt:'A próxima safra começa antes da primeira máquina entrar no campo.',en:'The next harvest begins before the first machine enters the field.'},
     description:{pt:'Conectamos máquinas, dados e pessoas para transformar cada hectare em resultado. Planejamento inteligente, execução precisa e decisões em tempo real.',en:'We connect machines, data and people to turn every hectare into results. Intelligent planning, precise execution and real-time decisions.'},
@@ -1641,7 +1945,7 @@ const SITE_CONCEPTS=[
   {
     id:'valle-fiori',name:'Valle Fiori',variant:'fiori',
     theme:{bg:'#111b13',accent:'#c8a85d',ink:'#eee9dd',soft:'#77251f'},
-    videoSrc:'assets/cinematic/concept-valle-fiori.mp4',posterSrc:'assets/cinematic/concept-valle-fiori.webp',
+    mediaKey:'concept-valle-fiori',videoSrc:'assets/cinematic/concept-valle-fiori.mp4',posterSrc:'assets/cinematic/concept-valle-fiori.webp',
     sector:{pt:'Cultivo e experiência botânica',en:'Botanical cultivation and experience'},
     headline:{pt:'Existem lugares que não se visitam. Eles permanecem.',en:'Some places are not merely visited. They remain.'},
     description:{pt:'Valle Fiori é um refúgio botânico onde natureza, tempo e dedicação se encontram para criar algo raro. Um vale cultivado com propósito, beleza e respeito, para ser sentido em cada detalhe.',en:'Valle Fiori is a botanical refuge where nature, time and dedication meet to create something rare. A valley cultivated with purpose, beauty and respect, felt in every detail.'},
@@ -1653,7 +1957,7 @@ const SITE_CONCEPTS=[
   {
     id:'cavallo-alto',name:'Cavallo Alto',variant:'cavallo',
     theme:{bg:'#17100c',accent:'#c99a5a',ink:'#f2e8d8',soft:'#7b91a3'},
-    videoSrc:'assets/cinematic/concept-cavallo-alto.mp4',posterSrc:'assets/cinematic/concept-cavallo-alto.webp',
+    mediaKey:'concept-cavallo-alto',videoSrc:'assets/cinematic/concept-cavallo-alto.mp4',posterSrc:'assets/cinematic/concept-cavallo-alto.webp',
     sector:{pt:'Haras e experiência de território',en:'Horse farm and territory experience'},
     headline:{pt:'O caminho muda quando o destino é sentir.',en:'The path changes when the destination is to feel.'},
     description:{pt:'Cavallo Alto é um haras de montanha onde o tempo tem outro ritmo e cada detalhe existe para conectar você à natureza, ao cavalo e ao que realmente importa.',en:'Cavallo Alto is a mountain horse farm where time follows another rhythm and every detail connects you to nature, the horse and what truly matters.'},
@@ -1665,7 +1969,7 @@ const SITE_CONCEPTS=[
   {
     id:'nativa-reserve',name:'Nativa Reserve',variant:'nativa',
     theme:{bg:'#0a120d',accent:'#c7a45a',ink:'#efeee7',soft:'#50694f'},
-    videoSrc:'assets/cinematic/concept-nativa-reserve.mp4',posterSrc:'assets/cinematic/concept-nativa-reserve.webp',
+    mediaKey:'concept-nativa-reserve',videoSrc:'assets/cinematic/concept-nativa-reserve.mp4',posterSrc:'assets/cinematic/concept-nativa-reserve.webp',
     sector:{pt:'Conservação e vida selvagem',en:'Conservation and wildlife'},
     headline:{pt:'Há presenças que dependem da nossa escolha de permanecer.',en:'Some forms of life depend on our choice to remain.'},
     description:{pt:'Nativa Reserve protege habitats ameaçados e promove pesquisa, educação e turismo de baixo impacto. Cada visita, cada apoio e cada decisão consciente ajudam a manter a vida onde ela sempre pertenceu: na natureza.',en:'Nativa Reserve protects threatened habitats and promotes research, education and low-impact tourism. Every visit, support and conscious decision helps keep life where it has always belonged: in nature.'},
@@ -1677,7 +1981,7 @@ const SITE_CONCEPTS=[
   {
     id:'sertao-prime',name:'Grupo Sertão Prime',variant:'sertao',
     theme:{bg:'#1a0e08',accent:'#d08b35',ink:'#f3eadc',soft:'#8d5230'},
-    videoSrc:'assets/cinematic/concept-sertao-prime.mp4',posterSrc:'assets/cinematic/concept-sertao-prime.webp',
+    mediaKey:'concept-sertao-prime',videoSrc:'assets/cinematic/concept-sertao-prime.mp4',posterSrc:'assets/cinematic/concept-sertao-prime.webp',
     sector:{pt:'Pecuária, genética e escala',en:'Livestock, genetics and scale'},
     headline:{pt:'Resultado no campo não nasce do acaso.',en:'Results in the field are never accidental.'},
     description:{pt:'No Grupo Sertão Prime, genética de excelência, manejo inteligente e escala sustentável se unem para entregar produtividade consistente, rentabilidade e evolução contínua.',en:'At Grupo Sertão Prime, excellent genetics, intelligent management and sustainable scale unite to deliver consistent productivity, profitability and continuous evolution.'},
@@ -1689,7 +1993,7 @@ const SITE_CONCEPTS=[
   {
     id:'blue-sanctuary',name:'Blue Sanctuary',variant:'blue',
     theme:{bg:'#031626',accent:'#77d6ff',ink:'#eef9ff',soft:'#0b557c'},
-    videoSrc:'assets/cinematic/concept-blue-sanctuary.mp4',posterSrc:'assets/cinematic/concept-blue-sanctuary.webp',
+    mediaKey:'concept-blue-sanctuary',videoSrc:'assets/cinematic/concept-blue-sanctuary.mp4',posterSrc:'assets/cinematic/concept-blue-sanctuary.webp',
     sector:{pt:'Projeto marinho e experiência oceânica',en:'Marine project and ocean experience'},
     headline:{pt:'O oceano revela outro mundo quando aprendemos a entrar em silêncio.',en:'The ocean reveals another world when we learn to enter in silence.'},
     description:{pt:'Blue Sanctuary é um instituto dedicado à conservação marinha, pesquisa aplicada e experiências que conectam pessoas ao que realmente importa: proteger a vida, dentro e fora da água.',en:'Blue Sanctuary is an institute dedicated to marine conservation, applied research and experiences that connect people to what truly matters: protecting life in and out of the water.'},
@@ -1717,16 +2021,18 @@ window.ConceptGallery=(function(){
   let inView=false;
   let lastFocus=null;
   let playTimer=0;
+  let preloadTimer=0;
   const label=entry=>entry[language]||entry.pt;
   const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
   function slideTemplate(concept,position){
     const metrics=concept.metrics.slice(0,4).map(metric=>`<div class="concept-metric"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
+    const media=window.AdaptiveMedia.resolve(concept.mediaKey);
     return `<article class="concept-slide concept-${concept.variant}" data-model-id="${concept.id}" role="group" aria-roledescription="slide" aria-label="${esc(concept.name)}, ${position+1} de ${SITE_CONCEPTS.length}" style="--slide-bg:${concept.theme.bg};--slide-accent:${concept.theme.accent};--slide-ink:${concept.theme.ink}">
       <div class="concept-canvas">
         <figure class="concept-media">
-          <img src="${concept.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="1280" height="720" loading="${position===0?'eager':'lazy'}"/>
-          <video data-src="${concept.videoSrc}" poster="${concept.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, vídeo conceitual sem áudio" disablepictureinpicture></video>
+          <img src="${media.posterSrc}" data-adaptive-poster="${concept.mediaKey}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="${media.width}" height="${media.height}" loading="${position===0?'eager':'lazy'}" style="--media-position:${media.objectPosition};--media-fit:${media.fit}"/>
+          <video data-media-key="${concept.mediaKey}" data-src="${media.videoSrc}" data-active-media="${position===0?'true':'false'}" poster="${media.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, vídeo conceitual sem áudio" disablepictureinpicture style="--media-position:${media.objectPosition};--media-fit:${media.fit}"></video>
         </figure>
         <div class="concept-nav"><span class="concept-brand">${esc(concept.name)}</span><span class="concept-navline">${esc(label(concept.sector))} · 0${position+1}</span></div>
         <div class="concept-copy">
@@ -1747,6 +2053,9 @@ window.ConceptGallery=(function(){
   function render(){
     track.innerHTML=SITE_CONCEPTS.map(slideTemplate).join('');
     track.querySelectorAll('video').forEach(video=>{
+      const key=video.dataset.mediaKey;
+      const poster=video.closest('.concept-media').querySelector(`[data-adaptive-poster="${key}"]`);
+      window.AdaptiveMedia.register(video,poster,key);
       video.addEventListener('loadeddata',()=>video.dataset.mediaReady='true');
       video.addEventListener('error',()=>{video.dataset.mediaError='true';video.removeAttribute('data-media-ready')});
     });
@@ -1755,23 +2064,33 @@ window.ConceptGallery=(function(){
   }
 
   function loadVideo(video){
-    if(!video.src&&video.dataset.src){
-      video.src=video.dataset.src;
-      video.load();
-    }
+    window.AdaptiveMedia.load(video);
   }
   function syncPlayback(){
     const reduced=window.BrunoMotion.shouldReduceMotion();
     clearTimeout(playTimer);
+    clearTimeout(preloadTimer);
     playTimer=0;
+    preloadTimer=0;
     [...track.querySelectorAll('.concept-slide')].forEach((slide,i)=>{
       const video=slide.querySelector('video');
+      video.dataset.activeMedia=i===index?'true':'false';
       if(i===index){
         if(inView&&!reduced&&!dialog.open){
           playTimer=setTimeout(()=>{
             loadVideo(video);
             video.play().catch(()=>{});
           },1200);
+          if(!window.AdaptiveMedia.isConstrained()&&index<SITE_CONCEPTS.length-1){
+            preloadTimer=setTimeout(()=>{
+              const next=track.children[index+1]?.querySelector('video');
+              if(next){
+                next.preload='metadata';
+                loadVideo(next);
+                next.pause();
+              }
+            },2600);
+          }
         }else video.pause();
       }else{
         video.pause();
@@ -1809,10 +2128,34 @@ window.ConceptGallery=(function(){
     if(closest!==index){index=closest;update()}
   }
   let scrollRaf=0;
+  let dragState=null;
   track.addEventListener('scroll',()=>{
     cancelAnimationFrame(scrollRaf);
     scrollRaf=requestAnimationFrame(activeFromScroll);
   },{passive:true});
+  track.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='mouse'||event.button!==0||event.target.closest('button,a'))return;
+    dragState={id:event.pointerId,x:event.clientX,scrollLeft:track.scrollLeft,moved:false};
+    track.setPointerCapture(event.pointerId);
+    track.classList.add('is-dragging');
+  });
+  track.addEventListener('pointermove',event=>{
+    if(!dragState||event.pointerId!==dragState.id)return;
+    const delta=event.clientX-dragState.x;
+    if(Math.abs(delta)>3)dragState.moved=true;
+    track.scrollLeft=dragState.scrollLeft-delta;
+    if(dragState.moved)event.preventDefault();
+  });
+  function finishDrag(event){
+    if(!dragState||event.pointerId!==dragState.id)return;
+    const moved=dragState.moved;
+    dragState=null;
+    track.classList.remove('is-dragging');
+    if(track.hasPointerCapture(event.pointerId))track.releasePointerCapture(event.pointerId);
+    if(moved){activeFromScroll();requestAnimationFrame(()=>go(index,true))}
+  }
+  track.addEventListener('pointerup',finishDrag);
+  track.addEventListener('pointercancel',finishDrag);
   arrows.forEach(button=>button.addEventListener('click',()=>go(index+Number(button.dataset.presenceDir))));
   carousel.addEventListener('keydown',event=>{
     if(event.key==='ArrowRight'){event.preventDefault();go(index+1)}
@@ -1827,13 +2170,15 @@ window.ConceptGallery=(function(){
   observer.observe(carousel);
   window.BrunoMotion.onChange(syncPlayback);
   document.addEventListener('visibilitychange',syncPlayback);
+  addEventListener('adaptivemediarefresh',()=>requestAnimationFrame(()=>go(index,false)));
 
   function expandedTemplate(concept){
     const services=concept.features.map((feature,i)=>`<div class="concept-service"><span>0${i+1}</span><strong>${esc(label(feature))}</strong></div>`).join('');
     const proofs=concept.metrics.slice(0,3).map(metric=>`<div class="concept-proof"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
     const palette=concept.palette.map(color=>`<span class="concept-swatch" style="--swatch:${color}" title="${color}"></span>`).join('');
+    const media=window.AdaptiveMedia.resolve(concept.mediaKey);
     return `<section class="concept-expanded-hero">
-      <figure class="concept-expanded-media"><img src="${concept.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="1280" height="720"/></figure>
+      <figure class="concept-expanded-media"><img src="${media.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="${media.width}" height="${media.height}" style="object-position:${media.objectPosition};object-fit:${media.fit}"/></figure>
       <div class="concept-expanded-copy"><span class="concept-kicker">${esc(label(concept.sector))}</span><h2 id="conceptDialogTitle">${esc(concept.name)}</h2><p>${esc(label(concept.headline))}</p></div>
     </section>
     <section class="concept-expanded-grid">
