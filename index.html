@@ -71,7 +71,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
-body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+body{min-width:100vw;background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
 body.locked{overflow:hidden}
 h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 .mono{font-family:'JetBrains Mono',monospace}
@@ -453,6 +453,352 @@ html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video{tran
 html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+
+/* CINEMATIC HOME V2 */
+.cinematic-act{position:relative;isolation:isolate;overflow:hidden}
+.cinematic-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--void)}
+.cinematic-poster,.cinematic-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cinematic-poster{z-index:0}
+.cinematic-video{z-index:1;opacity:0;transition:opacity .9s var(--ease);background:transparent}
+.cinematic-video[data-media-ready="true"]{opacity:1}
+.cinematic-veil{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+.cinematic-hero{min-height:100vh;min-height:100dvh;display:grid;align-items:center;padding:112px 0 76px;background:var(--void)}
+.cinematic-hero::before{inset:86px clamp(18px,3.4vw,56px) 24px;border-radius:12px;border-color:rgba(216,179,104,.22);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)}
+.cinematic-hero::after{content:none}
+.cinematic-hero .cinematic-media{inset:0}
+.cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:center 52%;filter:saturate(.78) contrast(1.1) brightness(.68);transform:scale(1.015)}
+.cinematic-veil-hero{background:
+  linear-gradient(90deg,rgba(7,9,8,.97) 0%,rgba(7,9,8,.9) 30%,rgba(7,9,8,.45) 57%,rgba(7,9,8,.12) 74%,rgba(7,9,8,.5) 100%),
+  linear-gradient(180deg,rgba(7,9,8,.55),transparent 31%,rgba(7,9,8,.34) 70%,rgba(7,9,8,.94));
+  box-shadow:inset 0 -120px 180px rgba(0,0,0,.4)}
+.cinematic-hero .hero-inner{z-index:3}
+.cinematic-hero .hero-copy{max-width:min(56vw,720px)}
+.cinematic-hero .hero-eyebrow{color:var(--neon);letter-spacing:.035em;text-transform:none;font-weight:600}
+.cinematic-hero h1{font-size:clamp(48px,5.5vw,88px);max-width:17ch;line-height:.94;letter-spacing:-.025em;text-shadow:0 10px 46px rgba(0,0,0,.46)}
+.cinematic-hero .hero-sub{max-width:55ch;color:rgba(244,242,236,.82);font-weight:350}
+.cinematic-hero .hero-note{color:rgba(244,242,236,.64);max-width:51ch}
+.hero-trust{display:flex;align-items:stretch;gap:0;margin-top:30px;border-top:1px solid rgba(216,179,104,.2);max-width:720px}
+.hero-trust>span{display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 22px 10px 0;margin-right:22px;
+  border-right:1px solid rgba(255,255,255,.1);color:rgba(244,242,236,.62);font-size:9px;line-height:1.35;letter-spacing:.09em;text-transform:uppercase}
+.hero-trust>span:last-child{border-right:0;margin-right:0}
+.hero-trust b{color:var(--neon);font-size:17px;font-weight:400;text-shadow:0 0 14px rgba(168,255,96,.36)}
+.hero-signature{position:absolute;left:clamp(18px,4vw,56px);right:clamp(18px,4vw,56px);bottom:40px;z-index:3;
+  display:flex;justify-content:space-between;color:rgba(244,242,236,.46);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.cinematic-hero .hero-scroll{z-index:4;bottom:38px}
+
+.positioning-film{min-height:88vh;min-height:88dvh;display:flex;align-items:center;background:#080907}
+.positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:center 56%;filter:saturate(.64) contrast(1.16) brightness(.5);transform:scale(1.025)}
+.positioning-veil{background:
+  linear-gradient(90deg,rgba(8,9,7,.97) 0%,rgba(8,9,7,.88) 42%,rgba(8,9,7,.34) 72%,rgba(8,9,7,.66) 100%),
+  linear-gradient(180deg,var(--void),transparent 25%,transparent 72%,var(--void))}
+.positioning-content{z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.55fr);align-items:end;gap:clamp(38px,7vw,108px)}
+.positioning-copy{max-width:690px}
+.positioning-film .sec-title{font-size:clamp(36px,4.7vw,66px);max-width:15ch;line-height:1}
+.positioning-film .sec-lead{max-width:56ch;color:rgba(244,242,236,.68)}
+.positioning-film .proof-strip{display:grid;grid-template-columns:1fr;margin:0;padding:24px 0;border-top:1px solid rgba(216,179,104,.24);border-bottom:1px solid rgba(216,179,104,.24)}
+.positioning-film .proof-item{justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.positioning-film .proof-item:last-child{border-bottom:0}
+.positioning-film .proof-item .dot{order:2}
+
+.ecosystem-section{background:#090b0d}
+.ecosystem-section .wrap{padding-top:clamp(88px,10vw,150px);padding-bottom:clamp(88px,10vw,150px)}
+.ecosystem-stage{position:relative;min-height:820px;width:100%;border:1px solid rgba(138,169,192,.18);
+  background:#0b1014;color:var(--text-hi);text-align:left;overflow:hidden}
+.ecosystem-stage::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(60% 80% at 78% 20%,rgba(95,140,172,.2),transparent 64%),
+  linear-gradient(90deg,#0b1014 0%,rgba(11,16,20,.95) 35%,rgba(11,16,20,.54) 58%,rgba(11,16,20,.08) 84%)}
+.ecosystem-stage::after{content:'';position:absolute;inset:22px;z-index:3;pointer-events:none;border:1px solid rgba(217,231,239,.08)}
+.ecosystem-media{position:absolute;inset:0;z-index:0}
+.ecosystem-media img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.8) contrast(1.08);transition:transform .8s var(--ease),filter .8s var(--ease)}
+.ecosystem-stage:hover .ecosystem-media img{transform:scale(1.025);filter:saturate(.95) contrast(1.04)}
+.ecosystem-copy{position:relative;z-index:2;padding:clamp(48px,6vw,76px);width:min(72%,900px)}
+.ecosystem-copy .sec-title{font-size:clamp(40px,4.2vw,64px);line-height:.97;max-width:18ch}
+.ecosystem-copy .sec-lead{font-size:14px;line-height:1.7;max-width:54ch}
+.ecosystem-copy .badge{margin-bottom:24px}
+.ecosystem-title{font-size:clamp(44px,5.2vw,78px);line-height:.92;letter-spacing:-.025em;max-width:9ch}
+.ecosystem-title span{color:#93bad4}
+.ecosystem-copy p{margin-top:24px;color:rgba(230,238,242,.68);font-size:15px;line-height:1.72;max-width:46ch}
+.ecosystem-meta{margin-top:32px;display:flex;gap:8px 24px;flex-wrap:wrap;color:#b9d7e9;font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.ecosystem-open{width:min(100%,520px);margin-top:32px;padding:22px 0 0;border:0;border-top:1px solid rgba(147,186,212,.24);background:transparent;
+  display:grid;justify-items:start;text-align:left;color:var(--text-hi);cursor:pointer}
+.ecosystem-open .badge{margin-bottom:15px}
+.ecosystem-name{font:500 clamp(30px,3vw,46px)/1 'DM Serif Display',serif}
+.ecosystem-open .card-tag{margin-top:10px}
+.ecosystem-open .card-desc{margin-top:13px;max-width:48ch}
+.ecosystem-actions{display:flex;gap:26px;margin-top:22px;color:#b9d7e9;font-size:9px;font-weight:750;letter-spacing:.14em;text-transform:uppercase}
+
+.cases-stage .wrap{padding-top:clamp(90px,10vw,150px);padding-bottom:clamp(90px,10vw,150px)}
+.cases-stage .catalog-head{margin-bottom:44px}
+.cases-stage .catalog-row{gap:18px}
+.cases-stage .card{flex-basis:calc((100% - 36px)/3);min-width:330px;border-radius:10px;border-color:rgba(216,179,104,.14);box-shadow:none}
+.cases-stage .card:hover{transform:translateY(-4px);border-color:rgba(168,255,96,.28);box-shadow:0 8px 0 rgba(168,255,96,.04)}
+.cases-stage .card-cover{aspect-ratio:16/9}
+.cases-stage .card-body{padding:24px 26px 28px}
+.cases-stage .card-name{font-size:clamp(24px,2.2vw,31px)}
+.cases-stage .card-desc{max-width:46ch}
+.cnav:disabled{opacity:.28;cursor:not-allowed;border-color:rgba(216,179,104,.18)}
+
+.concept-gallery{--concept-bg:#10140e;--concept-accent:#d6b54f;--concept-soft:#c8d0bf;--concept-ink:#f4f2ec;
+  background:var(--concept-bg);color:var(--concept-ink);transition:background-color .7s var(--ease);overflow:hidden}
+.concept-gallery::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(70% 70% at 92% 8%,color-mix(in srgb,var(--concept-accent) 16%,transparent),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.2),transparent 25%,rgba(0,0,0,.32));opacity:.9}
+.concept-gallery .wrap{max-width:1440px;padding-inline:clamp(18px,3.5vw,52px)}
+.concept-intro{position:relative;z-index:2;padding-top:clamp(92px,10vw,150px);padding-bottom:56px}
+.concept-intro .sec-title{max-width:16ch;font-size:clamp(42px,5vw,74px)}
+.concept-intro-copy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,6vw,86px);margin-top:26px;max-width:1120px}
+.concept-intro-copy .sec-lead{margin:0;color:color-mix(in srgb,var(--concept-ink) 68%,transparent)}
+.concept-disclosure{margin-top:28px;padding-left:16px;border-left:2px solid var(--concept-accent);max-width:72ch;
+  color:color-mix(in srgb,var(--concept-ink) 54%,transparent);font-size:11px;line-height:1.6;letter-spacing:.04em}
+.presence-carousel{position:relative;z-index:2;padding:0 clamp(18px,3.5vw,52px) clamp(88px,9vw,130px)}
+.presence-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.48fr);gap:clamp(40px,8vw,120px);align-items:end;margin-bottom:44px}
+.presence-intro .sec-title{font-size:clamp(38px,4.5vw,68px);max-width:17ch}
+.presence-intro .sec-lead{color:color-mix(in srgb,var(--concept-ink) 68%,transparent);max-width:54ch}
+.presence-controls{display:grid;grid-template-columns:auto auto minmax(100px,1fr);align-items:center;gap:18px;margin-top:18px}
+.presence-nav{display:flex;gap:10px}
+.presence-nav button{width:48px;height:48px;border:1px solid color-mix(in srgb,var(--concept-accent) 44%,transparent);background:rgba(0,0,0,.14);
+  color:var(--concept-ink);font-size:18px;cursor:pointer;transition:background .2s,border-color .2s}
+.presence-nav button:hover{background:color-mix(in srgb,var(--concept-accent) 12%,transparent);border-color:var(--concept-accent)}
+.presence-nav button:disabled{opacity:.3;cursor:not-allowed}
+.presence-counter{font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:color-mix(in srgb,var(--concept-ink) 68%,transparent)}
+.presence-count{min-width:74px;color:var(--concept-ink);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em}
+.presence-arrow{width:48px;height:48px;border:1px solid color-mix(in srgb,var(--concept-accent) 45%,transparent);background:rgba(0,0,0,.12);
+  color:var(--concept-ink);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.presence-arrow:hover{background:color-mix(in srgb,var(--concept-accent) 13%,transparent);border-color:var(--concept-accent);transform:translateY(-1px)}
+.presence-arrow:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.presence-carousel{outline:none}
+.presence-carousel:focus-visible{outline:2px solid var(--concept-accent);outline-offset:8px}
+.presence-track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;padding:4px max(0px,calc((100vw - 1440px)/2)) 24px 0}
+.presence-track::-webkit-scrollbar{display:none}
+.concept-slide{--slide-accent:#d6b54f;--slide-bg:#10140e;--slide-ink:#f4f2ec;position:relative;isolation:isolate;overflow:hidden;
+  flex:0 0 min(1160px,calc(100vw - clamp(44px,9vw,136px)));height:clamp(620px,76vh,790px);scroll-snap-align:start;
+  background:var(--slide-bg);color:var(--slide-ink);border:1px solid color-mix(in srgb,var(--slide-accent) 30%,transparent);border-radius:10px}
+.concept-canvas{position:absolute;inset:0;isolation:isolate}
+.concept-media{position:absolute;z-index:0;overflow:hidden;background:#080908}
+.concept-media::after{content:'';position:absolute;inset:0;background:var(--media-overlay,linear-gradient(90deg,rgba(0,0,0,.75),transparent));pointer-events:none}
+.concept-media img,.concept-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.concept-media img{z-index:0}
+.concept-media video{z-index:1;opacity:0;transition:opacity .7s var(--ease)}
+.concept-media video[data-media-ready="true"]{opacity:1}
+.concept-media::after{z-index:2}
+.concept-nav{position:absolute;z-index:3;top:0;left:0;right:0;height:72px;padding:0 clamp(24px,3vw,44px);display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid color-mix(in srgb,var(--slide-ink) 14%,transparent)}
+.concept-brand{font-weight:750;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.concept-navline{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:color-mix(in srgb,var(--slide-ink) 60%,transparent)}
+.concept-copy{position:absolute;z-index:3}
+.concept-kicker{display:block;margin-bottom:18px;color:var(--slide-accent);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.concept-copy h3{font-size:clamp(42px,5vw,74px);line-height:.96;letter-spacing:-.025em;max-width:12ch;text-wrap:balance}
+.concept-copy p{margin-top:22px;max-width:48ch;font-size:14px;line-height:1.72;color:color-mix(in srgb,var(--slide-ink) 72%,transparent)}
+.concept-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.concept-action{min-height:46px;padding:0 20px;border:1px solid color-mix(in srgb,var(--slide-accent) 56%,transparent);background:transparent;
+  color:var(--slide-ink);font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.concept-action.primary{background:var(--slide-accent);border-color:var(--slide-accent);color:var(--slide-bg)}
+.concept-action:hover{border-color:var(--slide-ink)}
+.concept-action.primary:hover{background:var(--slide-ink);color:var(--slide-bg)}
+.concept-metrics{position:absolute;z-index:3;display:flex;gap:clamp(18px,3vw,42px)}
+.concept-metric strong{display:block;color:var(--slide-ink);font-size:15px;font-weight:650}
+.concept-metric span{display:block;margin-top:5px;color:color-mix(in srgb,var(--slide-ink) 52%,transparent);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.concept-motif{position:absolute;z-index:2;pointer-events:none}
+
+.concept-axis .concept-media,.concept-cavallo .concept-media,.concept-sertao .concept-media{inset:0}
+.concept-axis{--media-overlay:linear-gradient(90deg,rgba(7,12,7,.94) 0%,rgba(7,12,7,.72) 45%,rgba(7,12,7,.08) 76%)}
+.concept-axis .concept-copy{left:clamp(28px,5vw,76px);top:47%;transform:translateY(-45%);max-width:720px}
+.concept-axis .concept-copy h3{max-width:16ch}
+.concept-axis .concept-metrics{left:clamp(28px,5vw,76px);bottom:42px}
+.concept-axis .concept-motif{inset:100px 30px 80px auto;width:34%;border-top:1px solid color-mix(in srgb,var(--slide-accent) 40%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--slide-accent) 24%,transparent)}
+.concept-axis .concept-motif::before{content:'14° 29\\0027 S  ·  48° 17\\0027 W';position:absolute;right:0;top:-22px;
+  color:var(--slide-accent);font:9px 'JetBrains Mono',monospace;letter-spacing:.1em}
+
+.concept-fiori{background:var(--slide-bg)}
+.concept-fiori .concept-media{inset:0 0 0 42%}
+.concept-fiori .concept-media::after{background:linear-gradient(90deg,var(--slide-bg) 0%,transparent 24%),linear-gradient(0deg,rgba(62,7,12,.28),transparent 50%)}
+.concept-fiori .concept-copy{left:clamp(30px,5vw,76px);top:50%;transform:translateY(-44%);width:40%;color:var(--slide-ink)}
+.concept-fiori .concept-copy h3{font-size:clamp(42px,4.2vw,62px);max-width:14ch;font-style:italic;font-weight:500}
+.concept-fiori .concept-metrics{left:clamp(30px,5vw,76px);bottom:42px}
+.concept-fiori .concept-motif{left:calc(42% - 1px);top:72px;bottom:0;width:1px;background:var(--slide-accent)}
+
+.concept-cavallo{--media-overlay:linear-gradient(180deg,rgba(14,10,8,.22),rgba(14,10,8,.05) 35%,rgba(14,10,8,.91) 100%)}
+.concept-cavallo .concept-copy{left:clamp(30px,5vw,76px);bottom:105px;max-width:700px}
+.concept-cavallo .concept-copy h3{max-width:15ch}
+.concept-cavallo .concept-metrics{right:clamp(30px,4vw,62px);bottom:44px}
+.concept-cavallo .concept-motif{top:108px;right:42px;width:126px;height:126px;border:1px solid color-mix(in srgb,var(--slide-accent) 46%,transparent);border-radius:50%}
+.concept-cavallo .concept-motif::before,.concept-cavallo .concept-motif::after{content:'';position:absolute;background:var(--slide-accent);opacity:.65}
+.concept-cavallo .concept-motif::before{left:50%;top:-18px;width:1px;height:162px}
+.concept-cavallo .concept-motif::after{top:50%;left:-18px;height:1px;width:162px}
+
+.concept-nativa .concept-media{inset:0 56% 0 0}
+.concept-nativa .concept-media::after{background:linear-gradient(90deg,transparent 54%,var(--slide-bg) 100%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.54))}
+.concept-nativa .concept-copy{right:clamp(32px,5vw,78px);top:44%;transform:translateY(-47%);width:47%}
+.concept-nativa .concept-copy h3{font-weight:500}
+.concept-nativa .concept-metrics{right:clamp(32px,5vw,78px);bottom:42px;width:46%;justify-content:space-between}
+.concept-nativa .concept-motif{right:42px;top:94px;width:90px;height:1px;background:var(--slide-accent)}
+
+.concept-sertao{--media-overlay:linear-gradient(90deg,rgba(25,12,6,.9) 0%,rgba(25,12,6,.66) 43%,rgba(25,12,6,.08) 76%),
+  linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.66))}
+.concept-sertao .concept-copy{left:clamp(30px,5vw,76px);top:50%;transform:translateY(-43%);max-width:600px}
+.concept-sertao .concept-copy h3{font-family:'DM Serif Display',serif;font-weight:500;letter-spacing:-.025em}
+.concept-sertao .concept-metrics{left:clamp(30px,5vw,76px);right:clamp(30px,5vw,76px);bottom:0;padding:24px 0;border-top:1px solid color-mix(in srgb,var(--slide-ink) 18%,transparent)}
+.concept-sertao .concept-motif{right:48px;top:112px;color:var(--slide-accent);font:11px 'JetBrains Mono',monospace}
+.concept-sertao .concept-motif::before{content:'ORIGEM  /  MANEJO  /  CONTINUIDADE'}
+
+.concept-blue .concept-media{inset:0 0 0 54%}
+.concept-blue .concept-media::after{background:linear-gradient(90deg,var(--slide-bg) 0%,transparent 30%),linear-gradient(180deg,rgba(0,14,24,.08),rgba(0,14,24,.62))}
+.concept-blue .concept-copy{left:clamp(32px,5vw,78px);top:46%;transform:translateY(-47%);width:48%}
+.concept-blue .concept-copy h3{font-size:clamp(42px,4.2vw,62px);max-width:15ch;font-weight:500}
+.concept-blue .concept-metrics{left:clamp(32px,5vw,78px);bottom:42px}
+.concept-blue .concept-motif{right:calc(23% - 62px);top:50%;width:124px;height:124px;border:1px solid color-mix(in srgb,var(--slide-accent) 45%,transparent);
+  border-radius:50%;box-shadow:0 0 0 20px color-mix(in srgb,var(--slide-accent) 5%,transparent)}
+
+.presence-footer{display:grid;grid-template-columns:minmax(120px,1fr) auto;align-items:center;gap:24px;margin-top:18px}
+.presence-progress{height:1px;background:color-mix(in srgb,var(--concept-ink) 18%,transparent);overflow:hidden}
+.presence-progress span{display:block;width:16.666%;height:100%;background:var(--concept-accent);transform:translateX(var(--presence-progress-x,0%));
+  transition:transform .45s var(--ease),background .45s}
+.presence-status{font:10px 'JetBrains Mono',monospace;letter-spacing:.1em;color:color-mix(in srgb,var(--concept-ink) 58%,transparent)}
+
+.concept-dialog{width:100vw;max-width:none;height:100vh;height:100dvh;max-height:none;margin:0;border:0;padding:0;background:#090a09;color:#f4f2ec}
+.concept-dialog::backdrop{background:rgba(0,0,0,.86);backdrop-filter:blur(8px)}
+.concept-dialog-shell{min-height:100%;background:var(--dialog-bg,#10140e);color:var(--dialog-ink,#f4f2ec);overflow-x:hidden}
+.concept-dialog-top{position:sticky;top:0;z-index:20;height:72px;padding:0 clamp(18px,4vw,56px);display:flex;align-items:center;justify-content:space-between;
+  background:color-mix(in srgb,var(--dialog-bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 28%,transparent)}
+.concept-dialog-brand{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:750}
+.concept-dialog-close{width:44px;height:44px;border:1px solid color-mix(in srgb,var(--dialog-accent) 42%,transparent);background:transparent;color:var(--dialog-ink);
+  display:grid;place-items:center;cursor:pointer;font-size:18px}
+.concept-expanded-hero{position:relative;min-height:calc(82vh - 72px);min-height:calc(82dvh - 72px);display:grid;align-items:end;overflow:hidden}
+.concept-expanded-media{position:absolute;inset:0}
+.concept-expanded-media img{width:100%;height:100%;object-fit:cover}
+.concept-expanded-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--dialog-bg) 0%,color-mix(in srgb,var(--dialog-bg) 82%,transparent) 38%,transparent 76%),
+  linear-gradient(180deg,transparent 48%,var(--dialog-bg) 100%)}
+.concept-expanded-copy{position:relative;z-index:2;padding:clamp(48px,8vw,112px) clamp(18px,7vw,108px);max-width:860px}
+.concept-expanded-copy h2{font-size:clamp(46px,7vw,104px);line-height:.92;letter-spacing:-.03em;max-width:12ch}
+.concept-expanded-copy p{margin-top:22px;max-width:54ch;color:color-mix(in srgb,var(--dialog-ink) 72%,transparent);font-size:16px;line-height:1.72}
+.concept-expanded-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,8vw,120px);
+  padding:clamp(80px,10vw,150px) clamp(18px,7vw,108px);max-width:1500px;margin:0 auto}
+.concept-expanded-grid h3{font-size:clamp(32px,4vw,56px);line-height:1.02;letter-spacing:-.02em}
+.concept-expanded-grid p{margin-top:20px;color:color-mix(in srgb,var(--dialog-ink) 66%,transparent);font-size:15px;line-height:1.75}
+.concept-service-list{border-top:1px solid color-mix(in srgb,var(--dialog-accent) 28%,transparent)}
+.concept-service{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 20%,transparent)}
+.concept-service span{color:var(--dialog-accent);font:11px 'JetBrains Mono',monospace}
+.concept-service strong{font-size:16px;font-weight:620}
+.concept-proof-band{padding:clamp(60px,8vw,110px) clamp(18px,7vw,108px);background:color-mix(in srgb,var(--dialog-accent) 8%,var(--dialog-bg));
+  border-top:1px solid color-mix(in srgb,var(--dialog-accent) 22%,transparent);border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 22%,transparent)}
+.concept-proof-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.concept-proof strong{display:block;font-size:clamp(25px,3vw,42px);color:var(--dialog-ink)}
+.concept-proof span{display:block;margin-top:8px;color:color-mix(in srgb,var(--dialog-ink) 54%,transparent);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.concept-palette{display:flex;align-items:center;gap:8px;margin-top:34px}
+.concept-swatch{width:54px;height:12px;background:var(--swatch);border:1px solid color-mix(in srgb,var(--dialog-ink) 18%,transparent)}
+.concept-final{padding:clamp(80px,10vw,150px) clamp(18px,7vw,108px);text-align:center}
+.concept-final h3{max-width:18ch;margin:0 auto;font-size:clamp(38px,5vw,72px);line-height:1}
+.concept-final .concept-action{margin-top:32px}
+
+html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{display:none}
+
+@media(max-width:900px){
+  .cinematic-hero{display:grid;min-height:100vh;min-height:100dvh;padding:118px 0 92px}
+  .cinematic-hero::before{inset:76px 10px 16px;border-radius:10px}
+  .cinematic-hero .hero-inner{order:initial;padding-top:0}
+  .cinematic-hero .hero-copy{max-width:92%}
+  .cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:62% center}
+  .cinematic-veil-hero{background:linear-gradient(180deg,rgba(7,9,8,.75) 0%,rgba(7,9,8,.52) 28%,rgba(7,9,8,.7) 58%,rgba(7,9,8,.98) 100%)}
+  .cinematic-hero h1{font-size:clamp(42px,9vw,70px);max-width:13ch}
+  .cinematic-hero .hero-note{display:none}
+  .hero-trust{max-width:620px;flex-wrap:wrap}
+  .hero-trust>span{flex:1 1 170px}
+  .hero-signature{bottom:26px}
+  .cinematic-hero .hero-scroll{display:none}
+
+  .positioning-film{min-height:820px}
+  .positioning-content{grid-template-columns:1fr;align-items:end;gap:40px}
+  .positioning-veil{background:linear-gradient(180deg,rgba(8,9,7,.62),rgba(8,9,7,.74) 45%,rgba(8,9,7,.98) 100%)}
+  .positioning-film .proof-strip{grid-template-columns:1fr 1fr;gap:0 22px}
+
+  .ecosystem-stage{min-height:780px}
+  .ecosystem-media{inset:0}
+  .ecosystem-stage::before{background:linear-gradient(180deg,rgba(11,16,20,.14),rgba(11,16,20,.96) 70%)}
+  .ecosystem-copy{width:min(86%,640px);padding:42px 34px}
+
+  .concept-intro-copy{grid-template-columns:1fr;gap:18px}
+  .presence-controls{justify-content:flex-start}
+  .concept-slide{flex-basis:calc(100vw - 54px);height:min(790px,82vh)}
+  .concept-copy h3{font-size:clamp(38px,7vw,58px)}
+  .concept-navline{display:none}
+  .concept-fiori .concept-media,.concept-blue .concept-media{inset:0 0 0 36%}
+  .concept-fiori .concept-copy{width:48%}
+  .concept-nativa .concept-media{right:52%}
+  .concept-nativa .concept-copy{width:46%}
+  .concept-blue .concept-copy{width:48%}
+
+  .concept-expanded-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+  .cinematic-hero{padding:104px 0 76px}
+  .cinematic-hero .hero-copy{max-width:100%}
+  .cinematic-hero h1{font-size:clamp(39px,11.2vw,58px)}
+  .cinematic-hero .hero-sub{font-size:15px;line-height:1.6;margin-top:22px}
+  .cinematic-hero .hero-actions{margin-top:28px}
+  .cinematic-hero .btn-primary,.cinematic-hero .btn-ghost{width:100%}
+  .hero-trust{margin-top:22px}
+  .hero-trust>span{flex-basis:100%;min-height:40px;padding-block:8px;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hero-trust>span:last-child{border-bottom:0}
+  .hero-signature span:last-child{display:none}
+
+  .positioning-film{min-height:900px}
+  .positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:60% center}
+  .positioning-content{padding-top:112px;padding-bottom:70px}
+  .positioning-film .sec-title{font-size:clamp(38px,11vw,54px)}
+  .positioning-film .proof-strip{grid-template-columns:1fr}
+
+  .ecosystem-stage{min-height:780px}
+  .ecosystem-stage::after{inset:12px}
+  .ecosystem-copy{width:100%;padding:36px 24px}
+  .ecosystem-title{font-size:clamp(44px,13vw,62px)}
+
+  .cases-stage .catalog-head{align-items:flex-start;flex-direction:column}
+  .cases-stage .catalog-row{margin-right:-18px}
+  .cases-stage .card{flex-basis:calc(100vw - 48px)}
+
+  .concept-gallery .wrap{padding-inline:18px}
+  .concept-intro{padding-top:88px;padding-bottom:40px}
+  .concept-intro .sec-title{font-size:clamp(38px,11vw,52px)}
+  .presence-carousel{padding-inline:18px}
+  .presence-controls{grid-template-columns:auto auto 1fr}
+  .presence-track{margin-right:-18px;gap:14px;padding-right:18px}
+  .concept-slide{flex-basis:calc(100vw - 36px);height:760px;max-height:88vh;border-radius:8px}
+  .concept-nav{height:62px;padding-inline:20px}
+  .concept-media,.concept-axis .concept-media,.concept-cavallo .concept-media,.concept-sertao .concept-media,
+  .concept-fiori .concept-media,.concept-nativa .concept-media,.concept-blue .concept-media{inset:0}
+  .concept-media::after,.concept-fiori .concept-media::after,.concept-nativa .concept-media::after,.concept-blue .concept-media::after{
+    background:linear-gradient(180deg,rgba(0,0,0,.08) 22%,rgba(0,0,0,.38) 50%,var(--slide-bg) 100%)}
+  .concept-media img,.concept-media video{object-position:center}
+  .concept-nativa .concept-media img,.concept-nativa .concept-media video,.concept-blue .concept-media img,.concept-blue .concept-media video{object-fit:cover}
+  .concept-copy,.concept-axis .concept-copy,.concept-fiori .concept-copy,.concept-cavallo .concept-copy,
+  .concept-nativa .concept-copy,.concept-sertao .concept-copy,.concept-blue .concept-copy{
+    left:22px;right:22px;top:auto;bottom:116px;width:auto;max-width:none;transform:none;color:var(--slide-ink)}
+  .concept-copy h3{font-size:clamp(38px,11vw,52px);max-width:13ch}
+  .concept-copy p{font-size:13px;line-height:1.6;margin-top:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .concept-kicker{margin-bottom:12px}
+  .concept-actions{margin-top:20px}
+  .concept-action{min-height:44px;padding-inline:16px}
+  .concept-metrics,.concept-axis .concept-metrics,.concept-fiori .concept-metrics,.concept-cavallo .concept-metrics,
+  .concept-nativa .concept-metrics,.concept-sertao .concept-metrics,.concept-blue .concept-metrics{
+    left:22px;right:22px;bottom:24px;width:auto;padding:0;border:0;justify-content:space-between;gap:12px}
+  .concept-metric:nth-child(n+3){display:none}
+  .concept-motif{display:none}
+
+  .concept-dialog-top{height:62px}
+  .concept-expanded-hero{min-height:calc(86vh - 62px)}
+  .concept-expanded-media::after{background:linear-gradient(180deg,rgba(0,0,0,.08),var(--dialog-bg) 88%)}
+  .concept-expanded-copy{padding:48px 22px}
+  .concept-expanded-copy h2{font-size:clamp(46px,14vw,68px)}
+  .concept-expanded-grid,.concept-proof-band,.concept-final{padding-inline:22px}
+  .concept-proof-inner{grid-template-columns:1fr;gap:30px}
+  .concept-service{grid-template-columns:42px 1fr}
+}
 </style>
 </head>
 <body>
@@ -506,43 +852,49 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 </aside>
 
 <!-- HERO -->
-<header class="hero" id="top">
-  <figure class="hero-scene-media" aria-label="Cena autoral de Bruno trabalhando em um notebook e acompanhando uma notificacao no celular">
-    <video id="heroMotionVideo" class="hero-scene-video hero-frame-video" muted playsinline preload="auto" poster="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" width="1444" height="1080" aria-label="Cena cinematográfica de Bruno trabalhando em um notebook e acompanhando uma notificação no celular" disablepictureinpicture>
-      <source media="(max-width: 900px)" src="assets/hero/bruno-hero-cinematic-v4-mobile.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
-      <source src="assets/hero/bruno-hero-cinematic-v4-desktop.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
+<header class="hero cinematic-act cinematic-hero" id="top" data-cinematic-act="1">
+  <figure class="cinematic-media cinematic-media-landscape" aria-label="Lago entre montanhas, uma paisagem que traduz amplitude, direção e presença">
+    <img class="cinematic-poster" src="assets/cinematic/presence-landscape.webp" alt="" width="1280" height="720" fetchpriority="high"/>
+    <video id="heroPrimaryVideo" class="cinematic-video" muted autoplay loop playsinline preload="metadata" poster="assets/cinematic/presence-landscape.webp" width="1280" height="720" aria-label="Travessia cinematográfica por um lago entre montanhas" disablepictureinpicture>
+      <source src="assets/cinematic/presence-landscape.mp4" type="video/mp4"/>
     </video>
-    <span class="hero-scene-vignette" aria-hidden="true"></span>
   </figure>
-    <div class="hero-frame-motion" role="region" aria-label="Frame motion do hero" tabindex="0">
-      <span class="hero-frame-rail" role="progressbar" aria-label="Progresso da cena" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12"></span>
-      <span class="hero-frame-status" aria-live="polite" data-i18n="hero_frame_hint">Mova o cursor para explorar</span>
-    </div>
+  <div class="cinematic-veil cinematic-veil-hero" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-copy hero-copy-rebuilt">
-      <div class="hero-copy-live">
-        <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Direção de arte, engenharia e percepção de valor</span></div>
-        <h1 data-i18n="hero2_title">Sites com presen&ccedil;a real.<br>N&atilde;o apar&ecirc;ncia de <span class="ai-mark">IA.</span></h1>
-        <p class="hero-sub" data-i18n="hero2_sub">Sites ultrarrealistas, cinematográficos e seguros para marcas que precisam transmitir valor, confiança e autoridade antes mesmo do primeiro contato.</p>
-        <p class="hero-note" data-i18n="hero2_note">Antes de alguém pedir uma proposta, essa pessoa já sentiu algo sobre a sua marca. Eu desenho essa primeira percepção com direção de arte, copy, tecnologia e segurança trabalhando juntas para transformar visita em confiança, e confiança em decisão.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="#contato" data-i18n="hero2_cta1">Solicitar diagn&oacute;stico &rarr;</a>
-          <a class="btn-ghost" href="#cases" data-i18n="hero2_cta2">Ver projetos no ar &rarr;</a>
-        </div>
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Direção de arte, engenharia e percepção de valor</span></div>
+      <h1 data-i18n="hero2_title">Sites com<br>presença real.<br>Não aparência de <span class="ai-mark">IA.</span></h1>
+      <p class="hero-sub" data-i18n="hero2_sub">Sites ultrarrealistas, cinematográficos e seguros para marcas que precisam transmitir valor, confiança e autoridade antes mesmo do primeiro contato.</p>
+      <p class="hero-note" data-i18n="hero2_note">Antes de alguém pedir uma proposta, essa pessoa já sentiu algo sobre a sua marca. Eu desenho essa primeira percepção com direção de arte, copy, tecnologia e segurança trabalhando juntas para transformar visita em confiança, e confiança em decisão.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contato"><span data-i18n="hero2_cta1">Solicitar diagnóstico</span> <span aria-hidden="true">&rarr;</span></a>
+        <a class="btn-ghost" href="#cases"><span data-i18n="hero2_cta2">Ver projetos no ar</span> <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="hero-trust" aria-label="Compromissos da entrega">
+        <span><b aria-hidden="true">◇</b><span data-i18n="hero_trust_1">Sites seguros e blindados</span></span>
+        <span><b aria-hidden="true">↯</b><span data-i18n="hero_trust_2">Performance cinematográfica</span></span>
+        <span><b aria-hidden="true">□</b><span data-i18n="hero_trust_3">Privacidade e conformidade</span></span>
       </div>
     </div>
   </div>
-  <div class="hero-scroll"><span data-i18n="scroll">Role</span><span class="line"></span></div>
+  <div class="hero-scroll"><span data-i18n="scroll">Role para entrar</span><span class="line"></span></div>
 </header>
 
 <!-- POSICIONAMENTO -->
-<section class="dark position grain">
-  <div class="wrap">
-    <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
-    <h2 class="sec-title" data-i18n="pos_title">Página bonita qualquer ferramenta entrega.<br><span class="title-accent">Presença, não.</span></h2>
-    <p class="sec-lead" data-i18n="pos_lead1">O que muda a decisão de compra não é só estética. É a sensação de que existe critério, estratégia e valor por trás de cada detalhe.</p>
-    <p class="sec-lead" data-i18n="pos_lead2">Eu construo sites com o mesmo padrão que aplico nos meus próprios produtos: direção visual, narrativa, prova, tecnologia e segurança em uma entrega única, feita para marcas que não querem parecer comuns.</p>
-    <div class="proof-strip">
+<section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
+  <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
+    <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" alt="" width="1280" height="720" loading="lazy"/>
+    <video id="positioningVideo" class="cinematic-video" data-src="assets/cinematic/engineering-drive.mp4" muted autoplay loop playsinline preload="none" poster="assets/cinematic/engineering-drive.webp" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture></video>
+  </figure>
+  <div class="cinematic-veil positioning-veil" aria-hidden="true"></div>
+  <div class="wrap positioning-content">
+    <div class="positioning-copy">
+      <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
+      <h2 class="sec-title" data-i18n="pos_title">Página bonita qualquer ferramenta entrega.<br><span class="title-accent">Presença, não.</span></h2>
+      <p class="sec-lead" data-i18n="pos_lead1">O que muda a decisão de compra não é só estética. É a sensação de que existe critério, estratégia e valor por trás de cada detalhe.</p>
+      <p class="sec-lead" data-i18n="pos_lead2">Eu construo sites com o mesmo padrão que aplico nos meus próprios produtos: direção visual, narrativa, prova, tecnologia e segurança em uma entrega única, feita para marcas que não querem parecer comuns.</p>
+    </div>
+    <div class="proof-strip" aria-label="Provas de execução">
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p1s">Produto próprio no ar</span></span>
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p2s">Cases reais publicados</span></span>
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p3s">Clientes ativos</span></span>
@@ -552,36 +904,31 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 </section>
 
 <!-- ECOSSISTEMAS -->
-<section class="dark grain" id="ecossistemas">
+<section class="dark grain cinematic-act ecosystem-section" id="ecossistemas" data-cinematic-act="3">
   <div class="wrap">
-    <div class="catalog-head">
-      <div>
+    <div class="ecosystem-stage">
+      <div class="ecosystem-copy">
         <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
         <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
         <p class="sec-lead" data-i18n="eco_lead">Nem todo site precisa ser apenas uma vitrine. Alguns projetos precisam de profundidade, atmosfera, interação e sensação de universo próprio. Foi assim com The Frozen Legacy: um ecossistema transmídia com 3D em tempo real, experiência bilíngue, narrativa contínua e presença digital autoral.</p>
-      </div>
-      <div class="catalog-nav">
-        <button class="cnav" data-row="ecoRow" data-dir="-1" aria-label="Anterior">‹</button>
-        <button class="cnav" data-row="ecoRow" data-dir="1" aria-label="Próximo">›</button>
-      </div>
-    </div>
-    <div class="catalog-row" id="ecoRow">
-      <button class="card" data-modal="m-vakon">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-vakon.jpg" alt="The Frozen Legacy, universo Vakon"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div></div>
-        <div class="card-body">
+        <button class="ecosystem-open" type="button" data-modal="m-vakon">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="card-name">The Frozen Legacy</span>
+          <span class="ecosystem-name">The Frozen Legacy</span>
           <span class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="vakon_desc">Um projeto autoral que une narrativa, tecnologia e experiência visual para transformar uma marca em universo.</span>
-          <span class="card-more" data-i18n="more">Abrir dossiê</span>
-        </div>
-      </button>
+          <span class="card-desc" data-i18n="vakon_desc">Um projeto autoral que une narrativa, tecnologia e experiência visual para transformar uma marca em um universo vivo.</span>
+          <span class="ecosystem-actions"><span data-i18n="vakon_enter">Entrar no universo</span><span data-i18n="vakon_know">Conhecer o projeto</span></span>
+        </button>
+      </div>
+      <figure class="ecosystem-media">
+        <img src="assets/cover-vakon.jpg" alt="Cidade glacial de The Frozen Legacy sob uma lua monumental" width="1280" height="720" loading="lazy"/>
+      </figure>
+      <div class="ecosystem-rail" aria-hidden="true">Design · envolvimento · autoral</div>
     </div>
   </div>
 </section>
 
 <!-- CASES -->
-<section class="dark grain" id="cases">
+<section class="dark grain cinematic-act cases-stage" id="cases" data-cinematic-act="4">
   <div class="wrap">
     <div class="catalog-head">
       <div>
@@ -601,7 +948,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Pires Contabilidade</span>
           <span class="card-tag" data-i18n="pires_tag">Serviços profissionais</span>
-          <span class="card-desc" data-i18n="pires_desc">Contabilidade apresentada como consultoria séria, moderna e confiável. Uma presença digital criada para transmitir organização, autoridade e valor antes da primeira reunião.</span>
+          <span class="card-desc" data-i18n="pires_desc">Consultoria contábil séria, moderna e confiável. Um site que transmite organização, autoridade e valor desde o primeiro contato.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -611,7 +958,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Paula Guimarães</span>
           <span class="card-tag" data-i18n="paula_tag">Fotografia · Alto padrão</span>
-          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial para uma fotógrafa de alto posicionamento. A experiência visual comunica gosto, cuidado e percepção de agenda disputada.</span>
+          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial para fotógrafa de alto posicionamento. Design elegante que valoriza o olhar, a experiência e o desejo.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -621,7 +968,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Ateliê Memoré</span>
           <span class="card-tag" data-i18n="memore_tag">Comércio · Marca artesanal</span>
-          <span class="card-desc" data-i18n="memore_desc">Uma marca autoral apresentada com mais cuidado, identidade e estrutura de compra. O objetivo: vender sem parecer improvisada.</span>
+          <span class="card-desc" data-i18n="memore_desc">Marca autoral apresentada com identidade, sensibilidade e estrutura completa para vender com clareza.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -629,110 +976,27 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
   </div>
 </section>
 
-<!-- MODELOS DISPONIVEIS -->
-<section class="light alt" id="modelos">
-  <div class="wrap">
-    <div class="eyebrow"><span data-i18n="models_eyebrow">Modelos para visualizar valor</span></div>
-    <h2 class="sec-title" data-i18n="models_title">Referências autorais para quem já sabe que precisa mudar de patamar.</h2>
-    <p class="sec-lead" data-i18n="models_lead">Cada modelo mostra uma direção possível de presença digital: imagem, estrutura, tom, experiência e percepção de valor. Os nomes, imagens e informações foram adaptados para preservar privacidade e permitir que você visualize possibilidades sem expor dados reais de clientes.</p>
-    <p class="sec-lead" data-i18n="models_lead2">Você escolhe a atmosfera. Eu adapto a proposta ao seu nicho, à sua oferta e ao nível de confiança que sua marca precisa transmitir.</p>
-
-    <div class="models-grid">
-      <div class="card" data-model-id="model_ecommerce_artisanal" data-model-name="Artisan Shop" data-model-niche="E-commerce artesanal / loja autoral">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/artisan-shop-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/artisan-shop-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/artisan-shop-premium.jpg" alt="Prévia visual do modelo Artisan Shop: vitrine de e-commerce artesanal sofisticada" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Artisan Shop</span>
-          <span class="card-tag" data-i18n="model_artisan_tag">E-commerce artesanal · Loja autoral</span>
-          <span class="card-desc" data-i18n="model_artisan_desc">Para marcas autorais que precisam vender com mais percepção de valor: vitrine elegante, narrativa de produto e compra direta em um ambiente próprio.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-artisan-shop" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
+<!-- DIRECOES AUTORAIS -->
+<section class="dark cinematic-act concept-gallery" id="modelos" data-cinematic-act="5" data-active-concept="terra-axis">
+  <div class="concept-intro wrap">
+    <div class="eyebrow"><span data-i18n="models_eyebrow">Direções autorais para diferentes mercados</span></div>
+    <h2 class="sec-title" data-i18n="models_title">Seu segmento não precisa parecer igual a todos os outros.</h2>
+    <div class="concept-intro-copy">
+      <p class="sec-lead" data-i18n="models_lead">Cada direção abaixo nasce de uma atmosfera, uma estratégia e uma intenção comercial diferentes. O vídeo não entra como decoração. Ele define ritmo, narrativa, hierarquia e percepção de valor.</p>
+      <p class="sec-lead" data-i18n="models_lead2">Explore possibilidades criadas para mostrar como uma marca pode assumir presença própria quando design, conteúdo e tecnologia trabalham na mesma direção.</p>
+    </div>
+    <p class="concept-disclosure" data-i18n="models_disclosure">Os projetos apresentados a seguir são conceitos autorais demonstrativos e não representam clientes reais.</p>
+  </div>
+  <div class="presence-carousel" role="region" aria-roledescription="carrossel" aria-label="Direções autorais de sites por mercado" tabindex="0">
+    <div class="presence-track" id="presenceTrack"></div>
+    <div class="presence-controls">
+      <div class="presence-nav">
+        <button type="button" data-presence-dir="-1" aria-controls="presenceTrack" aria-label="Conceito anterior">&larr;</button>
+        <button type="button" data-presence-dir="1" aria-controls="presenceTrack" aria-label="Próximo conceito">&rarr;</button>
       </div>
-
-      <div class="card" data-model-id="model_photo_editorial" data-model-name="Editorial Photo Studio" data-model-niche="Fotografia premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/editorial-photo-studio-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/editorial-photo-studio-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/editorial-photo-studio-premium.jpg" alt="Prévia visual do modelo Editorial Photo Studio: portfólio fotográfico editorial de alto padrão" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Editorial Photo Studio</span>
-          <span class="card-tag" data-i18n="model_photo_tag">Fotografia · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_photo_desc">Para fotógrafos, estúdios e marcas pessoais que vendem estética, experiência e confiança. Um portfólio com atmosfera editorial, ritmo visual e percepção de agenda desejada.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-editorial-photo-studio" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_accounting_executive" data-model-name="Executive Accounting" data-model-niche="Contabilidade / consultoria empresarial">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/executive-accounting-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/executive-accounting-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/executive-accounting-premium.jpg" alt="Prévia visual do modelo Executive Accounting: painel financeiro executivo e consultivo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Executive Accounting</span>
-          <span class="card-tag" data-i18n="model_acc_tag">Contabilidade · Consultoria</span>
-          <span class="card-desc" data-i18n="model_acc_desc">Para serviços profissionais que vendem confiança. Linguagem sóbria, método visível e autoridade sem parecer uma empresa genérica de internet.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-executive-accounting" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_fantasy_universe" data-model-name="Fantasy Universe" data-model-niche="Universo autoral / entretenimento">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/fantasy-universe-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/fantasy-universe-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/fantasy-universe-premium.jpg" alt="Prévia visual do modelo Fantasy Universe: portal cinematográfico para universo autoral" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge live"><span class="dot"></span><span data-i18n="models_badge_live">Produto próprio · no ar</span></span>
-          <span class="card-name">Fantasy Universe</span>
-          <span class="card-tag" data-i18n="model_fantasy_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="model_fantasy_desc">Para produtos, comunidades, livros, games e projetos autorais que precisam parecer vivos. Narrativa, profundidade visual e tecnologia trabalhando como um só sistema.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-fantasy-universe" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note_live">Produto autoral próprio, sem cliente terceiro envolvido.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_real_estate_luxury" data-model-name="Luxury Estate" data-model-niche="Imobiliário alto padrão">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/luxury-estate-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/luxury-estate-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/luxury-estate-premium.jpg" alt="Prévia visual do modelo Luxury Estate: arquitetura contemporânea e vitrine imobiliária de luxo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge_template">Base autoral</span></span>
-          <span class="card-name">Luxury Estate</span>
-          <span class="card-tag" data-i18n="model_luxury_tag">Imobiliário · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_luxury_desc">Para imóveis, arquitetura e empreendimentos que precisam ser percebidos com valor antes da visita. Imagem forte, ficha objetiva e caminho claro até o atendimento.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-luxury-estate" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_agro_premium" data-model-name="Agro Prime" data-model-niche="Agronegócio premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/agro-prime-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/agro-prime-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/agro-prime-premium.jpg" alt="Prévia visual do modelo Agro Prime: agro de alto valor com horizonte rural e interface premium" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Agro Prime</span>
-          <span class="card-tag" data-i18n="model_agro_tag">Agropecuária · Pecuária premium</span>
-          <span class="card-desc" data-i18n="model_agro_desc">Para fazendas, leilões e marcas do agro que precisam unir tradição, prova técnica e presença digital de alto valor.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-agro-prime" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
+      <div class="presence-counter"><span id="presenceCurrent">01</span><span aria-hidden="true">/</span><span>06</span></div>
+      <div class="presence-progress" data-presence-progress aria-hidden="true"><span id="presenceProgress"></span></div>
+      <p class="sr-only presence-status" id="presenceStatus" data-presence-status aria-live="polite">01 / 6 · Terra Axis</p>
     </div>
   </div>
 </section>
@@ -906,6 +1170,17 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
     </div>
   </div>
 </div>
+
+<!-- EXPERIENCIA CONCEITUAL EXPANDIDA -->
+<dialog class="concept-dialog" id="conceptDialog" aria-labelledby="conceptDialogTitle">
+  <div class="concept-dialog-shell" id="conceptDialogShell">
+    <div class="concept-dialog-top">
+      <span class="concept-dialog-brand" id="conceptDialogBrand">Direção autoral</span>
+      <button class="concept-dialog-close" id="conceptDialogClose" type="button" aria-label="Fechar experiência expandida">✕</button>
+    </div>
+    <div id="conceptDialogContent"></div>
+  </div>
+</dialog>
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -1233,8 +1508,330 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   window.__heroFrameMotionRefreshI18n=()=>setStatus(Motion.shouldReduceMotion()?'still':null);
 })();
 
+/* CINEMATIC MEDIA: poster-first, viewport-aware and always muted */
+(function(){
+  const items=[
+    {video:document.getElementById('heroPrimaryVideo'),root:document.getElementById('top'),eager:true},
+    {video:document.getElementById('positioningVideo'),root:document.querySelector('.positioning-film'),eager:false}
+  ].filter(item=>item.video&&item.root);
+  function load(item){
+    const video=item.video;
+    if(!video.currentSrc&&!video.querySelector('source')&&video.dataset.src){
+      video.src=video.dataset.src;
+      video.load();
+    }
+  }
+  function play(item){
+    load(item);
+    if(!window.BrunoMotion.shouldReduceMotion()&&document.visibilityState==='visible'){
+      item.video.play().catch(()=>{});
+    }
+  }
+  items.forEach(item=>{
+    item.video.addEventListener('loadeddata',()=>item.video.dataset.mediaReady='true');
+    item.video.addEventListener('error',()=>{item.video.dataset.mediaError='true';item.video.removeAttribute('data-media-ready')});
+    if(item.eager)load(item);
+  });
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    const item=items.find(candidate=>candidate.root===entry.target);
+    if(!item)return;
+    item.visible=entry.isIntersecting&&entry.intersectionRatio>.12;
+    if(item.visible)play(item);else item.video.pause();
+  }),{threshold:[0,.12,.45],rootMargin:'120px 0px'});
+  items.forEach(item=>observer.observe(item.root));
+  window.BrunoMotion.onChange(reduced=>items.forEach(item=>{
+    if(reduced)item.video.pause();else if(item.visible)play(item);
+  }));
+  document.addEventListener('visibilitychange',()=>items.forEach(item=>{
+    if(document.hidden)item.video.pause();else if(item.visible)play(item);
+  }));
+})();
+
+/**
+ * @typedef {Object} SiteConcept
+ * @property {string} id
+ * @property {string} name
+ * @property {string} variant
+ * @property {{bg:string,accent:string,ink:string,soft:string}} theme
+ * @property {string} videoSrc
+ * @property {string} posterSrc
+ * @property {{pt:string,en:string}} sector
+ * @property {{pt:string,en:string}} headline
+ * @property {{pt:string,en:string}} description
+ * @property {{pt:string,en:string}[]} ctas
+ * @property {{pt:string,en:string}[]} features
+ * @property {{value:string,pt:string,en:string}[]} metrics
+ * @property {string[]} palette
+ */
+const SITE_CONCEPTS=[
+  {
+    id:'terra-axis',name:'Terra Axis',variant:'axis',
+    theme:{bg:'#07120e',accent:'#d5a64e',ink:'#f1eee5',soft:'#87b887'},
+    videoSrc:'assets/cinematic/concept-terra-axis.mp4',posterSrc:'assets/cinematic/concept-terra-axis.webp',
+    sector:{pt:'Tecnologia para o agronegócio',en:'Technology for agribusiness'},
+    headline:{pt:'A próxima safra começa antes da primeira máquina entrar no campo.',en:'The next harvest begins before the first machine enters the field.'},
+    description:{pt:'Conectamos máquinas, dados e pessoas para transformar cada hectare em resultado. Planejamento inteligente, execução precisa e decisões em tempo real.',en:'We connect machines, data and people to turn every hectare into results. Intelligent planning, precise execution and real-time decisions.'},
+    ctas:[{pt:'Conhecer a operação',en:'Explore the operation'},{pt:'Falar com um especialista',en:'Talk to a specialist'}],
+    features:[{pt:'Inteligência de safra',en:'Harvest intelligence'},{pt:'Telemetria conectada',en:'Connected telemetry'},{pt:'Planejamento operacional',en:'Operational planning'},{pt:'Decisão em tempo real',en:'Real-time decisions'}],
+    metrics:[{value:'2,8M+',pt:'Hectares monitorados',en:'Hectares monitored'},{value:'98,7%',pt:'Precisão operacional',en:'Operational precision'},{value:'7,2 t/ha',pt:'Produtividade média',en:'Average productivity'},{value:'1.247',pt:'Telemetria ativa',en:'Active telemetry'}],
+    palette:['#07120e','#173c2c','#d5a64e','#f1eee5']
+  },
+  {
+    id:'valle-fiori',name:'Valle Fiori',variant:'fiori',
+    theme:{bg:'#111b13',accent:'#c8a85d',ink:'#eee9dd',soft:'#77251f'},
+    videoSrc:'assets/cinematic/concept-valle-fiori.mp4',posterSrc:'assets/cinematic/concept-valle-fiori.webp',
+    sector:{pt:'Cultivo e experiência botânica',en:'Botanical cultivation and experience'},
+    headline:{pt:'Existem lugares que não se visitam. Eles permanecem.',en:'Some places are not merely visited. They remain.'},
+    description:{pt:'Valle Fiori é um refúgio botânico onde natureza, tempo e dedicação se encontram para criar algo raro. Um vale cultivado com propósito, beleza e respeito, para ser sentido em cada detalhe.',en:'Valle Fiori is a botanical refuge where nature, time and dedication meet to create something rare. A valley cultivated with purpose, beauty and respect, felt in every detail.'},
+    ctas:[{pt:'Descobrir o vale',en:'Discover the valley'},{pt:'Planejar uma experiência',en:'Plan an experience'}],
+    features:[{pt:'Cultivo responsável',en:'Responsible cultivation'},{pt:'Visitação sazonal',en:'Seasonal visits'},{pt:'Paisagismo autoral',en:'Authorial landscaping'},{pt:'Experiências exclusivas',en:'Exclusive experiences'}],
+    metrics:[{value:'04',pt:'Jardins autorais',en:'Authorial gardens'},{value:'12',pt:'Ciclos de cultivo',en:'Cultivation cycles'},{value:'01',pt:'Vale preservado',en:'Preserved valley'},{value:'∞',pt:'Memórias cultivadas',en:'Cultivated memories'}],
+    palette:['#111b13','#77251f','#c8a85d','#eee9dd']
+  },
+  {
+    id:'cavallo-alto',name:'Cavallo Alto',variant:'cavallo',
+    theme:{bg:'#17100c',accent:'#c99a5a',ink:'#f2e8d8',soft:'#7b91a3'},
+    videoSrc:'assets/cinematic/concept-cavallo-alto.mp4',posterSrc:'assets/cinematic/concept-cavallo-alto.webp',
+    sector:{pt:'Haras e experiência de território',en:'Horse farm and territory experience'},
+    headline:{pt:'O caminho muda quando o destino é sentir.',en:'The path changes when the destination is to feel.'},
+    description:{pt:'Cavallo Alto é um haras de montanha onde o tempo tem outro ritmo e cada detalhe existe para conectar você à natureza, ao cavalo e ao que realmente importa.',en:'Cavallo Alto is a mountain horse farm where time follows another rhythm and every detail connects you to nature, the horse and what truly matters.'},
+    ctas:[{pt:'Viver a experiência',en:'Live the experience'},{pt:'Conhecer o haras',en:'Discover the farm'}],
+    features:[{pt:'Cavalgadas privadas',en:'Private rides'},{pt:'Hospedagem',en:'Lodging'},{pt:'Criação selecionada',en:'Selected breeding'},{pt:'Experiências de território',en:'Territory experiences'}],
+    metrics:[{value:'1.480m',pt:'Altitude',en:'Altitude'},{value:'06',pt:'Rotas privadas',en:'Private routes'},{value:'24h',pt:'Ritmo do território',en:'Territory rhythm'},{value:'01',pt:'Destino essencial',en:'Essential destination'}],
+    palette:['#17100c','#684631','#c99a5a','#7b91a3']
+  },
+  {
+    id:'nativa-reserve',name:'Nativa Reserve',variant:'nativa',
+    theme:{bg:'#0a120d',accent:'#c7a45a',ink:'#efeee7',soft:'#50694f'},
+    videoSrc:'assets/cinematic/concept-nativa-reserve.mp4',posterSrc:'assets/cinematic/concept-nativa-reserve.webp',
+    sector:{pt:'Conservação e vida selvagem',en:'Conservation and wildlife'},
+    headline:{pt:'Há presenças que dependem da nossa escolha de permanecer.',en:'Some forms of life depend on our choice to remain.'},
+    description:{pt:'Nativa Reserve protege habitats ameaçados e promove pesquisa, educação e turismo de baixo impacto. Cada visita, cada apoio e cada decisão consciente ajudam a manter a vida onde ela sempre pertenceu: na natureza.',en:'Nativa Reserve protects threatened habitats and promotes research, education and low-impact tourism. Every visit, support and conscious decision helps keep life where it has always belonged: in nature.'},
+    ctas:[{pt:'Conhecer a reserva',en:'Discover the reserve'},{pt:'Apoiar a conservação',en:'Support conservation'}],
+    features:[{pt:'Proteção de habitat',en:'Habitat protection'},{pt:'Pesquisa aplicada',en:'Applied research'},{pt:'Educação ambiental',en:'Environmental education'},{pt:'Turismo de baixo impacto',en:'Low-impact tourism'}],
+    metrics:[{value:'18.450',pt:'Hectares protegidos',en:'Protected hectares'},{value:'327',pt:'Espécies monitoradas',en:'Species monitored'},{value:'12',pt:'Projetos de pesquisa',en:'Research projects'},{value:'8.750t',pt:'Impacto ambiental',en:'Environmental impact'}],
+    palette:['#0a120d','#263d2c','#c7a45a','#efeee7']
+  },
+  {
+    id:'sertao-prime',name:'Grupo Sertão Prime',variant:'sertao',
+    theme:{bg:'#1a0e08',accent:'#d08b35',ink:'#f3eadc',soft:'#8d5230'},
+    videoSrc:'assets/cinematic/concept-sertao-prime.mp4',posterSrc:'assets/cinematic/concept-sertao-prime.webp',
+    sector:{pt:'Pecuária, genética e escala',en:'Livestock, genetics and scale'},
+    headline:{pt:'Resultado no campo não nasce do acaso.',en:'Results in the field are never accidental.'},
+    description:{pt:'No Grupo Sertão Prime, genética de excelência, manejo inteligente e escala sustentável se unem para entregar produtividade consistente, rentabilidade e evolução contínua.',en:'At Grupo Sertão Prime, excellent genetics, intelligent management and sustainable scale unite to deliver consistent productivity, profitability and continuous evolution.'},
+    ctas:[{pt:'Conhecer o grupo',en:'Discover the group'},{pt:'Falar com o comercial',en:'Talk to sales'}],
+    features:[{pt:'Genética',en:'Genetics'},{pt:'Rastreabilidade',en:'Traceability'},{pt:'Manejo',en:'Management'},{pt:'Unidades produtivas',en:'Production units'},{pt:'Produção responsável',en:'Responsible production'}],
+    metrics:[{value:'+850 mil',pt:'Cabeças',en:'Head'},{value:'+220 mil',pt:'Hectares',en:'Hectares'},{value:'06',pt:'Estados',en:'States'},{value:'18',pt:'Unidades produtivas',en:'Production units'},{value:'+30',pt:'Anos de história',en:'Years of history'}],
+    palette:['#1a0e08','#59301a','#d08b35','#f3eadc']
+  },
+  {
+    id:'blue-sanctuary',name:'Blue Sanctuary',variant:'blue',
+    theme:{bg:'#031626',accent:'#77d6ff',ink:'#eef9ff',soft:'#0b557c'},
+    videoSrc:'assets/cinematic/concept-blue-sanctuary.mp4',posterSrc:'assets/cinematic/concept-blue-sanctuary.webp',
+    sector:{pt:'Projeto marinho e experiência oceânica',en:'Marine project and ocean experience'},
+    headline:{pt:'O oceano revela outro mundo quando aprendemos a entrar em silêncio.',en:'The ocean reveals another world when we learn to enter in silence.'},
+    description:{pt:'Blue Sanctuary é um instituto dedicado à conservação marinha, pesquisa aplicada e experiências que conectam pessoas ao que realmente importa: proteger a vida, dentro e fora da água.',en:'Blue Sanctuary is an institute dedicated to marine conservation, applied research and experiences that connect people to what truly matters: protecting life in and out of the water.'},
+    ctas:[{pt:'Mergulhar na experiência',en:'Dive into the experience'},{pt:'Conhecer o projeto',en:'Discover the project'}],
+    features:[{pt:'Biodiversidade',en:'Biodiversity'},{pt:'Conservação',en:'Conservation'},{pt:'Pesquisa',en:'Research'},{pt:'Roteiros privados',en:'Private journeys'}],
+    metrics:[{value:'70%',pt:'Planeta oceano',en:'Ocean planet'},{value:'04',pt:'Frentes de atuação',en:'Fields of action'},{value:'01',pt:'Missão compartilhada',en:'Shared mission'},{value:'∞',pt:'Profundidade possível',en:'Possible depth'}],
+    palette:['#031626','#0b557c','#77d6ff','#eef9ff']
+  }
+];
+
+window.ConceptGallery=(function(){
+  const gallery=document.getElementById('modelos');
+  const carousel=gallery.querySelector('.presence-carousel');
+  const track=document.getElementById('presenceTrack');
+  const status=document.getElementById('presenceStatus');
+  const currentEl=document.getElementById('presenceCurrent');
+  const progress=document.getElementById('presenceProgress');
+  const arrows=[...gallery.querySelectorAll('[data-presence-dir]')];
+  const dialog=document.getElementById('conceptDialog');
+  const dialogShell=document.getElementById('conceptDialogShell');
+  const dialogContent=document.getElementById('conceptDialogContent');
+  const dialogClose=document.getElementById('conceptDialogClose');
+  let index=0;
+  let language=document.documentElement.lang==='en'?'en':'pt';
+  let inView=false;
+  let lastFocus=null;
+  let playTimer=0;
+  const label=entry=>entry[language]||entry.pt;
+  const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+
+  function slideTemplate(concept,position){
+    const metrics=concept.metrics.slice(0,4).map(metric=>`<div class="concept-metric"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
+    return `<article class="concept-slide concept-${concept.variant}" data-model-id="${concept.id}" role="group" aria-roledescription="slide" aria-label="${esc(concept.name)}, ${position+1} de ${SITE_CONCEPTS.length}" style="--slide-bg:${concept.theme.bg};--slide-accent:${concept.theme.accent};--slide-ink:${concept.theme.ink}">
+      <div class="concept-canvas">
+        <figure class="concept-media">
+          <img src="${concept.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="1280" height="720" loading="${position===0?'eager':'lazy'}"/>
+          <video data-src="${concept.videoSrc}" poster="${concept.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, vídeo conceitual sem áudio" disablepictureinpicture></video>
+        </figure>
+        <div class="concept-nav"><span class="concept-brand">${esc(concept.name)}</span><span class="concept-navline">${esc(label(concept.sector))} · 0${position+1}</span></div>
+        <div class="concept-copy">
+          <span class="concept-kicker">${esc(label(concept.sector))}</span>
+          <h3>${esc(label(concept.headline))}</h3>
+          <p>${esc(label(concept.description))}</p>
+          <div class="concept-actions">
+            <button class="concept-action primary" type="button" data-concept-open="${concept.id}">${esc(label(concept.ctas[0]))}</button>
+            <a class="concept-action" href="#contato">${esc(label(concept.ctas[1]))}</a>
+          </div>
+        </div>
+        <div class="concept-metrics">${metrics}</div>
+        <div class="concept-motif" aria-hidden="true"></div>
+      </div>
+    </article>`;
+  }
+
+  function render(){
+    track.innerHTML=SITE_CONCEPTS.map(slideTemplate).join('');
+    track.querySelectorAll('video').forEach(video=>{
+      video.addEventListener('loadeddata',()=>video.dataset.mediaReady='true');
+      video.addEventListener('error',()=>{video.dataset.mediaError='true';video.removeAttribute('data-media-ready')});
+    });
+    track.querySelectorAll('[data-concept-open]').forEach(button=>button.addEventListener('click',()=>openExpanded(button.dataset.conceptOpen,button)));
+    update(false);
+  }
+
+  function loadVideo(video){
+    if(!video.src&&video.dataset.src){
+      video.src=video.dataset.src;
+      video.load();
+    }
+  }
+  function syncPlayback(){
+    const reduced=window.BrunoMotion.shouldReduceMotion();
+    clearTimeout(playTimer);
+    playTimer=0;
+    [...track.querySelectorAll('.concept-slide')].forEach((slide,i)=>{
+      const video=slide.querySelector('video');
+      if(i===index){
+        if(inView&&!reduced&&!dialog.open){
+          playTimer=setTimeout(()=>{
+            loadVideo(video);
+            video.play().catch(()=>{});
+          },1200);
+        }else video.pause();
+      }else{
+        video.pause();
+      }
+    });
+  }
+  function update(announce=true){
+    const concept=SITE_CONCEPTS[index];
+    gallery.dataset.activeConcept=concept.id;
+    gallery.style.setProperty('--concept-bg',concept.theme.bg);
+    gallery.style.setProperty('--concept-accent',concept.theme.accent);
+    gallery.style.setProperty('--concept-soft',concept.theme.soft);
+    gallery.style.setProperty('--concept-ink',concept.theme.ink);
+    currentEl.textContent=String(index+1).padStart(2,'0');
+    progress.style.transform=`translateX(${index*100}%)`;
+    status.textContent=`${String(index+1).padStart(2,'0')} / ${SITE_CONCEPTS.length} · ${concept.name}`;
+    arrows[0].disabled=index===0;
+    arrows[1].disabled=index===SITE_CONCEPTS.length-1;
+    if(!announce)status.setAttribute('aria-live','off');else status.setAttribute('aria-live','polite');
+    syncPlayback();
+  }
+  function go(next,smooth=true){
+    index=Math.max(0,Math.min(SITE_CONCEPTS.length-1,next));
+    const slide=track.children[index];
+    if(slide)track.scrollTo({left:slide.offsetLeft-track.offsetLeft,behavior:smooth&&!window.BrunoMotion.shouldReduceMotion()?'smooth':'auto'});
+    update();
+  }
+  function activeFromScroll(){
+    const target=track.scrollLeft;
+    let closest=0,distance=Infinity;
+    [...track.children].forEach((slide,i)=>{
+      const delta=Math.abs((slide.offsetLeft-track.offsetLeft)-target);
+      if(delta<distance){distance=delta;closest=i}
+    });
+    if(closest!==index){index=closest;update()}
+  }
+  let scrollRaf=0;
+  track.addEventListener('scroll',()=>{
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf=requestAnimationFrame(activeFromScroll);
+  },{passive:true});
+  arrows.forEach(button=>button.addEventListener('click',()=>go(index+Number(button.dataset.presenceDir))));
+  carousel.addEventListener('keydown',event=>{
+    if(event.key==='ArrowRight'){event.preventDefault();go(index+1)}
+    else if(event.key==='ArrowLeft'){event.preventDefault();go(index-1)}
+    else if(event.key==='Home'){event.preventDefault();go(0)}
+    else if(event.key==='End'){event.preventDefault();go(SITE_CONCEPTS.length-1)}
+  });
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    inView=entry.isIntersecting&&entry.intersectionRatio>.12;
+    syncPlayback();
+  }),{threshold:[0,.12,.35]});
+  observer.observe(carousel);
+  window.BrunoMotion.onChange(syncPlayback);
+  document.addEventListener('visibilitychange',syncPlayback);
+
+  function expandedTemplate(concept){
+    const services=concept.features.map((feature,i)=>`<div class="concept-service"><span>0${i+1}</span><strong>${esc(label(feature))}</strong></div>`).join('');
+    const proofs=concept.metrics.slice(0,3).map(metric=>`<div class="concept-proof"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
+    const palette=concept.palette.map(color=>`<span class="concept-swatch" style="--swatch:${color}" title="${color}"></span>`).join('');
+    return `<section class="concept-expanded-hero">
+      <figure class="concept-expanded-media"><img src="${concept.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="1280" height="720"/></figure>
+      <div class="concept-expanded-copy"><span class="concept-kicker">${esc(label(concept.sector))}</span><h2 id="conceptDialogTitle">${esc(concept.name)}</h2><p>${esc(label(concept.headline))}</p></div>
+    </section>
+    <section class="concept-expanded-grid">
+      <div><span class="concept-kicker">${language==='en'?'Positioning':'Posicionamento'}</span><h3>${esc(label(concept.headline))}</h3><p>${esc(label(concept.description))}</p><div class="concept-palette" aria-label="${language==='en'?'Concept palette':'Paleta do conceito'}">${palette}</div></div>
+      <div class="concept-service-list">${services}</div>
+    </section>
+    <section class="concept-proof-band"><div class="concept-proof-inner">${proofs}</div></section>
+    <section class="concept-final"><span class="concept-kicker">${language==='en'?'Authorial direction':'Direção autoral'}</span><h3>${language==='en'?'Your brand can occupy a territory of its own.':'Sua marca pode ocupar um território próprio.'}</h3><a class="concept-action primary" href="#contato" data-dialog-contact>${language==='en'?'Request a diagnosis':'Solicitar diagnóstico'}</a></section>`;
+  }
+  function openExpanded(id,source){
+    const concept=SITE_CONCEPTS.find(item=>item.id===id);
+    if(!concept)return;
+    lastFocus=source||document.activeElement;
+    dialogShell.style.setProperty('--dialog-bg',concept.theme.bg);
+    dialogShell.style.setProperty('--dialog-accent',concept.theme.accent);
+    dialogShell.style.setProperty('--dialog-ink',concept.theme.ink);
+    document.getElementById('conceptDialogBrand').textContent=concept.name;
+    dialogContent.innerHTML=expandedTemplate(concept);
+    dialog.showModal();
+    document.body.classList.add('locked');
+    dialogClose.focus();
+    syncPlayback();
+    const contact=dialogContent.querySelector('[data-dialog-contact]');
+    if(contact)contact.addEventListener('click',closeExpanded);
+  }
+  function closeExpanded(){
+    if(!dialog.open)return;
+    dialog.close();
+    document.body.classList.remove('locked');
+    syncPlayback();
+    if(lastFocus)lastFocus.focus();
+  }
+  dialogClose.addEventListener('click',closeExpanded);
+  dialog.addEventListener('click',event=>{if(event.target===dialog)closeExpanded()});
+  dialog.addEventListener('cancel',event=>{event.preventDefault();closeExpanded()});
+
+  function setLanguage(nextLanguage){
+    language=nextLanguage==='en'?'en':'pt';
+    render();
+    go(index,false);
+  }
+  render();
+  return{setLanguage,go,getIndex:()=>index,concepts:SITE_CONCEPTS};
+})();
+
 /* CATALOG ARROWS */
-document.querySelectorAll('.cnav').forEach(b=>{b.onclick=()=>{const row=document.getElementById(b.dataset.row);row.scrollBy({left:parseInt(b.dataset.dir)*Math.min(row.clientWidth*.8,420),behavior:'smooth'})}});
+document.querySelectorAll('.cnav').forEach(button=>{
+  const row=document.getElementById(button.dataset.row);
+  if(!row){button.disabled=true;return}
+  const sync=()=>{
+    const max=row.scrollWidth-row.clientWidth-2;
+    document.querySelectorAll(`.cnav[data-row="${row.id}"]`).forEach(control=>{
+      control.disabled=Number(control.dataset.dir)<0?row.scrollLeft<=2:row.scrollLeft>=max;
+    });
+  };
+  button.addEventListener('click',()=>row.scrollBy({left:Number(button.dataset.dir)*Math.min(row.clientWidth*.86,480),behavior:window.BrunoMotion.shouldReduceMotion()?'auto':'smooth'}));
+  row.addEventListener('scroll',sync,{passive:true});
+  addEventListener('resize',sync,{passive:true});
+  requestAnimationFrame(sync);
+});
 
 /* SECTOR TABS */
 document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{
@@ -1288,7 +1885,7 @@ function openModal(id){
 }
 function closeModal(){mBack.classList.remove('show');document.body.classList.remove('locked');
   setTimeout(()=>mBack.classList.remove('open'),300);if(lastFocus)lastFocus.focus()}
-document.querySelectorAll('.card[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
+document.querySelectorAll('[data-modal]').forEach(c=>c.addEventListener('click',()=>openModal(c.dataset.modal)));
 document.getElementById('modalX').onclick=closeModal;
 mBack.onclick=e=>{if(e.target===mBack)closeModal()};
 addEventListener('keydown',e=>{
@@ -1303,9 +1900,10 @@ addEventListener('keydown',e=>{
 /* I18N */
 const tEN={
   nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a diagnosis',
-  models_eyebrow:'Models to visualize value',models_title:'Authorial references for those who already know they need a new level.',
-  models_lead:'Each model shows a possible direction for digital presence: image, structure, tone, experience and perceived value. Names, images and information were adapted to preserve privacy and let you visualize possibilities without exposing real client data.',
-  models_lead2:'You choose the atmosphere. I adapt the proposal to your niche, your offer and the level of trust your brand needs to convey.',
+  models_eyebrow:'Authorial directions for different markets',models_title:'Authorial directions make your market look unlike everyone else.',
+  models_lead:'Each direction below is born from a different atmosphere, strategy and commercial intention. Video is not decoration. It defines rhythm, narrative, hierarchy and perceived value.',
+  models_lead2:'Explore possibilities created to show how a brand can assume its own presence when design, content and technology work in the same direction.',
+  models_disclosure:'The projects below are demonstrative authorial concepts and do not represent real clients.',
   models_badge:'Adapted demonstration',models_badge_live:'Own product · live',models_badge_template:'Authorial base',
   models_view:'View model',models_cost:'Understand investment and scope →',models_note:'Sanitized demo: no real client data.',models_note_live:'Own authorial product, no third-party client involved.',
   model_artisan_tag:'Handcrafted e-commerce · Authorial store',model_artisan_desc:'For authorial brands that need to sell with more perceived value: an elegant storefront, product narrative and direct purchase in their own environment.',
@@ -1319,10 +1917,11 @@ const tEN={
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
   hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',hero_frame_hint:'Move to explore',
   hero2_eyebrow:'Art direction, engineering and perceived value',
-  hero2_title:'Websites with real presence.<br>Not the appearance of <span class="ai-mark">AI.</span>',
+  hero2_title:'Websites with<br>real presence.<br>Not the appearance of <span class="ai-mark">AI.</span>',
   hero2_sub:'Ultra-realistic, cinematic and secure websites for brands that need to convey value, trust and authority before the first contact.',
   hero2_note:'Before someone requests a proposal, that person has already felt something about your brand. I design that first perception with art direction, copy, technology and security working together to turn a visit into trust, and trust into a decision.',
-  hero2_cta1:'Request a diagnosis →',hero2_cta2:'See live projects →',
+  hero2_cta1:'Request a diagnosis',hero2_cta2:'See live projects',
+  hero_trust_1:'Secure and hardened websites',hero_trust_2:'Cinematic performance',hero_trust_3:'Privacy and compliance',
   pos_eyebrow:'Who builds your site',
   pos_title:'Any tool can deliver a pretty page.<br><span class="title-accent">Presence, it cannot.</span>',
   pos_lead1:'What actually changes a buying decision is not just aesthetics. It is the sense that there is criteria, strategy and value behind every detail.',
@@ -1330,7 +1929,8 @@ const tEN={
   pos_p1s:'Own product live',pos_p2s:'Real cases published',pos_p3s:'Active clients',pos_p4s:'Secure structure',
   eco_eyebrow:'Own ecosystem',eco_title:'When the project needs world, narrative and technology, I build that too.',
   eco_lead:'Not every site needs to be just a storefront. Some projects need depth, atmosphere, interaction and the feeling of their own universe. That was the case with The Frozen Legacy: a transmedia ecosystem with real-time 3D, a bilingual experience, continuous narrative and authorial digital presence.',
-  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An authorial project that unites narrative, technology and visual experience to turn a brand into a universe.',
+  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An authorial project that unites narrative, technology and visual experience to turn a brand into a living universe.',
+  vakon_enter:'Enter the universe',vakon_know:'Discover the project',
   cases_eyebrow:'Real cases · clients live',cases_title:'Perception changes when the site has direction.',
   cases_lead:'Three real proofs that a well-built site does not just inform: it positions, differentiates and prepares the client to trust.',
   pires_tag:'Professional services',pires_desc:'Accounting presented as serious, modern and trustworthy consulting. A digital presence built to convey organization, authority and value before the first meeting.',
@@ -1380,6 +1980,7 @@ document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.inn
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
+  if(window.ConceptGallery)window.ConceptGallery.setLanguage(EN?'en':'pt');
   updateMotionControlUI();
   if(window.__heroFrameMotionRefreshI18n)window.__heroFrameMotionRefreshI18n();
 };
