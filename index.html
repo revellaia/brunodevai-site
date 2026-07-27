@@ -31,20 +31,21 @@
 <meta name="twitter:image" content="https://brunodevai.com/logo-brunodevai.png"/>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="logo-brunodevai.png"/>
-<link rel="apple-touch-icon" href="logo-brunodevai.png"/>
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-180.png"/>
 <link rel="preload" as="image" href="assets/cinematic/presence-landscape-mobile-portrait.webp" media="(max-width: 600px) and (orientation: portrait)" fetchpriority="high"/>
 <link rel="preload" as="image" href="assets/cinematic/presence-landscape-tablet-portrait.webp" media="(min-width: 601px) and (max-width: 1024px) and (orientation: portrait)" fetchpriority="high"/>
 <link rel="preload" as="image" href="assets/cinematic/presence-landscape-landscape-sm.webp" media="(max-width: 1194px) and (orientation: landscape)" fetchpriority="high"/>
 <link rel="preload" as="image" href="assets/cinematic/presence-landscape.webp" media="(min-width: 1195px)" fetchpriority="high"/>
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<!-- Fonts auto-hospedadas. Remove o CSS render-blocking de terceiro, o DNS/TLS extra para dois
+     hosts do Google e o reflow de fonte que gerava CLS na medicao fria. Somente os subsets
+     latin e latin-ext: PT e EN nao usam cirilico, grego nem vietnamita. -->
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/fraunces-normal-latin.woff2" crossorigin/>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-normal-latin.woff2" crossorigin/>
 
 <!-- Security (herdado da auditoria 2026-06-16) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 
@@ -63,6 +64,18 @@
 </script>
 
 <style>
+/* ==========================================================
+   FONTES AUTO-HOSPEDADAS (variaveis: um arquivo cobre toda a faixa de peso)
+========================================================== */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url(/assets/fonts/fraunces-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 600;font-display:swap;src:url(/assets/fonts/fraunces-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 500;font-display:swap;src:url(/assets/fonts/fraunces-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 500;font-display:swap;src:url(/assets/fonts/fraunces-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300 800;font-display:swap;src:url(/assets/fonts/inter-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300 800;font-display:swap;src:url(/assets/fonts/inter-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(/assets/fonts/jetbrains-mono-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(/assets/fonts/jetbrains-mono-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+
 /* ==========================================================
    THEME VALUES
 ========================================================== */
@@ -989,7 +1002,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#top" aria-label="Bruno Goebel, início"><img src="logo-brunodevai.png" alt="Bruno Goebel"/></a>
+  <a class="logo" href="#top" aria-label="Bruno Goebel, início"><img src="/assets/logo-brunodevai.webp" alt="Bruno Goebel" width="520" height="216" fetchpriority="high" decoding="async"/></a>
   <div class="nav-links" id="navLinks">
     <a href="sobre/" data-i18n="nav_about">Sobre</a>
     <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
@@ -1102,7 +1115,10 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
   <div class="wrap">
     <div class="ecosystem-stage">
       <figure class="ecosystem-media">
-        <img src="assets/cinematic/glacial-city.webp" alt="Cidade glacial monumental de The Frozen Legacy, construída ao redor de um abismo iluminado" width="1672" height="941" loading="lazy"/>
+        <img src="assets/cinematic/glacial-city.webp"
+             srcset="assets/cinematic/glacial-city-760.webp 760w, assets/cinematic/glacial-city-1200.webp 1200w, assets/cinematic/glacial-city.webp 1672w"
+             sizes="(max-width:900px) 100vw, 62vw"
+             alt="Cidade glacial monumental de The Frozen Legacy, construída ao redor de um abismo iluminado" width="1672" height="941" loading="lazy" decoding="async"/>
       </figure>
       <div class="ecosystem-snow" aria-hidden="true"></div>
       <div class="ecosystem-copy">
@@ -1823,7 +1839,11 @@ window.AdaptiveMedia=(function(){
     entry.video.preload=media.constrained?'none':(entry.video.dataset.adaptivePriority==='critical'?'metadata':'none');
     entry.video.width=media.width;
     entry.video.height=media.height;
-    if(!previous||!entry.video.getAttribute('src'))entry.video.src=media.videoSrc;
+    /* Só o vídeo crítico recebe src no registro. Em um <video autoplay muted playsinline>
+       o Chrome começa a baixar assim que src existe e ignora preload="none", então o portão
+       precisa ser o próprio src: os demais só recebem o dele quando o IntersectionObserver
+       os aproxima da viewport e chama AdaptiveMedia.load(). */
+    if(!entry.video.getAttribute('src')&&entry.video.dataset.adaptivePriority==='critical')entry.video.src=media.videoSrc;
     setPresentation(entry.video,media);
     if(entry.poster){
       if(entry.poster.getAttribute('src')!==media.posterSrc)entry.poster.src=media.posterSrc;
