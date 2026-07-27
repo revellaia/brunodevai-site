@@ -10,6 +10,9 @@
 <meta name="author" content="Bruno Goebel"/>
 <meta name="contact" content="bgmcruz1988@gmail.com"/>
 <link rel="canonical" href="https://brunodevai.com/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://brunodevai.com/?lang=pt"/>
+<link rel="alternate" hreflang="en" href="https://brunodevai.com/?lang=en"/>
+<link rel="alternate" hreflang="x-default" href="https://brunodevai.com/"/>
 <meta name="robots" content="index, follow"/>
 
 <!-- Open Graph -->
@@ -46,7 +49,7 @@
 <script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 
 <!-- Schema.org -->
-<script type="application/ld+json">
+<script id="personSchema" type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"Person",
@@ -54,6 +57,7 @@
   "jobTitle":"Designer e arquiteto de ecossistemas digitais",
   "email":"bgmcruz1988@gmail.com",
   "url":"https://brunodevai.com/",
+  "inLanguage":"pt-BR",
   "knowsAbout":["Web design premium","Next.js","Three.js","UX","SEO","Segurança web","LGPD"]
 }
 </script>
@@ -81,6 +85,9 @@ a{color:inherit}
 img{display:block;max-width:100%}
 ::selection{background:var(--neon);color:var(--void)}
 :focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+.skip-link{position:fixed;top:10px;left:12px;z-index:10000;padding:11px 16px;background:var(--neon);color:var(--void);
+  font-size:12px;font-weight:800;text-decoration:none;transform:translateY(-160%);transition:transform .2s var(--ease)}
+.skip-link:focus{transform:translateY(0)}
 
 /* PROGRESS + BACK TO TOP */
 #progress{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0;
@@ -969,6 +976,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 </head>
 <body>
 <div id="progress"></div>
+<a class="skip-link" href="#main" data-i18n="skip_link">Pular para o conteúdo principal</a>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1052,6 +1060,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 </header>
 
 <!-- POSICIONAMENTO -->
+<main id="main" tabindex="-1">
 <section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
   <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
     <picture class="adaptive-poster-picture">
@@ -1320,6 +1329,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -2172,11 +2182,13 @@ window.ConceptGallery=(function(){
   function slideTemplate(concept,position){
     const metrics=concept.metrics.slice(0,4).map(metric=>`<div class="concept-metric"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
     const media=window.AdaptiveMedia.resolve(concept.mediaKey);
-    return `<article class="concept-slide concept-${concept.variant}" data-model-id="${concept.id}" role="group" aria-roledescription="slide" aria-label="${esc(concept.name)}, ${position+1} de ${SITE_CONCEPTS.length}" style="--slide-bg:${concept.theme.bg};--slide-accent:${concept.theme.accent};--slide-ink:${concept.theme.ink}">
+    const slidePosition=language==='en'?`${position+1} of ${SITE_CONCEPTS.length}`:`${position+1} de ${SITE_CONCEPTS.length}`;
+    const videoLabel=language==='en'?'concept video without audio':'vídeo conceitual sem áudio';
+    return `<div class="concept-slide concept-${concept.variant}" data-model-id="${concept.id}" role="group" aria-roledescription="slide" aria-label="${esc(concept.name)}, ${slidePosition}" style="--slide-bg:${concept.theme.bg};--slide-accent:${concept.theme.accent};--slide-ink:${concept.theme.ink}">
       <div class="concept-canvas">
         <figure class="concept-media">
           <img src="${media.posterSrc}" data-adaptive-poster="${concept.mediaKey}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="${media.width}" height="${media.height}" loading="${position===0?'eager':'lazy'}" style="--media-position:${media.objectPosition};--media-fit:${media.fit}"/>
-          <video data-media-key="${concept.mediaKey}" data-src="${media.videoSrc}" data-active-media="${position===0?'true':'false'}" poster="${media.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, vídeo conceitual sem áudio" disablepictureinpicture style="--media-position:${media.objectPosition};--media-fit:${media.fit}"></video>
+          <video data-media-key="${concept.mediaKey}" data-src="${media.videoSrc}" data-active-media="${position===0?'true':'false'}" poster="${media.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, ${videoLabel}" disablepictureinpicture style="--media-position:${media.objectPosition};--media-fit:${media.fit}"></video>
         </figure>
         <div class="concept-nav"><span class="concept-brand">${esc(concept.name)}</span><span class="concept-navline">${esc(label(concept.sector))} · 0${position+1}</span></div>
         <div class="concept-copy">
@@ -2191,7 +2203,7 @@ window.ConceptGallery=(function(){
         <div class="concept-metrics">${metrics}</div>
         <div class="concept-motif" aria-hidden="true"></div>
       </div>
-    </article>`;
+    </div>`;
   }
 
   function render(){
@@ -2450,8 +2462,32 @@ addEventListener('keydown',e=>{
 });
 
 /* I18N */
+const HOME_META={
+  pt:{
+    title:'Bruno Goebel · Sites ultra realistas e ecossistemas digitais',
+    description:'Bruno Goebel cria sites ultra realistas, portais e ecossistemas digitais para qualquer setor. Design premium, engenharia segura e o mesmo padrão aplicado ao próprio universo autoral The Frozen Legacy.',
+    ogTitle:'Bruno Goebel · Sites ultra realistas e ecossistemas digitais',
+    ogDescription:'Sites, portais e ecossistemas digitais de alto valor. Design premium, segurança real e prova por projetos reais.',
+    twitterTitle:'Bruno Goebel · Sites ultra realistas',
+    twitterDescription:'Sites e ecossistemas digitais de alto valor. Prova por projetos reais.',
+    locale:'pt_BR',
+    jobTitle:'Designer e arquiteto de ecossistemas digitais',
+    knowsAbout:['Web design premium','Next.js','Three.js','UX','SEO','Segurança web','LGPD']
+  },
+  en:{
+    title:'Bruno Goebel · Ultra-realistic websites and digital ecosystems',
+    description:'Bruno Goebel creates ultra-realistic websites, portals and digital ecosystems for any market. Premium design, secure engineering and the same standard applied to his own authorial universe, The Frozen Legacy.',
+    ogTitle:'Bruno Goebel · Ultra-realistic websites and digital ecosystems',
+    ogDescription:'High-value websites, portals and digital ecosystems. Premium design, real security and proof through live projects.',
+    twitterTitle:'Bruno Goebel · Ultra-realistic websites',
+    twitterDescription:'High-value websites and digital ecosystems. Proof through live projects.',
+    locale:'en_US',
+    jobTitle:'Digital ecosystem designer and architect',
+    knowsAbout:['Premium web design','Next.js','Three.js','UX','SEO','Web security','Privacy']
+  }
+};
 const tEN={
-  nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a diagnosis',
+  skip_link:'Skip to main content',nav_about:'About',nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a diagnosis',
   models_eyebrow:'Authorial directions for different markets',models_title:'Authorial directions make your market look unlike everyone else.',
   models_lead:'Each direction below is born from a different atmosphere, strategy and commercial intention. Video is not decoration. It defines rhythm, narrative, hierarchy and perceived value.',
   models_lead2:'Explore possibilities created to show how a brand can assume its own presence when design, content and technology work in the same direction.',
@@ -2531,14 +2567,72 @@ const tEN={
 };
 let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
-document.getElementById('langBtn').onclick=function(){
-  EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
-  this.setAttribute('aria-label',EN?'Switch language to PT':'Trocar idioma para EN');
+function setMeta(selector,value){const element=document.querySelector(selector);if(element&&value)element.setAttribute('content',value)}
+function applyLanguage(nextLanguage,{syncUrl=false}={}){
+  EN=nextLanguage==='en'||nextLanguage===true;
+  const lang=EN?'en':'pt';
+  const meta=HOME_META[lang];
+  const langBtn=document.getElementById('langBtn');
+  document.documentElement.lang=EN?'en':'pt-BR';
+  langBtn.textContent=EN?'PT':'EN';
+  langBtn.setAttribute('aria-label',EN?'Switch language to PT':'Trocar idioma para EN');
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
-  if(window.ConceptGallery)window.ConceptGallery.setLanguage(EN?'en':'pt');
+  document.title=meta.title;
+  setMeta('meta[name="description"]',meta.description);
+  setMeta('meta[property="og:title"]',meta.ogTitle);
+  setMeta('meta[property="og:description"]',meta.ogDescription);
+  setMeta('meta[property="og:locale"]',meta.locale);
+  setMeta('meta[name="twitter:title"]',meta.twitterTitle);
+  setMeta('meta[name="twitter:description"]',meta.twitterDescription);
+  const schema=document.getElementById('personSchema');
+  if(schema){
+    try{
+      const data=JSON.parse(schema.textContent);
+      data.jobTitle=meta.jobTitle;
+      data.knowsAbout=meta.knowsAbout;
+      data.inLanguage=EN?'en':'pt-BR';
+      schema.textContent=JSON.stringify(data);
+    }catch(error){}
+  }
+  const aria=EN?{
+    logo:'Bruno Goebel, home',burger:'Open menu',drawer:'Navigation menu',heroMedia:'Lake between mountains, a landscape expressing scale, direction and presence',
+    heroVideo:'Cinematic journey across a lake between mountains',positioningMedia:'High-presence vehicle moving along a road',
+    positioningVideo:'Vehicle moving forward, a visual metaphor for engineering and presence',trust:'Delivery commitments',
+    carousel:'Authorial website directions by market',carouselRole:'carousel',previous:'Previous',next:'Next',highlights:'Project highlights',
+    toTop:'Back to top',close:'Close'
+  }:{
+    logo:'Bruno Goebel, início',burger:'Abrir menu',drawer:'Menu de navegação',heroMedia:'Lago entre montanhas, uma paisagem que traduz amplitude, direção e presença',
+    heroVideo:'Travessia cinematográfica por um lago entre montanhas',positioningMedia:'Veículo de alta presença avançando em uma pista',
+    positioningVideo:'Veículo avançando, metáfora visual de engenharia e presença',trust:'Compromissos da entrega',
+    carousel:'Direções autorais de sites por mercado',carouselRole:'carrossel',previous:'Anterior',next:'Próximo',highlights:'Destaques do projeto',
+    toTop:'Voltar ao topo',close:'Fechar'
+  };
+  document.querySelector('.logo')?.setAttribute('aria-label',aria.logo);
+  document.getElementById('burger')?.setAttribute('aria-label',aria.burger);
+  document.getElementById('mobileDrawer')?.setAttribute('aria-label',aria.drawer);
+  document.querySelector('.cinematic-hero .cinematic-media')?.setAttribute('aria-label',aria.heroMedia);
+  document.getElementById('heroPrimaryVideo')?.setAttribute('aria-label',aria.heroVideo);
+  document.querySelector('.positioning-media')?.setAttribute('aria-label',aria.positioningMedia);
+  document.getElementById('positioningVideo')?.setAttribute('aria-label',aria.positioningVideo);
+  document.querySelector('.hero-trust')?.setAttribute('aria-label',aria.trust);
+  const carousel=document.querySelector('.presence-carousel');
+  carousel?.setAttribute('aria-label',aria.carousel);
+  carousel?.setAttribute('aria-roledescription',aria.carouselRole);
+  document.querySelectorAll('.cnav[data-dir="-1"]').forEach(button=>button.setAttribute('aria-label',aria.previous));
+  document.querySelectorAll('.cnav[data-dir="1"]').forEach(button=>button.setAttribute('aria-label',aria.next));
+  document.querySelector('.ecosystem-highlights')?.setAttribute('aria-label',aria.highlights);
+  document.getElementById('toTop')?.setAttribute('aria-label',aria.toTop);
+  document.getElementById('modalX')?.setAttribute('aria-label',aria.close);
+  if(window.ConceptGallery)window.ConceptGallery.setLanguage(lang);
   updateMotionControlUI();
   if(window.__heroFrameMotionRefreshI18n)window.__heroFrameMotionRefreshI18n();
-};
+  if(syncUrl){
+    const url=new URL(window.location.href);
+    url.searchParams.set('lang',lang);
+    history.replaceState(history.state,'',url);
+  }
+}
+document.getElementById('langBtn').onclick=function(){applyLanguage(EN?'pt':'en',{syncUrl:true})};
 
 /* Controle de movimento com 3 opcoes explicitas (Sistema/Completa/Reduzida) -
    substitui o toggle binario anterior, que nao deixava o visitante voltar
@@ -2615,6 +2709,9 @@ function updateMotionControlUI(){
   window.BrunoMotion.onChange(updateMotionControlUI);
   updateMotionControlUI();
 })();
+
+const requestedLanguage=new URLSearchParams(window.location.search).get('lang');
+applyLanguage(requestedLanguage==='en'?'en':'pt');
 
 </script>
 </body>
