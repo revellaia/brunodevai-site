@@ -9,8 +9,8 @@ window.ABOUT_I18N = (function() {
     html_dir: 'ltr',
 
     /* SEO */
-    meta_title: 'Bruno Goebel · Engenharia, tecnologia e presença digital',
-    meta_desc: 'Engenheiro Civil com 4 anos de experiência em programação, IA, produtos digitais, games, motion, segurança e direção criativa. Conheça a trajetória de Bruno Goebel.',
+    meta_title: 'Sobre Bruno Goebel | Engenharia, Desenvolvimento e IA',
+    meta_desc: 'Conheça Bruno Goebel, Engenheiro Civil com experiência em programação, inteligência artificial, sites, aplicações, games, produtos e experiências digitais.',
 
     /* Nav */
     nav_home: 'Início',
@@ -45,6 +45,7 @@ window.ABOUT_I18N = (function() {
     hero_text: 'Sou Engenheiro Civil por formação e atuo há 4 anos com programação, desenvolvimento e estruturação de produtos, aplicações, games e experiências digitais apoiadas por inteligência artificial.',
     hero_complement: 'Transformo ideias complexas em sistemas visuais, funcionais, seguros e preparados para crescer.',
     hero_positioning: 'Minha atuação combina raciocínio de engenharia, direção visual, arquitetura de produto, inteligência artificial, segurança digital, motion, narrativa e percepção de valor.',
+    hero_photo_alt: 'Bruno Goebel em seu ambiente de trabalho, com notebook, óculos, tatuagem e iluminação âmbar',
     hero_cta1: 'Explorar minha trajetória',
     hero_cta2: 'Conhecer meus projetos',
 
@@ -264,8 +265,8 @@ window.ABOUT_I18N = (function() {
     html_lang: 'en',
     html_dir: 'ltr',
 
-    meta_title: 'Bruno Goebel · Engineering, technology and digital presence',
-    meta_desc: 'Civil Engineer with 4 years of experience in programming, AI, digital products, games, motion, security and creative direction. Learn about Bruno Goebel\'s journey.',
+    meta_title: 'About Bruno Goebel | Engineering, Development and AI',
+    meta_desc: 'Meet Bruno Goebel, a Civil Engineer working across programming, artificial intelligence, websites, applications, games, products and digital experiences.',
 
     nav_home: 'Home',
     nav_about: 'About',
@@ -297,6 +298,7 @@ window.ABOUT_I18N = (function() {
     hero_text: 'I am a Civil Engineer by training and have been working for 4 years with programming, development and structuring of products, applications, games and digital experiences supported by artificial intelligence.',
     hero_complement: 'I transform complex ideas into visual, functional, secure systems ready to grow.',
     hero_positioning: 'My work combines engineering reasoning, visual direction, product architecture, artificial intelligence, digital security, motion, narrative and value perception.',
+    hero_photo_alt: 'Bruno Goebel working in his office with a laptop, glasses, visible tattoo and warm amber lighting',
     hero_cta1: 'Explore my journey',
     hero_cta2: 'See my projects',
 

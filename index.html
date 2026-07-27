@@ -41,9 +41,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <!-- Security (herdado da auditoria 2026-06-16) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
 <script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 
 <!-- Schema.org -->
@@ -350,9 +349,10 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);padding-top:max(9px,env(safe-area-
 .sector-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .sector-card{background:#fff;border:1px solid rgba(27,28,25,.08);border-radius:var(--r);padding:26px}
 .sector-card .sc-k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.sector-card h4{font-size:19px;margin:10px 0;color:var(--charcoal)}
+.sector-card h3{font-size:19px;margin:10px 0;color:var(--charcoal)}
 .sector-card p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);font-weight:300}
 .sector-card .items{margin-top:12px;font-size:12px;color:var(--gold);letter-spacing:.03em}
+.light .eyebrow,.light .tile .num,.light .sector-card .sc-k,.light .sector-card .items{color:#6f5218}
 .method-head{display:flex;align-items:flex-end;justify-content:flex-start;gap:28px}
 .method-head .sec-title{max-width:21ch}
 .method-signal{--square:10px;--offset:12px;--duration:2.4s;width:calc(3 * var(--offset) + var(--square));
@@ -382,7 +382,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);padding-top:max(9px,env(safe-area-
 .sec-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
 .sec-feat{border:1px solid rgba(216,179,104,.22);border-radius:var(--r);padding:22px;background:var(--void-2)}
 .sec-feat .sk{color:var(--neon);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
-.sec-feat h4{font-size:16px;color:var(--text-hi);margin:10px 0 6px}
+.sec-feat h3{font-size:16px;color:var(--text-hi);margin:10px 0 6px}
 .sec-feat p{font-size:12.5px;line-height:1.6;color:var(--text-lo);font-weight:300}
 .stack-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-hi);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 16px;background:var(--void-2)}
@@ -412,10 +412,10 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot a:hover{color:var(--text-hi)}
 .foot-brand{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi)}
 .foot small{display:block;margin-top:10px;font-size:12px;color:var(--text-lo)}
-.foot-col h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
+.foot-col h2{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
 .foot-col a{display:block;font-size:13px;margin-bottom:9px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.06);text-align:center;padding:20px;font-size:11px;color:var(--text-lo)}
-.foot-bottom a{color:var(--gold-lit);text-decoration:none}
+.foot-bottom a{color:var(--gold-lit);text-decoration:underline;text-underline-offset:3px}
 
 /* RESPONSIVE */
 @media(max-width:900px){
@@ -474,9 +474,15 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .adaptive-poster-picture{position:absolute;inset:0;display:block}
 .cinematic-poster,.cinematic-video{position:absolute;inset:0;width:100%;height:100%;object-fit:var(--media-fit,cover);object-position:var(--media-position,center)}
 .cinematic-poster{z-index:0}
-.cinematic-video{z-index:1;opacity:0;transition:opacity .9s var(--ease);background:transparent}
+.cinematic-video{z-index:1;opacity:0;pointer-events:none;transition:opacity .9s var(--ease);background:transparent}
 .cinematic-video[data-media-ready="true"]{opacity:1}
 .cinematic-veil{position:absolute;inset:0;z-index:1;pointer-events:none}
+.media-playback-control{position:absolute;right:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);z-index:7;
+  min-height:44px;padding:0 18px;border:1px solid rgba(216,179,104,.54);border-radius:999px;
+  background:rgba(8,9,7,.82);color:var(--text-hi);font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(0,0,0,.35);transition:border-color .2s,background .2s,transform .2s}
+.media-playback-control:hover,.media-playback-control:focus-visible{border-color:var(--neon);background:rgba(12,13,11,.94);transform:translateY(-2px)}
+.media-playback-control[hidden]{display:none}
 
 .cinematic-hero{min-height:100vh;min-height:100dvh;display:grid;align-items:center;padding:112px 0 76px;background:var(--void)}
 .cinematic-hero::before{inset:86px clamp(18px,3.4vw,56px) 24px;border-radius:12px;border-color:rgba(216,179,104,.22);
@@ -991,7 +997,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
         </div>
       </div>
     </div>
-    <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
+    <button class="btn-lang" id="langBtn" type="button" aria-label="Trocar idioma para EN">EN</button>
     <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
@@ -1212,24 +1218,24 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <button class="tab" role="tab" aria-selected="false" data-tab="t5" data-i18n="sec_g5">Tecnologia e produtos</button>
     </div>
     <div class="tab-panel active" id="t1"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g1h">Parecer confiável o suficiente para justificar o preço</h4><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saúde e educação vendem confiança. O site precisa justificar o preço antes da primeira reunião.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saúde · Educação</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Pires Contabilidade</h4><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graça virou uma marca com percepção de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g1h">Parecer confiável o suficiente para justificar o preço</h3><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saúde e educação vendem confiança. O site precisa justificar o preço antes da primeira reunião.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saúde · Educação</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Pires Contabilidade</h3><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graça virou uma marca com percepção de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t2"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g2h">Vender sem depender só de marketplace</h4><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine própria que construa marca, não apenas mais um anúncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Ateliê Memoré</h4><p data-i18n="sec_g2proof">Marca artesanal com domínio próprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g2h">Vender sem depender só de marketplace</h3><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine própria que construa marca, não apenas mais um anúncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Ateliê Memoré</h3><p data-i18n="sec_g2proof">Marca artesanal com domínio próprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t3"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h4><p data-i18n="sec_g3p">Fazendas, leilões, agronegócio e logística ganham autoridade com presença digital séria e catálogo bem apresentado.</p><div class="items">Fazendas · Leilões · Agronegócio · Logística</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h4 data-i18n="sec_g3h2">Projeto agro em avaliação</h4><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case público em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h3><p data-i18n="sec_g3p">Fazendas, leilões, agronegócio e logística ganham autoridade com presença digital séria e catálogo bem apresentado.</p><div class="items">Fazendas · Leilões · Agronegócio · Logística</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h3 data-i18n="sec_g3h2">Projeto agro em avaliação</h3><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case público em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
     </div></div>
     <div class="tab-panel" id="t4"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g4h">Traduzir sofisticação em tela</h4><p data-i18n="sec_g4p">Imóveis, arquitetura, fotografia, estética e marca pessoal vivem de percepção. O site é a primeira prova de bom gosto.</p><div class="items">Imóveis · Arquitetura · Fotografia · Estética · Marca pessoal</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Paula Guimarães</h4><p data-i18n="sec_g4proof">Portfólio editorial noturno que posiciona a fotógrafa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g4h">Traduzir sofisticação em tela</h3><p data-i18n="sec_g4p">Imóveis, arquitetura, fotografia, estética e marca pessoal vivem de percepção. O site é a primeira prova de bom gosto.</p><div class="items">Imóveis · Arquitetura · Fotografia · Estética · Marca pessoal</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Paula Guimarães</h3><p data-i18n="sec_g4proof">Portfólio editorial noturno que posiciona a fotógrafa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t5"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g5h">Parecer um produto de verdade</h4><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presença que transmita solidez técnica e confiança desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>The Frozen Legacy</h4><p data-i18n="sec_g5proof">Universo autoral com 3D em tempo real, o nível mais alto de complexidade que ofereço.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g5h">Parecer um produto de verdade</h3><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presença que transmita solidez técnica e confiança desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>The Frozen Legacy</h3><p data-i18n="sec_g5proof">Universo autoral com 3D em tempo real, o nível mais alto de complexidade que ofereço.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
   </div>
 </section>
@@ -1262,10 +1268,10 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
     <h2 class="sec-title" data-i18n="sec_sec_title">Bonito não basta. Precisa ser confiável.</h2>
     <p class="sec-lead" data-i18n="sec_sec_lead">Um site bonito que trava no celular, vaza dados ou depende de sorte não é premium. É risco com aparência de design. Por isso, cada entrega já nasce com cuidado técnico, privacidade, segurança, backup e manutenção planejados desde o início.</p>
     <div class="sec-feats">
-      <div class="sec-feat"><div class="sk">LGPD</div><h4 data-i18n="sf1t">Dados protegidos</h4><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com informações pessoais.</p></div>
-      <div class="sec-feat"><div class="sk">SSL</div><h4 data-i18n="sf2t">Conexão segura</h4><p data-i18n="sf2d">Certificado HTTPS e configurações básicas de segurança no deploy.</p></div>
-      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validação real</h4><p data-i18n="sf3d">Quando há formulário, cadastro ou backend, validações críticas não dependem apenas do navegador. O servidor é a fonte final de segurança.</p></div>
-      <div class="sec-feat"><div class="sk">Backup</div><h4 data-i18n="sf4t">Continuidade</h4><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site continuar no ar com mais estabilidade.</p></div>
+      <div class="sec-feat"><div class="sk">LGPD</div><h3 data-i18n="sf1t">Dados protegidos</h3><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com informações pessoais.</p></div>
+      <div class="sec-feat"><div class="sk">SSL</div><h3 data-i18n="sf2t">Conexão segura</h3><p data-i18n="sf2d">Certificado HTTPS e configurações básicas de segurança no deploy.</p></div>
+      <div class="sec-feat"><div class="sk">Server-side</div><h3 data-i18n="sf3t">Validação real</h3><p data-i18n="sf3d">Quando há formulário, cadastro ou backend, validações críticas não dependem apenas do navegador. O servidor é a fonte final de segurança.</p></div>
+      <div class="sec-feat"><div class="sk">Backup</div><h3 data-i18n="sf4t">Continuidade</h3><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site continuar no ar com mais estabilidade.</p></div>
     </div>
     <div class="stack-row">
       <span class="chip"><b>Next.js</b> · React</span>
@@ -1324,7 +1330,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
     </div>
     <div class="foot-col">
-      <h5 data-i18n="foot_work">Trabalho</h5>
+      <h2 data-i18n="foot_work">Trabalho</h2>
       <a href="sobre/" data-i18n="nav_about">Sobre</a>
       <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
       <a href="#cases" data-i18n="nav_cases">Cases</a>
@@ -1333,7 +1339,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <a href="#setores" data-i18n="nav_sectors">Setores</a>
     </div>
     <div class="foot-col">
-      <h5 data-i18n="foot_more">Mais</h5>
+      <h2 data-i18n="foot_more">Mais</h2>
       <a href="sobre/" data-i18n="nav_about">Sobre</a>
       <a href="#metodo" data-i18n="nav_method">Método</a>
       <a href="#seguranca" data-i18n="nav_security">Segurança</a>
@@ -1774,7 +1780,9 @@ window.AdaptiveMedia=(function(){
     if(preserveTime>0){
       video.addEventListener('loadedmetadata',()=>{
         if(Number.isFinite(video.duration)&&video.duration>0)video.currentTime=Math.min(preserveTime,Math.max(0,video.duration-.12));
-        if(resume&&document.visibilityState==='visible'&&!window.BrunoMotion.shouldReduceMotion())video.play().catch(()=>{});
+        if(resume&&document.visibilityState==='visible'&&!window.BrunoMotion.shouldReduceMotion()&&window.BrunoMediaPlayback){
+          window.BrunoMediaPlayback.attempt(video,{source:'adaptive-resume'});
+        }
       },{once:true});
     }
   }
@@ -1796,6 +1804,7 @@ window.AdaptiveMedia=(function(){
     entry.video.preload=media.constrained?'none':(entry.video.dataset.adaptivePriority==='critical'?'metadata':'none');
     entry.video.width=media.width;
     entry.video.height=media.height;
+    if(!previous||!entry.video.getAttribute('src'))entry.video.src=media.videoSrc;
     setPresentation(entry.video,media);
     if(entry.poster){
       if(entry.poster.getAttribute('src')!==media.posterSrc)entry.poster.src=media.posterSrc;
@@ -1846,6 +1855,136 @@ window.AdaptiveMedia=(function(){
   return{register,resolve,load,unload,refresh,isConstrained,profileName};
 })();
 
+/* RESILIENT PLAYBACK: bounded retries, explicit states and a manual browser-policy fallback. */
+window.BrunoMediaPlayback=(function(){
+  const MAX_RETRIES=2;
+  const registered=new Set();
+  const records=new WeakMap();
+
+  function copy(){
+    return document.documentElement.lang==='en'
+      ?{play:'Play video',retry:'Retry video',aria:'Play muted background video'}
+      :{play:'Reproduzir vídeo',retry:'Tentar vídeo novamente',aria:'Reproduzir vídeo de fundo sem áudio'};
+  }
+  function record(video){
+    if(!records.has(video))records.set(video,{retries:0,timer:0,button:null});
+    return records.get(video);
+  }
+  function prune(){
+    registered.forEach(video=>{if(!video.isConnected)registered.delete(video)});
+  }
+  function setState(video,state){
+    const item=record(video);
+    video.dataset.mediaState=state;
+    const button=item.button;
+    if(!button)return;
+    const labels=copy();
+    const visible=state==='autoplay-blocked'||state==='constrained'||state==='error';
+    button.hidden=!visible;
+    button.textContent=state==='error'?labels.retry:labels.play;
+    button.setAttribute('aria-label',labels.aria);
+  }
+  function pauseOthers(active){
+    prune();
+    registered.forEach(video=>{
+      if(video===active||video.paused)return;
+      video.pause();
+      if(video.dataset.mediaState==='playing')setState(video,'paused');
+    });
+  }
+  function clearRetry(video){
+    const item=record(video);
+    if(item.timer){clearTimeout(item.timer);item.timer=0}
+  }
+  function attempt(video,options={}){
+    if(!video)return Promise.resolve(false);
+    const manual=options.manual===true;
+    if(window.BrunoMotion.shouldReduceMotion()){
+      video.pause();
+      setState(video,'reduced');
+      return Promise.resolve(false);
+    }
+    if(window.AdaptiveMedia.isConstrained()&&!manual){
+      video.pause();
+      setState(video,'constrained');
+      return Promise.resolve(false);
+    }
+    clearRetry(video);
+    window.AdaptiveMedia.load(video);
+    pauseOthers(video);
+    video.muted=true;
+    video.defaultMuted=true;
+    video.playsInline=true;
+    setState(video,'play-requested');
+    let promise;
+    try{promise=video.play()}catch(error){promise=Promise.reject(error)}
+    return Promise.resolve(promise).then(()=>{
+      const item=record(video);
+      item.retries=0;
+      setState(video,'playing');
+      return true;
+    }).catch(error=>{
+      if(error&&error.name==='AbortError')return false;
+      if(error&&error.name==='NotAllowedError'&&!manual){
+        setState(video,'autoplay-blocked');
+        return false;
+      }
+      const item=record(video);
+      if(item.retries<MAX_RETRIES){
+        item.retries++;
+        setState(video,'metadata-loading');
+        item.timer=setTimeout(()=>{
+          item.timer=0;
+          if(video.isConnected&&document.visibilityState==='visible')attempt(video,{...options,source:'retry'});
+        },700*item.retries);
+      }else{
+        setState(video,'error');
+      }
+      return false;
+    });
+  }
+  function register(video,root){
+    if(!video)return null;
+    registered.add(video);
+    const item=record(video);
+    if(!item.button){
+      const host=root||video.closest('.cinematic-media,.concept-media');
+      if(host){
+        const button=document.createElement('button');
+        button.type='button';
+        button.className='media-playback-control';
+        button.hidden=true;
+        button.addEventListener('click',()=>attempt(video,{manual:true,source:'manual'}));
+        host.appendChild(button);
+        item.button=button;
+      }
+    }
+    video.addEventListener('loadeddata',()=>{
+      const protectedStates=['playing','autoplay-blocked','constrained','reduced','error'];
+      if(video.paused&&!protectedStates.includes(video.dataset.mediaState))setState(video,'ready');
+    });
+    video.addEventListener('playing',()=>setState(video,'playing'));
+    video.addEventListener('error',()=>setState(video,'error'));
+    return video;
+  }
+  function syncLanguage(){
+    prune();
+    registered.forEach(video=>setState(video,video.dataset.mediaState||'poster'));
+  }
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){
+      registered.forEach(video=>{if(!video.paused)video.pause()});
+    }
+  });
+  window.BrunoMotion.onChange(reduced=>{
+    registered.forEach(video=>{
+      if(reduced){clearRetry(video);video.pause();setState(video,'reduced')}
+      else if(video.dataset.activeMedia==='true')setState(video,'poster');
+    });
+  });
+  return{register,attempt,pauseOthers,setState,syncLanguage,MAX_RETRIES};
+})();
+
 /* CINEMATIC MEDIA: poster-first, viewport-aware and always muted */
 (function(){
   const items=[
@@ -1858,13 +1997,14 @@ window.AdaptiveMedia=(function(){
   function play(item){
     load(item);
     if(!window.BrunoMotion.shouldReduceMotion()&&document.visibilityState==='visible'){
-      item.video.play().catch(()=>{});
+      window.BrunoMediaPlayback.attempt(item.video,{source:'viewport'});
     }
   }
   items.forEach(item=>{
     const key=item.video.dataset.mediaKey;
     const poster=item.root.querySelector(`[data-adaptive-poster="${key}"]`);
     window.AdaptiveMedia.register(item.video,poster,key);
+    window.BrunoMediaPlayback.register(item.video,item.video.closest('.cinematic-media'));
     item.video.addEventListener('loadeddata',()=>item.video.dataset.mediaReady='true');
     item.video.addEventListener('error',()=>{item.video.dataset.mediaError='true';item.video.removeAttribute('data-media-ready')});
     if(item.eager&&!window.BrunoMotion.shouldReduceMotion())load(item);
@@ -1874,7 +2014,7 @@ window.AdaptiveMedia=(function(){
     if(!item)return;
     item.visible=entry.isIntersecting&&entry.intersectionRatio>.12;
     if(item.visible)play(item);else item.video.pause();
-  }),{threshold:[0,.12,.45],rootMargin:'120px 0px'});
+  }),{threshold:[0,.12,.45],rootMargin:'0px'});
   items.forEach(item=>observer.observe(item.root));
   window.BrunoMotion.onChange(reduced=>items.forEach(item=>{
     if(reduced)item.video.pause();else if(item.visible)play(item);
@@ -2060,6 +2200,7 @@ window.ConceptGallery=(function(){
       const key=video.dataset.mediaKey;
       const poster=video.closest('.concept-media').querySelector(`[data-adaptive-poster="${key}"]`);
       window.AdaptiveMedia.register(video,poster,key);
+      window.BrunoMediaPlayback.register(video,video.closest('.concept-media'));
       video.addEventListener('loadeddata',()=>video.dataset.mediaReady='true');
       video.addEventListener('error',()=>{video.dataset.mediaError='true';video.removeAttribute('data-media-ready')});
     });
@@ -2083,7 +2224,7 @@ window.ConceptGallery=(function(){
         if(inView&&!reduced&&!dialog.open){
           playTimer=setTimeout(()=>{
             loadVideo(video);
-            video.play().catch(()=>{});
+            window.BrunoMediaPlayback.attempt(video,{source:'carousel'});
           },1200);
           if(!window.AdaptiveMedia.isConstrained()&&index<SITE_CONCEPTS.length-1){
             preloadTimer=setTimeout(()=>{
@@ -2392,6 +2533,7 @@ let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
+  this.setAttribute('aria-label',EN?'Switch language to PT':'Trocar idioma para EN');
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
   if(window.ConceptGallery)window.ConceptGallery.setLanguage(EN?'en':'pt');
   updateMotionControlUI();

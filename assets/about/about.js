@@ -396,6 +396,12 @@
     if (ogTitle) ogTitle.content = t.meta_title;
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.content = t.meta_desc;
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.content = t.meta_title;
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDesc) twitterDesc.content = t.meta_desc;
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.content = lang === 'en' ? 'en_US' : 'pt_BR';
 
     // Apply data-i18n
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
@@ -404,11 +410,19 @@
         el.innerHTML = t[key];
       }
     });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+      const key = el.dataset.i18nAlt;
+      if (t[key] !== undefined) el.setAttribute('alt', t[key]);
+    });
 
     // Lang button
     const langBtn = document.getElementById('aboutLangBtn');
     if (langBtn) {
       langBtn.textContent = t.nav_lang || 'EN';
+      langBtn.setAttribute(
+        'aria-label',
+        lang === 'en' ? 'Switch language to PT' : 'Trocar idioma para EN'
+      );
     }
 
     // Store current lang for toggle
@@ -444,6 +458,10 @@
       const t = window.ABOUT_I18N ? window.ABOUT_I18N[newLang === 'en' ? 'EN' : 'PT'] : null;
       if (t) {
         langBtn.textContent = t.nav_lang || (newLang === 'en' ? 'PT' : 'EN');
+        langBtn.setAttribute(
+          'aria-label',
+          newLang === 'en' ? 'Switch language to PT' : 'Trocar idioma para EN'
+        );
       }
     });
   }
@@ -462,9 +480,9 @@
         const category = filter.dataset.filter;
 
         filters.forEach(function(f) {
-          f.setAttribute('aria-selected', 'false');
+          f.setAttribute('aria-pressed', 'false');
         });
-        filter.setAttribute('aria-selected', 'true');
+        filter.setAttribute('aria-pressed', 'true');
 
         cards.forEach(function(card) {
           if (category === 'all' || card.dataset.category === category) {
@@ -481,26 +499,48 @@
      AREA TABS
      ============================================================ */
   function initAreaTabs() {
-    const tabs = document.querySelectorAll('.about-area-tab');
-    const panels = document.querySelectorAll('.about-area-panel');
+    const tabs = Array.from(document.querySelectorAll('.about-area-tab'));
+    const panels = Array.from(document.querySelectorAll('.about-area-panel'));
 
     if (!tabs.length || !panels.length) return;
 
-    tabs.forEach(function(tab) {
+    function activate(tab, moveFocus) {
+      const target = document.getElementById(tab.dataset.tab);
+      tabs.forEach(function(item) {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.setAttribute('tabindex', selected ? '0' : '-1');
+      });
+      panels.forEach(function(panel) {
+        const selected = panel === target;
+        panel.classList.toggle('active', selected);
+        panel.hidden = !selected;
+      });
+      if (moveFocus) tab.focus();
+    }
+
+    tabs.forEach(function(tab, index) {
+      const target = document.getElementById(tab.dataset.tab);
+      const tabId = 'area-tab-' + tab.dataset.tab.replace('area-', '');
+      tab.id = tabId;
+      tab.setAttribute('aria-controls', tab.dataset.tab);
+      tab.setAttribute('tabindex', index === 0 ? '0' : '-1');
+      if (target) target.setAttribute('aria-labelledby', tabId);
       tab.addEventListener('click', function() {
-        const target = tab.dataset.tab;
-
-        tabs.forEach(function(t) {
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.setAttribute('aria-selected', 'true');
-
-        panels.forEach(function(p) {
-          p.classList.remove('active');
-        });
-        document.getElementById(target).classList.add('active');
+        activate(tab, false);
+      });
+      tab.addEventListener('keydown', function(event) {
+        let next = index;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activate(tabs[next], true);
       });
     });
+    activate(tabs.find(function(tab) { return tab.getAttribute('aria-selected') === 'true'; }) || tabs[0], false);
   }
 
   /* ============================================================
@@ -529,18 +569,39 @@
      ============================================================ */
   function initNavEnhance() {
     const mobileDrawer = document.getElementById('mobileDrawer');
-    if (mobileDrawer) {
-      // Focus trap when drawer opens
-      const observer = new MutationObserver(function() {
-        if (mobileDrawer.classList.contains('open')) {
-          const firstLink = mobileDrawer.querySelector('a');
-          if (firstLink) {
-            setTimeout(function() { firstLink.focus(); }, 100);
-          }
-        }
-      });
-      observer.observe(mobileDrawer, { attributes: true, attributeFilter: ['class'] });
-    }
+    const burger = document.getElementById('aboutBurger');
+    if (!mobileDrawer || !burger) return;
+
+    let wasOpen = false;
+    const focusables = function() {
+      return Array.from(mobileDrawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+    };
+    const observer = new MutationObserver(function() {
+      const isOpen = mobileDrawer.classList.contains('open');
+      if (isOpen && !wasOpen) {
+        const first = focusables()[0];
+        if (first) first.focus();
+      } else if (!isOpen && wasOpen) {
+        burger.focus();
+      }
+      wasOpen = isOpen;
+    });
+    observer.observe(mobileDrawer, { attributes: true, attributeFilter: ['class'] });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key !== 'Tab' || !mobileDrawer.classList.contains('open')) return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
   }
 
   /* ============================================================
@@ -558,7 +619,26 @@
           }
         }
       });
+      return;
     }
+
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function localPreference() {
+      try {
+        const saved = localStorage.getItem('brunodevai:motion-preference');
+        if (saved === 'full' || saved === 'reduced') return saved;
+      } catch (e) {}
+      return 'system';
+    }
+    function applyLocalMotion() {
+      const preference = localPreference();
+      const reduced = preference === 'reduced' || (preference === 'system' && media.matches);
+      document.documentElement.classList.toggle('motion-reduced', reduced);
+      document.documentElement.dataset.motion = reduced ? 'reduced' : 'full';
+    }
+    applyLocalMotion();
+    if (typeof media.addEventListener === 'function') media.addEventListener('change', applyLocalMotion);
+    else if (typeof media.addListener === 'function') media.addListener(applyLocalMotion);
   }
 
   /* ============================================================

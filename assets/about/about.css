@@ -49,8 +49,8 @@
   padding: 0 clamp(18px, 4vw, 56px);
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  gap: clamp(28px, 3.5vw, 58px);
   align-items: center;
 }
 
@@ -72,8 +72,8 @@
 .about-hero-photo .photo-frame {
   position: relative;
   width: 100%;
-  max-width: 520px;
-  aspect-ratio: 3/4;
+  max-width: 700px;
+  aspect-ratio: 4/3;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(216, 179, 104, 0.2);
@@ -83,11 +83,20 @@
   background: var(--void-2);
 }
 
+.about-profile-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.035), rgba(168,255,96,.025)),
+    var(--void-2);
+}
+
 .about-hero-photo .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 68% 40%;
   display: block;
 }
 
@@ -266,8 +275,11 @@
 /* === RESPONSIVE HERO === */
 @media (max-width: 1100px) {
   .about-hero-inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     gap: 30px;
+  }
+  .about-hero-photo .photo-frame {
+    aspect-ratio: 5/4;
   }
 }
 
@@ -295,8 +307,12 @@
     min-height: auto;
   }
   .about-hero-photo .photo-frame {
-    max-width: 340px;
+    width: min(88vw, 680px);
+    max-width: none;
     aspect-ratio: 3/4;
+  }
+  .about-hero-photo .photo-frame img {
+    object-position: 64% 32%;
   }
   .about-hero-content {
     text-align: center;
@@ -332,7 +348,13 @@
     padding-bottom: 40px;
   }
   .about-hero-photo .photo-frame {
-    max-width: 280px;
+    width: calc(100vw - 36px);
+    max-width: 430px;
+    aspect-ratio: 3/4;
+    border-radius: 12px;
+  }
+  .about-hero-photo .photo-frame img {
+    object-position: 67% 28%;
   }
   .about-hero h1 {
     font-size: clamp(30px, 10vw, 44px);
@@ -496,7 +518,6 @@
 .about-area-panel {
   display: none;
   margin-top: 28px;
-  animation: fadeIn 0.35s ease-out;
 }
 
 .about-area-panel.active {
@@ -603,7 +624,7 @@
   color: var(--text-hi);
 }
 
-.portfolio-filter[aria-selected="true"] {
+.portfolio-filter[aria-pressed="true"] {
   background: var(--neon);
   color: var(--void);
   border-color: var(--neon);
@@ -700,12 +721,12 @@
 .method-card .mc-num {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: var(--gold);
+  color: #6f5218;
   letter-spacing: 0.08em;
   margin-bottom: 8px;
 }
 
-.method-card h4 {
+.method-card h3 {
   font-size: 16px;
   color: var(--charcoal);
   margin-bottom: 6px;
@@ -867,4 +888,29 @@ html.motion-reduced .about-reveal {
 
 html.motion-reduced .about-area-panel.active {
   animation: none !important;
+}
+
+.light .eyebrow {
+  color: #6f5218;
+}
+
+.foot-col h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+  margin-bottom: 14px;
+}
+
+.foot-bottom a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-identity {
+  position: relative;
+  background: var(--void);
+  color: var(--text-hi);
+  padding-bottom: clamp(40px, 5vw, 80px);
 }
