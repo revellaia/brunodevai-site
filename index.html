@@ -516,9 +516,11 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)}
 .cinematic-hero::after{content:none}
 .cinematic-hero .cinematic-media{inset:0}
-/* Grade calibrada para o plano noturno: brightness baixo demais apagava a cidade iluminada.
-   O contraste do texto continua garantido pelo .cinematic-veil-hero, nao pelo escurecimento. */
-.cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:center 52%;filter:saturate(.92) contrast(1.06) brightness(.88);transform:scale(1.015)}
+/* Grade neutra para o plano diurno: saturacao em 1 (sem reforco artificial) e brightness
+   alto o bastante para o verde nao virar oliva. O contraste do texto vem do
+   .cinematic-veil-hero, que escurece a coluna da copy — nunca do escurecimento do video,
+   que precisa continuar bonito por si so. */
+.cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:center 52%;filter:saturate(1) contrast(1.04) brightness(.94);transform:scale(1.015)}
 .cinematic-veil-hero{background:
   linear-gradient(90deg,rgba(7,9,8,.97) 0%,rgba(7,9,8,.9) 30%,rgba(7,9,8,.45) 57%,rgba(7,9,8,.12) 74%,rgba(7,9,8,.5) 100%),
   linear-gradient(180deg,rgba(7,9,8,.55),transparent 31%,rgba(7,9,8,.34) 70%,rgba(7,9,8,.94));
@@ -1051,14 +1053,18 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 
 <!-- HERO -->
 <header class="hero cinematic-act cinematic-hero" id="top" data-cinematic-act="1">
-  <figure class="cinematic-media cinematic-media-landscape" aria-label="Cidade histórica iluminada ao anoitecer, vista do alto: uma paisagem que traduz amplitude, direção e presença">
+  <figure class="cinematic-media cinematic-media-landscape" aria-label="Manada de cavalos em um vale de montanha ao entardecer, vista do alto: uma paisagem que traduz amplitude, direção e presença">
     <picture class="adaptive-poster-picture">
+      <source type="image/avif" media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.avif"/>
       <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+      <source type="image/avif" media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.avif"/>
       <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+      <source type="image/avif" media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.avif"/>
       <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+      <source type="image/avif" srcset="assets/cinematic/presence-landscape.avif"/>
       <img class="cinematic-poster" src="assets/cinematic/presence-landscape.webp" data-adaptive-poster="presence-landscape" alt="" width="1280" height="720" fetchpriority="high"/>
     </picture>
-    <video id="heroPrimaryVideo" class="cinematic-video" data-media-key="presence-landscape" data-adaptive-priority="critical" muted autoplay loop playsinline preload="metadata" width="1280" height="720" aria-label="Sobrevoo cinematográfico de uma cidade histórica iluminada ao anoitecer" disablepictureinpicture></video>
+    <video id="heroPrimaryVideo" class="cinematic-video" data-media-key="presence-landscape" data-adaptive-priority="critical" muted autoplay loop playsinline preload="metadata" width="1280" height="720" aria-label="Sobrevoo cinematográfico de uma manada de cavalos em um vale de montanha ao entardecer" disablepictureinpicture></video>
   </figure>
   <div class="cinematic-veil cinematic-veil-hero" aria-hidden="true"></div>
   <div class="hero-inner">
@@ -1338,9 +1344,13 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 <!-- CTA FINAL -->
 <section class="dark grain cta-final" id="contato">
   <picture class="cta-atmosphere" aria-hidden="true">
+    <source type="image/avif" media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.avif"/>
     <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+    <source type="image/avif" media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.avif"/>
     <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+    <source type="image/avif" media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.avif"/>
     <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+    <source type="image/avif" srcset="assets/cinematic/presence-landscape.avif"/>
     <img src="assets/cinematic/presence-landscape.webp" alt="" width="1280" height="720" loading="lazy"/>
   </picture>
   <div class="wrap">
@@ -2624,14 +2634,14 @@ function applyLanguage(nextLanguage,{syncUrl=false}={}){
     }catch(error){}
   }
   const aria=EN?{
-    logo:'Bruno Goebel, home',burger:'Open menu',drawer:'Navigation menu',heroMedia:'Historic town lit at dusk seen from above, a landscape expressing scale, direction and presence',
-    heroVideo:'Cinematic flight over a historic town lit at dusk',positioningMedia:'High-presence vehicle moving along a road',
+    logo:'Bruno Goebel, home',burger:'Open menu',drawer:'Navigation menu',heroMedia:'Herd of horses in a mountain valley at golden hour seen from above, a landscape expressing scale, direction and presence',
+    heroVideo:'Cinematic flight over a herd of horses in a mountain valley at golden hour',positioningMedia:'High-presence vehicle moving along a road',
     positioningVideo:'Vehicle moving forward, a visual metaphor for engineering and presence',trust:'Delivery commitments',
     carousel:'Authorial website directions by market',carouselRole:'carousel',previous:'Previous',next:'Next',highlights:'Project highlights',
     toTop:'Back to top',close:'Close'
   }:{
-    logo:'Bruno Goebel, início',burger:'Abrir menu',drawer:'Menu de navegação',heroMedia:'Cidade histórica iluminada ao anoitecer, vista do alto: uma paisagem que traduz amplitude, direção e presença',
-    heroVideo:'Sobrevoo cinematográfico de uma cidade histórica iluminada ao anoitecer',positioningMedia:'Veículo de alta presença avançando em uma pista',
+    logo:'Bruno Goebel, início',burger:'Abrir menu',drawer:'Menu de navegação',heroMedia:'Manada de cavalos em um vale de montanha ao entardecer, vista do alto: uma paisagem que traduz amplitude, direção e presença',
+    heroVideo:'Sobrevoo cinematográfico de uma manada de cavalos em um vale de montanha ao entardecer',positioningMedia:'Veículo de alta presença avançando em uma pista',
     positioningVideo:'Veículo avançando, metáfora visual de engenharia e presença',trust:'Compromissos da entrega',
     carousel:'Direções autorais de sites por mercado',carouselRole:'carrossel',previous:'Anterior',next:'Próximo',highlights:'Destaques do projeto',
     toTop:'Voltar ao topo',close:'Fechar'
