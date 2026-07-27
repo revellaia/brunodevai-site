@@ -30,7 +30,10 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="logo-brunodevai.png"/>
 <link rel="apple-touch-icon" href="logo-brunodevai.png"/>
-<link rel="preload" as="image" href="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-mobile-portrait.webp" media="(max-width: 600px) and (orientation: portrait)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-tablet-portrait.webp" media="(min-width: 601px) and (max-width: 1024px) and (orientation: portrait)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape-landscape-sm.webp" media="(max-width: 1194px) and (orientation: landscape)" fetchpriority="high"/>
+<link rel="preload" as="image" href="assets/cinematic/presence-landscape.webp" media="(min-width: 1195px)" fetchpriority="high"/>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -38,9 +41,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <!-- Security (herdado da auditoria 2026-06-16) -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
 <script>if(window.top!==window.self){window.top.location=window.self.location;}</script>
 
 <!-- Schema.org -->
@@ -71,7 +73,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
-body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+body{min-width:100vw;background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
 body.locked{overflow:hidden}
 h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 .mono{font-family:'JetBrains Mono',monospace}
@@ -83,7 +85,7 @@ img{display:block;max-width:100%}
 /* PROGRESS + BACK TO TOP */
 #progress{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0;
   background:linear-gradient(90deg,var(--gold),var(--neon));transition:width .1s linear;box-shadow:0 0 10px var(--neon-dim)}
-#toTop{position:fixed;right:22px;bottom:22px;z-index:800;width:46px;height:46px;border-radius:50%;
+#toTop{position:fixed;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:800;width:46px;height:46px;border-radius:50%;
   border:1px solid var(--neon-dim);background:rgba(12,13,11,.85);color:var(--neon);
   display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s,box-shadow .3s;backdrop-filter:blur(8px)}
@@ -93,9 +95,13 @@ img{display:block;max-width:100%}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;
   justify-content:space-between;padding:14px clamp(18px,4vw,56px);
+  padding-top:max(14px,env(safe-area-inset-top));padding-left:max(clamp(18px,4vw,56px),env(safe-area-inset-left));
+  padding-right:max(clamp(18px,4vw,56px),env(safe-area-inset-right));
   background:rgba(10,11,9,.78);backdrop-filter:blur(22px);
   border-bottom:1px solid rgba(197,160,89,.16);transition:padding .3s,background .3s}
-nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-bottom-color:rgba(197,160,89,.26)}
+nav.scrolled{padding:9px clamp(18px,4vw,56px);padding-top:max(9px,env(safe-area-inset-top));
+  padding-left:max(clamp(18px,4vw,56px),env(safe-area-inset-left));padding-right:max(clamp(18px,4vw,56px),env(safe-area-inset-right));
+  background:rgba(8,9,7,.94);border-bottom-color:rgba(197,160,89,.26)}
 .logo{display:flex;align-items:center;text-decoration:none}
 .logo img{height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 14px rgba(197,160,89,.4));transition:filter .3s}
 .logo:hover img{filter:drop-shadow(0 0 24px rgba(197,160,89,.7))}
@@ -146,7 +152,8 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 #mobileDrawer{position:fixed;top:0;right:0;z-index:615;height:100vh;height:100dvh;
   width:min(84vw,340px);background:var(--void-2);border-left:1px solid rgba(216,179,104,.2);
   transform:translateX(100%);transition:transform .35s var(--ease);
-  display:flex;flex-direction:column;gap:8px;padding:96px 30px 30px;overflow-y:auto;overscroll-behavior:contain}
+  display:flex;flex-direction:column;gap:8px;padding:max(96px,calc(env(safe-area-inset-top) + 76px)) max(30px,env(safe-area-inset-right)) max(30px,env(safe-area-inset-bottom)) 30px;
+  overflow-y:auto;overscroll-behavior:contain}
 #mobileDrawer.open{transform:translateX(0)}
 #mobileDrawer a{font-size:17px;color:var(--text-hi);text-decoration:none;letter-spacing:.02em;
   padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
@@ -342,9 +349,10 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .sector-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .sector-card{background:#fff;border:1px solid rgba(27,28,25,.08);border-radius:var(--r);padding:26px}
 .sector-card .sc-k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.sector-card h4{font-size:19px;margin:10px 0;color:var(--charcoal)}
+.sector-card h3{font-size:19px;margin:10px 0;color:var(--charcoal)}
 .sector-card p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);font-weight:300}
 .sector-card .items{margin-top:12px;font-size:12px;color:var(--gold);letter-spacing:.03em}
+.light .eyebrow,.light .tile .num,.light .sector-card .sc-k,.light .sector-card .items{color:#6f5218}
 .method-head{display:flex;align-items:flex-end;justify-content:flex-start;gap:28px}
 .method-head .sec-title{max-width:21ch}
 .method-signal{--square:10px;--offset:12px;--duration:2.4s;width:calc(3 * var(--offset) + var(--square));
@@ -374,7 +382,7 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .sec-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
 .sec-feat{border:1px solid rgba(216,179,104,.22);border-radius:var(--r);padding:22px;background:var(--void-2)}
 .sec-feat .sk{color:var(--neon);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
-.sec-feat h4{font-size:16px;color:var(--text-hi);margin:10px 0 6px}
+.sec-feat h3{font-size:16px;color:var(--text-hi);margin:10px 0 6px}
 .sec-feat p{font-size:12.5px;line-height:1.6;color:var(--text-lo);font-weight:300}
 .stack-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 .chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-hi);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 16px;background:var(--void-2)}
@@ -386,7 +394,13 @@ nav.scrolled{padding:9px clamp(18px,4vw,56px);background:rgba(8,9,7,.94);border-
 .faq-item.open .pm{transform:rotate(45deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
 .faq-a p{padding:0 0 22px;font-size:14px;line-height:1.7;color:var(--ink-soft);font-weight:300;max-width:70ch}
-.cta-final{text-align:center}
+.cta-final{text-align:center;position:relative;isolation:isolate;overflow:hidden}
+.cta-atmosphere{position:absolute;inset:0;z-index:0;margin:0;overflow:hidden}
+.cta-atmosphere img{width:100%;height:100%;object-fit:cover;object-position:center 58%;filter:saturate(.62) brightness(.28) contrast(1.14);transform:scale(1.035)}
+.cta-final::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(70% 72% at 50% 48%,rgba(12,13,11,.52),var(--void) 100%),
+    linear-gradient(180deg,var(--void),rgba(12,13,11,.62) 42%,var(--void))}
+.cta-final .wrap{z-index:2;min-height:min(760px,82svh);display:flex;flex-direction:column;justify-content:center}
 .cta-final .sec-title{margin:0 auto;max-width:24ch}
 .cta-final .sec-lead{margin:18px auto 0}
 .cta-final .cta-subtitle{color:var(--text-hi);font-weight:500;font-size:clamp(16px,1.7vw,20px);margin-top:10px}
@@ -398,10 +412,10 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
 .foot a:hover{color:var(--text-hi)}
 .foot-brand{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--text-hi)}
 .foot small{display:block;margin-top:10px;font-size:12px;color:var(--text-lo)}
-.foot-col h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
+.foot-col h2{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-hi);margin-bottom:14px}
 .foot-col a{display:block;font-size:13px;margin-bottom:9px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.06);text-align:center;padding:20px;font-size:11px;color:var(--text-lo)}
-.foot-bottom a{color:var(--gold-lit);text-decoration:none}
+.foot-bottom a{color:var(--gold-lit);text-decoration:underline;text-underline-offset:3px}
 
 /* RESPONSIVE */
 @media(max-width:900px){
@@ -453,6 +467,504 @@ html.motion-reduced .hero-scene-media,html.motion-reduced .hero-scene-video{tran
 html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+
+/* CINEMATIC HOME V2 */
+.cinematic-act{position:relative;isolation:isolate;overflow:hidden}
+.cinematic-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--void)}
+.adaptive-poster-picture{position:absolute;inset:0;display:block}
+.cinematic-poster,.cinematic-video{position:absolute;inset:0;width:100%;height:100%;object-fit:var(--media-fit,cover);object-position:var(--media-position,center)}
+.cinematic-poster{z-index:0}
+.cinematic-video{z-index:1;opacity:0;pointer-events:none;transition:opacity .9s var(--ease);background:transparent}
+.cinematic-video[data-media-ready="true"]{opacity:1}
+.cinematic-veil{position:absolute;inset:0;z-index:1;pointer-events:none}
+.media-playback-control{position:absolute;right:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);z-index:7;
+  min-height:44px;padding:0 18px;border:1px solid rgba(216,179,104,.54);border-radius:999px;
+  background:rgba(8,9,7,.82);color:var(--text-hi);font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(0,0,0,.35);transition:border-color .2s,background .2s,transform .2s}
+.media-playback-control:hover,.media-playback-control:focus-visible{border-color:var(--neon);background:rgba(12,13,11,.94);transform:translateY(-2px)}
+.media-playback-control[hidden]{display:none}
+
+.cinematic-hero{min-height:100vh;min-height:100dvh;display:grid;align-items:center;padding:112px 0 76px;background:var(--void)}
+.cinematic-hero::before{inset:86px clamp(18px,3.4vw,56px) 24px;border-radius:12px;border-color:rgba(216,179,104,.22);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)}
+.cinematic-hero::after{content:none}
+.cinematic-hero .cinematic-media{inset:0}
+.cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:center 52%;filter:saturate(.78) contrast(1.1) brightness(.68);transform:scale(1.015)}
+.cinematic-veil-hero{background:
+  linear-gradient(90deg,rgba(7,9,8,.97) 0%,rgba(7,9,8,.9) 30%,rgba(7,9,8,.45) 57%,rgba(7,9,8,.12) 74%,rgba(7,9,8,.5) 100%),
+  linear-gradient(180deg,rgba(7,9,8,.55),transparent 31%,rgba(7,9,8,.34) 70%,rgba(7,9,8,.94));
+  box-shadow:inset 0 -120px 180px rgba(0,0,0,.4)}
+.cinematic-hero .hero-inner{z-index:3}
+.cinematic-hero .hero-copy{max-width:min(56vw,720px)}
+.cinematic-hero .hero-eyebrow{color:var(--neon);letter-spacing:.035em;text-transform:none;font-weight:600}
+.cinematic-hero h1{font-size:clamp(48px,5.5vw,88px);max-width:17ch;line-height:.94;letter-spacing:-.025em;text-shadow:0 10px 46px rgba(0,0,0,.46)}
+.cinematic-hero .hero-sub{max-width:55ch;color:rgba(244,242,236,.82);font-weight:350}
+.cinematic-hero .hero-note{color:rgba(244,242,236,.64);max-width:51ch}
+.hero-trust{display:flex;align-items:stretch;gap:0;margin-top:30px;border-top:1px solid rgba(216,179,104,.2);max-width:720px}
+.hero-trust>span{display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 22px 10px 0;margin-right:22px;
+  border-right:1px solid rgba(255,255,255,.1);color:rgba(244,242,236,.62);font-size:9px;line-height:1.35;letter-spacing:.09em;text-transform:uppercase}
+.hero-trust>span:last-child{border-right:0;margin-right:0}
+.hero-trust b{color:var(--neon);font-size:17px;font-weight:400;text-shadow:0 0 14px rgba(168,255,96,.36)}
+.hero-signature{position:absolute;left:clamp(18px,4vw,56px);right:clamp(18px,4vw,56px);bottom:40px;z-index:3;
+  display:flex;justify-content:space-between;color:rgba(244,242,236,.46);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.cinematic-hero .hero-scroll{z-index:4;bottom:38px}
+
+.positioning-film{min-height:88vh;min-height:88dvh;display:flex;align-items:center;background:#080907}
+.positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:center 56%;filter:saturate(.64) contrast(1.16) brightness(.5);transform:scale(1.025)}
+.positioning-veil{background:
+  linear-gradient(90deg,rgba(8,9,7,.97) 0%,rgba(8,9,7,.88) 42%,rgba(8,9,7,.34) 72%,rgba(8,9,7,.66) 100%),
+  linear-gradient(180deg,var(--void),transparent 25%,transparent 72%,var(--void))}
+.positioning-content{z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.55fr);align-items:end;gap:clamp(38px,7vw,108px)}
+.positioning-copy{max-width:690px}
+.positioning-film .sec-title{font-size:clamp(36px,4.7vw,66px);max-width:15ch;line-height:1}
+.positioning-film .sec-lead{max-width:56ch;color:rgba(244,242,236,.68)}
+.positioning-film .proof-strip{display:grid;grid-template-columns:1fr;margin:0;padding:24px 0;border-top:1px solid rgba(216,179,104,.24);border-bottom:1px solid rgba(216,179,104,.24)}
+.positioning-film .proof-item{justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.positioning-film .proof-item:last-child{border-bottom:0}
+.positioning-film .proof-item .dot{order:2}
+
+.ecosystem-section{background:#07090b}
+.ecosystem-section .wrap{max-width:1500px;padding:clamp(72px,7vw,108px) clamp(18px,3.5vw,52px)}
+.ecosystem-stage{position:relative;min-height:850px;width:100%;border:1px solid rgba(160,193,215,.2);
+  background:#091016;color:var(--text-hi);text-align:left;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.4)}
+.ecosystem-stage::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(70% 90% at 76% 28%,rgba(115,163,193,.16),transparent 66%),
+  linear-gradient(90deg,rgba(5,9,13,.98) 0%,rgba(5,9,13,.86) 38%,rgba(5,9,13,.26) 68%,rgba(5,9,13,.4) 100%),
+  linear-gradient(180deg,rgba(5,8,11,.46),transparent 38%,rgba(5,8,11,.92) 100%)}
+.ecosystem-stage::after{content:'';position:absolute;inset:20px;z-index:5;pointer-events:none;border:1px solid rgba(217,231,239,.1)}
+.ecosystem-media{position:absolute;inset:0;z-index:0}
+.ecosystem-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:saturate(.7) contrast(1.12) brightness(.72);
+  transform:translate3d(0,var(--eco-shift,0px),0) scale(1.035);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.ecosystem-stage:hover .ecosystem-media img{transform:translate3d(0,var(--eco-shift,0px),0) scale(1.052);filter:saturate(.78) contrast(1.1) brightness(.76)}
+.ecosystem-snow{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;mask-image:linear-gradient(90deg,transparent,black 24%,black)}
+.ecosystem-snow::before,.ecosystem-snow::after{content:'';position:absolute;inset:-220px 0 0;background-repeat:repeat;will-change:background-position}
+.ecosystem-snow::before{opacity:.42;background-image:
+  radial-gradient(circle,rgba(238,248,255,.85) 0 1px,transparent 1.5px),
+  radial-gradient(circle,rgba(238,248,255,.62) 0 1.4px,transparent 1.9px),
+  radial-gradient(circle,rgba(238,248,255,.42) 0 .8px,transparent 1.3px);
+  background-size:73px 73px,119px 119px,47px 47px;background-position:11px -90px,53px -160px,7px -40px;
+  animation:ecosystemSnow 16s linear infinite}
+.ecosystem-snow::after{opacity:.2;filter:blur(.5px);background-image:
+  radial-gradient(circle,rgba(255,255,255,.8) 0 2px,transparent 2.7px),
+  radial-gradient(circle,rgba(255,255,255,.5) 0 1.5px,transparent 2.2px);
+  background-size:181px 181px,137px 137px;background-position:40px -120px,90px -60px;
+  animation:ecosystemSnow 25s linear infinite reverse}
+@keyframes ecosystemSnow{to{background-position:58px 900px,4px 760px,41px 820px}}
+.ecosystem-copy{position:relative;z-index:4;padding:clamp(48px,5vw,70px);width:min(62%,820px)}
+.ecosystem-eyebrows{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ecosystem-eyebrows .eyebrow{margin:0}
+.ecosystem-international{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid rgba(168,209,235,.3);
+  color:#d6e9f5;background:rgba(8,19,27,.4);font:700 9px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.ecosystem-international>span:first-child{color:#8fd3ff}
+.ecosystem-copy .sec-title{margin-top:24px;font-size:clamp(42px,4.4vw,66px);line-height:.96;max-width:17ch}
+.ecosystem-copy .sec-lead{margin-top:24px;color:rgba(226,238,246,.72);font-size:14px;line-height:1.7;max-width:58ch}
+.ecosystem-project{position:absolute;z-index:4;left:clamp(34px,5vw,70px);right:clamp(34px,5vw,70px);bottom:48px;display:grid;
+  grid-template-columns:minmax(300px,.86fr) minmax(440px,1.14fr);border:1px solid rgba(169,205,228,.22);
+  background:linear-gradient(100deg,rgba(7,13,18,.94),rgba(11,23,31,.78));backdrop-filter:blur(18px);box-shadow:0 18px 70px rgba(0,0,0,.34)}
+.ecosystem-project-main{padding:26px 30px;border-right:1px solid rgba(169,205,228,.18)}
+.ecosystem-project-main .badge{margin-bottom:12px}
+.ecosystem-name{font:500 clamp(30px,3vw,44px)/1 'DM Serif Display',serif}
+.ecosystem-project-main .card-tag{margin-top:8px;color:#b9d7e9}
+.ecosystem-project-main .card-desc{margin-top:10px;max-width:54ch;color:rgba(230,238,242,.65);font-size:12px;line-height:1.55}
+.ecosystem-actions{display:flex;gap:10px;margin-top:17px}
+.ecosystem-actions a,.ecosystem-actions button{min-height:40px;padding:0 15px;border:1px solid rgba(147,186,212,.35);background:transparent;color:#dcecf5;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;font:750 9px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase}
+.ecosystem-actions a{background:#d6e9f5;border-color:#d6e9f5;color:#091016}
+.ecosystem-actions a:hover,.ecosystem-actions button:hover{border-color:#fff}
+.ecosystem-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:stretch}
+.ecosystem-highlights>div{padding:27px 24px;border-right:1px solid rgba(169,205,228,.15);border-bottom:1px solid rgba(169,205,228,.15)}
+.ecosystem-highlights>div:nth-child(even){border-right:0}
+.ecosystem-highlights>div:nth-child(n+3){border-bottom:0}
+.ecosystem-highlights strong{display:block;color:#f2f7fa;font:500 clamp(28px,2.7vw,42px)/1 'DM Serif Display',serif}
+.ecosystem-highlights strong.ecosystem-enterprise{font:750 clamp(13px,1.35vw,19px)/1 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.ecosystem-highlights span{display:block;margin-top:8px;color:#9fc5dc;font-size:8px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase}
+
+.cases-stage .wrap{padding-top:clamp(90px,10vw,150px);padding-bottom:clamp(90px,10vw,150px)}
+.cases-stage .catalog-head{margin-bottom:44px}
+.cases-stage .catalog-row{gap:18px}
+.cases-stage .card{flex-basis:calc((100% - 36px)/3);min-width:330px;border-radius:10px;border-color:rgba(216,179,104,.14);box-shadow:none}
+.cases-stage .card:hover{transform:translateY(-4px);border-color:rgba(168,255,96,.28);box-shadow:0 8px 0 rgba(168,255,96,.04)}
+.cases-stage .card-cover{aspect-ratio:16/9}
+.cases-stage .card-body{padding:24px 26px 28px}
+.cases-stage .card-name{font-size:clamp(24px,2.2vw,31px)}
+.cases-stage .card-desc{max-width:46ch}
+.cnav:disabled{opacity:.28;cursor:not-allowed;border-color:rgba(216,179,104,.18)}
+
+.concept-gallery{--concept-bg:#10140e;--concept-accent:#d6b54f;--concept-soft:#c8d0bf;--concept-ink:#f4f2ec;
+  background:var(--concept-bg);color:var(--concept-ink);transition:background-color .7s var(--ease);overflow:hidden}
+.concept-gallery::before{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(70% 70% at 92% 8%,color-mix(in srgb,var(--concept-accent) 16%,transparent),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.2),transparent 25%,rgba(0,0,0,.32));opacity:.9}
+.concept-gallery .wrap{max-width:1440px;padding-inline:clamp(18px,3.5vw,52px)}
+.concept-intro{position:relative;z-index:2;padding-top:clamp(92px,10vw,150px);padding-bottom:56px}
+.concept-intro .sec-title{max-width:16ch;font-size:clamp(42px,5vw,74px)}
+.concept-intro-copy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,6vw,86px);margin-top:26px;max-width:1120px}
+.concept-intro-copy .sec-lead{margin:0;color:color-mix(in srgb,var(--concept-ink) 68%,transparent)}
+.concept-disclosure{margin-top:28px;padding-left:16px;border-left:2px solid var(--concept-accent);max-width:72ch;
+  color:color-mix(in srgb,var(--concept-ink) 54%,transparent);font-size:11px;line-height:1.6;letter-spacing:.04em}
+.presence-carousel{position:relative;z-index:2;padding:0 clamp(18px,3.5vw,52px) clamp(88px,9vw,130px)}
+.presence-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.48fr);gap:clamp(40px,8vw,120px);align-items:end;margin-bottom:44px}
+.presence-intro .sec-title{font-size:clamp(38px,4.5vw,68px);max-width:17ch}
+.presence-intro .sec-lead{color:color-mix(in srgb,var(--concept-ink) 68%,transparent);max-width:54ch}
+.presence-controls{display:grid;grid-template-columns:auto auto minmax(100px,1fr);align-items:center;gap:18px;margin-top:18px}
+.presence-nav{display:flex;gap:10px}
+.presence-nav button{width:48px;height:48px;border:1px solid color-mix(in srgb,var(--concept-accent) 44%,transparent);background:rgba(0,0,0,.14);
+  color:var(--concept-ink);font-size:18px;cursor:pointer;transition:background .2s,border-color .2s}
+.presence-nav button:hover{background:color-mix(in srgb,var(--concept-accent) 12%,transparent);border-color:var(--concept-accent)}
+.presence-nav button:disabled{opacity:.3;cursor:not-allowed}
+.presence-counter{font:11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:color-mix(in srgb,var(--concept-ink) 68%,transparent)}
+.presence-count{min-width:74px;color:var(--concept-ink);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em}
+.presence-arrow{width:48px;height:48px;border:1px solid color-mix(in srgb,var(--concept-accent) 45%,transparent);background:rgba(0,0,0,.12);
+  color:var(--concept-ink);display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.presence-arrow:hover{background:color-mix(in srgb,var(--concept-accent) 13%,transparent);border-color:var(--concept-accent);transform:translateY(-1px)}
+.presence-arrow:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.presence-carousel{outline:none}
+.presence-carousel:focus-visible{outline:2px solid var(--concept-accent);outline-offset:8px}
+.presence-track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;touch-action:pan-x pan-y pinch-zoom;cursor:grab;
+  scroll-behavior:smooth;scrollbar-width:none;padding:4px max(0px,calc((100vw - 1440px)/2)) 24px 0}
+.presence-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
+.presence-track::-webkit-scrollbar{display:none}
+.concept-slide{--slide-accent:#d6b54f;--slide-bg:#10140e;--slide-ink:#f4f2ec;position:relative;isolation:isolate;overflow:hidden;
+  flex:0 0 min(1160px,calc(100vw - clamp(44px,9vw,136px)));height:clamp(620px,76vh,790px);scroll-snap-align:start;
+  background:var(--slide-bg);color:var(--slide-ink);border:1px solid color-mix(in srgb,var(--slide-accent) 30%,transparent);border-radius:10px}
+.concept-canvas{position:absolute;inset:0;isolation:isolate}
+.concept-media{position:absolute;z-index:0;overflow:hidden;background:#080908}
+.concept-media::after{content:'';position:absolute;inset:0;background:var(--media-overlay,linear-gradient(90deg,rgba(0,0,0,.75),transparent));pointer-events:none}
+.concept-media img,.concept-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:var(--media-fit,cover);object-position:var(--media-position,center)}
+.concept-media img{z-index:0}
+.concept-media video{z-index:1;opacity:0;transition:opacity .7s var(--ease)}
+.concept-media video[data-media-ready="true"]{opacity:1}
+.concept-media::after{z-index:2}
+.concept-nav{position:absolute;z-index:3;top:0;left:0;right:0;height:72px;padding:0 clamp(24px,3vw,44px);display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid color-mix(in srgb,var(--slide-ink) 14%,transparent)}
+.concept-brand{font-weight:750;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.concept-navline{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:color-mix(in srgb,var(--slide-ink) 60%,transparent)}
+.concept-copy{position:absolute;z-index:3}
+.concept-kicker{display:block;margin-bottom:18px;color:var(--slide-accent);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.concept-copy h3{font-size:clamp(42px,5vw,74px);line-height:.96;letter-spacing:-.025em;max-width:12ch;text-wrap:balance}
+.concept-copy p{margin-top:22px;max-width:48ch;font-size:14px;line-height:1.72;color:color-mix(in srgb,var(--slide-ink) 72%,transparent)}
+.concept-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.concept-action{min-height:46px;padding:0 20px;border:1px solid color-mix(in srgb,var(--slide-accent) 56%,transparent);background:transparent;
+  color:var(--slide-ink);font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.concept-action.primary{background:var(--slide-accent);border-color:var(--slide-accent);color:var(--slide-bg)}
+.concept-action:hover{border-color:var(--slide-ink)}
+.concept-action.primary:hover{background:var(--slide-ink);color:var(--slide-bg)}
+.concept-metrics{position:absolute;z-index:3;display:flex;gap:clamp(18px,3vw,42px)}
+.concept-metric strong{display:block;color:var(--slide-ink);font-size:15px;font-weight:650}
+.concept-metric span{display:block;margin-top:5px;color:color-mix(in srgb,var(--slide-ink) 52%,transparent);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.concept-motif{position:absolute;z-index:2;pointer-events:none}
+
+.concept-axis .concept-media,.concept-cavallo .concept-media,.concept-sertao .concept-media{inset:0}
+.concept-axis{--media-overlay:linear-gradient(90deg,rgba(7,12,7,.94) 0%,rgba(7,12,7,.72) 45%,rgba(7,12,7,.08) 76%)}
+.concept-axis .concept-copy{left:clamp(28px,5vw,76px);top:47%;transform:translateY(-45%);max-width:720px}
+.concept-axis .concept-copy h3{max-width:16ch}
+.concept-axis .concept-metrics{left:clamp(28px,5vw,76px);bottom:42px}
+.concept-axis .concept-motif{inset:100px 30px 80px auto;width:34%;border-top:1px solid color-mix(in srgb,var(--slide-accent) 40%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--slide-accent) 24%,transparent)}
+.concept-axis .concept-motif::before{content:'14° 29\\0027 S  ·  48° 17\\0027 W';position:absolute;right:0;top:-22px;
+  color:var(--slide-accent);font:9px 'JetBrains Mono',monospace;letter-spacing:.1em}
+
+.concept-fiori{background:var(--slide-bg)}
+.concept-fiori .concept-media{inset:0 0 0 42%}
+.concept-fiori .concept-media::after{background:linear-gradient(90deg,var(--slide-bg) 0%,transparent 24%),linear-gradient(0deg,rgba(62,7,12,.28),transparent 50%)}
+.concept-fiori .concept-copy{left:clamp(30px,5vw,76px);top:50%;transform:translateY(-44%);width:40%;color:var(--slide-ink)}
+.concept-fiori .concept-copy h3{font-size:clamp(42px,4.2vw,62px);max-width:14ch;font-style:italic;font-weight:500}
+.concept-fiori .concept-metrics{left:clamp(30px,5vw,76px);bottom:42px}
+.concept-fiori .concept-motif{left:calc(42% - 1px);top:72px;bottom:0;width:1px;background:var(--slide-accent)}
+
+.concept-cavallo{--media-overlay:linear-gradient(180deg,rgba(14,10,8,.22),rgba(14,10,8,.05) 35%,rgba(14,10,8,.91) 100%)}
+.concept-cavallo .concept-copy{left:clamp(30px,5vw,76px);bottom:105px;max-width:700px}
+.concept-cavallo .concept-copy h3{max-width:15ch}
+.concept-cavallo .concept-metrics{right:clamp(30px,4vw,62px);bottom:44px}
+.concept-cavallo .concept-motif{top:108px;right:42px;width:126px;height:126px;border:1px solid color-mix(in srgb,var(--slide-accent) 46%,transparent);border-radius:50%}
+.concept-cavallo .concept-motif::before,.concept-cavallo .concept-motif::after{content:'';position:absolute;background:var(--slide-accent);opacity:.65}
+.concept-cavallo .concept-motif::before{left:50%;top:-18px;width:1px;height:162px}
+.concept-cavallo .concept-motif::after{top:50%;left:-18px;height:1px;width:162px}
+
+.concept-nativa .concept-media{inset:0 56% 0 0}
+.concept-nativa .concept-media::after{background:linear-gradient(90deg,transparent 54%,var(--slide-bg) 100%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.54))}
+.concept-nativa .concept-copy{right:clamp(32px,5vw,78px);top:44%;transform:translateY(-47%);width:47%}
+.concept-nativa .concept-copy h3{font-weight:500}
+.concept-nativa .concept-metrics{right:clamp(32px,5vw,78px);bottom:42px;width:46%;justify-content:space-between}
+.concept-nativa .concept-motif{right:42px;top:94px;width:90px;height:1px;background:var(--slide-accent)}
+
+.concept-sertao{--media-overlay:linear-gradient(90deg,rgba(25,12,6,.9) 0%,rgba(25,12,6,.66) 43%,rgba(25,12,6,.08) 76%),
+  linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.66))}
+.concept-sertao .concept-copy{left:clamp(30px,5vw,76px);top:50%;transform:translateY(-43%);max-width:600px}
+.concept-sertao .concept-copy h3{font-family:'DM Serif Display',serif;font-weight:500;letter-spacing:-.025em}
+.concept-sertao .concept-metrics{left:clamp(30px,5vw,76px);right:clamp(30px,5vw,76px);bottom:0;padding:24px 0;border-top:1px solid color-mix(in srgb,var(--slide-ink) 18%,transparent)}
+.concept-sertao .concept-motif{right:48px;top:112px;color:var(--slide-accent);font:11px 'JetBrains Mono',monospace}
+.concept-sertao .concept-motif::before{content:'ORIGEM  /  MANEJO  /  CONTINUIDADE'}
+
+.concept-blue .concept-media{inset:0 0 0 54%}
+.concept-blue .concept-media::after{background:linear-gradient(90deg,var(--slide-bg) 0%,transparent 30%),linear-gradient(180deg,rgba(0,14,24,.08),rgba(0,14,24,.62))}
+.concept-blue .concept-copy{left:clamp(32px,5vw,78px);top:46%;transform:translateY(-47%);width:48%}
+.concept-blue .concept-copy h3{font-size:clamp(42px,4.2vw,62px);max-width:15ch;font-weight:500}
+.concept-blue .concept-metrics{left:clamp(32px,5vw,78px);bottom:42px}
+.concept-blue .concept-motif{right:calc(23% - 62px);top:50%;width:124px;height:124px;border:1px solid color-mix(in srgb,var(--slide-accent) 45%,transparent);
+  border-radius:50%;box-shadow:0 0 0 20px color-mix(in srgb,var(--slide-accent) 5%,transparent)}
+
+.presence-footer{display:grid;grid-template-columns:minmax(120px,1fr) auto;align-items:center;gap:24px;margin-top:18px}
+.presence-progress{height:1px;background:color-mix(in srgb,var(--concept-ink) 18%,transparent);overflow:hidden}
+.presence-progress span{display:block;width:16.666%;height:100%;background:var(--concept-accent);transform:translateX(var(--presence-progress-x,0%));
+  transition:transform .45s var(--ease),background .45s}
+.presence-status{font:10px 'JetBrains Mono',monospace;letter-spacing:.1em;color:color-mix(in srgb,var(--concept-ink) 58%,transparent)}
+
+.concept-dialog{width:100vw;max-width:none;height:100vh;height:100dvh;max-height:none;margin:0;border:0;padding:0;background:#090a09;color:#f4f2ec}
+.concept-dialog::backdrop{background:rgba(0,0,0,.86);backdrop-filter:blur(8px)}
+.concept-dialog-shell{min-height:100%;background:var(--dialog-bg,#10140e);color:var(--dialog-ink,#f4f2ec);overflow-x:hidden}
+.concept-dialog-top{position:sticky;top:0;z-index:20;height:72px;padding:0 clamp(18px,4vw,56px);display:flex;align-items:center;justify-content:space-between;
+  background:color-mix(in srgb,var(--dialog-bg) 88%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 28%,transparent)}
+.concept-dialog-brand{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:750}
+.concept-dialog-close{width:44px;height:44px;border:1px solid color-mix(in srgb,var(--dialog-accent) 42%,transparent);background:transparent;color:var(--dialog-ink);
+  display:grid;place-items:center;cursor:pointer;font-size:18px}
+.concept-expanded-hero{position:relative;min-height:calc(82vh - 72px);min-height:calc(82dvh - 72px);display:grid;align-items:end;overflow:hidden}
+.concept-expanded-media{position:absolute;inset:0}
+.concept-expanded-media img{width:100%;height:100%;object-fit:cover}
+.concept-expanded-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--dialog-bg) 0%,color-mix(in srgb,var(--dialog-bg) 82%,transparent) 38%,transparent 76%),
+  linear-gradient(180deg,transparent 48%,var(--dialog-bg) 100%)}
+.concept-expanded-copy{position:relative;z-index:2;padding:clamp(48px,8vw,112px) clamp(18px,7vw,108px);max-width:860px}
+.concept-expanded-copy h2{font-size:clamp(46px,7vw,104px);line-height:.92;letter-spacing:-.03em;max-width:12ch}
+.concept-expanded-copy p{margin-top:22px;max-width:54ch;color:color-mix(in srgb,var(--dialog-ink) 72%,transparent);font-size:16px;line-height:1.72}
+.concept-expanded-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,8vw,120px);
+  padding:clamp(80px,10vw,150px) clamp(18px,7vw,108px);max-width:1500px;margin:0 auto}
+.concept-expanded-grid h3{font-size:clamp(32px,4vw,56px);line-height:1.02;letter-spacing:-.02em}
+.concept-expanded-grid p{margin-top:20px;color:color-mix(in srgb,var(--dialog-ink) 66%,transparent);font-size:15px;line-height:1.75}
+.concept-service-list{border-top:1px solid color-mix(in srgb,var(--dialog-accent) 28%,transparent)}
+.concept-service{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 20%,transparent)}
+.concept-service span{color:var(--dialog-accent);font:11px 'JetBrains Mono',monospace}
+.concept-service strong{font-size:16px;font-weight:620}
+.concept-proof-band{padding:clamp(60px,8vw,110px) clamp(18px,7vw,108px);background:color-mix(in srgb,var(--dialog-accent) 8%,var(--dialog-bg));
+  border-top:1px solid color-mix(in srgb,var(--dialog-accent) 22%,transparent);border-bottom:1px solid color-mix(in srgb,var(--dialog-accent) 22%,transparent)}
+.concept-proof-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.concept-proof strong{display:block;font-size:clamp(25px,3vw,42px);color:var(--dialog-ink)}
+.concept-proof span{display:block;margin-top:8px;color:color-mix(in srgb,var(--dialog-ink) 54%,transparent);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.concept-palette{display:flex;align-items:center;gap:8px;margin-top:34px}
+.concept-swatch{width:54px;height:12px;background:var(--swatch);border:1px solid color-mix(in srgb,var(--dialog-ink) 18%,transparent)}
+.concept-final{padding:clamp(80px,10vw,150px) clamp(18px,7vw,108px);text-align:center}
+.concept-final h3{max-width:18ch;margin:0 auto;font-size:clamp(38px,5vw,72px);line-height:1}
+.concept-final .concept-action{margin-top:32px}
+
+html.motion-reduced .cinematic-video,html.motion-reduced .concept-media video{display:none}
+html.motion-reduced .ecosystem-snow::before,html.motion-reduced .ecosystem-snow::after{animation:none;opacity:.1}
+html.motion-reduced .ecosystem-stage{--eco-shift:0px}
+
+@media(max-width:900px){
+  .cinematic-hero{display:grid;min-height:100vh;min-height:100dvh;padding:118px 0 92px}
+  .cinematic-hero::before{inset:76px 10px 16px;border-radius:10px}
+  .cinematic-hero .hero-inner{order:initial;padding-top:0}
+  .cinematic-hero .hero-copy{max-width:92%}
+  .cinematic-hero .cinematic-video,.cinematic-hero .cinematic-poster{object-position:var(--media-position,62% center)}
+  .cinematic-veil-hero{background:linear-gradient(180deg,rgba(7,9,8,.75) 0%,rgba(7,9,8,.52) 28%,rgba(7,9,8,.7) 58%,rgba(7,9,8,.98) 100%)}
+  .cinematic-hero h1{font-size:clamp(42px,9vw,70px);max-width:13ch}
+  .cinematic-hero .hero-note{display:none}
+  .hero-trust{max-width:620px;flex-wrap:wrap}
+  .hero-trust>span{flex:1 1 170px}
+  .hero-signature{bottom:26px}
+  .cinematic-hero .hero-scroll{display:none}
+
+  .positioning-film{min-height:820px}
+  .positioning-content{grid-template-columns:1fr;align-items:end;gap:40px}
+  .positioning-veil{background:linear-gradient(180deg,rgba(8,9,7,.62),rgba(8,9,7,.74) 45%,rgba(8,9,7,.98) 100%)}
+  .positioning-film .proof-strip{grid-template-columns:1fr 1fr;gap:0 22px}
+
+  .ecosystem-stage{min-height:1040px}
+  .ecosystem-stage::before{background:linear-gradient(180deg,rgba(5,9,13,.72),rgba(5,9,13,.44) 35%,rgba(5,9,13,.97) 74%)}
+  .ecosystem-media img{object-position:58% center}
+  .ecosystem-copy{width:min(92%,720px);padding:48px 38px}
+  .ecosystem-project{grid-template-columns:1fr;left:38px;right:38px;bottom:38px}
+  .ecosystem-project-main{border-right:0;border-bottom:1px solid rgba(169,205,228,.18)}
+  .ecosystem-highlights{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ecosystem-highlights>div{border-bottom:0}
+
+  .concept-intro-copy{grid-template-columns:1fr;gap:18px}
+  .presence-controls{justify-content:flex-start}
+  .concept-slide{flex-basis:calc(100vw - 54px);height:min(790px,82vh)}
+  .concept-copy h3{font-size:clamp(38px,7vw,58px)}
+  .concept-navline{display:none}
+  .concept-fiori .concept-media,.concept-blue .concept-media{inset:0 0 0 36%}
+  .concept-fiori .concept-copy{width:48%}
+  .concept-nativa .concept-media{right:52%}
+  .concept-nativa .concept-copy{width:46%}
+  .concept-blue .concept-copy{width:48%}
+
+  .concept-expanded-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+  .cinematic-hero{padding:104px 0 76px}
+  .cinematic-hero .hero-copy{max-width:100%}
+  .cinematic-hero h1{font-size:clamp(39px,11.2vw,58px)}
+  .cinematic-hero .hero-sub{font-size:15px;line-height:1.6;margin-top:22px}
+  .cinematic-hero .hero-actions{margin-top:28px}
+  .cinematic-hero .btn-primary,.cinematic-hero .btn-ghost{width:100%}
+  .hero-trust{margin-top:22px}
+  .hero-trust>span{flex-basis:100%;min-height:40px;padding-block:8px;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hero-trust>span:last-child{border-bottom:0}
+  .hero-signature span:last-child{display:none}
+
+  .positioning-film{min-height:900px}
+  .positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:var(--media-position,60% center)}
+  .positioning-content{padding-top:112px;padding-bottom:70px}
+  .positioning-film .sec-title{font-size:clamp(38px,11vw,54px)}
+  .positioning-film .proof-strip{grid-template-columns:1fr}
+
+  .ecosystem-section .wrap{padding:58px 10px}
+  .ecosystem-stage{min-height:1220px}
+  .ecosystem-stage::after{inset:12px}
+  .ecosystem-media img{object-position:62% center;filter:saturate(.66) contrast(1.12) brightness(.62)}
+  .ecosystem-snow{mask-image:linear-gradient(180deg,transparent,black 18%,black 78%,transparent)}
+  .ecosystem-copy{width:100%;padding:36px 24px}
+  .ecosystem-eyebrows{align-items:flex-start;gap:12px}
+  .ecosystem-copy .sec-title{font-size:clamp(39px,11vw,52px);max-width:13ch}
+  .ecosystem-copy .sec-lead{font-size:13px;line-height:1.62}
+  .ecosystem-project{left:22px;right:22px;bottom:26px}
+  .ecosystem-project-main{padding:22px 20px}
+  .ecosystem-actions{flex-direction:column}
+  .ecosystem-actions a,.ecosystem-actions button{width:100%;justify-content:center}
+  .ecosystem-highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ecosystem-highlights>div{padding:20px 17px;border-bottom:1px solid rgba(169,205,228,.15)}
+  .ecosystem-highlights>div:nth-child(n+3){border-bottom:0}
+
+  .cases-stage .catalog-head{align-items:flex-start;flex-direction:column}
+  .cases-stage .catalog-row{margin-right:-18px}
+  .cases-stage .card{flex-basis:calc(100vw - 48px)}
+
+  .concept-gallery .wrap{padding-inline:18px}
+  .concept-intro{padding-top:88px;padding-bottom:40px}
+  .concept-intro .sec-title{font-size:clamp(38px,11vw,52px)}
+  .presence-carousel{padding-inline:18px}
+  .presence-controls{grid-template-columns:auto auto 1fr}
+  .presence-track{margin-right:-18px;gap:14px;padding-right:18px}
+  .concept-slide{flex-basis:calc(100vw - 36px);height:760px;max-height:88vh;border-radius:8px}
+  .concept-nav{height:62px;padding-inline:20px}
+  .concept-media,.concept-axis .concept-media,.concept-cavallo .concept-media,.concept-sertao .concept-media,
+  .concept-fiori .concept-media,.concept-nativa .concept-media,.concept-blue .concept-media{inset:0}
+  .concept-media::after,.concept-fiori .concept-media::after,.concept-nativa .concept-media::after,.concept-blue .concept-media::after{
+    background:linear-gradient(180deg,rgba(0,0,0,.08) 22%,rgba(0,0,0,.38) 50%,var(--slide-bg) 100%)}
+  .concept-media img,.concept-media video{object-position:var(--media-position,center)}
+  .concept-nativa .concept-media img,.concept-nativa .concept-media video,.concept-blue .concept-media img,.concept-blue .concept-media video{object-fit:cover}
+  .concept-copy,.concept-axis .concept-copy,.concept-fiori .concept-copy,.concept-cavallo .concept-copy,
+  .concept-nativa .concept-copy,.concept-sertao .concept-copy,.concept-blue .concept-copy{
+    left:22px;right:22px;top:auto;bottom:116px;width:auto;max-width:none;transform:none;color:var(--slide-ink)}
+  .concept-copy h3{font-size:clamp(38px,11vw,52px);max-width:13ch}
+  .concept-copy p{font-size:13px;line-height:1.6;margin-top:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .concept-kicker{margin-bottom:12px}
+  .concept-actions{margin-top:20px}
+  .concept-action{min-height:44px;padding-inline:16px}
+  .concept-metrics,.concept-axis .concept-metrics,.concept-fiori .concept-metrics,.concept-cavallo .concept-metrics,
+  .concept-nativa .concept-metrics,.concept-sertao .concept-metrics,.concept-blue .concept-metrics{
+    left:22px;right:22px;bottom:24px;width:auto;padding:0;border:0;justify-content:space-between;gap:12px}
+  .concept-metric:nth-child(n+3){display:none}
+  .concept-motif{display:none}
+  .concept-axis .concept-media::before{content:'';position:absolute;inset:64px 14px 42%;z-index:2;pointer-events:none;
+    background:repeating-linear-gradient(90deg,rgba(213,166,78,.14) 0 1px,transparent 1px 68px),
+      repeating-linear-gradient(0deg,rgba(135,184,135,.1) 0 1px,transparent 1px 68px);
+    border:1px solid rgba(213,166,78,.18);mask-image:linear-gradient(180deg,#000,transparent)}
+  .concept-fiori .concept-media{inset:0 0 34% 18%;border-bottom:1px solid color-mix(in srgb,var(--slide-accent) 44%,transparent);
+    border-left:1px solid color-mix(in srgb,var(--slide-accent) 28%,transparent)}
+  .concept-fiori .concept-media::after{background:linear-gradient(180deg,rgba(17,27,19,.02),rgba(17,27,19,.72) 74%,var(--slide-bg))}
+  .concept-fiori .concept-copy{border-left:1px solid var(--slide-accent);padding-left:17px}
+  .concept-cavallo .concept-media::before{content:'';position:absolute;z-index:2;right:24px;top:92px;width:104px;height:104px;
+    border:1px solid rgba(201,154,90,.42);border-radius:50%;box-shadow:0 0 0 14px rgba(201,154,90,.04)}
+  .concept-cavallo .concept-copy{right:42px}
+  .concept-nativa .concept-copy{padding:18px;background:linear-gradient(90deg,rgba(5,12,8,.68),rgba(5,12,8,.18));border-left:2px solid var(--slide-accent)}
+  .concept-nativa .concept-nav{background:linear-gradient(180deg,rgba(5,12,8,.7),transparent)}
+  .concept-sertao .concept-media{inset:0 0 38%}
+  .concept-sertao .concept-media::after{background:linear-gradient(180deg,rgba(26,14,8,.03),rgba(26,14,8,.64) 76%,var(--slide-bg))}
+  .concept-sertao .concept-copy{border-top:1px solid rgba(208,139,53,.34);padding-top:16px}
+  .concept-blue .concept-media{inset:0 0 30% 11%;border-bottom-left-radius:110px;border-left:1px solid rgba(119,214,255,.28)}
+  .concept-blue .concept-media::after{background:linear-gradient(180deg,rgba(3,22,38,.02),rgba(3,22,38,.68) 74%,var(--slide-bg))}
+  .concept-blue .concept-copy{padding-left:16px;border-left:1px solid rgba(119,214,255,.5)}
+
+  .concept-dialog-top{height:62px}
+  .concept-expanded-hero{min-height:calc(86vh - 62px)}
+  .concept-expanded-media::after{background:linear-gradient(180deg,rgba(0,0,0,.08),var(--dialog-bg) 88%)}
+  .concept-expanded-copy{padding:48px 22px}
+  .concept-expanded-copy h2{font-size:clamp(46px,14vw,68px)}
+  .concept-expanded-grid,.concept-proof-band,.concept-final{padding-inline:22px}
+  .concept-proof-inner{grid-template-columns:1fr;gap:30px}
+  .concept-service{grid-template-columns:42px 1fr}
+}
+
+/* Adaptive experience: tablet portrait is an authored middle composition. */
+@media(min-width:601px) and (max-width:1024px) and (orientation:portrait){
+  .cinematic-hero{min-height:100svh;min-height:100dvh;padding-top:max(124px,calc(env(safe-area-inset-top) + 106px));padding-bottom:84px}
+  .cinematic-hero .hero-copy{max-width:min(78vw,680px)}
+  .cinematic-hero h1{font-size:clamp(54px,8.2vw,76px)}
+  .cinematic-veil-hero{background:linear-gradient(180deg,rgba(7,9,8,.76),rgba(7,9,8,.42) 34%,rgba(7,9,8,.72) 62%,var(--void) 100%)}
+  .positioning-film{min-height:980px}
+  .positioning-content{padding-top:150px;padding-bottom:86px}
+  .ecosystem-stage{min-height:1120px}
+  .ecosystem-media img{object-position:58% center}
+  .concept-slide{height:min(900px,82svh);min-height:760px}
+  .concept-copy h3{font-size:clamp(48px,7vw,66px)}
+  .concept-action{min-height:48px}
+}
+
+/* Landscape phones and compact tablets keep the film active, but recompose around a short viewport. */
+@media(max-width:1194px) and (orientation:landscape) and (max-height:600px){
+  nav{padding-top:max(7px,env(safe-area-inset-top));padding-bottom:7px}
+  nav.scrolled{padding-top:max(6px,env(safe-area-inset-top));padding-bottom:6px}
+  .logo img{height:42px}
+  .cinematic-hero{display:flex;align-items:flex-start;min-height:580px;padding:max(72px,calc(env(safe-area-inset-top) + 64px)) 0 max(52px,env(safe-area-inset-bottom))}
+  .cinematic-hero .hero-copy{max-width:min(72vw,660px)}
+  .cinematic-hero h1{font-size:clamp(36px,5.2vw,46px);line-height:.96;max-width:18ch}
+  .cinematic-hero .hero-sub{font-size:12.5px;line-height:1.5;max-width:64ch;margin-top:14px}
+  .cinematic-hero .hero-note{display:none}
+  .cinematic-hero .hero-actions{margin-top:14px;flex-direction:row}
+  .cinematic-hero .btn-primary,.cinematic-hero .btn-ghost{width:auto;min-height:46px;padding:12px 18px}
+  .hero-trust{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:680px}
+  .hero-trust>span{min-height:38px;padding:7px 10px;border-bottom:0;border-right:1px solid rgba(255,255,255,.08);font-size:8px}
+  .cinematic-veil-hero{background:linear-gradient(90deg,rgba(7,9,8,.95),rgba(7,9,8,.72) 52%,rgba(7,9,8,.18) 84%),
+    linear-gradient(180deg,rgba(7,9,8,.4),transparent 52%,rgba(7,9,8,.78))}
+
+  .positioning-film{min-height:650px}
+  .positioning-content{padding-top:102px;padding-bottom:46px;gap:24px}
+  .positioning-film .sec-title{font-size:clamp(36px,5.8vw,52px);max-width:19ch}
+  .positioning-film .sec-lead{font-size:13px;line-height:1.55;margin-top:11px;max-width:56ch}
+  .positioning-film .proof-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+  .ecosystem-section .wrap{padding:42px max(10px,env(safe-area-inset-left)) 42px max(10px,env(safe-area-inset-right))}
+  .ecosystem-stage{min-height:880px}
+  .ecosystem-copy{width:66%;padding:38px 44px}
+  .ecosystem-copy .sec-title{font-size:clamp(38px,5.7vw,58px)}
+  .ecosystem-project{grid-template-columns:1.25fr 1fr;left:42px;right:42px;bottom:34px}
+  .ecosystem-highlights{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+  .concept-slide{height:620px;max-height:none}
+  .concept-copy p{font-size:12px;line-height:1.5;-webkit-line-clamp:2}
+  .concept-actions{margin-top:14px}
+  .concept-action{min-height:46px}
+  .concept-metrics{bottom:20px}
+  .concept-expanded-hero{min-height:560px}
+}
+
+@media(max-width:600px){
+  nav{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  .cinematic-hero{min-height:100svh;min-height:100dvh;padding-top:max(104px,calc(env(safe-area-inset-top) + 88px));
+    padding-bottom:max(76px,calc(env(safe-area-inset-bottom) + 58px))}
+  .cinematic-hero .hero-actions a,.ecosystem-actions a,.ecosystem-actions button,.concept-action{min-height:48px}
+  .presence-carousel{padding-bottom:max(88px,calc(env(safe-area-inset-bottom) + 64px))}
+  .concept-dialog-top{padding-top:env(safe-area-inset-top);height:calc(62px + env(safe-area-inset-top))}
+  .concept-dialog-close{min-width:48px;min-height:48px}
+  .ecosystem-media img{transform:translate3d(0,var(--eco-shift,0px),0) scale(1.08)}
+}
+
+@media(min-width:1800px){
+  .cinematic-hero .hero-inner,.positioning-content{max-width:1480px}
+  .cinematic-hero .hero-copy{max-width:760px}
+  .concept-slide{flex-basis:min(1380px,calc(100vw - 220px));height:min(830px,78vh)}
+  .ecosystem-stage{max-width:1480px;margin-inline:auto}
+}
+
+html[data-network="constrained"] .cinematic-video,
+html[data-network="constrained"] .concept-media video{transition-duration:.2s}
+html[data-capability="lite"] .ecosystem-snow::after{display:none}
+html[data-capability="lite"] .ecosystem-snow::before{opacity:.22}
+html[data-capability="lite"] .cinematic-veil,
+html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 </style>
 </head>
 <body>
@@ -462,6 +974,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 <nav id="nav">
   <a class="logo" href="#top" aria-label="Bruno Goebel, início"><img src="logo-brunodevai.png" alt="Bruno Goebel"/></a>
   <div class="nav-links" id="navLinks">
+    <a href="sobre/" data-i18n="nav_about">Sobre</a>
     <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
     <a href="#cases" data-i18n="nav_cases">Cases</a>
     <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
@@ -484,7 +997,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
         </div>
       </div>
     </div>
-    <button class="btn-lang" id="langBtn" aria-label="Trocar idioma">EN</button>
+    <button class="btn-lang" id="langBtn" type="button" aria-label="Trocar idioma para EN">EN</button>
     <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
@@ -493,6 +1006,7 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 <!-- MOBILE DRAWER (fora do nav) -->
 <div id="navOverlay"></div>
 <aside id="mobileDrawer" aria-label="Menu de navegação">
+  <a href="sobre/" data-i18n="nav_about">Sobre</a>
   <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
   <a href="#cases" data-i18n="nav_cases">Cases</a>
   <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
@@ -506,43 +1020,57 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 </aside>
 
 <!-- HERO -->
-<header class="hero" id="top">
-  <figure class="hero-scene-media" aria-label="Cena autoral de Bruno trabalhando em um notebook e acompanhando uma notificacao no celular">
-    <video id="heroMotionVideo" class="hero-scene-video hero-frame-video" muted playsinline preload="auto" poster="assets/hero/bruno-hero-new-poster.webp?v=hero-live-202607" width="1444" height="1080" aria-label="Cena cinematográfica de Bruno trabalhando em um notebook e acompanhando uma notificação no celular" disablepictureinpicture>
-      <source media="(max-width: 900px)" src="assets/hero/bruno-hero-cinematic-v4-mobile.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
-      <source src="assets/hero/bruno-hero-cinematic-v4-desktop.mp4?v=cinematic-hotspots-202607" type="video/mp4"/>
-    </video>
-    <span class="hero-scene-vignette" aria-hidden="true"></span>
+<header class="hero cinematic-act cinematic-hero" id="top" data-cinematic-act="1">
+  <figure class="cinematic-media cinematic-media-landscape" aria-label="Lago entre montanhas, uma paisagem que traduz amplitude, direção e presença">
+    <picture class="adaptive-poster-picture">
+      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+      <img class="cinematic-poster" src="assets/cinematic/presence-landscape.webp" data-adaptive-poster="presence-landscape" alt="" width="1280" height="720" fetchpriority="high"/>
+    </picture>
+    <video id="heroPrimaryVideo" class="cinematic-video" data-media-key="presence-landscape" data-adaptive-priority="critical" muted autoplay loop playsinline preload="metadata" width="1280" height="720" aria-label="Travessia cinematográfica por um lago entre montanhas" disablepictureinpicture></video>
   </figure>
-    <div class="hero-frame-motion" role="region" aria-label="Frame motion do hero" tabindex="0">
-      <span class="hero-frame-rail" role="progressbar" aria-label="Progresso da cena" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12"></span>
-      <span class="hero-frame-status" aria-live="polite" data-i18n="hero_frame_hint">Mova o cursor para explorar</span>
-    </div>
+  <div class="cinematic-veil cinematic-veil-hero" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-copy hero-copy-rebuilt">
-      <div class="hero-copy-live">
-        <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Direção de arte, engenharia e percepção de valor</span></div>
-        <h1 data-i18n="hero2_title">Sites com presen&ccedil;a real.<br>N&atilde;o apar&ecirc;ncia de <span class="ai-mark">IA.</span></h1>
-        <p class="hero-sub" data-i18n="hero2_sub">Sites ultrarrealistas, cinematográficos e seguros para marcas que precisam transmitir valor, confiança e autoridade antes mesmo do primeiro contato.</p>
-        <p class="hero-note" data-i18n="hero2_note">Antes de alguém pedir uma proposta, essa pessoa já sentiu algo sobre a sua marca. Eu desenho essa primeira percepção com direção de arte, copy, tecnologia e segurança trabalhando juntas para transformar visita em confiança, e confiança em decisão.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="#contato" data-i18n="hero2_cta1">Solicitar diagn&oacute;stico &rarr;</a>
-          <a class="btn-ghost" href="#cases" data-i18n="hero2_cta2">Ver projetos no ar &rarr;</a>
-        </div>
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span data-i18n="hero2_eyebrow">Direção de arte, engenharia e percepção de valor</span></div>
+      <h1 data-i18n="hero2_title">Sites com<br>presença real.<br>Não aparência de <span class="ai-mark">IA.</span></h1>
+      <p class="hero-sub" data-i18n="hero2_sub">Sites ultrarrealistas, cinematográficos e seguros para marcas que precisam transmitir valor, confiança e autoridade antes mesmo do primeiro contato.</p>
+      <p class="hero-note" data-i18n="hero2_note">Antes de alguém pedir uma proposta, essa pessoa já sentiu algo sobre a sua marca. Eu desenho essa primeira percepção com direção de arte, copy, tecnologia e segurança trabalhando juntas para transformar visita em confiança, e confiança em decisão.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contato"><span data-i18n="hero2_cta1">Solicitar diagnóstico</span> <span aria-hidden="true">&rarr;</span></a>
+        <a class="btn-ghost" href="#cases"><span data-i18n="hero2_cta2">Ver projetos no ar</span> <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="hero-trust" aria-label="Compromissos da entrega">
+        <span><b aria-hidden="true">◇</b><span data-i18n="hero_trust_1">Sites seguros e blindados</span></span>
+        <span><b aria-hidden="true">↯</b><span data-i18n="hero_trust_2">Performance cinematográfica</span></span>
+        <span><b aria-hidden="true">□</b><span data-i18n="hero_trust_3">Privacidade e conformidade</span></span>
       </div>
     </div>
   </div>
-  <div class="hero-scroll"><span data-i18n="scroll">Role</span><span class="line"></span></div>
+  <div class="hero-scroll"><span data-i18n="scroll">Role para entrar</span><span class="line"></span></div>
 </header>
 
 <!-- POSICIONAMENTO -->
-<section class="dark position grain">
-  <div class="wrap">
-    <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
-    <h2 class="sec-title" data-i18n="pos_title">Página bonita qualquer ferramenta entrega.<br><span class="title-accent">Presença, não.</span></h2>
-    <p class="sec-lead" data-i18n="pos_lead1">O que muda a decisão de compra não é só estética. É a sensação de que existe critério, estratégia e valor por trás de cada detalhe.</p>
-    <p class="sec-lead" data-i18n="pos_lead2">Eu construo sites com o mesmo padrão que aplico nos meus próprios produtos: direção visual, narrativa, prova, tecnologia e segurança em uma entrega única, feita para marcas que não querem parecer comuns.</p>
-    <div class="proof-strip">
+<section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
+  <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
+    <picture class="adaptive-poster-picture">
+      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-mobile-portrait.webp"/>
+      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-tablet-portrait.webp"/>
+      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/engineering-drive-landscape-sm.webp"/>
+      <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" data-adaptive-poster="engineering-drive" alt="" width="1280" height="720" loading="lazy"/>
+    </picture>
+    <video id="positioningVideo" class="cinematic-video" data-media-key="engineering-drive" muted autoplay loop playsinline preload="none" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture></video>
+  </figure>
+  <div class="cinematic-veil positioning-veil" aria-hidden="true"></div>
+  <div class="wrap positioning-content">
+    <div class="positioning-copy">
+      <div class="eyebrow"><span data-i18n="pos_eyebrow">Quem constrói o seu site</span></div>
+      <h2 class="sec-title" data-i18n="pos_title">Página bonita qualquer ferramenta entrega.<br><span class="title-accent">Presença, não.</span></h2>
+      <p class="sec-lead" data-i18n="pos_lead1">O que muda a decisão de compra não é só estética. É a sensação de que existe critério, estratégia e valor por trás de cada detalhe.</p>
+      <p class="sec-lead" data-i18n="pos_lead2">Eu construo sites com o mesmo padrão que aplico nos meus próprios produtos: direção visual, narrativa, prova, tecnologia e segurança em uma entrega única, feita para marcas que não querem parecer comuns.</p>
+    </div>
+    <div class="proof-strip" aria-label="Provas de execução">
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p1s">Produto próprio no ar</span></span>
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p2s">Cases reais publicados</span></span>
       <span class="proof-item"><span class="dot"></span><span data-i18n="pos_p3s">Clientes ativos</span></span>
@@ -552,36 +1080,45 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 </section>
 
 <!-- ECOSSISTEMAS -->
-<section class="dark grain" id="ecossistemas">
+<section class="dark grain cinematic-act ecosystem-section" id="ecossistemas" data-cinematic-act="3">
   <div class="wrap">
-    <div class="catalog-head">
-      <div>
-        <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
-        <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
-        <p class="sec-lead" data-i18n="eco_lead">Nem todo site precisa ser apenas uma vitrine. Alguns projetos precisam de profundidade, atmosfera, interação e sensação de universo próprio. Foi assim com The Frozen Legacy: um ecossistema transmídia com 3D em tempo real, experiência bilíngue, narrativa contínua e presença digital autoral.</p>
-      </div>
-      <div class="catalog-nav">
-        <button class="cnav" data-row="ecoRow" data-dir="-1" aria-label="Anterior">‹</button>
-        <button class="cnav" data-row="ecoRow" data-dir="1" aria-label="Próximo">›</button>
-      </div>
-    </div>
-    <div class="catalog-row" id="ecoRow">
-      <button class="card" data-modal="m-vakon">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-vakon.jpg" alt="The Frozen Legacy, universo Vakon"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">The Frozen<br><span>Legacy</span></div></div></div>
-        <div class="card-body">
-          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
-          <span class="card-name">The Frozen Legacy</span>
-          <span class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="vakon_desc">Um projeto autoral que une narrativa, tecnologia e experiência visual para transformar uma marca em universo.</span>
-          <span class="card-more" data-i18n="more">Abrir dossiê</span>
+    <div class="ecosystem-stage">
+      <figure class="ecosystem-media">
+        <img src="assets/cinematic/glacial-city.webp" alt="Cidade glacial monumental de The Frozen Legacy, construída ao redor de um abismo iluminado" width="1672" height="941" loading="lazy"/>
+      </figure>
+      <div class="ecosystem-snow" aria-hidden="true"></div>
+      <div class="ecosystem-copy">
+        <div class="ecosystem-eyebrows">
+          <div class="eyebrow"><span data-i18n="eco_eyebrow">Ecossistema próprio</span></div>
+          <span class="ecosystem-international"><span aria-hidden="true">01</span><span data-i18n="eco_international">1º projeto internacional</span></span>
         </div>
-      </button>
+        <h2 class="sec-title" data-i18n="eco_title">Quando o projeto exige mundo, narrativa e tecnologia, eu também construo.</h2>
+        <p class="sec-lead" data-i18n="eco_lead">The Frozen Legacy é uma prova de que a BrunoDev.AI também opera em nível de ecossistema. Um projeto internacional construído com profundidade narrativa, direção visual, experiência digital e padrão técnico de alto nível.</p>
+      </div>
+      <div class="ecosystem-project">
+        <div class="ecosystem-project-main">
+          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
+          <h3 class="ecosystem-name">The Frozen Legacy</h3>
+          <p class="card-tag" data-i18n="vakon_tag">Universo transmídia · 3D interativo</p>
+          <p class="card-desc" data-i18n="vakon_desc">Um projeto autoral de escala internacional, desenvolvido para unir narrativa, tecnologia e experiência visual em um ecossistema digital vivo.</p>
+          <div class="ecosystem-actions">
+            <a href="https://vakonuniverse.com" target="_blank" rel="noopener"><span data-i18n="vakon_enter">Entrar no universo</span> <span aria-hidden="true">↗</span></a>
+            <button type="button" data-modal="m-vakon"><span data-i18n="vakon_know">Conhecer o projeto</span> <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <div class="ecosystem-highlights" aria-label="Destaques do projeto">
+          <div><strong>60</strong><span data-i18n="eco_days">dias de trabalho</span></div>
+          <div><strong>36</strong><span data-i18n="eco_months">meses de monitoramento</span></div>
+          <div><strong>AAA</strong><span>High-Fidelity Triple AAA</span></div>
+          <div><strong class="ecosystem-enterprise">Enterprise</strong><span data-i18n="eco_standard">Padrão de grandes empresas</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CASES -->
-<section class="dark grain" id="cases">
+<section class="dark grain cinematic-act cases-stage" id="cases" data-cinematic-act="4">
   <div class="wrap">
     <div class="catalog-head">
       <div>
@@ -596,32 +1133,32 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
     </div>
     <div class="catalog-row" id="caseRow">
       <button class="card" data-modal="m-pires">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-pires.jpg" alt="Site da Pires Contabilidade"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-pires-640.webp" data-srcset="assets/cinematic/case-pires-640.webp 640w, assets/cinematic/case-pires-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Site da Pires Contabilidade" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Pires Contabilidade</span>
           <span class="card-tag" data-i18n="pires_tag">Serviços profissionais</span>
-          <span class="card-desc" data-i18n="pires_desc">Contabilidade apresentada como consultoria séria, moderna e confiável. Uma presença digital criada para transmitir organização, autoridade e valor antes da primeira reunião.</span>
+          <span class="card-desc" data-i18n="pires_desc">Consultoria contábil séria, moderna e confiável. Um site que transmite organização, autoridade e valor desde o primeiro contato.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
       <button class="card" data-modal="m-paula">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-paula.jpg" alt="Site da fotógrafa Paula Guimarães"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimarães</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-paula-640.webp" data-srcset="assets/cinematic/case-paula-640.webp 640w, assets/cinematic/case-paula-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Site da fotógrafa Paula Guimarães" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Paula<br><span>Guimarães</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Paula Guimarães</span>
           <span class="card-tag" data-i18n="paula_tag">Fotografia · Alto padrão</span>
-          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial para uma fotógrafa de alto posicionamento. A experiência visual comunica gosto, cuidado e percepção de agenda disputada.</span>
+          <span class="card-desc" data-i18n="paula_desc">Portfólio editorial para fotógrafa de alto posicionamento. Design elegante que valoriza o olhar, a experiência e o desejo.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
       <button class="card" data-modal="m-memore">
-        <div class="card-cover"><img class="cover-img" data-src="assets/cover-memore-live.jpg" alt="Loja do Ateliê Memoré"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Ateliê<br><span>Memoré</span></div></div></div>
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-memore-640.webp" data-srcset="assets/cinematic/case-memore-640.webp 640w, assets/cinematic/case-memore-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Loja do Ateliê Memoré" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">Ateliê<br><span>Memoré</span></div></div></div>
         <div class="card-body">
           <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
           <span class="card-name">Ateliê Memoré</span>
           <span class="card-tag" data-i18n="memore_tag">Comércio · Marca artesanal</span>
-          <span class="card-desc" data-i18n="memore_desc">Uma marca autoral apresentada com mais cuidado, identidade e estrutura de compra. O objetivo: vender sem parecer improvisada.</span>
+          <span class="card-desc" data-i18n="memore_desc">Marca autoral apresentada com identidade, sensibilidade e estrutura completa para vender com clareza.</span>
           <span class="card-more" data-i18n="more">Abrir dossiê</span>
         </div>
       </button>
@@ -629,110 +1166,27 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
   </div>
 </section>
 
-<!-- MODELOS DISPONIVEIS -->
-<section class="light alt" id="modelos">
-  <div class="wrap">
-    <div class="eyebrow"><span data-i18n="models_eyebrow">Modelos para visualizar valor</span></div>
-    <h2 class="sec-title" data-i18n="models_title">Referências autorais para quem já sabe que precisa mudar de patamar.</h2>
-    <p class="sec-lead" data-i18n="models_lead">Cada modelo mostra uma direção possível de presença digital: imagem, estrutura, tom, experiência e percepção de valor. Os nomes, imagens e informações foram adaptados para preservar privacidade e permitir que você visualize possibilidades sem expor dados reais de clientes.</p>
-    <p class="sec-lead" data-i18n="models_lead2">Você escolhe a atmosfera. Eu adapto a proposta ao seu nicho, à sua oferta e ao nível de confiança que sua marca precisa transmitir.</p>
-
-    <div class="models-grid">
-      <div class="card" data-model-id="model_ecommerce_artisanal" data-model-name="Artisan Shop" data-model-niche="E-commerce artesanal / loja autoral">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/artisan-shop-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/artisan-shop-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/artisan-shop-premium.jpg" alt="Prévia visual do modelo Artisan Shop: vitrine de e-commerce artesanal sofisticada" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Artisan Shop</span>
-          <span class="card-tag" data-i18n="model_artisan_tag">E-commerce artesanal · Loja autoral</span>
-          <span class="card-desc" data-i18n="model_artisan_desc">Para marcas autorais que precisam vender com mais percepção de valor: vitrine elegante, narrativa de produto e compra direta em um ambiente próprio.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-artisan-shop" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
+<!-- DIRECOES AUTORAIS -->
+<section class="dark cinematic-act concept-gallery" id="modelos" data-cinematic-act="5" data-active-concept="terra-axis">
+  <div class="concept-intro wrap">
+    <div class="eyebrow"><span data-i18n="models_eyebrow">Direções autorais para diferentes mercados</span></div>
+    <h2 class="sec-title" data-i18n="models_title">Seu segmento não precisa parecer igual a todos os outros.</h2>
+    <div class="concept-intro-copy">
+      <p class="sec-lead" data-i18n="models_lead">Cada direção abaixo nasce de uma atmosfera, uma estratégia e uma intenção comercial diferentes. O vídeo não entra como decoração. Ele define ritmo, narrativa, hierarquia e percepção de valor.</p>
+      <p class="sec-lead" data-i18n="models_lead2">Explore possibilidades criadas para mostrar como uma marca pode assumir presença própria quando design, conteúdo e tecnologia trabalham na mesma direção.</p>
+    </div>
+    <p class="concept-disclosure" data-i18n="models_disclosure">Os projetos apresentados a seguir são conceitos autorais demonstrativos e não representam clientes reais.</p>
+  </div>
+  <div class="presence-carousel" role="region" aria-roledescription="carrossel" aria-label="Direções autorais de sites por mercado" tabindex="0">
+    <div class="presence-track" id="presenceTrack"></div>
+    <div class="presence-controls">
+      <div class="presence-nav">
+        <button type="button" data-presence-dir="-1" aria-controls="presenceTrack" aria-label="Conceito anterior">&larr;</button>
+        <button type="button" data-presence-dir="1" aria-controls="presenceTrack" aria-label="Próximo conceito">&rarr;</button>
       </div>
-
-      <div class="card" data-model-id="model_photo_editorial" data-model-name="Editorial Photo Studio" data-model-niche="Fotografia premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/editorial-photo-studio-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/editorial-photo-studio-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/editorial-photo-studio-premium.jpg" alt="Prévia visual do modelo Editorial Photo Studio: portfólio fotográfico editorial de alto padrão" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Editorial Photo Studio</span>
-          <span class="card-tag" data-i18n="model_photo_tag">Fotografia · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_photo_desc">Para fotógrafos, estúdios e marcas pessoais que vendem estética, experiência e confiança. Um portfólio com atmosfera editorial, ritmo visual e percepção de agenda desejada.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-editorial-photo-studio" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_accounting_executive" data-model-name="Executive Accounting" data-model-niche="Contabilidade / consultoria empresarial">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/executive-accounting-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/executive-accounting-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/executive-accounting-premium.jpg" alt="Prévia visual do modelo Executive Accounting: painel financeiro executivo e consultivo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Executive Accounting</span>
-          <span class="card-tag" data-i18n="model_acc_tag">Contabilidade · Consultoria</span>
-          <span class="card-desc" data-i18n="model_acc_desc">Para serviços profissionais que vendem confiança. Linguagem sóbria, método visível e autoridade sem parecer uma empresa genérica de internet.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-executive-accounting" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_fantasy_universe" data-model-name="Fantasy Universe" data-model-niche="Universo autoral / entretenimento">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/fantasy-universe-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/fantasy-universe-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/fantasy-universe-premium.jpg" alt="Prévia visual do modelo Fantasy Universe: portal cinematográfico para universo autoral" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge live"><span class="dot"></span><span data-i18n="models_badge_live">Produto próprio · no ar</span></span>
-          <span class="card-name">Fantasy Universe</span>
-          <span class="card-tag" data-i18n="model_fantasy_tag">Universo transmídia · 3D interativo</span>
-          <span class="card-desc" data-i18n="model_fantasy_desc">Para produtos, comunidades, livros, games e projetos autorais que precisam parecer vivos. Narrativa, profundidade visual e tecnologia trabalhando como um só sistema.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-fantasy-universe" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note_live">Produto autoral próprio, sem cliente terceiro envolvido.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_real_estate_luxury" data-model-name="Luxury Estate" data-model-niche="Imobiliário alto padrão">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/luxury-estate-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/luxury-estate-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/luxury-estate-premium.jpg" alt="Prévia visual do modelo Luxury Estate: arquitetura contemporânea e vitrine imobiliária de luxo" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge_template">Base autoral</span></span>
-          <span class="card-name">Luxury Estate</span>
-          <span class="card-tag" data-i18n="model_luxury_tag">Imobiliário · Alto padrão</span>
-          <span class="card-desc" data-i18n="model_luxury_desc">Para imóveis, arquitetura e empreendimentos que precisam ser percebidos com valor antes da visita. Imagem forte, ficha objetiva e caminho claro até o atendimento.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-luxury-estate" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
-
-      <div class="card" data-model-id="model_agro_premium" data-model-name="Agro Prime" data-model-niche="Agronegócio premium">
-        <div class="card-cover"><picture><source type="image/webp" media="(max-width: 720px)" srcset="assets/model-previews-ai/agro-prime-premium-thumb.webp"><source type="image/webp" srcset="assets/model-previews-ai/agro-prime-premium.webp"><img class="model-preview-img" src="assets/model-previews-ai/agro-prime-premium.jpg" alt="Prévia visual do modelo Agro Prime: agro de alto valor com horizonte rural e interface premium" loading="lazy" width="2400" height="1500"></picture><div class="glow"></div></div>
-        <div class="card-body">
-          <span class="badge demo"><span data-i18n="models_badge">Demonstração adaptada</span></span>
-          <span class="card-name">Agro Prime</span>
-          <span class="card-tag" data-i18n="model_agro_tag">Agropecuária · Pecuária premium</span>
-          <span class="card-desc" data-i18n="model_agro_desc">Para fazendas, leilões e marcas do agro que precisam unir tradição, prova técnica e presença digital de alto valor.</span>
-          <div class="card-actions">
-            <a class="card-btn primary" data-quote-link>Orçar este modelo</a>
-            <a class="card-btn" href="trabalhos/#model-agro-prime" data-i18n="models_view">Ver modelo</a>
-          </div>
-          <a class="card-cost-link" data-cost-link data-i18n="models_cost">Entender investimento e escopo →</a>
-          <span class="card-note" data-i18n="models_note">Demo sanitizada: sem dados reais de cliente.</span>
-        </div>
-      </div>
+      <div class="presence-counter"><span id="presenceCurrent">01</span><span aria-hidden="true">/</span><span>06</span></div>
+      <div class="presence-progress" data-presence-progress aria-hidden="true"><span id="presenceProgress"></span></div>
+      <p class="sr-only presence-status" id="presenceStatus" data-presence-status aria-live="polite">01 / 6 · Terra Axis</p>
     </div>
   </div>
 </section>
@@ -764,24 +1218,24 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
       <button class="tab" role="tab" aria-selected="false" data-tab="t5" data-i18n="sec_g5">Tecnologia e produtos</button>
     </div>
     <div class="tab-panel active" id="t1"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g1h">Parecer confiável o suficiente para justificar o preço</h4><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saúde e educação vendem confiança. O site precisa justificar o preço antes da primeira reunião.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saúde · Educação</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Pires Contabilidade</h4><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graça virou uma marca com percepção de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g1h">Parecer confiável o suficiente para justificar o preço</h3><p data-i18n="sec_g1p">Contabilidade, advocacia, consultoria, saúde e educação vendem confiança. O site precisa justificar o preço antes da primeira reunião.</p><div class="items">Contabilidade · Advocacia · Consultoria · Saúde · Educação</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Pires Contabilidade</h3><p data-i18n="sec_g1proof">Um setor tradicionalmente sem graça virou uma marca com percepção de consultoria premium.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t2"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g2h">Vender sem depender só de marketplace</h4><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine própria que construa marca, não apenas mais um anúncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Ateliê Memoré</h4><p data-i18n="sec_g2proof">Marca artesanal com domínio próprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g2h">Vender sem depender só de marketplace</h3><p data-i18n="sec_g2p">Moda, artesanato e produtos locais precisam de uma vitrine própria que construa marca, não apenas mais um anúncio.</p><div class="items">Moda · Artesanato · E-commerce · Produtos locais</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Ateliê Memoré</h3><p data-i18n="sec_g2proof">Marca artesanal com domínio próprio e identidade premium, vendendo direto.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t3"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h4><p data-i18n="sec_g3p">Fazendas, leilões, agronegócio e logística ganham autoridade com presença digital séria e catálogo bem apresentado.</p><div class="items">Fazendas · Leilões · Agronegócio · Logística</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h4 data-i18n="sec_g3h2">Projeto agro em avaliação</h4><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case público em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g3h">Modernizar um setor que ainda vende no boca a boca</h3><p data-i18n="sec_g3p">Fazendas, leilões, agronegócio e logística ganham autoridade com presença digital séria e catálogo bem apresentado.</p><div class="items">Fazendas · Leilões · Agronegócio · Logística</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_next">Em pauta</div><h3 data-i18n="sec_g3h2">Projeto agro em avaliação</h3><p data-i18n="sec_g3proof">Grupo atendido pela mesma engenharia dos demais. Case público em breve.</p><div class="items" data-i18n="sec_soon">Em breve</div></div>
     </div></div>
     <div class="tab-panel" id="t4"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g4h">Traduzir sofisticação em tela</h4><p data-i18n="sec_g4p">Imóveis, arquitetura, fotografia, estética e marca pessoal vivem de percepção. O site é a primeira prova de bom gosto.</p><div class="items">Imóveis · Arquitetura · Fotografia · Estética · Marca pessoal</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>Paula Guimarães</h4><p data-i18n="sec_g4proof">Portfólio editorial noturno que posiciona a fotógrafa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g4h">Traduzir sofisticação em tela</h3><p data-i18n="sec_g4p">Imóveis, arquitetura, fotografia, estética e marca pessoal vivem de percepção. O site é a primeira prova de bom gosto.</p><div class="items">Imóveis · Arquitetura · Fotografia · Estética · Marca pessoal</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>Paula Guimarães</h3><p data-i18n="sec_g4proof">Portfólio editorial noturno que posiciona a fotógrafa no segmento de luxo.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
     <div class="tab-panel" id="t5"><div class="sector-grid">
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h4 data-i18n="sec_g5h">Parecer um produto de verdade</h4><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presença que transmita solidez técnica e confiança desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
-      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h4>The Frozen Legacy</h4><p data-i18n="sec_g5proof">Universo autoral com 3D em tempo real, o nível mais alto de complexidade que ofereço.</p><div class="items" data-i18n="sec_live">No ar</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_pain">A dor</div><h3 data-i18n="sec_g5h">Parecer um produto de verdade</h3><p data-i18n="sec_g5p">Apps, SaaS, infoprodutos e comunidades precisam de uma presença que transmita solidez técnica e confiança desde o primeiro segundo.</p><div class="items">Apps · SaaS · Infoprodutos · Portais · Comunidades</div></div>
+      <div class="sector-card"><div class="sc-k" data-i18n="sec_proof">A prova</div><h3>The Frozen Legacy</h3><p data-i18n="sec_g5proof">Universo autoral com 3D em tempo real, o nível mais alto de complexidade que ofereço.</p><div class="items" data-i18n="sec_live">No ar</div></div>
     </div></div>
   </div>
 </section>
@@ -814,10 +1268,10 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
     <h2 class="sec-title" data-i18n="sec_sec_title">Bonito não basta. Precisa ser confiável.</h2>
     <p class="sec-lead" data-i18n="sec_sec_lead">Um site bonito que trava no celular, vaza dados ou depende de sorte não é premium. É risco com aparência de design. Por isso, cada entrega já nasce com cuidado técnico, privacidade, segurança, backup e manutenção planejados desde o início.</p>
     <div class="sec-feats">
-      <div class="sec-feat"><div class="sk">LGPD</div><h4 data-i18n="sf1t">Dados protegidos</h4><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com informações pessoais.</p></div>
-      <div class="sec-feat"><div class="sk">SSL</div><h4 data-i18n="sf2t">Conexão segura</h4><p data-i18n="sf2d">Certificado HTTPS e configurações básicas de segurança no deploy.</p></div>
-      <div class="sec-feat"><div class="sk">Server-side</div><h4 data-i18n="sf3t">Validação real</h4><p data-i18n="sf3d">Quando há formulário, cadastro ou backend, validações críticas não dependem apenas do navegador. O servidor é a fonte final de segurança.</p></div>
-      <div class="sec-feat"><div class="sk">Backup</div><h4 data-i18n="sf4t">Continuidade</h4><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site continuar no ar com mais estabilidade.</p></div>
+      <div class="sec-feat"><div class="sk">LGPD</div><h3 data-i18n="sf1t">Dados protegidos</h3><p data-i18n="sf1d">Coleta com base legal, aviso de privacidade e cuidado com informações pessoais.</p></div>
+      <div class="sec-feat"><div class="sk">SSL</div><h3 data-i18n="sf2t">Conexão segura</h3><p data-i18n="sf2d">Certificado HTTPS e configurações básicas de segurança no deploy.</p></div>
+      <div class="sec-feat"><div class="sk">Server-side</div><h3 data-i18n="sf3t">Validação real</h3><p data-i18n="sf3d">Quando há formulário, cadastro ou backend, validações críticas não dependem apenas do navegador. O servidor é a fonte final de segurança.</p></div>
+      <div class="sec-feat"><div class="sk">Backup</div><h3 data-i18n="sf4t">Continuidade</h3><p data-i18n="sf4d">Backup, monitoramento e manutenção para o site continuar no ar com mais estabilidade.</p></div>
     </div>
     <div class="stack-row">
       <span class="chip"><b>Next.js</b> · React</span>
@@ -849,6 +1303,12 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 
 <!-- CTA FINAL -->
 <section class="dark grain cta-final" id="contato">
+  <picture class="cta-atmosphere" aria-hidden="true">
+    <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-mobile-portrait.webp"/>
+    <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/presence-landscape-tablet-portrait.webp"/>
+    <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/presence-landscape-landscape-sm.webp"/>
+    <img src="assets/cinematic/presence-landscape.webp" alt="" width="1280" height="720" loading="lazy"/>
+  </picture>
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center"><span data-i18n="cta_eyebrow">Vamos construir o seu</span></div>
     <h2 class="sec-title" data-i18n="cta_title">Seu site já comunica algo sobre sua marca.</h2>
@@ -870,7 +1330,8 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
       <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
     </div>
     <div class="foot-col">
-      <h5 data-i18n="foot_work">Trabalho</h5>
+      <h2 data-i18n="foot_work">Trabalho</h2>
+      <a href="sobre/" data-i18n="nav_about">Sobre</a>
       <a href="#ecossistemas" data-i18n="nav_eco">Ecossistemas</a>
       <a href="#cases" data-i18n="nav_cases">Cases</a>
       <a href="#modelos" data-i18n="nav_modelos">Modelos</a>
@@ -878,7 +1339,8 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
       <a href="#setores" data-i18n="nav_sectors">Setores</a>
     </div>
     <div class="foot-col">
-      <h5 data-i18n="foot_more">Mais</h5>
+      <h2 data-i18n="foot_more">Mais</h2>
+      <a href="sobre/" data-i18n="nav_about">Sobre</a>
       <a href="#metodo" data-i18n="nav_method">Método</a>
       <a href="#seguranca" data-i18n="nav_security">Segurança</a>
       <a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a>
@@ -906,6 +1368,17 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
     </div>
   </div>
 </div>
+
+<!-- EXPERIENCIA CONCEITUAL EXPANDIDA -->
+<dialog class="concept-dialog" id="conceptDialog" aria-labelledby="conceptDialogTitle">
+  <div class="concept-dialog-shell" id="conceptDialogShell">
+    <div class="concept-dialog-top">
+      <span class="concept-dialog-brand" id="conceptDialogBrand">Direção autoral</span>
+      <button class="concept-dialog-close" id="conceptDialogClose" type="button" aria-label="Fechar experiência expandida">✕</button>
+    </div>
+    <div id="conceptDialogContent"></div>
+  </div>
+</dialog>
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
@@ -951,7 +1424,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal,.method-item').forEach(el=>io.observe(el));
 
 /* LAZY IMG */
-const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
+const lio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;if(im.dataset.srcset)im.srcset=im.dataset.srcset;if(im.dataset.src){im.src=im.dataset.src;im.onload=()=>im.classList.add('loaded')}lio.unobserve(im)}}),{rootMargin:'300px'});
 document.querySelectorAll('img[data-src]').forEach(im=>lio.observe(im));
 
 /* MOTION POLICY V2 - uma unica fonte de verdade, geracao atomica e registry.
@@ -1233,8 +1706,684 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
   window.__heroFrameMotionRefreshI18n=()=>setStatus(Motion.shouldReduceMotion()?'still':null);
 })();
 
+/* ADAPTIVE MEDIA: curated source, poster, crop and network policy per orientation. */
+const createAdaptiveSet=(base,desktopPosition='50% 50%')=>Object.freeze({
+  desktop:Object.freeze({
+    videoSrc:`assets/cinematic/${base}.mp4`,
+    posterSrc:`assets/cinematic/${base}.webp`,
+    width:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?720:1280,
+    height:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?1280:720,
+    objectPosition:desktopPosition,
+    fit:'cover'
+  }),
+  tabletPortrait:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-tablet-portrait.mp4`,
+    posterSrc:`assets/cinematic/${base}-tablet-portrait.webp`,
+    width:768,height:960,objectPosition:'50% 50%',fit:'cover'
+  }),
+  mobilePortrait:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-mobile-portrait.mp4`,
+    posterSrc:`assets/cinematic/${base}-mobile-portrait.webp`,
+    width:720,height:1280,objectPosition:'50% 50%',fit:'cover'
+  }),
+  landscapeSm:Object.freeze({
+    videoSrc:`assets/cinematic/${base}-landscape-sm.mp4`,
+    posterSrc:`assets/cinematic/${base}-landscape-sm.webp`,
+    width:960,height:540,objectPosition:'50% 50%',fit:'cover'
+  })
+});
+
+const ADAPTIVE_MEDIA_SETS=Object.freeze({
+  'presence-landscape':createAdaptiveSet('presence-landscape','46% 50%'),
+  'engineering-drive':createAdaptiveSet('engineering-drive','55% 50%'),
+  'concept-terra-axis':createAdaptiveSet('concept-terra-axis','64% 50%'),
+  'concept-valle-fiori':createAdaptiveSet('concept-valle-fiori','54% 50%'),
+  'concept-cavallo-alto':createAdaptiveSet('concept-cavallo-alto','18% 50%'),
+  'concept-nativa-reserve':createAdaptiveSet('concept-nativa-reserve','50% 50%'),
+  'concept-sertao-prime':createAdaptiveSet('concept-sertao-prime','55% 50%'),
+  'concept-blue-sanctuary':createAdaptiveSet('concept-blue-sanctuary','50% 50%')
+});
+
+window.AdaptiveMedia=(function(){
+  const registry=new Set();
+  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection||null;
+  let refreshTimer=0;
+
+  function isConstrained(){
+    return Boolean(connection&&(connection.saveData||/^(slow-2g|2g)$/.test(connection.effectiveType||'')));
+  }
+  function profileName(){
+    const portrait=innerHeight>innerWidth;
+    if(portrait&&innerWidth<=600)return'mobilePortrait';
+    if(portrait&&innerWidth<=1024)return'tabletPortrait';
+    if(!portrait&&innerWidth<=1194)return'landscapeSm';
+    return'desktop';
+  }
+  function resolve(key){
+    const set=ADAPTIVE_MEDIA_SETS[key];
+    if(!set)return null;
+    const profile=profileName();
+    return{...set[profile],profile,key,constrained:isConstrained()};
+  }
+  function setPresentation(element,media){
+    if(!element||!media)return;
+    element.style.setProperty('--media-position',media.objectPosition);
+    element.style.setProperty('--media-fit',media.fit);
+  }
+  function load(video,preserveTime=0,resume=false){
+    if(!video||!video.dataset.src||window.BrunoMotion.shouldReduceMotion())return;
+    const source=new URL(video.dataset.src,document.baseURI).href;
+    if(video.currentSrc===source&&video.dataset.mediaLoaded==='true')return;
+    video.dataset.mediaLoaded='loading';
+    video.src=video.dataset.src;
+    video.load();
+    if(preserveTime>0){
+      video.addEventListener('loadedmetadata',()=>{
+        if(Number.isFinite(video.duration)&&video.duration>0)video.currentTime=Math.min(preserveTime,Math.max(0,video.duration-.12));
+        if(resume&&document.visibilityState==='visible'&&!window.BrunoMotion.shouldReduceMotion()&&window.BrunoMediaPlayback){
+          window.BrunoMediaPlayback.attempt(video,{source:'adaptive-resume'});
+        }
+      },{once:true});
+    }
+  }
+  function unload(video){
+    if(!video||!video.getAttribute('src'))return;
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    video.dataset.mediaLoaded='false';
+    video.removeAttribute('data-media-ready');
+  }
+  function apply(entry,force=false){
+    const media=resolve(entry.key);
+    if(!media)return;
+    const previous=entry.video.dataset.mediaProfile||'';
+    entry.video.dataset.src=media.videoSrc;
+    entry.video.dataset.mediaProfile=media.profile;
+    entry.video.poster=media.posterSrc;
+    entry.video.preload=media.constrained?'none':(entry.video.dataset.adaptivePriority==='critical'?'metadata':'none');
+    entry.video.width=media.width;
+    entry.video.height=media.height;
+    if(!previous||!entry.video.getAttribute('src'))entry.video.src=media.videoSrc;
+    setPresentation(entry.video,media);
+    if(entry.poster){
+      if(entry.poster.getAttribute('src')!==media.posterSrc)entry.poster.src=media.posterSrc;
+      entry.poster.width=media.width;
+      entry.poster.height=media.height;
+      setPresentation(entry.poster,media);
+    }
+    if(!force&&previous===media.profile)return;
+    if(previous&&entry.video.dataset.mediaLoaded!=='false'&&entry.video.getAttribute('src')){
+      const time=entry.video.currentTime||0;
+      const resume=!entry.video.paused;
+      const keepWarm=resume||entry.video.dataset.activeMedia==='true'||entry.video.dataset.adaptivePriority==='critical';
+      if(keepWarm)load(entry.video,time,resume);else unload(entry.video);
+    }
+    entry.video.dispatchEvent(new CustomEvent('adaptiveprofilechange',{detail:media}));
+  }
+  function register(video,poster,key){
+    if(!video||!key)return null;
+    const existing=[...registry].find(entry=>entry.video===video);
+    if(existing){existing.poster=poster||existing.poster;apply(existing);return existing}
+    const entry={video,poster,key};
+    registry.add(entry);
+    video.dataset.mediaLoaded='false';
+    video.addEventListener('loadeddata',()=>video.dataset.mediaLoaded='true');
+    apply(entry,true);
+    return entry;
+  }
+  function refresh(){
+    registry.forEach(entry=>{
+      if(!entry.video.isConnected){registry.delete(entry);return}
+      apply(entry);
+    });
+    document.documentElement.dataset.network=isConstrained()?'constrained':'standard';
+    const memory=Number(navigator.deviceMemory||8);
+    const cores=Number(navigator.hardwareConcurrency||8);
+    document.documentElement.dataset.capability=memory<=4||cores<=4?'lite':'full';
+    dispatchEvent(new CustomEvent('adaptivemediarefresh',{detail:{profile:profileName(),constrained:isConstrained()}}));
+  }
+  function scheduleRefresh(){
+    clearTimeout(refreshTimer);
+    refreshTimer=setTimeout(refresh,160);
+  }
+  addEventListener('resize',scheduleRefresh,{passive:true});
+  addEventListener('orientationchange',scheduleRefresh,{passive:true});
+  if(window.visualViewport)visualViewport.addEventListener('resize',scheduleRefresh,{passive:true});
+  if(connection&&connection.addEventListener)connection.addEventListener('change',refresh);
+  refresh();
+  return{register,resolve,load,unload,refresh,isConstrained,profileName};
+})();
+
+/* RESILIENT PLAYBACK: bounded retries, explicit states and a manual browser-policy fallback. */
+window.BrunoMediaPlayback=(function(){
+  const MAX_RETRIES=2;
+  const registered=new Set();
+  const records=new WeakMap();
+
+  function copy(){
+    return document.documentElement.lang==='en'
+      ?{play:'Play video',retry:'Retry video',aria:'Play muted background video'}
+      :{play:'Reproduzir vídeo',retry:'Tentar vídeo novamente',aria:'Reproduzir vídeo de fundo sem áudio'};
+  }
+  function record(video){
+    if(!records.has(video))records.set(video,{retries:0,timer:0,button:null});
+    return records.get(video);
+  }
+  function prune(){
+    registered.forEach(video=>{if(!video.isConnected)registered.delete(video)});
+  }
+  function setState(video,state){
+    const item=record(video);
+    video.dataset.mediaState=state;
+    const button=item.button;
+    if(!button)return;
+    const labels=copy();
+    const visible=state==='autoplay-blocked'||state==='constrained'||state==='error';
+    button.hidden=!visible;
+    button.textContent=state==='error'?labels.retry:labels.play;
+    button.setAttribute('aria-label',labels.aria);
+  }
+  function pauseOthers(active){
+    prune();
+    registered.forEach(video=>{
+      if(video===active||video.paused)return;
+      video.pause();
+      if(video.dataset.mediaState==='playing')setState(video,'paused');
+    });
+  }
+  function clearRetry(video){
+    const item=record(video);
+    if(item.timer){clearTimeout(item.timer);item.timer=0}
+  }
+  function attempt(video,options={}){
+    if(!video)return Promise.resolve(false);
+    const manual=options.manual===true;
+    if(window.BrunoMotion.shouldReduceMotion()){
+      video.pause();
+      setState(video,'reduced');
+      return Promise.resolve(false);
+    }
+    if(window.AdaptiveMedia.isConstrained()&&!manual){
+      video.pause();
+      setState(video,'constrained');
+      return Promise.resolve(false);
+    }
+    clearRetry(video);
+    window.AdaptiveMedia.load(video);
+    pauseOthers(video);
+    video.muted=true;
+    video.defaultMuted=true;
+    video.playsInline=true;
+    setState(video,'play-requested');
+    let promise;
+    try{promise=video.play()}catch(error){promise=Promise.reject(error)}
+    return Promise.resolve(promise).then(()=>{
+      const item=record(video);
+      item.retries=0;
+      setState(video,'playing');
+      return true;
+    }).catch(error=>{
+      if(error&&error.name==='AbortError')return false;
+      if(error&&error.name==='NotAllowedError'&&!manual){
+        setState(video,'autoplay-blocked');
+        return false;
+      }
+      const item=record(video);
+      if(item.retries<MAX_RETRIES){
+        item.retries++;
+        setState(video,'metadata-loading');
+        item.timer=setTimeout(()=>{
+          item.timer=0;
+          if(video.isConnected&&document.visibilityState==='visible')attempt(video,{...options,source:'retry'});
+        },700*item.retries);
+      }else{
+        setState(video,'error');
+      }
+      return false;
+    });
+  }
+  function register(video,root){
+    if(!video)return null;
+    registered.add(video);
+    const item=record(video);
+    if(!item.button){
+      const host=root||video.closest('.cinematic-media,.concept-media');
+      if(host){
+        const button=document.createElement('button');
+        button.type='button';
+        button.className='media-playback-control';
+        button.hidden=true;
+        button.addEventListener('click',()=>attempt(video,{manual:true,source:'manual'}));
+        host.appendChild(button);
+        item.button=button;
+      }
+    }
+    video.addEventListener('loadeddata',()=>{
+      const protectedStates=['playing','autoplay-blocked','constrained','reduced','error'];
+      if(video.paused&&!protectedStates.includes(video.dataset.mediaState))setState(video,'ready');
+    });
+    video.addEventListener('playing',()=>setState(video,'playing'));
+    video.addEventListener('error',()=>setState(video,'error'));
+    return video;
+  }
+  function syncLanguage(){
+    prune();
+    registered.forEach(video=>setState(video,video.dataset.mediaState||'poster'));
+  }
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){
+      registered.forEach(video=>{if(!video.paused)video.pause()});
+    }
+  });
+  window.BrunoMotion.onChange(reduced=>{
+    registered.forEach(video=>{
+      if(reduced){clearRetry(video);video.pause();setState(video,'reduced')}
+      else if(video.dataset.activeMedia==='true')setState(video,'poster');
+    });
+  });
+  return{register,attempt,pauseOthers,setState,syncLanguage,MAX_RETRIES};
+})();
+
+/* CINEMATIC MEDIA: poster-first, viewport-aware and always muted */
+(function(){
+  const items=[
+    {video:document.getElementById('heroPrimaryVideo'),root:document.getElementById('top'),eager:true},
+    {video:document.getElementById('positioningVideo'),root:document.querySelector('.positioning-film'),eager:false}
+  ].filter(item=>item.video&&item.root);
+  function load(item){
+    window.AdaptiveMedia.load(item.video);
+  }
+  function play(item){
+    load(item);
+    if(!window.BrunoMotion.shouldReduceMotion()&&document.visibilityState==='visible'){
+      window.BrunoMediaPlayback.attempt(item.video,{source:'viewport'});
+    }
+  }
+  items.forEach(item=>{
+    const key=item.video.dataset.mediaKey;
+    const poster=item.root.querySelector(`[data-adaptive-poster="${key}"]`);
+    window.AdaptiveMedia.register(item.video,poster,key);
+    window.BrunoMediaPlayback.register(item.video,item.video.closest('.cinematic-media'));
+    item.video.addEventListener('loadeddata',()=>item.video.dataset.mediaReady='true');
+    item.video.addEventListener('error',()=>{item.video.dataset.mediaError='true';item.video.removeAttribute('data-media-ready')});
+    if(item.eager&&!window.BrunoMotion.shouldReduceMotion())load(item);
+  });
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    const item=items.find(candidate=>candidate.root===entry.target);
+    if(!item)return;
+    item.visible=entry.isIntersecting&&entry.intersectionRatio>.12;
+    if(item.visible)play(item);else item.video.pause();
+  }),{threshold:[0,.12,.45],rootMargin:'0px'});
+  items.forEach(item=>observer.observe(item.root));
+  window.BrunoMotion.onChange(reduced=>items.forEach(item=>{
+    if(reduced)item.video.pause();else if(item.visible)play(item);
+  }));
+  document.addEventListener('visibilitychange',()=>items.forEach(item=>{
+    if(document.hidden)item.video.pause();else if(item.visible)play(item);
+  }));
+})();
+
+/* Frozen depth: restrained section-local parallax, with a premium static reduced-motion state. */
+(function(){
+  const section=document.getElementById('ecossistemas');
+  const stage=section?.querySelector('.ecosystem-stage');
+  if(!section||!stage)return;
+  let visible=false;
+  let raf=0;
+  function draw(){
+    raf=0;
+    if(!visible||window.BrunoMotion.shouldReduceMotion()){
+      stage.style.setProperty('--eco-shift','0px');
+      return;
+    }
+    const rect=section.getBoundingClientRect();
+    const span=innerHeight+rect.height;
+    const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/span));
+    const amplitude=innerWidth<=600?14:22;
+    stage.style.setProperty('--eco-shift',`${((progress-.5)*amplitude).toFixed(2)}px`);
+  }
+  function schedule(){
+    if(!raf)raf=requestAnimationFrame(draw);
+  }
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    visible=entry.isIntersecting;
+    schedule();
+  }),{rootMargin:'80px 0px'});
+  observer.observe(section);
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',schedule,{passive:true});
+  window.BrunoMotion.onChange(schedule);
+})();
+
+/**
+ * @typedef {Object} SiteConcept
+ * @property {string} id
+ * @property {string} name
+ * @property {string} variant
+ * @property {{bg:string,accent:string,ink:string,soft:string}} theme
+ * @property {string} mediaKey
+ * @property {string} videoSrc
+ * @property {string} posterSrc
+ * @property {{pt:string,en:string}} sector
+ * @property {{pt:string,en:string}} headline
+ * @property {{pt:string,en:string}} description
+ * @property {{pt:string,en:string}[]} ctas
+ * @property {{pt:string,en:string}[]} features
+ * @property {{value:string,pt:string,en:string}[]} metrics
+ * @property {string[]} palette
+ */
+const SITE_CONCEPTS=[
+  {
+    id:'terra-axis',name:'Terra Axis',variant:'axis',
+    theme:{bg:'#07120e',accent:'#d5a64e',ink:'#f1eee5',soft:'#87b887'},
+    mediaKey:'concept-terra-axis',videoSrc:'assets/cinematic/concept-terra-axis.mp4',posterSrc:'assets/cinematic/concept-terra-axis.webp',
+    sector:{pt:'Tecnologia para o agronegócio',en:'Technology for agribusiness'},
+    headline:{pt:'A próxima safra começa antes da primeira máquina entrar no campo.',en:'The next harvest begins before the first machine enters the field.'},
+    description:{pt:'Conectamos máquinas, dados e pessoas para transformar cada hectare em resultado. Planejamento inteligente, execução precisa e decisões em tempo real.',en:'We connect machines, data and people to turn every hectare into results. Intelligent planning, precise execution and real-time decisions.'},
+    ctas:[{pt:'Conhecer a operação',en:'Explore the operation'},{pt:'Falar com um especialista',en:'Talk to a specialist'}],
+    features:[{pt:'Inteligência de safra',en:'Harvest intelligence'},{pt:'Telemetria conectada',en:'Connected telemetry'},{pt:'Planejamento operacional',en:'Operational planning'},{pt:'Decisão em tempo real',en:'Real-time decisions'}],
+    metrics:[{value:'2,8M+',pt:'Hectares monitorados',en:'Hectares monitored'},{value:'98,7%',pt:'Precisão operacional',en:'Operational precision'},{value:'7,2 t/ha',pt:'Produtividade média',en:'Average productivity'},{value:'1.247',pt:'Telemetria ativa',en:'Active telemetry'}],
+    palette:['#07120e','#173c2c','#d5a64e','#f1eee5']
+  },
+  {
+    id:'valle-fiori',name:'Valle Fiori',variant:'fiori',
+    theme:{bg:'#111b13',accent:'#c8a85d',ink:'#eee9dd',soft:'#77251f'},
+    mediaKey:'concept-valle-fiori',videoSrc:'assets/cinematic/concept-valle-fiori.mp4',posterSrc:'assets/cinematic/concept-valle-fiori.webp',
+    sector:{pt:'Cultivo e experiência botânica',en:'Botanical cultivation and experience'},
+    headline:{pt:'Existem lugares que não se visitam. Eles permanecem.',en:'Some places are not merely visited. They remain.'},
+    description:{pt:'Valle Fiori é um refúgio botânico onde natureza, tempo e dedicação se encontram para criar algo raro. Um vale cultivado com propósito, beleza e respeito, para ser sentido em cada detalhe.',en:'Valle Fiori is a botanical refuge where nature, time and dedication meet to create something rare. A valley cultivated with purpose, beauty and respect, felt in every detail.'},
+    ctas:[{pt:'Descobrir o vale',en:'Discover the valley'},{pt:'Planejar uma experiência',en:'Plan an experience'}],
+    features:[{pt:'Cultivo responsável',en:'Responsible cultivation'},{pt:'Visitação sazonal',en:'Seasonal visits'},{pt:'Paisagismo autoral',en:'Authorial landscaping'},{pt:'Experiências exclusivas',en:'Exclusive experiences'}],
+    metrics:[{value:'04',pt:'Jardins autorais',en:'Authorial gardens'},{value:'12',pt:'Ciclos de cultivo',en:'Cultivation cycles'},{value:'01',pt:'Vale preservado',en:'Preserved valley'},{value:'∞',pt:'Memórias cultivadas',en:'Cultivated memories'}],
+    palette:['#111b13','#77251f','#c8a85d','#eee9dd']
+  },
+  {
+    id:'cavallo-alto',name:'Cavallo Alto',variant:'cavallo',
+    theme:{bg:'#17100c',accent:'#c99a5a',ink:'#f2e8d8',soft:'#7b91a3'},
+    mediaKey:'concept-cavallo-alto',videoSrc:'assets/cinematic/concept-cavallo-alto.mp4',posterSrc:'assets/cinematic/concept-cavallo-alto.webp',
+    sector:{pt:'Haras e experiência de território',en:'Horse farm and territory experience'},
+    headline:{pt:'O caminho muda quando o destino é sentir.',en:'The path changes when the destination is to feel.'},
+    description:{pt:'Cavallo Alto é um haras de montanha onde o tempo tem outro ritmo e cada detalhe existe para conectar você à natureza, ao cavalo e ao que realmente importa.',en:'Cavallo Alto is a mountain horse farm where time follows another rhythm and every detail connects you to nature, the horse and what truly matters.'},
+    ctas:[{pt:'Viver a experiência',en:'Live the experience'},{pt:'Conhecer o haras',en:'Discover the farm'}],
+    features:[{pt:'Cavalgadas privadas',en:'Private rides'},{pt:'Hospedagem',en:'Lodging'},{pt:'Criação selecionada',en:'Selected breeding'},{pt:'Experiências de território',en:'Territory experiences'}],
+    metrics:[{value:'1.480m',pt:'Altitude',en:'Altitude'},{value:'06',pt:'Rotas privadas',en:'Private routes'},{value:'24h',pt:'Ritmo do território',en:'Territory rhythm'},{value:'01',pt:'Destino essencial',en:'Essential destination'}],
+    palette:['#17100c','#684631','#c99a5a','#7b91a3']
+  },
+  {
+    id:'nativa-reserve',name:'Nativa Reserve',variant:'nativa',
+    theme:{bg:'#0a120d',accent:'#c7a45a',ink:'#efeee7',soft:'#50694f'},
+    mediaKey:'concept-nativa-reserve',videoSrc:'assets/cinematic/concept-nativa-reserve.mp4',posterSrc:'assets/cinematic/concept-nativa-reserve.webp',
+    sector:{pt:'Conservação e vida selvagem',en:'Conservation and wildlife'},
+    headline:{pt:'Há presenças que dependem da nossa escolha de permanecer.',en:'Some forms of life depend on our choice to remain.'},
+    description:{pt:'Nativa Reserve protege habitats ameaçados e promove pesquisa, educação e turismo de baixo impacto. Cada visita, cada apoio e cada decisão consciente ajudam a manter a vida onde ela sempre pertenceu: na natureza.',en:'Nativa Reserve protects threatened habitats and promotes research, education and low-impact tourism. Every visit, support and conscious decision helps keep life where it has always belonged: in nature.'},
+    ctas:[{pt:'Conhecer a reserva',en:'Discover the reserve'},{pt:'Apoiar a conservação',en:'Support conservation'}],
+    features:[{pt:'Proteção de habitat',en:'Habitat protection'},{pt:'Pesquisa aplicada',en:'Applied research'},{pt:'Educação ambiental',en:'Environmental education'},{pt:'Turismo de baixo impacto',en:'Low-impact tourism'}],
+    metrics:[{value:'18.450',pt:'Hectares protegidos',en:'Protected hectares'},{value:'327',pt:'Espécies monitoradas',en:'Species monitored'},{value:'12',pt:'Projetos de pesquisa',en:'Research projects'},{value:'8.750t',pt:'Impacto ambiental',en:'Environmental impact'}],
+    palette:['#0a120d','#263d2c','#c7a45a','#efeee7']
+  },
+  {
+    id:'sertao-prime',name:'Grupo Sertão Prime',variant:'sertao',
+    theme:{bg:'#1a0e08',accent:'#d08b35',ink:'#f3eadc',soft:'#8d5230'},
+    mediaKey:'concept-sertao-prime',videoSrc:'assets/cinematic/concept-sertao-prime.mp4',posterSrc:'assets/cinematic/concept-sertao-prime.webp',
+    sector:{pt:'Pecuária, genética e escala',en:'Livestock, genetics and scale'},
+    headline:{pt:'Resultado no campo não nasce do acaso.',en:'Results in the field are never accidental.'},
+    description:{pt:'No Grupo Sertão Prime, genética de excelência, manejo inteligente e escala sustentável se unem para entregar produtividade consistente, rentabilidade e evolução contínua.',en:'At Grupo Sertão Prime, excellent genetics, intelligent management and sustainable scale unite to deliver consistent productivity, profitability and continuous evolution.'},
+    ctas:[{pt:'Conhecer o grupo',en:'Discover the group'},{pt:'Falar com o comercial',en:'Talk to sales'}],
+    features:[{pt:'Genética',en:'Genetics'},{pt:'Rastreabilidade',en:'Traceability'},{pt:'Manejo',en:'Management'},{pt:'Unidades produtivas',en:'Production units'},{pt:'Produção responsável',en:'Responsible production'}],
+    metrics:[{value:'+850 mil',pt:'Cabeças',en:'Head'},{value:'+220 mil',pt:'Hectares',en:'Hectares'},{value:'06',pt:'Estados',en:'States'},{value:'18',pt:'Unidades produtivas',en:'Production units'},{value:'+30',pt:'Anos de história',en:'Years of history'}],
+    palette:['#1a0e08','#59301a','#d08b35','#f3eadc']
+  },
+  {
+    id:'blue-sanctuary',name:'Blue Sanctuary',variant:'blue',
+    theme:{bg:'#031626',accent:'#77d6ff',ink:'#eef9ff',soft:'#0b557c'},
+    mediaKey:'concept-blue-sanctuary',videoSrc:'assets/cinematic/concept-blue-sanctuary.mp4',posterSrc:'assets/cinematic/concept-blue-sanctuary.webp',
+    sector:{pt:'Projeto marinho e experiência oceânica',en:'Marine project and ocean experience'},
+    headline:{pt:'O oceano revela outro mundo quando aprendemos a entrar em silêncio.',en:'The ocean reveals another world when we learn to enter in silence.'},
+    description:{pt:'Blue Sanctuary é um instituto dedicado à conservação marinha, pesquisa aplicada e experiências que conectam pessoas ao que realmente importa: proteger a vida, dentro e fora da água.',en:'Blue Sanctuary is an institute dedicated to marine conservation, applied research and experiences that connect people to what truly matters: protecting life in and out of the water.'},
+    ctas:[{pt:'Mergulhar na experiência',en:'Dive into the experience'},{pt:'Conhecer o projeto',en:'Discover the project'}],
+    features:[{pt:'Biodiversidade',en:'Biodiversity'},{pt:'Conservação',en:'Conservation'},{pt:'Pesquisa',en:'Research'},{pt:'Roteiros privados',en:'Private journeys'}],
+    metrics:[{value:'70%',pt:'Planeta oceano',en:'Ocean planet'},{value:'04',pt:'Frentes de atuação',en:'Fields of action'},{value:'01',pt:'Missão compartilhada',en:'Shared mission'},{value:'∞',pt:'Profundidade possível',en:'Possible depth'}],
+    palette:['#031626','#0b557c','#77d6ff','#eef9ff']
+  }
+];
+
+window.ConceptGallery=(function(){
+  const gallery=document.getElementById('modelos');
+  const carousel=gallery.querySelector('.presence-carousel');
+  const track=document.getElementById('presenceTrack');
+  const status=document.getElementById('presenceStatus');
+  const currentEl=document.getElementById('presenceCurrent');
+  const progress=document.getElementById('presenceProgress');
+  const arrows=[...gallery.querySelectorAll('[data-presence-dir]')];
+  const dialog=document.getElementById('conceptDialog');
+  const dialogShell=document.getElementById('conceptDialogShell');
+  const dialogContent=document.getElementById('conceptDialogContent');
+  const dialogClose=document.getElementById('conceptDialogClose');
+  let index=0;
+  let language=document.documentElement.lang==='en'?'en':'pt';
+  let inView=false;
+  let lastFocus=null;
+  let playTimer=0;
+  let preloadTimer=0;
+  const label=entry=>entry[language]||entry.pt;
+  const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+
+  function slideTemplate(concept,position){
+    const metrics=concept.metrics.slice(0,4).map(metric=>`<div class="concept-metric"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
+    const media=window.AdaptiveMedia.resolve(concept.mediaKey);
+    return `<article class="concept-slide concept-${concept.variant}" data-model-id="${concept.id}" role="group" aria-roledescription="slide" aria-label="${esc(concept.name)}, ${position+1} de ${SITE_CONCEPTS.length}" style="--slide-bg:${concept.theme.bg};--slide-accent:${concept.theme.accent};--slide-ink:${concept.theme.ink}">
+      <div class="concept-canvas">
+        <figure class="concept-media">
+          <img src="${media.posterSrc}" data-adaptive-poster="${concept.mediaKey}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="${media.width}" height="${media.height}" loading="${position===0?'eager':'lazy'}" style="--media-position:${media.objectPosition};--media-fit:${media.fit}"/>
+          <video data-media-key="${concept.mediaKey}" data-src="${media.videoSrc}" data-active-media="${position===0?'true':'false'}" poster="${media.posterSrc}" muted loop playsinline preload="none" aria-label="${esc(concept.name)}, vídeo conceitual sem áudio" disablepictureinpicture style="--media-position:${media.objectPosition};--media-fit:${media.fit}"></video>
+        </figure>
+        <div class="concept-nav"><span class="concept-brand">${esc(concept.name)}</span><span class="concept-navline">${esc(label(concept.sector))} · 0${position+1}</span></div>
+        <div class="concept-copy">
+          <span class="concept-kicker">${esc(label(concept.sector))}</span>
+          <h3>${esc(label(concept.headline))}</h3>
+          <p>${esc(label(concept.description))}</p>
+          <div class="concept-actions">
+            <button class="concept-action primary" type="button" data-concept-open="${concept.id}">${esc(label(concept.ctas[0]))}</button>
+            <a class="concept-action" href="#contato">${esc(label(concept.ctas[1]))}</a>
+          </div>
+        </div>
+        <div class="concept-metrics">${metrics}</div>
+        <div class="concept-motif" aria-hidden="true"></div>
+      </div>
+    </article>`;
+  }
+
+  function render(){
+    track.innerHTML=SITE_CONCEPTS.map(slideTemplate).join('');
+    track.querySelectorAll('video').forEach(video=>{
+      const key=video.dataset.mediaKey;
+      const poster=video.closest('.concept-media').querySelector(`[data-adaptive-poster="${key}"]`);
+      window.AdaptiveMedia.register(video,poster,key);
+      window.BrunoMediaPlayback.register(video,video.closest('.concept-media'));
+      video.addEventListener('loadeddata',()=>video.dataset.mediaReady='true');
+      video.addEventListener('error',()=>{video.dataset.mediaError='true';video.removeAttribute('data-media-ready')});
+    });
+    track.querySelectorAll('[data-concept-open]').forEach(button=>button.addEventListener('click',()=>openExpanded(button.dataset.conceptOpen,button)));
+    update(false);
+  }
+
+  function loadVideo(video){
+    window.AdaptiveMedia.load(video);
+  }
+  function syncPlayback(){
+    const reduced=window.BrunoMotion.shouldReduceMotion();
+    clearTimeout(playTimer);
+    clearTimeout(preloadTimer);
+    playTimer=0;
+    preloadTimer=0;
+    [...track.querySelectorAll('.concept-slide')].forEach((slide,i)=>{
+      const video=slide.querySelector('video');
+      video.dataset.activeMedia=i===index?'true':'false';
+      if(i===index){
+        if(inView&&!reduced&&!dialog.open){
+          playTimer=setTimeout(()=>{
+            loadVideo(video);
+            window.BrunoMediaPlayback.attempt(video,{source:'carousel'});
+          },1200);
+          if(!window.AdaptiveMedia.isConstrained()&&index<SITE_CONCEPTS.length-1){
+            preloadTimer=setTimeout(()=>{
+              const next=track.children[index+1]?.querySelector('video');
+              if(next){
+                next.preload='metadata';
+                loadVideo(next);
+                next.pause();
+              }
+            },2600);
+          }
+        }else video.pause();
+      }else{
+        video.pause();
+      }
+    });
+  }
+  function update(announce=true){
+    const concept=SITE_CONCEPTS[index];
+    gallery.dataset.activeConcept=concept.id;
+    gallery.style.setProperty('--concept-bg',concept.theme.bg);
+    gallery.style.setProperty('--concept-accent',concept.theme.accent);
+    gallery.style.setProperty('--concept-soft',concept.theme.soft);
+    gallery.style.setProperty('--concept-ink',concept.theme.ink);
+    currentEl.textContent=String(index+1).padStart(2,'0');
+    progress.style.transform=`translateX(${index*100}%)`;
+    status.textContent=`${String(index+1).padStart(2,'0')} / ${SITE_CONCEPTS.length} · ${concept.name}`;
+    arrows[0].disabled=index===0;
+    arrows[1].disabled=index===SITE_CONCEPTS.length-1;
+    if(!announce)status.setAttribute('aria-live','off');else status.setAttribute('aria-live','polite');
+    syncPlayback();
+  }
+  function go(next,smooth=true){
+    index=Math.max(0,Math.min(SITE_CONCEPTS.length-1,next));
+    const slide=track.children[index];
+    if(slide)track.scrollTo({left:slide.offsetLeft-track.offsetLeft,behavior:smooth&&!window.BrunoMotion.shouldReduceMotion()?'smooth':'auto'});
+    update();
+  }
+  function activeFromScroll(){
+    const target=track.scrollLeft;
+    let closest=0,distance=Infinity;
+    [...track.children].forEach((slide,i)=>{
+      const delta=Math.abs((slide.offsetLeft-track.offsetLeft)-target);
+      if(delta<distance){distance=delta;closest=i}
+    });
+    if(closest!==index){index=closest;update()}
+  }
+  let scrollRaf=0;
+  let dragState=null;
+  track.addEventListener('scroll',()=>{
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf=requestAnimationFrame(activeFromScroll);
+  },{passive:true});
+  track.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='mouse'||event.button!==0||event.target.closest('button,a'))return;
+    dragState={id:event.pointerId,x:event.clientX,scrollLeft:track.scrollLeft,moved:false};
+    track.setPointerCapture(event.pointerId);
+    track.classList.add('is-dragging');
+  });
+  track.addEventListener('pointermove',event=>{
+    if(!dragState||event.pointerId!==dragState.id)return;
+    const delta=event.clientX-dragState.x;
+    if(Math.abs(delta)>3)dragState.moved=true;
+    track.scrollLeft=dragState.scrollLeft-delta;
+    if(dragState.moved)event.preventDefault();
+  });
+  function finishDrag(event){
+    if(!dragState||event.pointerId!==dragState.id)return;
+    const moved=dragState.moved;
+    dragState=null;
+    track.classList.remove('is-dragging');
+    if(track.hasPointerCapture(event.pointerId))track.releasePointerCapture(event.pointerId);
+    if(moved){activeFromScroll();requestAnimationFrame(()=>go(index,true))}
+  }
+  track.addEventListener('pointerup',finishDrag);
+  track.addEventListener('pointercancel',finishDrag);
+  arrows.forEach(button=>button.addEventListener('click',()=>go(index+Number(button.dataset.presenceDir))));
+  carousel.addEventListener('keydown',event=>{
+    if(event.key==='ArrowRight'){event.preventDefault();go(index+1)}
+    else if(event.key==='ArrowLeft'){event.preventDefault();go(index-1)}
+    else if(event.key==='Home'){event.preventDefault();go(0)}
+    else if(event.key==='End'){event.preventDefault();go(SITE_CONCEPTS.length-1)}
+  });
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    inView=entry.isIntersecting&&entry.intersectionRatio>.12;
+    syncPlayback();
+  }),{threshold:[0,.12,.35]});
+  observer.observe(carousel);
+  window.BrunoMotion.onChange(syncPlayback);
+  document.addEventListener('visibilitychange',syncPlayback);
+  addEventListener('adaptivemediarefresh',()=>requestAnimationFrame(()=>go(index,false)));
+
+  function expandedTemplate(concept){
+    const services=concept.features.map((feature,i)=>`<div class="concept-service"><span>0${i+1}</span><strong>${esc(label(feature))}</strong></div>`).join('');
+    const proofs=concept.metrics.slice(0,3).map(metric=>`<div class="concept-proof"><strong>${esc(metric.value)}</strong><span>${esc(label(metric))}</span></div>`).join('');
+    const palette=concept.palette.map(color=>`<span class="concept-swatch" style="--swatch:${color}" title="${color}"></span>`).join('');
+    const media=window.AdaptiveMedia.resolve(concept.mediaKey);
+    return `<section class="concept-expanded-hero">
+      <figure class="concept-expanded-media"><img src="${media.posterSrc}" alt="${esc(concept.name)}: ${esc(label(concept.sector))}" width="${media.width}" height="${media.height}" style="object-position:${media.objectPosition};object-fit:${media.fit}"/></figure>
+      <div class="concept-expanded-copy"><span class="concept-kicker">${esc(label(concept.sector))}</span><h2 id="conceptDialogTitle">${esc(concept.name)}</h2><p>${esc(label(concept.headline))}</p></div>
+    </section>
+    <section class="concept-expanded-grid">
+      <div><span class="concept-kicker">${language==='en'?'Positioning':'Posicionamento'}</span><h3>${esc(label(concept.headline))}</h3><p>${esc(label(concept.description))}</p><div class="concept-palette" aria-label="${language==='en'?'Concept palette':'Paleta do conceito'}">${palette}</div></div>
+      <div class="concept-service-list">${services}</div>
+    </section>
+    <section class="concept-proof-band"><div class="concept-proof-inner">${proofs}</div></section>
+    <section class="concept-final"><span class="concept-kicker">${language==='en'?'Authorial direction':'Direção autoral'}</span><h3>${language==='en'?'Your brand can occupy a territory of its own.':'Sua marca pode ocupar um território próprio.'}</h3><a class="concept-action primary" href="#contato" data-dialog-contact>${language==='en'?'Request a diagnosis':'Solicitar diagnóstico'}</a></section>`;
+  }
+  function openExpanded(id,source){
+    const concept=SITE_CONCEPTS.find(item=>item.id===id);
+    if(!concept)return;
+    lastFocus=source||document.activeElement;
+    dialogShell.style.setProperty('--dialog-bg',concept.theme.bg);
+    dialogShell.style.setProperty('--dialog-accent',concept.theme.accent);
+    dialogShell.style.setProperty('--dialog-ink',concept.theme.ink);
+    document.getElementById('conceptDialogBrand').textContent=concept.name;
+    dialogContent.innerHTML=expandedTemplate(concept);
+    dialog.showModal();
+    document.body.classList.add('locked');
+    dialogClose.focus();
+    syncPlayback();
+    const contact=dialogContent.querySelector('[data-dialog-contact]');
+    if(contact)contact.addEventListener('click',closeExpanded);
+  }
+  function closeExpanded(){
+    if(!dialog.open)return;
+    dialog.close();
+    document.body.classList.remove('locked');
+    syncPlayback();
+    if(lastFocus)lastFocus.focus();
+  }
+  dialogClose.addEventListener('click',closeExpanded);
+  dialog.addEventListener('click',event=>{if(event.target===dialog)closeExpanded()});
+  dialog.addEventListener('cancel',event=>{event.preventDefault();closeExpanded()});
+
+  function setLanguage(nextLanguage){
+    language=nextLanguage==='en'?'en':'pt';
+    render();
+    go(index,false);
+  }
+  render();
+  return{setLanguage,go,getIndex:()=>index,concepts:SITE_CONCEPTS};
+})();
+
 /* CATALOG ARROWS */
-document.querySelectorAll('.cnav').forEach(b=>{b.onclick=()=>{const row=document.getElementById(b.dataset.row);row.scrollBy({left:parseInt(b.dataset.dir)*Math.min(row.clientWidth*.8,420),behavior:'smooth'})}});
+document.querySelectorAll('.cnav').forEach(button=>{
+  const row=document.getElementById(button.dataset.row);
+  if(!row){button.disabled=true;return}
+  const sync=()=>{
+    const max=row.scrollWidth-row.clientWidth-2;
+    document.querySelectorAll(`.cnav[data-row="${row.id}"]`).forEach(control=>{
+      control.disabled=Number(control.dataset.dir)<0?row.scrollLeft<=2:row.scrollLeft>=max;
+    });
+  };
+  button.addEventListener('click',()=>row.scrollBy({left:Number(button.dataset.dir)*Math.min(row.clientWidth*.86,480),behavior:window.BrunoMotion.shouldReduceMotion()?'auto':'smooth'}));
+  row.addEventListener('scroll',sync,{passive:true});
+  addEventListener('resize',sync,{passive:true});
+  requestAnimationFrame(sync);
+});
 
 /* SECTOR TABS */
 document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{
@@ -1288,7 +2437,7 @@ function openModal(id){
 }
 function closeModal(){mBack.classList.remove('show');document.body.classList.remove('locked');
   setTimeout(()=>mBack.classList.remove('open'),300);if(lastFocus)lastFocus.focus()}
-document.querySelectorAll('.card[data-modal]').forEach(c=>c.onclick=()=>openModal(c.dataset.modal));
+document.querySelectorAll('[data-modal]').forEach(c=>c.addEventListener('click',()=>openModal(c.dataset.modal)));
 document.getElementById('modalX').onclick=closeModal;
 mBack.onclick=e=>{if(e.target===mBack)closeModal()};
 addEventListener('keydown',e=>{
@@ -1303,9 +2452,10 @@ addEventListener('keydown',e=>{
 /* I18N */
 const tEN={
   nav_eco:'Ecosystems',nav_cases:'Cases',nav_modelos:'Models',nav_trabalhos:'Work',nav_sectors:'Sectors',nav_method:'Method',nav_security:'Security',nav_contact:'Contact',nav_cta:'Request a diagnosis',
-  models_eyebrow:'Models to visualize value',models_title:'Authorial references for those who already know they need a new level.',
-  models_lead:'Each model shows a possible direction for digital presence: image, structure, tone, experience and perceived value. Names, images and information were adapted to preserve privacy and let you visualize possibilities without exposing real client data.',
-  models_lead2:'You choose the atmosphere. I adapt the proposal to your niche, your offer and the level of trust your brand needs to convey.',
+  models_eyebrow:'Authorial directions for different markets',models_title:'Authorial directions make your market look unlike everyone else.',
+  models_lead:'Each direction below is born from a different atmosphere, strategy and commercial intention. Video is not decoration. It defines rhythm, narrative, hierarchy and perceived value.',
+  models_lead2:'Explore possibilities created to show how a brand can assume its own presence when design, content and technology work in the same direction.',
+  models_disclosure:'The projects below are demonstrative authorial concepts and do not represent real clients.',
   models_badge:'Adapted demonstration',models_badge_live:'Own product · live',models_badge_template:'Authorial base',
   models_view:'View model',models_cost:'Understand investment and scope →',models_note:'Sanitized demo: no real client data.',models_note_live:'Own authorial product, no third-party client involved.',
   model_artisan_tag:'Handcrafted e-commerce · Authorial store',model_artisan_desc:'For authorial brands that need to sell with more perceived value: an elegant storefront, product narrative and direct purchase in their own environment.',
@@ -1319,18 +2469,22 @@ const tEN={
   hero_sub:'I build websites, portals and digital ecosystems for any sector, with premium design, secure engineering and the same standard I apply to my own products.',
   hero_cta1:'I want to elevate my digital presence →',hero_cta2:'See real projects',scroll:'Scroll',hero_frame_hint:'Move to explore',
   hero2_eyebrow:'Art direction, engineering and perceived value',
-  hero2_title:'Websites with real presence.<br>Not the appearance of <span class="ai-mark">AI.</span>',
+  hero2_title:'Websites with<br>real presence.<br>Not the appearance of <span class="ai-mark">AI.</span>',
   hero2_sub:'Ultra-realistic, cinematic and secure websites for brands that need to convey value, trust and authority before the first contact.',
   hero2_note:'Before someone requests a proposal, that person has already felt something about your brand. I design that first perception with art direction, copy, technology and security working together to turn a visit into trust, and trust into a decision.',
-  hero2_cta1:'Request a diagnosis →',hero2_cta2:'See live projects →',
+  hero2_cta1:'Request a diagnosis',hero2_cta2:'See live projects',
+  hero_trust_1:'Secure and hardened websites',hero_trust_2:'Cinematic performance',hero_trust_3:'Privacy and compliance',
   pos_eyebrow:'Who builds your site',
   pos_title:'Any tool can deliver a pretty page.<br><span class="title-accent">Presence, it cannot.</span>',
   pos_lead1:'What actually changes a buying decision is not just aesthetics. It is the sense that there is criteria, strategy and value behind every detail.',
   pos_lead2:'I build websites with the same standard I apply to my own products: visual direction, narrative, proof, technology and security in a single delivery, made for brands that do not want to look ordinary.',
   pos_p1s:'Own product live',pos_p2s:'Real cases published',pos_p3s:'Active clients',pos_p4s:'Secure structure',
   eco_eyebrow:'Own ecosystem',eco_title:'When the project needs world, narrative and technology, I build that too.',
-  eco_lead:'Not every site needs to be just a storefront. Some projects need depth, atmosphere, interaction and the feeling of their own universe. That was the case with The Frozen Legacy: a transmedia ecosystem with real-time 3D, a bilingual experience, continuous narrative and authorial digital presence.',
-  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An authorial project that unites narrative, technology and visual experience to turn a brand into a universe.',
+  eco_international:'First international project',
+  eco_lead:'The Frozen Legacy proves that BrunoDev.AI also operates at ecosystem level. An international project built with narrative depth, visual direction, digital experience and a high technical standard.',
+  eco_days:'days of work',eco_months:'months of monitoring',eco_standard:'Major company standard',
+  vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An international-scale authorial project developed to unite narrative, technology and visual experience in a living digital ecosystem.',
+  vakon_enter:'Enter the universe',vakon_know:'Discover the project',
   cases_eyebrow:'Real cases · clients live',cases_title:'Perception changes when the site has direction.',
   cases_lead:'Three real proofs that a well-built site does not just inform: it positions, differentiates and prepares the client to trust.',
   pires_tag:'Professional services',pires_desc:'Accounting presented as serious, modern and trustworthy consulting. A digital presence built to convey organization, authority and value before the first meeting.',
@@ -1379,7 +2533,9 @@ let EN=false;const tPT={};
 document.querySelectorAll('[data-i18n]').forEach(el=>tPT[el.dataset.i18n]=el.innerHTML);
 document.getElementById('langBtn').onclick=function(){
   EN=!EN;this.textContent=EN?'PT':'EN';document.documentElement.lang=EN?'en':'pt-BR';
+  this.setAttribute('aria-label',EN?'Switch language to PT':'Trocar idioma para EN');
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n,v=EN?tEN[k]:tPT[k];if(v!=null)el.innerHTML=v});
+  if(window.ConceptGallery)window.ConceptGallery.setLanguage(EN?'en':'pt');
   updateMotionControlUI();
   if(window.__heroFrameMotionRefreshI18n)window.__heroFrameMotionRefreshI18n();
 };
