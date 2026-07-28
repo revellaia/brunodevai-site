@@ -541,7 +541,12 @@ html.motion-reduced .hero-frame-status{color:rgba(244,242,236,.42)}
 .cinematic-hero .hero-scroll{z-index:4;bottom:38px}
 
 .positioning-film{min-height:88vh;min-height:88dvh;display:flex;align-items:center;background:#080907}
-.positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:center 56%;filter:saturate(.64) contrast(1.16) brightness(.5);transform:scale(1.025)}
+/* Grade recalibrada para o plano monumental. A anterior (saturate .64 / brightness .5)
+   era do plano cinza do veiculo e aqui transformava o dourado em oliva e apagava a
+   estrutura. O material ja e escuro na coluna da copy e a leitura fica por conta do
+   .positioning-veil, nao do escurecimento. A fonte e 2.39:1: o cover recorta as
+   laterais, entao a posicao relevante e a horizontal. */
+.positioning-media .cinematic-video,.positioning-media .cinematic-poster{object-position:50% 50%;filter:saturate(.95) contrast(1.06) brightness(.72);transform:scale(1.025)}
 .positioning-veil{background:
   linear-gradient(90deg,rgba(8,9,7,.97) 0%,rgba(8,9,7,.88) 42%,rgba(8,9,7,.34) 72%,rgba(8,9,7,.66) 100%),
   linear-gradient(180deg,var(--void),transparent 25%,transparent 72%,var(--void))}
@@ -1090,14 +1095,18 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 <!-- POSICIONAMENTO -->
 <main id="main" tabindex="-1">
 <section class="dark position cinematic-act positioning-film" data-cinematic-act="2">
-  <figure class="cinematic-media positioning-media" aria-label="Veículo de alta presença avançando em uma pista">
+  <figure class="cinematic-media positioning-media" aria-label="Estrutura monumental erguendo-se sobre uma planície ao entardecer, com figuras humanas dando escala">
     <picture class="adaptive-poster-picture">
-      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-mobile-portrait.webp"/>
-      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/engineering-drive-tablet-portrait.webp"/>
-      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/engineering-drive-landscape-sm.webp"/>
-      <img class="cinematic-poster" src="assets/cinematic/engineering-drive.webp" data-adaptive-poster="engineering-drive" alt="" width="1280" height="720" loading="lazy"/>
+      <source type="image/avif" media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-mobile-portrait.avif"/>
+      <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-mobile-portrait.webp"/>
+      <source type="image/avif" media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-tablet-portrait.avif"/>
+      <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-tablet-portrait.webp"/>
+      <source type="image/avif" media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/subhero-monument-landscape-sm.avif"/>
+      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/subhero-monument-landscape-sm.webp"/>
+      <source type="image/avif" srcset="assets/cinematic/subhero-monument.avif"/>
+      <img class="cinematic-poster" src="assets/cinematic/subhero-monument.webp" data-adaptive-poster="subhero-monument" alt="" width="1280" height="536" loading="lazy"/>
     </picture>
-    <video id="positioningVideo" class="cinematic-video" data-media-key="engineering-drive" muted autoplay loop playsinline preload="none" width="1280" height="720" aria-label="Veículo avançando, metáfora visual de engenharia e presença" disablepictureinpicture></video>
+    <video id="positioningVideo" class="cinematic-video" data-media-key="subhero-monument" muted autoplay loop playsinline preload="none" width="1280" height="536" aria-label="Sobrevoo de uma estrutura monumental sobre uma planície ao entardecer" disablepictureinpicture></video>
   </figure>
   <div class="cinematic-veil positioning-veil" aria-hidden="true"></div>
   <div class="wrap positioning-content">
@@ -1752,35 +1761,44 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
 })();
 
 /* ADAPTIVE MEDIA: curated source, poster, crop and network policy per orientation. */
-const createAdaptiveSet=(base,desktopPosition='50% 50%')=>Object.freeze({
-  desktop:Object.freeze({
-    videoSrc:`assets/cinematic/${base}.mp4`,
-    posterSrc:`assets/cinematic/${base}.webp`,
-    width:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?720:1280,
-    height:base.includes('nativa-reserve')||base.includes('blue-sanctuary')?1280:720,
-    objectPosition:desktopPosition,
-    fit:'cover'
-  }),
-  tabletPortrait:Object.freeze({
-    videoSrc:`assets/cinematic/${base}-tablet-portrait.mp4`,
-    posterSrc:`assets/cinematic/${base}-tablet-portrait.webp`,
-    width:768,height:960,objectPosition:'50% 50%',fit:'cover'
-  }),
-  mobilePortrait:Object.freeze({
-    videoSrc:`assets/cinematic/${base}-mobile-portrait.mp4`,
-    posterSrc:`assets/cinematic/${base}-mobile-portrait.webp`,
-    width:720,height:1280,objectPosition:'50% 50%',fit:'cover'
-  }),
-  landscapeSm:Object.freeze({
-    videoSrc:`assets/cinematic/${base}-landscape-sm.mp4`,
-    posterSrc:`assets/cinematic/${base}-landscape-sm.webp`,
-    width:960,height:540,objectPosition:'50% 50%',fit:'cover'
-  })
-});
+/* `dims` permite que uma midia declare as dimensoes reais de seus arquivos quando eles
+   nao seguem o padrao 16:9 do restante. A Sub-hero e cinemascope 2.39:1 e usa isso. */
+const createAdaptiveSet=(base,desktopPosition='50% 50%',dims=null)=>{
+  const d=(profile,fallbackW,fallbackH)=>dims&&dims[profile]?dims[profile]:[fallbackW,fallbackH];
+  const tall=base.includes('nativa-reserve')||base.includes('blue-sanctuary');
+  const [dw,dh]=d('desktop',tall?720:1280,tall?1280:720);
+  const [tw,th]=d('tabletPortrait',768,960);
+  const [mw,mh]=d('mobilePortrait',720,1280);
+  const [lw,lh]=d('landscapeSm',960,540);
+  return Object.freeze({
+    desktop:Object.freeze({
+      videoSrc:`assets/cinematic/${base}.mp4`,
+      posterSrc:`assets/cinematic/${base}.webp`,
+      width:dw,height:dh,objectPosition:desktopPosition,fit:'cover'
+    }),
+    tabletPortrait:Object.freeze({
+      videoSrc:`assets/cinematic/${base}-tablet-portrait.mp4`,
+      posterSrc:`assets/cinematic/${base}-tablet-portrait.webp`,
+      width:tw,height:th,objectPosition:'50% 50%',fit:'cover'
+    }),
+    mobilePortrait:Object.freeze({
+      videoSrc:`assets/cinematic/${base}-mobile-portrait.mp4`,
+      posterSrc:`assets/cinematic/${base}-mobile-portrait.webp`,
+      width:mw,height:mh,objectPosition:'50% 50%',fit:'cover'
+    }),
+    landscapeSm:Object.freeze({
+      videoSrc:`assets/cinematic/${base}-landscape-sm.mp4`,
+      posterSrc:`assets/cinematic/${base}-landscape-sm.webp`,
+      width:lw,height:lh,objectPosition:'50% 50%',fit:'cover'
+    })
+  });
+};
 
 const ADAPTIVE_MEDIA_SETS=Object.freeze({
   'presence-landscape':createAdaptiveSet('presence-landscape','46% 50%'),
-  'engineering-drive':createAdaptiveSet('engineering-drive','55% 50%'),
+  'subhero-monument':createAdaptiveSet('subhero-monument','50% 50%',{
+    desktop:[1280,536],landscapeSm:[960,402],tabletPortrait:[608,760],mobilePortrait:[432,768]
+  }),
   'concept-terra-axis':createAdaptiveSet('concept-terra-axis','64% 50%'),
   'concept-valle-fiori':createAdaptiveSet('concept-valle-fiori','54% 50%'),
   'concept-cavallo-alto':createAdaptiveSet('concept-cavallo-alto','18% 50%'),
@@ -1818,7 +1836,14 @@ window.AdaptiveMedia=(function(){
   function load(video,preserveTime=0,resume=false){
     if(!video||!video.dataset.src||window.BrunoMotion.shouldReduceMotion())return;
     const source=new URL(video.dataset.src,document.baseURI).href;
-    if(video.currentSrc===source&&video.dataset.mediaLoaded==='true')return;
+    /* Compara o atributo src, nao currentSrc, e aceita tambem o estado 'loading'.
+       O guard anterior so barrava apos o loadeddata: com dois chamadores (aquecimento
+       no scroll e IntersectionObserver) o segundo reatribuia src no meio do download,
+       abortava a requisicao em voo e recomecava do zero — dois GETs do mesmo arquivo e
+       dois eventos emptied. Perfil diferente ou midia descarregada continuam passando. */
+    const assigned=video.getAttribute('src');
+    const sameSource=Boolean(assigned)&&new URL(assigned,document.baseURI).href===source;
+    if(sameSource&&video.dataset.mediaLoaded!=='false')return;
     video.dataset.mediaLoaded='loading';
     video.src=video.dataset.src;
     video.load();
@@ -2058,6 +2083,18 @@ window.BrunoMediaPlayback=(function(){
     item.video.addEventListener('error',()=>{item.video.dataset.mediaError='true';item.video.removeAttribute('data-media-ready')});
     if(item.eager&&!window.BrunoMotion.shouldReduceMotion())load(item);
   });
+  /* Aquecimento no primeiro scroll. Sem isto o video nao-critico so ganha src quando ja
+     esta 12% visivel: o controlador chama play() numa midia com readyState 0, dispara
+     waiting imediato e o usuario ve poster congelado enquanto o arquivo e buscado do
+     zero — medido em 530ms sem throttle e 1552ms em 4G lento, com o buffer secando logo
+     depois. rootMargin nao resolve porque a secao comeca exatamente uma dobra abaixo
+     (folga de 0 a 120px), entao qualquer margem positiva dispararia em scroll 0 e a
+     midia voltaria a baixar junto com a Hero. O primeiro scroll e o sinal de intencao:
+     nada no load, e buffer pronto antes de a secao chegar. */
+  addEventListener('scroll',()=>{
+    if(window.BrunoMotion.shouldReduceMotion())return;
+    items.forEach(item=>{if(!item.eager)load(item)});
+  },{passive:true,once:true});
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
     const item=items.find(candidate=>candidate.root===entry.target);
     if(!item)return;
@@ -2635,14 +2672,14 @@ function applyLanguage(nextLanguage,{syncUrl=false}={}){
   }
   const aria=EN?{
     logo:'Bruno Goebel, home',burger:'Open menu',drawer:'Navigation menu',heroMedia:'Herd of horses in a mountain valley at golden hour seen from above, a landscape expressing scale, direction and presence',
-    heroVideo:'Cinematic flight over a herd of horses in a mountain valley at golden hour',positioningMedia:'High-presence vehicle moving along a road',
-    positioningVideo:'Vehicle moving forward, a visual metaphor for engineering and presence',trust:'Delivery commitments',
+    heroVideo:'Cinematic flight over a herd of horses in a mountain valley at golden hour',positioningMedia:'Monumental structure rising over a plain at dusk, with human figures for scale',
+    positioningVideo:'Flight over a monumental structure on a plain at dusk',trust:'Delivery commitments',
     carousel:'Authorial website directions by market',carouselRole:'carousel',previous:'Previous',next:'Next',highlights:'Project highlights',
     toTop:'Back to top',close:'Close'
   }:{
     logo:'Bruno Goebel, início',burger:'Abrir menu',drawer:'Menu de navegação',heroMedia:'Manada de cavalos em um vale de montanha ao entardecer, vista do alto: uma paisagem que traduz amplitude, direção e presença',
-    heroVideo:'Sobrevoo cinematográfico de uma manada de cavalos em um vale de montanha ao entardecer',positioningMedia:'Veículo de alta presença avançando em uma pista',
-    positioningVideo:'Veículo avançando, metáfora visual de engenharia e presença',trust:'Compromissos da entrega',
+    heroVideo:'Sobrevoo cinematográfico de uma manada de cavalos em um vale de montanha ao entardecer',positioningMedia:'Estrutura monumental erguendo-se sobre uma planície ao entardecer, com figuras humanas dando escala',
+    positioningVideo:'Sobrevoo de uma estrutura monumental sobre uma planície ao entardecer',trust:'Compromissos da entrega',
     carousel:'Direções autorais de sites por mercado',carouselRole:'carrossel',previous:'Anterior',next:'Próximo',highlights:'Destaques do projeto',
     toTop:'Voltar ao topo',close:'Fechar'
   };
