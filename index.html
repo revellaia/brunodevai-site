@@ -1173,7 +1173,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <div>
         <div class="eyebrow"><span data-i18n="cases_eyebrow">Cases reais · clientes no ar</span></div>
         <h2 class="sec-title" data-i18n="cases_title">A percepção muda quando o site tem direção.</h2>
-        <p class="sec-lead" data-i18n="cases_lead">Três provas reais de que um site bem construído não apenas informa: ele posiciona, diferencia e prepara o cliente para confiar.</p>
+        <p class="sec-lead" data-i18n="cases_lead">Quatro provas reais de que um site bem construído não apenas informa: ele posiciona, diferencia e prepara o cliente para confiar.</p>
       </div>
       <div class="catalog-nav">
         <button class="cnav" data-row="caseRow" data-dir="-1" aria-label="Anterior">‹</button>
@@ -1181,6 +1181,16 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       </div>
     </div>
     <div class="catalog-row" id="caseRow">
+      <button class="card" data-modal="m-cico">
+        <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-cico-640.webp" data-srcset="assets/cinematic/case-cico-640.webp 640w, assets/cinematic/case-cico-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Portal do VI CICO Tocantins, Congresso Internacional Científico Odontológico" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k">VI CICO<br><span>Tocantins</span></div></div></div>
+        <div class="card-body">
+          <span class="badge live"><span class="dot"></span><span data-i18n="badge_live">No ar</span></span>
+          <span class="card-name">VI CICO Tocantins</span>
+          <span class="card-tag" data-i18n="cico_tag">Congresso científico · Portal + sistema</span>
+          <span class="card-desc" data-i18n="cico_desc">Portal oficial de um congresso internacional de Odontologia, com experiência pública premium, inscrições, Área do Congressista, produção científica e certificação integradas.</span>
+          <span class="card-more" data-i18n="more">Abrir dossiê</span>
+        </div>
+      </button>
       <button class="card" data-modal="m-pires">
         <div class="card-cover"><img class="cover-img" data-src="assets/cinematic/case-pires-640.webp" data-srcset="assets/cinematic/case-pires-640.webp 640w, assets/cinematic/case-pires-960.webp 960w" sizes="(max-width:600px) calc(100vw - 48px), (max-width:1200px) 42vw, 400px" alt="Site da Pires Contabilidade" width="960" height="600"/><div class="glow"></div><div class="scan"></div><div class="cov-art"><div class="k"><span>Pires</span><br>Contabilidade</div></div></div>
         <div class="card-body">
@@ -2502,7 +2512,11 @@ const DOSSIE={
   'm-memore':{name:'Ateliê Memoré',tag:'Comércio · artesanal',cover:'Ateliê| Memoré',img:'assets/cover-memore-live.jpg',badge:'live',badgeTxt:'No ar',
     challenge:'Dar a uma marca artesanal uma vitrine com domínio próprio que vendesse sozinha, longe do visual de marketplace.',
     solution:'E-commerce leve com identidade premium e domínio próprio, do produto feito à mão à experiência de compra.',
-    proof:'Provo que sei traduzir uma marca pequena e afetiva em um ativo comercial sério.',link:'https://www.ateliememore.com.br',linkTxt:'Ver ao vivo →'}
+    proof:'Provo que sei traduzir uma marca pequena e afetiva em um ativo comercial sério.',link:'https://www.ateliememore.com.br',linkTxt:'Ver ao vivo →'},
+  'm-cico':{name:'VI CICO Tocantins',tag:'Congresso científico · Portal + sistema',cover:'VI CICO| Tocantins',img:'assets/cover-cico.jpg',badge:'live',badgeTxt:'No ar',
+    challenge:'Transformar um congresso científico de três dias em uma presença digital capaz de atender simultaneamente divulgação, programação, palestrantes, inscrições, produção científica e operação dos congressistas, sem reduzir o evento a uma landing page.',
+    solution:'Desenvolvi um ecossistema dividido entre portal público e ambiente individual do congressista. A experiência pública organiza programação, palestrantes, workshops, fóruns, trabalhos científicos, anais, parceiros, galeria, localização e inscrições. A área privada concentra perfil, credencial, agenda, presenças, materiais, trabalhos e certificados, com autenticação e autorização no servidor.',
+    proof:'Capacidade de construir não apenas sites premium, mas plataformas completas para eventos e instituições, combinando direção visual, arquitetura de informação, área autenticada, fluxos científicos, certificação e operação real.',link:'https://cicosicideto.com.br/',linkTxt:'Ver ao vivo →'}
 };
 const mBack=document.getElementById('modalBack'),mBox=document.getElementById('modalBox');
 let lastFocus=null;
@@ -2598,10 +2612,11 @@ const tEN={
   vakon_tag:'Transmedia universe · interactive 3D',vakon_desc:'An international-scale authorial project developed to unite narrative, technology and visual experience in a living digital ecosystem.',
   vakon_enter:'Enter the universe',vakon_know:'Discover the project',
   cases_eyebrow:'Real cases · clients live',cases_title:'Perception changes when the site has direction.',
-  cases_lead:'Three real proofs that a well-built site does not just inform: it positions, differentiates and prepares the client to trust.',
+  cases_lead:'Four real proofs that a well-built site does not just inform: it positions, differentiates and prepares the client to trust.',
   pires_tag:'Professional services',pires_desc:'Accounting presented as serious, modern and trustworthy consulting. A digital presence built to convey organization, authority and value before the first meeting.',
   paula_tag:'Photography · High-end',paula_desc:'Editorial portfolio for a high-positioned photographer. The visual experience communicates taste, care and the perception of a sought-after schedule.',
   memore_tag:'Retail · Handcrafted brand',memore_desc:'An authorial brand presented with more care, identity and purchase structure. The goal: sell without looking improvised.',
+  cico_tag:'Scientific congress · Portal + system',cico_desc:'Official portal of an international Dentistry congress, with a premium public experience, registration, a Congress Attendee Area, scientific production and integrated certification.',
   more:'Open dossier',badge_live:'Live',
   create_eyebrow:'What I build',create_title:'Every delivery must justify trust, price and decision.',
   create_lead:'A high-value website is not born from a pretty page. It comes from a combination of positioning, imagery, content, experience and engineering. I build digital presences for brands that need to sell more trust, better sustain their prices and be chosen with less explaining.',
