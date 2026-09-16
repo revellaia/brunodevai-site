@@ -8,7 +8,7 @@
 <!-- SEO -->
 <meta name="description" content="Bruno Goebel cria sites ultra realistas, portais e ecossistemas digitais para qualquer setor. Design premium, engenharia segura e o mesmo padrão aplicado ao próprio universo autoral The Frozen Legacy."/>
 <meta name="author" content="Bruno Goebel"/>
-<meta name="contact" content="bgmcruz1988@gmail.com"/>
+<meta name="contact" content="commercial@brunodevai.com"/>
 <link rel="canonical" href="https://brunodevai.com/"/>
 <link rel="alternate" hreflang="pt-BR" href="https://brunodevai.com/?lang=pt"/>
 <link rel="alternate" hreflang="en" href="https://brunodevai.com/?lang=en"/>
@@ -56,7 +56,7 @@
   "@type":"Person",
   "name":"Bruno Goebel",
   "jobTitle":"Designer e arquiteto de ecossistemas digitais",
-  "email":"bgmcruz1988@gmail.com",
+  "email":"commercial@brunodevai.com",
   "url":"https://brunodevai.com/",
   "inLanguage":"pt-BR",
   "knowsAbout":["Web design premium","Next.js","Three.js","UX","SEO","Segurança web","LGPD"]
@@ -1035,7 +1035,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       </div>
     </div>
     <button class="btn-lang" id="langBtn" type="button" aria-label="Trocar idioma para EN">EN</button>
-    <a class="btn-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
+    <a class="btn-cta" href="#contato" data-contact-flow data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -1052,7 +1052,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
   <a href="#metodo" data-i18n="nav_method">Método</a>
   <a href="#seguranca" data-i18n="nav_security">Segurança</a>
   <a href="#contato" data-i18n="nav_contact">Contato</a>
-  <a class="drawer-cta" href="#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
+  <a class="drawer-cta" href="#contato" data-contact-flow data-i18n="nav_cta">Solicitar diagnóstico</a>
   <div class="drawer-foot"><a href="privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
 </aside>
 
@@ -1079,7 +1079,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <p class="hero-sub" data-i18n="hero2_sub">Sites ultrarrealistas, cinematográficos e seguros para marcas que precisam transmitir valor, confiança e autoridade antes mesmo do primeiro contato.</p>
       <p class="hero-note" data-i18n="hero2_note">Antes de alguém pedir uma proposta, essa pessoa já sentiu algo sobre a sua marca. Eu desenho essa primeira percepção com direção de arte, copy, tecnologia e segurança trabalhando juntas para transformar visita em confiança, e confiança em decisão.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#contato"><span data-i18n="hero2_cta1">Solicitar diagnóstico</span> <span aria-hidden="true">&rarr;</span></a>
+        <a class="btn-primary" href="#contato" data-contact-flow><span data-i18n="hero2_cta1">Solicitar diagnóstico</span> <span aria-hidden="true">&rarr;</span></a>
         <a class="btn-ghost" href="#cases"><span data-i18n="hero2_cta2">Ver projetos no ar</span> <span aria-hidden="true">&rarr;</span></a>
       </div>
       <div class="hero-trust" aria-label="Compromissos da entrega">
@@ -1378,7 +1378,7 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
     <p class="sec-lead cta-subtitle" data-i18n="cta_subtitle">A pergunta é: isso está ajudando ou afastando clientes?</p>
     <p class="sec-lead" data-i18n="cta_lead">Me conte o que você vende, para quem vende e o que hoje impede as pessoas certas de confiarem à primeira vista. Eu retorno com uma direção clara, uma leitura honesta do seu cenário e uma proposta alinhada ao nível de presença que sua marca precisa construir.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20um%20diagnostico%20BrunoDevAI" data-i18n="cta_btn1">Pedir diagnóstico do meu projeto →</a>
+      <a class="btn-primary" href="mailto:commercial@brunodevai.com" data-contact-flow data-i18n="cta_btn1">Pedir diagnóstico do meu projeto →</a>
       <a class="btn-ghost" href="#modelos" data-i18n="cta_btn2">Comparar modelos</a>
     </div>
   </div>
@@ -1391,7 +1391,8 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
     <div>
       <div class="foot-brand">Bruno Goebel</div>
       <small data-i18n="foot_tag">Sites ultra realistas e ecossistemas digitais.</small>
-      <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
+      <small><a href="mailto:commercial@brunodevai.com">commercial@brunodevai.com</a></small>
+      <small><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (63) 99260-1105">WhatsApp · (63) 99260-1105</a></small>
     </div>
     <div class="foot-col">
       <h2 data-i18n="foot_work">Trabalho</h2>
@@ -1446,22 +1447,6 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* MODELOS DISPONIVEIS: quote/cost mailto links */
-document.querySelectorAll('.models-grid .card[data-model-id]').forEach(card=>{
-  const name=card.dataset.modelName,niche=card.dataset.modelNiche;
-  const quoteLink=card.querySelector('[data-quote-link]'),costLink=card.querySelector('[data-cost-link]');
-  if(quoteLink){
-    const subject=encodeURIComponent('Diagnostico para o modelo '+name);
-    const body=encodeURIComponent('Olá, Bruno. Quero avaliar o modelo '+name+' para o nicho '+niche+'. Gostaria de entender investimento, escopo e adaptação para minha marca.');
-    quoteLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject+'&body='+body;
-  }
-  if(costLink){
-    const subject2=encodeURIComponent('Investimento e escopo do modelo '+name);
-    const body2=encodeURIComponent('Olá, Bruno. Quero entender investimento, escopo e prazo do modelo '+name+' para o meu projeto.');
-    costLink.href='mailto:bgmcruz1988@gmail.com?subject='+subject2+'&body='+body2;
-  }
-});
 
 /* NAV SCROLL + PROGRESS */
 const nav=document.getElementById('nav'),prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
@@ -2283,7 +2268,7 @@ window.ConceptGallery=(function(){
           <p>${esc(label(concept.description))}</p>
           <div class="concept-actions">
             <button class="concept-action primary" type="button" data-concept-open="${concept.id}">${esc(label(concept.ctas[0]))}</button>
-            <a class="concept-action" href="#contato">${esc(label(concept.ctas[1]))}</a>
+            <a class="concept-action" href="#contato" data-contact-flow data-contact-context="${esc(concept.name)}">${esc(label(concept.ctas[1]))}</a>
           </div>
         </div>
         <div class="concept-metrics">${metrics}</div>
@@ -2429,7 +2414,7 @@ window.ConceptGallery=(function(){
       <div class="concept-service-list">${services}</div>
     </section>
     <section class="concept-proof-band"><div class="concept-proof-inner">${proofs}</div></section>
-    <section class="concept-final"><span class="concept-kicker">${language==='en'?'Authorial direction':'Direção autoral'}</span><h3>${language==='en'?'Your brand can occupy a territory of its own.':'Sua marca pode ocupar um território próprio.'}</h3><a class="concept-action primary" href="#contato" data-dialog-contact>${language==='en'?'Request a diagnosis':'Solicitar diagnóstico'}</a></section>`;
+    <section class="concept-final"><span class="concept-kicker">${language==='en'?'Authorial direction':'Direção autoral'}</span><h3>${language==='en'?'Your brand can occupy a territory of its own.':'Sua marca pode ocupar um território próprio.'}</h3><a class="concept-action primary" href="#contato" data-dialog-contact data-contact-flow data-contact-context="${esc(concept.name)}">${language==='en'?'Request a diagnosis':'Solicitar diagnóstico'}</a></section>`;
   }
   function openExpanded(id,source){
     const concept=SITE_CONCEPTS.find(item=>item.id===id);
@@ -2805,5 +2790,6 @@ const requestedLanguage=new URLSearchParams(window.location.search).get('lang');
 applyLanguage(requestedLanguage==='en'?'en':'pt');
 
 </script>
+<script src="assets/contact-flow.js" defer></script>
 </body>
 </html>

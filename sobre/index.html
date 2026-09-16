@@ -8,7 +8,7 @@
 <!-- SEO -->
 <meta name="description" content="Conheça Bruno Goebel, Engenheiro Civil com experiência em programação, inteligência artificial, sites, aplicações, games, produtos e experiências digitais."/>
 <meta name="author" content="Bruno Goebel"/>
-<meta name="contact" content="bgmcruz1988@gmail.com"/>
+<meta name="contact" content="commercial@brunodevai.com"/>
 <link rel="canonical" href="https://brunodevai.com/sobre/"/>
 <link rel="alternate" hreflang="pt-BR" href="https://brunodevai.com/sobre/?lang=pt"/>
 <link rel="alternate" hreflang="en" href="https://brunodevai.com/sobre/?lang=en"/>
@@ -54,7 +54,7 @@
   "@type":"Person",
   "name":"Bruno Goebel",
   "jobTitle":"Engenheiro Civil · Desenvolvedor e Arquiteto de Produtos Digitais",
-  "email":"bgmcruz1988@gmail.com",
+  "email":"commercial@brunodevai.com",
   "url":"https://brunodevai.com/sobre/",
   "image":"https://brunodevai.com/assets/about/media/bruno-about-desktop-1920.webp",
   "knowsAbout":["Engenharia Civil","Programação","Inteligência Artificial","Design de Produto","Game Design","Segurança Digital","Motion Design","Desenvolvimento Web"]
@@ -182,7 +182,7 @@ html.motion-reduced .about-hero::after{opacity:.6}
   </div>
   <div class="nav-right">
     <button class="btn-lang" id="aboutLangBtn" type="button" aria-label="Trocar idioma para EN">EN</button>
-    <a class="btn-cta" href="../#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
+    <a class="btn-cta" href="../#contato" data-contact-flow data-i18n="nav_cta">Solicitar diagnóstico</a>
     <button class="nav-burger" id="aboutBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -199,7 +199,7 @@ html.motion-reduced .about-hero::after{opacity:.6}
   <a href="../#metodo" data-i18n="nav_metodo">Método</a>
   <a href="../#seguranca" data-i18n="nav_seguranca">Segurança</a>
   <a href="../#contato" data-i18n="nav_contato">Contato</a>
-  <a class="drawer-cta" href="../#contato" data-i18n="nav_cta">Solicitar diagnóstico</a>
+  <a class="drawer-cta" href="../#contato" data-contact-flow data-i18n="nav_cta">Solicitar diagnóstico</a>
   <div class="drawer-foot"><a href="../privacy.html" data-i18n="foot_privacy">Política de Privacidade</a></div>
 </aside>
 
@@ -459,7 +459,7 @@ html.motion-reduced .about-hero::after{opacity:.6}
     <h2 class="sec-title" style="margin:0 auto;max-width:24ch" data-i18n="cta_headline">Seu próximo projeto pode começar com mais direção.</h2>
     <p class="sec-lead" style="margin:18px auto 0;max-width:56ch" data-i18n="cta_text">Sites, aplicações, produtos, experiências, games e soluções digitais construídas com visão de engenharia, direção criativa e inteligência artificial.</p>
     <div class="cta-actions">
-      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Diagnóstico%20BrunoDevAI" data-i18n="cta_btn1">Solicitar diagnóstico →</a>
+      <a class="btn-primary" href="mailto:commercial@brunodevai.com" data-contact-flow data-i18n="cta_btn1">Solicitar diagnóstico →</a>
       <a class="btn-ghost" href="../" data-i18n="cta_btn2">Conhecer os projetos →</a>
     </div>
   </div>
@@ -472,7 +472,8 @@ html.motion-reduced .about-hero::after{opacity:.6}
     <div>
       <div class="foot-brand">Bruno Goebel</div>
       <small data-i18n="foot_tag">Engenharia, tecnologia e presença digital.</small>
-      <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
+      <small><a href="mailto:commercial@brunodevai.com">commercial@brunodevai.com</a></small>
+      <small><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (63) 99260-1105">WhatsApp · (63) 99260-1105</a></small>
     </div>
     <div class="foot-col">
       <h2 data-i18n="foot_work">Trabalho</h2>
@@ -512,5 +513,6 @@ drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',clos
 addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('open'))closeDrawer()});
 })();
 </script>
+<script src="../assets/contact-flow.js" defer></script>
 </body>
 </html>

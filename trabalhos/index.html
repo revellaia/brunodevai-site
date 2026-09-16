@@ -8,7 +8,7 @@
 <!-- SEO -->
 <meta name="description" content="Demonstrações adaptadas dos sites e ecossistemas digitais criados por Bruno Goebel: contabilidade, fotografia, artesanato, agro, imobiliário e produto autoral. Direção visual, estrutura e percepção, sem expor dados privados de clientes."/>
 <meta name="author" content="Bruno Goebel"/>
-<meta name="contact" content="bgmcruz1988@gmail.com"/>
+<meta name="contact" content="commercial@brunodevai.com"/>
 <link rel="canonical" href="https://brunodevai.com/trabalhos/"/>
 <meta name="robots" content="index, follow"/>
 
@@ -292,7 +292,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <a href="../#contato">Contato</a>
   </div>
   <div class="nav-right">
-    <a class="btn-cta" href="../#contato">Solicitar diagnóstico</a>
+    <a class="btn-cta" href="../#contato" data-contact-flow>Solicitar diagnóstico</a>
     <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -305,7 +305,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
   <a href="../#setores">Setores</a>
   <a href="../#metodo">Método</a>
   <a href="../#contato">Contato</a>
-  <a class="drawer-cta" href="../#contato">Solicitar diagnóstico</a>
+  <a class="drawer-cta" href="../#contato" data-contact-flow>Solicitar diagnóstico</a>
   <div class="drawer-foot"><a href="../privacy.html">Política de Privacidade</a></div>
 </aside>
 
@@ -423,7 +423,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <h2 class="sec-title">Escolha uma direção. Eu transformo em proposta.</h2>
     <p class="sec-lead">Me diga qual modelo se aproxima do que você quer construir e o que precisa mudar para servir ao seu negócio.</p>
     <div class="actions">
-      <a class="btn-primary" href="mailto:bgmcruz1988@gmail.com?subject=Quero%20um%20diagnostico%20BrunoDevAI">Pedir diagnóstico do meu projeto →</a>
+      <a class="btn-primary" href="mailto:commercial@brunodevai.com" data-contact-flow>Pedir diagnóstico do meu projeto →</a>
       <a class="btn-ghost" href="../#cases">Ver cases reais no ar</a>
     </div>
   </div>
@@ -435,7 +435,8 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
     <div>
       <div class="foot-brand">Bruno Goebel</div>
       <small>Sites ultra realistas e ecossistemas digitais.</small>
-      <small><a href="mailto:bgmcruz1988@gmail.com">bgmcruz1988@gmail.com</a></small>
+      <small><a href="mailto:commercial@brunodevai.com">commercial@brunodevai.com</a></small>
+      <small><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (63) 99260-1105">WhatsApp · (63) 99260-1105</a></small>
     </div>
     <div class="foot-col">
       <h5>Trabalho</h5>
@@ -470,7 +471,7 @@ footer{background:var(--void);color:var(--text-lo);border-top:1px solid rgba(197
       <div class="m-block"><h4>Direção visual</h4><p id="mArt"></p></div>
       <div class="m-block m-disclaimer" id="mDisclaimerBlock"><p id="mDisclaimer"></p></div>
       <div class="m-cta">
-        <a class="btn-primary" id="mLink" href="mailto:bgmcruz1988@gmail.com" target="_blank" rel="noopener">Pedir diagnóstico do meu projeto →</a>
+        <a class="btn-primary" id="mLink" href="mailto:commercial@brunodevai.com" data-contact-flow>Pedir diagnóstico do meu projeto →</a>
       </div>
     </div>
   </div>
@@ -573,5 +574,6 @@ addEventListener('keydown',e=>{
     else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
 });
 </script>
+<script src="../assets/contact-flow.js" defer></script>
 </body>
 </html>
