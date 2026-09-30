@@ -1101,8 +1101,6 @@ html[data-capability="lite"] .concept-media::after{backdrop-filter:none}
       <source media="(max-width:600px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-mobile-portrait.webp"/>
       <source type="image/avif" media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-tablet-portrait.avif"/>
       <source media="(min-width:601px) and (max-width:1024px) and (orientation:portrait)" srcset="assets/cinematic/subhero-monument-tablet-portrait.webp"/>
-      <source type="image/avif" media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/subhero-monument-landscape-sm.avif"/>
-      <source media="(max-width:1194px) and (orientation:landscape)" srcset="assets/cinematic/subhero-monument-landscape-sm.webp"/>
       <source type="image/avif" srcset="assets/cinematic/subhero-monument.avif"/>
       <img class="cinematic-poster" src="assets/cinematic/subhero-monument.webp" data-adaptive-poster="subhero-monument" alt="" width="1280" height="536" loading="lazy"/>
     </picture>
@@ -1758,47 +1756,41 @@ window.__brunoMotionResources=()=>window.BrunoMotion.debug();
 /* ADAPTIVE MEDIA: curated source, poster, crop and network policy per orientation. */
 /* `dims` permite que uma midia declare as dimensoes reais de seus arquivos quando eles
    nao seguem o padrao 16:9 do restante. A Sub-hero e cinemascope 2.39:1 e usa isso. */
-const createAdaptiveSet=(base,desktopPosition='50% 50%',dims=null)=>{
+/* `reuse` lista perfis que servem o arquivo desktop em vez de uma variante propria.
+   So entra aqui o perfil cujo enquadramento em object-fit:cover foi provado equivalente
+   (mesma proporcao da fonte desktop): evita guardar e implantar um MP4 redundante. */
+const createAdaptiveSet=(base,desktopPosition='50% 50%',dims=null,reuse=[])=>{
   const d=(profile,fallbackW,fallbackH)=>dims&&dims[profile]?dims[profile]:[fallbackW,fallbackH];
   const tall=base.includes('nativa-reserve')||base.includes('blue-sanctuary');
   const [dw,dh]=d('desktop',tall?720:1280,tall?1280:720);
   const [tw,th]=d('tabletPortrait',768,960);
   const [mw,mh]=d('mobilePortrait',720,1280);
   const [lw,lh]=d('landscapeSm',960,540);
+  const variant=(profile,suffix,w,h)=>reuse.includes(profile)
+    ?Object.freeze({videoSrc:`assets/cinematic/${base}.mp4`,posterSrc:`assets/cinematic/${base}.webp`,width:dw,height:dh,objectPosition:'50% 50%',fit:'cover'})
+    :Object.freeze({videoSrc:`assets/cinematic/${base}${suffix}.mp4`,posterSrc:`assets/cinematic/${base}${suffix}.webp`,width:w,height:h,objectPosition:'50% 50%',fit:'cover'});
   return Object.freeze({
     desktop:Object.freeze({
       videoSrc:`assets/cinematic/${base}.mp4`,
       posterSrc:`assets/cinematic/${base}.webp`,
       width:dw,height:dh,objectPosition:desktopPosition,fit:'cover'
     }),
-    tabletPortrait:Object.freeze({
-      videoSrc:`assets/cinematic/${base}-tablet-portrait.mp4`,
-      posterSrc:`assets/cinematic/${base}-tablet-portrait.webp`,
-      width:tw,height:th,objectPosition:'50% 50%',fit:'cover'
-    }),
-    mobilePortrait:Object.freeze({
-      videoSrc:`assets/cinematic/${base}-mobile-portrait.mp4`,
-      posterSrc:`assets/cinematic/${base}-mobile-portrait.webp`,
-      width:mw,height:mh,objectPosition:'50% 50%',fit:'cover'
-    }),
-    landscapeSm:Object.freeze({
-      videoSrc:`assets/cinematic/${base}-landscape-sm.mp4`,
-      posterSrc:`assets/cinematic/${base}-landscape-sm.webp`,
-      width:lw,height:lh,objectPosition:'50% 50%',fit:'cover'
-    })
+    tabletPortrait:variant('tabletPortrait','-tablet-portrait',tw,th),
+    mobilePortrait:variant('mobilePortrait','-mobile-portrait',mw,mh),
+    landscapeSm:variant('landscapeSm','-landscape-sm',lw,lh)
   });
 };
 
 const ADAPTIVE_MEDIA_SETS=Object.freeze({
   'presence-landscape':createAdaptiveSet('presence-landscape','46% 50%'),
   'subhero-monument':createAdaptiveSet('subhero-monument','50% 50%',{
-    desktop:[1280,536],landscapeSm:[960,402],tabletPortrait:[608,760],mobilePortrait:[432,768]
-  }),
-  'concept-terra-axis':createAdaptiveSet('concept-terra-axis','64% 50%'),
-  'concept-valle-fiori':createAdaptiveSet('concept-valle-fiori','54% 50%'),
+    desktop:[1280,536],tabletPortrait:[608,760],mobilePortrait:[432,768]
+  },['landscapeSm']),
+  'concept-terra-axis':createAdaptiveSet('concept-terra-axis','64% 50%',null,['landscapeSm']),
+  'concept-valle-fiori':createAdaptiveSet('concept-valle-fiori','54% 50%',null,['landscapeSm']),
   'concept-cavallo-alto':createAdaptiveSet('concept-cavallo-alto','18% 50%'),
-  'concept-nativa-reserve':createAdaptiveSet('concept-nativa-reserve','50% 50%'),
-  'concept-sertao-prime':createAdaptiveSet('concept-sertao-prime','55% 50%'),
+  'concept-nativa-reserve':createAdaptiveSet('concept-nativa-reserve','50% 50%',null,['mobilePortrait']),
+  'concept-sertao-prime':createAdaptiveSet('concept-sertao-prime','55% 50%',null,['landscapeSm']),
   'concept-blue-sanctuary':createAdaptiveSet('concept-blue-sanctuary','50% 50%')
 });
 
