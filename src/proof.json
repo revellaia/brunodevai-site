@@ -1,7 +1,7 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "base_commit": "9cb2a20",
+    "base_commit": "0b88ca7",
     "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
   "media": {
@@ -45,9 +45,9 @@
     "cls": 0.05
   },
   "qa": {
-    "at": "2026-10-01T22:19:23.589Z",
+    "at": "2026-10-01T22:48:16.063Z",
     "harness": "qa/home-qa.mjs (Chromium 151, local)",
-    "base_commit": "9cb2a20",
+    "base_commit": "0b88ca7",
     "viewports": [
       390,
       430,
@@ -73,7 +73,7 @@
     "checks": {
       "total": 706,
       "failed": 0,
-      "warned": 1
+      "warned": 0
     }
   }
 }

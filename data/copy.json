@@ -817,9 +817,9 @@
   },
   "meta.home.title": {
     "en": "Bruno Goebel · Creative Developer / Digital Systems",
-    "pt": "Bruno Goebel · Creative Developer / Digital Systems",
-    "status": "RECOMMENDED (SEO.md home title; PT follows TBC-018 = English title)",
-    "notes": ""
+    "pt": "Bruno Goebel · Desenvolvedor Criativo / Sistemas Digitais",
+    "status": "APPROVED (Owner Preview Gate 2026-10-01: localized PT metadata, resolves TBC-018 for metadata only)",
+    "notes": "Hero visual positioning unchanged."
   },
   "meta.lab.title": {
     "en": "Lab · Visual studies · Bruno Goebel",
