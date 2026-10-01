@@ -14,7 +14,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { root, deployableFiles, size } from './lib/deploy-tree.mjs';
 
-const DEPLOYABLE_BUDGET_MIB = 107;
+/* Baseline WORLDCRAFT medido em 2026-10-01 (home local, worldcraft/v2): 33.70 MiB. Budget = baseline + ~5 MiB (era 107). */
+const DEPLOYABLE_BUDGET_MIB = 40;
 const TARGET_MIB = 60; // objetivo de longo prazo (informativo)
 const ORPHAN_MIN_BYTES = 100 * 1024;
 const MEDIA = /\.(mp4|webm|webp|avif|jpe?g|png|svg|gif|woff2?|ttf|otf)$/i;
@@ -30,8 +31,10 @@ function adaptivePaths() {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const start = html.indexOf('const createAdaptiveSet=');
   const setsAt = html.indexOf('const ADAPTIVE_MEDIA_SETS=', start);
+  /* A home WORLDCRAFT referencia mídia literalmente (src/srcset/data-src); o bloco dinâmico só existe na v1. */
+  if (start < 0) return new Set();
   const end = html.indexOf('\n});', setsAt);
-  if (start < 0 || setsAt < 0 || end < 0) throw new Error('ADAPTIVE_MEDIA_SETS block not found in index.html');
+  if (setsAt < 0 || end < 0) throw new Error('ADAPTIVE_MEDIA_SETS block incomplete in index.html');
   const sets = vm.runInNewContext(`${html.slice(start, end + 4)};ADAPTIVE_MEDIA_SETS`, {});
   const out = new Set();
   for (const set of Object.values(sets)) for (const p of Object.values(set)) { out.add(p.videoSrc); out.add(p.posterSrc); }

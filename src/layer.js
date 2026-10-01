@@ -31,6 +31,8 @@
   if (VALID[fromUrl]) { layer = fromUrl; write(layer); }
 
   root.setAttribute('data-layer', layer);
+  /* Com JS a camada SYSTEM vira overlay e o toggle existe; sem JS fica o <details> (fallback). */
+  root.setAttribute('data-js', '');
 
   function set(next, source) {
     if (!VALID[next] || next === layer) return layer;

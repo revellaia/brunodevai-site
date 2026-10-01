@@ -1,0 +1,72 @@
+{
+  "$meta": {
+    "note": "Dados estruturados das paginas WORLDCRAFT. Fatos de 09_CASES/*/FACTS.md e 10_LAB; campos TBC simplesmente nao existem aqui (nunca renderizam). URLs ao vivo = as que a producao c7330d6 usa (TBC-024).",
+    "origin": "https://brunodevai.com"
+  },
+  "locales": {
+    "pt": { "htmlLang": "pt-BR", "ogLocale": "pt_BR", "prefix": "" },
+    "en": { "htmlLang": "en", "ogLocale": "en_US", "prefix": "/en" }
+  },
+  "contact": {
+    "email": "commercial@brunodevai.com",
+    "whatsapp": "https://wa.me/5563992601105"
+  },
+  "media": {
+    "hero": {
+      "poster": {
+        "desktop": { "avif": "/assets/cinematic/presence-landscape.avif", "webp": "/assets/cinematic/presence-landscape.webp", "w": 1280, "h": 720 },
+        "mobile": { "avif": "/assets/cinematic/presence-landscape-mobile-portrait.avif", "webp": "/assets/cinematic/presence-landscape-mobile-portrait.webp", "w": 540, "h": 960 }
+      },
+      "video": {
+        "desktop": "/assets/cinematic/presence-landscape.mp4",
+        "mobile": "/assets/cinematic/presence-landscape-mobile-portrait.mp4"
+      },
+      "mobileQuery": "(max-width: 1023px) and (orientation: portrait)"
+    },
+    "og": "/logo-brunodevai.png"
+  },
+  "projects": [
+    { "id": "vakon", "n": "01", "url": "https://vakonuniverse.com", "host": "vakonuniverse.com",
+      "img": { "960": "/assets/cinematic/glacial-city-1200.webp", "640": "/assets/cinematic/glacial-city-760.webp", "w": 1200, "h": 676 } },
+    { "id": "cico", "n": "02", "url": "https://cicosicideto.com.br/", "host": "cicosicideto.com.br", "year": "2026",
+      "img": { "960": "/assets/cinematic/case-cico-960.webp", "640": "/assets/cinematic/case-cico-640.webp", "w": 960, "h": 600 } },
+    { "id": "pires", "n": "03", "url": "https://pirescontabilidadess.com.br/", "host": "pirescontabilidadess.com.br",
+      "img": { "960": "/assets/cinematic/case-pires-960.webp", "640": "/assets/cinematic/case-pires-640.webp", "w": 960, "h": 600 } },
+    { "id": "paula", "n": "04", "url": "https://paulaguimaraess.com.br/", "host": "paulaguimaraess.com.br",
+      "img": { "960": "/assets/cinematic/case-paula-960.webp", "640": "/assets/cinematic/case-paula-640.webp", "w": 960, "h": 600 } },
+    { "id": "memore", "n": "05", "url": "https://www.ateliememore.com.br", "host": "ateliememore.com.br",
+      "img": { "960": "/assets/cinematic/case-memore-960.webp", "640": "/assets/cinematic/case-memore-640.webp", "w": 960, "h": 600 } }
+  ],
+  "vakon": {
+    "img": { "desktop": "/assets/cinematic/glacial-city-1200.webp", "mobile": "/assets/cinematic/glacial-city-760.webp" }
+  },
+  "cico": {
+    "nodes": [
+      ["portal", "normal"], ["registration", "normal"], ["congressist", "active"],
+      ["scientific", "normal"], ["attendance", "normal"], ["certification", "normal"],
+      ["operations", "normal"], ["auth", "active"]
+    ],
+    "note": "PAYMENTS omitido em runtime (TBC-007). Scientific review flow omitido (TBC-008)."
+  },
+  "lab": [
+    { "slug": "terra-axis", "code": "LAB / 001", "title": "Terra Axis", "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-terra-axis-tablet-portrait.webp", "pw": 768, "ph": 960,
+      "film": "/assets/cinematic/concept-terra-axis-tablet-portrait.mp4" },
+    { "slug": "valle-fiori", "code": "LAB / 002", "title": "Valle Fiori", "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-valle-fiori-landscape-sm.webp", "pw": 960, "ph": 540,
+      "film": "/assets/cinematic/concept-valle-fiori-landscape-sm.mp4", "letterbox": true },
+    { "slug": "cavallo-alto", "code": "LAB / 003", "title": "Cavallo Alto", "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp", "pw": 768, "ph": 960,
+      "film": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4" },
+    { "slug": "nativa-reserve", "code": "LAB / 004", "title": "Nativa Reserve", "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-nativa-reserve-landscape-sm.webp", "pw": 960, "ph": 540,
+      "film": "/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4" },
+    { "slug": "sertao-prime", "code": "LAB / 005", "title": "Sertão Prime", "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-sertao-prime-tablet-portrait.webp", "pw": 768, "ph": 960,
+      "film": "/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4" },
+    { "slug": "blue-sanctuary", "code": "LAB / 006", "title": "Blue Sanctuary", "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.webp", "pw": 960, "ph": 540,
+      "film": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4" }
+  ],
+  "labColumns": [[0, 3], [1, 4], [2, 5]]
+}

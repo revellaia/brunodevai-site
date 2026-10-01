@@ -104,7 +104,7 @@ a:hover { color: var(--wc-gold-lit); }
 @supports (overflow: clip) { .wc-mask { overflow-x: visible; overflow-y: clip; } }
 
 /* ---------- Grid (GRID.md) ---------- */
-.wc-container { width: 100%; max-width: var(--wc-content-max); margin-inline: auto; padding-inline: var(--wc-margin); }
+.wc-container { width: 100%; max-width: calc(var(--wc-content-max) + 2 * var(--wc-margin)); margin-inline: auto; padding-inline: var(--wc-margin); }
 .wc-grid {
   display: grid;
   grid-template-columns: repeat(var(--wc-cols), minmax(0, 1fr));
@@ -119,7 +119,7 @@ a:hover { color: var(--wc-gold-lit); }
   --wc-col: calc((100% - (var(--wc-cols) - 1) * var(--wc-gutter)) / var(--wc-cols));
   --wc-period: calc(var(--wc-col) + var(--wc-gutter));
   position: absolute; inset: 0;
-  max-width: var(--wc-content-max); margin-inline: auto;
+  max-width: calc(var(--wc-content-max) + 2 * var(--wc-margin)); margin-inline: auto;
   padding-inline: var(--wc-margin);
   background-origin: content-box; background-clip: content-box;
   background-image:

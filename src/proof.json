@@ -1,117 +1,79 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "generated_at": "2026-10-01T17:18:13.011Z",
-    "base_commit": "62b54a8",
-    "worktree_dirty": true,
-    "note": "Generated from the real tree. TARGET rows are goals, not results. Do not edit by hand."
+    "base_commit": "9cb2a20",
+    "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
-  "third_party_origins": [],
-  "rows": [
-    {
-      "id": "media.deployable",
-      "label": "Deployable tree",
-      "value": "102.22 MiB",
-      "source": "tools/media-budget.mjs",
-      "status": "MEASURED"
+  "media": {
+    "tree_mib": 33.7,
+    "budget_mib": 40,
+    "target_mib": 60,
+    "mp4_mib": 26.51,
+    "media_mib": 33.23,
+    "orphans": 0,
+    "pass": true,
+    "hero_desktop_mib": 6.66,
+    "hero_mobile_mib": 2.66
+  },
+  "baseline": {
+    "commit": "c7330d6",
+    "tree_mib": 125.49,
+    "measured": "2026-10-01",
+    "label": "production before WORLDCRAFT (dpl 2jrverhej)",
+    "source": "git ls-tree c7330d6"
+  },
+  "fonts": {
+    "critical_files": 4,
+    "critical_kb": 209.8,
+    "cdn": false
+  },
+  "runtime": {
+    "js_files": 11,
+    "js_gz_kb": 14.1,
+    "css_files": 3,
+    "css_gz_kb": 16.2
+  },
+  "security": {
+    "csp_self": true,
+    "xfo": "DENY",
+    "third_party_origins": []
+  },
+  "targets": {
+    "wcag": "2.2 AA",
+    "lcp_s": 2.5,
+    "inp_ms": 200,
+    "cls": 0.05
+  },
+  "qa": {
+    "at": "2026-10-01T22:19:23.589Z",
+    "harness": "qa/home-qa.mjs (Chromium 151, local)",
+    "base_commit": "9cb2a20",
+    "viewports": [
+      390,
+      430,
+      768,
+      1024,
+      1366,
+      1440,
+      1920
+    ],
+    "pages": 16,
+    "overflow_max": 0,
+    "console_errors": 0,
+    "broken_requests": 0,
+    "video_requests": {
+      "full": 1,
+      "reduced": 1,
+      "save": 0
     },
-    {
-      "id": "media.budget",
-      "label": "Media gate",
-      "value": "PASS · limit 107 MiB · target 60 MiB",
-      "source": "tools/media-budget.mjs",
-      "status": "MEASURED"
+    "secrets": {
+      "tool": "gitleaks",
+      "leaks": 0
     },
-    {
-      "id": "media.video",
-      "label": "Video in tree",
-      "value": "93.14 MiB",
-      "source": "tools/media-budget.mjs",
-      "status": "MEASURED"
-    },
-    {
-      "id": "media.orphans",
-      "label": "Unreferenced media",
-      "value": "0",
-      "source": "tools/media-budget.mjs",
-      "status": "MEASURED"
-    },
-    {
-      "id": "fonts.critical",
-      "label": "Fonts (critical, latin)",
-      "value": "4 woff2 · 209.8 KB",
-      "source": "assets/fonts/wc-*-latin.woff2",
-      "status": "MEASURED"
-    },
-    {
-      "id": "fonts.cdn",
-      "label": "Font CDN",
-      "value": "none · self-hosted",
-      "source": "src/base.css @font-face",
-      "status": "MEASURED"
-    },
-    {
-      "id": "runtime.js",
-      "label": "Runtime JS (src/, gzip)",
-      "value": "2 files · 1.9 KB",
-      "source": "src/*.js",
-      "status": "MEASURED"
-    },
-    {
-      "id": "runtime.css",
-      "label": "Runtime CSS (src/, gzip)",
-      "value": "2 files · 5.1 KB",
-      "source": "src/*.css",
-      "status": "MEASURED"
-    },
-    {
-      "id": "third_party",
-      "label": "Third-party origins",
-      "value": "0",
-      "source": "scan of deployable HTML/CSS/JS",
-      "status": "MEASURED"
-    },
-    {
-      "id": "security.csp",
-      "label": "CSP",
-      "value": "default-src 'self'",
-      "source": "vercel.json",
-      "status": "DECLARED"
-    },
-    {
-      "id": "security.frames",
-      "label": "Framing",
-      "value": "X-Frame-Options DENY",
-      "source": "vercel.json",
-      "status": "DECLARED"
-    },
-    {
-      "id": "routes",
-      "label": "HTML routes",
-      "value": "4",
-      "source": "deployable tree",
-      "status": "MEASURED"
-    },
-    {
-      "id": "a11y",
-      "label": "Accessibility",
-      "value": "WCAG 2.2 AA",
-      "source": "12_ENGINEERING/ACCESSIBILITY.md",
-      "status": "TARGET"
-    },
-    {
-      "id": "perf",
-      "label": "Web vitals",
-      "value": "LCP < 2.5 s · INP < 200 ms · CLS < 0.05",
-      "source": "12_ENGINEERING/PERFORMANCE.md",
-      "status": "TARGET"
-    },
-    {
-      "id": "viewports",
-      "label": "QA viewports",
-      "value": "390 · 430 · 768 · 1024 · 1366 · 1440 · 1920",
-      "source": "QA plan",
-      "status": "TARGET"
+    "checks": {
+      "total": 706,
+      "failed": 0,
+      "warned": 1
     }
-  ]
+  }
 }

@@ -77,9 +77,12 @@ body.cf-locked{overflow:hidden}
   let back,panel,lastFocus=null,context='';
 
   function build(){
-    const style=document.createElement('style');
-    style.textContent=CSS;
-    document.head.appendChild(style);
+    /* Paginas com skin propria (<html data-cf-skin>, WORLDCRAFT) estilizam .cf-* no CSS delas. */
+    if(!document.documentElement.hasAttribute('data-cf-skin')){
+      const style=document.createElement('style');
+      style.textContent=CSS;
+      document.head.appendChild(style);
+    }
     back=document.createElement('div');
     back.className='cf-back';
     back.id='contactFlow';

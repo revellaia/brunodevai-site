@@ -68,14 +68,14 @@
   "hero.primary.01": {
     "en": "I build digital experiences.",
     "pt": "Eu construo experiências digitais.",
-    "status": "REVISE_BEFORE_FREEZE",
-    "notes": "G-003 preferred direction, being tested in Homepage Master"
+    "status": "APPROVED",
+    "notes": "G-003 preferred direction, being tested in Homepage Master | G-003 FROZEN by Owner at Gate 2 (2026-10-01)."
   },
   "hero.primary.02": {
     "en": "And the systems behind them.",
     "pt": "E os sistemas por trás delas.",
-    "status": "REVISE_BEFORE_FREEZE",
-    "notes": "G-003. Italic, secondary color"
+    "status": "APPROVED",
+    "notes": "G-003. Italic, secondary color | G-003 FROZEN by Owner at Gate 2 (2026-10-01)."
   },
   "hero.primary.alt": {
     "en": "Design you can see. Engineering you can feel.",
@@ -86,8 +86,8 @@
   "hero.role": {
     "en": "Creative Developer / Digital Systems",
     "pt": "Creative Developer / Digital Systems",
-    "status": "APPROVED (EN) · TBC (PT)",
-    "notes": "G-002. See TBC-018: whether PT keeps the English title"
+    "status": "APPROVED",
+    "notes": "G-002. See TBC-018: whether PT keeps the English title | Positioning FROZEN by Owner at Gate 2 (2026-10-01); PT keeps the English title (TBC-018 safe placeholder)."
   },
   "hero.location": {
     "en": "Brazil → Worldwide",
@@ -526,5 +526,323 @@
     "pt": "Começar algo",
     "status": "RECOMMENDED",
     "notes": ""
+  },
+  "a11y.skip": {
+    "en": "Skip to work",
+    "pt": "Pular para os trabalhos",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "ACCESSIBILITY.md: skip link \"Skip to work\"."
+  },
+  "a11y.nav.primary": {
+    "en": "Primary",
+    "pt": "Principal",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "aria-label of the primary nav."
+  },
+  "a11y.layer.switch": {
+    "en": "System layer",
+    "pt": "Camada de sistema",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "EXPERIENCE_SYSTEM_MECHANIC §3 label."
+  },
+  "a11y.layer.on.system": {
+    "en": "System layer on",
+    "pt": "Camada de sistema ativada",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Live region (§3)."
+  },
+  "a11y.layer.on.experience": {
+    "en": "Experience layer on",
+    "pt": "Camada de experiência ativada",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Live region (§3)."
+  },
+  "a11y.menu.close": {
+    "en": "Close",
+    "pt": "Fechar",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Mobile menu close button."
+  },
+  "a11y.newtab": {
+    "en": "opens in a new tab",
+    "pt": "abre em nova aba",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Same string as the commercial flow."
+  },
+  "a11y.lang.other": {
+    "en": "Português",
+    "pt": "English",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Name of the OTHER language in the switch (lang attribute set on the link)."
+  },
+  "ui.meta.project": {
+    "en": "Project",
+    "pt": "Projeto",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Meta label."
+  },
+  "ui.meta.type": {
+    "en": "Type",
+    "pt": "Tipo",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Meta label."
+  },
+  "ui.meta.year": {
+    "en": "Year",
+    "pt": "Ano",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Meta label."
+  },
+  "ui.meta.status": {
+    "en": "Status",
+    "pt": "Status",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Meta label."
+  },
+  "ui.swipe": {
+    "en": "Swipe",
+    "pt": "Deslize",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Lab strip hint on touch (master 390)."
+  },
+  "lab.card.film": {
+    "en": "Film · on interaction",
+    "pt": "Filme · na interação",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": "Master 1440 badge while a Lab film plays."
+  },
+  "sys.this_page": {
+    "en": "this page",
+    "pt": "esta página",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": "Hero System Index header."
+  },
+  "sys.k.media": {
+    "en": "Media",
+    "pt": "Mídia",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.loading": {
+    "en": "Loading",
+    "pt": "Carregamento",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.security": {
+    "en": "Security",
+    "pt": "Segurança",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.responsive": {
+    "en": "Responsive",
+    "pt": "Responsivo",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.a11y": {
+    "en": "A11y",
+    "pt": "A11y",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.routes": {
+    "en": "Routes",
+    "pt": "Rotas",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.video": {
+    "en": "Video",
+    "pt": "Vídeo",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.touch": {
+    "en": "Touch",
+    "pt": "Toque",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.motion": {
+    "en": "Motion",
+    "pt": "Movimento",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.storage": {
+    "en": "Storage",
+    "pt": "Armazenamento",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.k.targets": {
+    "en": "Targets",
+    "pt": "Metas",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "sys.src": {
+    "en": "src",
+    "pt": "fonte",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": "Source line prefix in SYSTEM."
+  },
+  "vakon.sys.label": {
+    "en": "System · universe map",
+    "pt": "Sistema · mapa do universo",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": "Master Vakon SYSTEM header."
+  },
+  "vakon.sys.book.safe": {
+    "en": "Book · Kindle",
+    "pt": "Livro · Kindle",
+    "status": "SAFE_PLACEHOLDER (TBC-003: show Kindle only, without a count)",
+    "notes": "Replaces vakon.sys.book until TBC-003 is resolved."
+  },
+  "cico.meta.project": {
+    "en": "VI CICO Tocantins",
+    "pt": "VI CICO Tocantins",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": "Project name."
+  },
+  "cico.sys.label": {
+    "en": "System view · VI CICO",
+    "pt": "Visão de sistema · VI CICO",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": ""
+  },
+  "cico.sys.portal": {
+    "en": "Public portal",
+    "pt": "Portal público",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.portal.desc": {
+    "en": "program · speakers · works",
+    "pt": "programação · palestrantes · trabalhos",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.registration": {
+    "en": "Registration",
+    "pt": "Inscrições",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.registration.desc": {
+    "en": "sign-up flow",
+    "pt": "fluxo de inscrição",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.congressist": {
+    "en": "Congressist area",
+    "pt": "Área do congressista",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.congressist.desc": {
+    "en": "profile · credential · agenda",
+    "pt": "perfil · credencial · agenda",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.scientific": {
+    "en": "Scientific work",
+    "pt": "Trabalhos científicos",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.scientific.desc": {
+    "en": "submissions · proceedings",
+    "pt": "submissões · anais",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.attendance": {
+    "en": "Attendance",
+    "pt": "Presenças",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.attendance.desc": {
+    "en": "presences · materials",
+    "pt": "presenças · materiais",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.certification": {
+    "en": "Certification",
+    "pt": "Certificação",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.certification.desc": {
+    "en": "certificates",
+    "pt": "certificados",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.operations": {
+    "en": "Operations · Data",
+    "pt": "Operação · Dados",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.operations.desc": {
+    "en": "admin · diagram only",
+    "pt": "admin · só no diagrama",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.auth": {
+    "en": "Server auth",
+    "pt": "Autenticação no servidor",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.auth.desc": {
+    "en": "authn + authz server-side",
+    "pt": "autenticação e autorização no servidor",
+    "status": "FACTS (VI_CICO/FACTS.md; PT from the FACTS source text)",
+    "notes": ""
+  },
+  "cico.sys.never": {
+    "en": "Never shown: personal data · counts · values · admin screens · credentials · provider names",
+    "pt": "Nunca exibido: dados pessoais · contagens · valores · telas de admin · credenciais · nomes de provedores",
+    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
+    "notes": "SECURITY_BOUNDARIES statement in the CICO SYSTEM frame."
+  },
+  "meta.home.title": {
+    "en": "Bruno Goebel · Creative Developer / Digital Systems",
+    "pt": "Bruno Goebel · Creative Developer / Digital Systems",
+    "status": "RECOMMENDED (SEO.md home title; PT follows TBC-018 = English title)",
+    "notes": ""
+  },
+  "meta.lab.title": {
+    "en": "Lab · Visual studies · Bruno Goebel",
+    "pt": "Lab · Estudos visuais · Bruno Goebel",
+    "status": "RECOMMENDED (composed from lab.title + lab.label + brand)",
+    "notes": ""
+  },
+  "a11y.nav.footer": {
+    "en": "Footer",
+    "pt": "Rodapé",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "aria-label of the footer nav."
+  },
+  "a11y.menu.dialog": {
+    "en": "Menu",
+    "pt": "Menu",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Dialog label of the mobile menu."
+  },
+  "a11y.skip.main": {
+    "en": "Skip to content",
+    "pt": "Pular para o conteúdo",
+    "status": "UI_A11Y (engineering label, Owner review)",
+    "notes": "Skip link on pages without the work index."
   }
 }
