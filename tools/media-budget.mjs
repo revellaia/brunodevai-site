@@ -7,12 +7,12 @@
    - DEPLOYABLE_BUDGET_MIB: baseline pos-otimizacao + 5 MiB. Crescer alem disso exige revisao explicita
      e atualizacao consciente deste numero no mesmo commit.
    - ORPHAN: nenhuma midia rastreada > 100 KB sem referencia (literal ou via ADAPTIVE_MEDIA_SETS).
-     Caminhos contendo ARCHIVE, MASTER ou RECOVERY sao ignorados — e nem deveriam estar no repo implantavel. */
-import { execFileSync } from 'node:child_process';
+     Caminhos contendo ARCHIVE, MASTER ou RECOVERY sao ignorados — e nem deveriam estar no repo implantavel.
+   Arvore implantavel = Git (rastreados + novos) menos .vercelignore (tools/lib/deploy-tree.mjs). */
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { root, deployableFiles, size } from './lib/deploy-tree.mjs';
 
 const DEPLOYABLE_BUDGET_MIB = 107;
 const TARGET_MIB = 60; // objetivo de longo prazo (informativo)
@@ -21,10 +21,9 @@ const MEDIA = /\.(mp4|webm|webp|avif|jpe?g|png|svg|gif|woff2?|ttf|otf)$/i;
 const CODE = /\.(html|js|mjs|css|json|xml|txt|webmanifest)$/i;
 const EXEMPT = /(ARCHIVE|MASTER|RECOVERY)/;
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const tracked = execFileSync('git', ['-C', root, 'ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(f => f && fs.existsSync(path.join(root, f)));
-const size = f => fs.statSync(path.join(root, f)).size;
+const tracked = deployableFiles();
 const mib = b => +(b / 1048576).toFixed(2);
+const kib = b => +(b / 1024).toFixed(1);
 
 /* Referencias dinamicas: executa o bloco real de createAdaptiveSet/ADAPTIVE_MEDIA_SETS do index.html. */
 function adaptivePaths() {
@@ -54,6 +53,11 @@ const report = {
   TOTAL_REPO_DEPLOYABLE_SIZE_MIB: mib(total),
   TOTAL_MEDIA_SIZE_MIB: mib(sum(MEDIA)),
   TOTAL_MP4_SIZE_MIB: mib(sum(/\.mp4$/i)),
+  TOTAL_IMAGES_SIZE_MIB: mib(sum(/\.(webp|avif|jpe?g|png|svg|gif)$/i)),
+  TOTAL_FONTS_KIB: kib(sum(/\.(woff2?|ttf|otf)$/i)),
+  RUNTIME_JS_KIB: kib(tracked.filter(f => /\.js$/i.test(f)).reduce((a, f) => a + size(f), 0)),
+  RUNTIME_CSS_KIB: kib(tracked.filter(f => /\.css$/i.test(f)).reduce((a, f) => a + size(f), 0)),
+  DEPLOYABLE_FILES: tracked.length,
   LARGEST_20_FILES: tracked.map(f => ({ path: f, mib: mib(size(f)) })).sort((a, b) => b.mib - a.mib).slice(0, 20),
   UNREFERENCED_MEDIA: unreferenced.map(o => ({ path: o.path, kib: +(o.bytes / 1024).toFixed(1) })),
   MISSING_DYNAMIC_MEDIA: missingDynamic,
@@ -68,7 +72,8 @@ const pass = Object.values(report.gates).every(g => g.pass);
 if (process.argv.includes('--json')) console.log(JSON.stringify({ ...report, pass }, null, 2));
 else {
   console.log(`TOTAL_REPO_DEPLOYABLE_SIZE ${report.TOTAL_REPO_DEPLOYABLE_SIZE_MIB} MiB (budget ${DEPLOYABLE_BUDGET_MIB}, target ${TARGET_MIB})`);
-  console.log(`TOTAL_MEDIA_SIZE ${report.TOTAL_MEDIA_SIZE_MIB} MiB · TOTAL_MP4_SIZE ${report.TOTAL_MP4_SIZE_MIB} MiB`);
+  console.log(`TOTAL_MEDIA_SIZE ${report.TOTAL_MEDIA_SIZE_MIB} MiB · TOTAL_MP4_SIZE ${report.TOTAL_MP4_SIZE_MIB} MiB · IMAGES ${report.TOTAL_IMAGES_SIZE_MIB} MiB`);
+  console.log(`FONTS ${report.TOTAL_FONTS_KIB} KiB · RUNTIME_JS ${report.RUNTIME_JS_KIB} KiB (arquivos) · RUNTIME_CSS ${report.RUNTIME_CSS_KIB} KiB (arquivos) · FILES ${report.DEPLOYABLE_FILES}`);
   console.log('LARGEST_20_FILES'); for (const x of report.LARGEST_20_FILES) console.log(`  ${x.mib.toFixed(2).padStart(6)} MiB  ${x.path}`);
   console.log(`UNREFERENCED_MEDIA ${unreferenced.length}`); for (const o of report.UNREFERENCED_MEDIA) console.log(`  ${o.kib} KiB  ${o.path}`);
   if (missingDynamic.length) { console.log('MISSING_DYNAMIC_MEDIA'); for (const m of missingDynamic) console.log(`  ${m}`); }

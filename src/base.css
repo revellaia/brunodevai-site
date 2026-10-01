@@ -1,0 +1,192 @@
+/* WORLDCRAFT · base.css
+   Fontes self-hosted (G-007), tipografia, grid, grain, foco, modos FULL/REDUCED/SAVE e ganchos de camada.
+   Depende de src/tokens.css. Prefixo wc- enquanto a home v1 coexiste nesta branch. */
+
+/* ---------- Fontes (OFL, subset latin / latin-ext, ver FONT_MANIFEST) ---------- */
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 300 400; font-display: swap;
+  src: url('/assets/fonts/wc-newsreader-roman-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215, U+2248, U+2264-2265, U+25B6, U+25CF, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 300 400; font-display: swap;
+  src: url('/assets/fonts/wc-newsreader-roman-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 300; font-display: swap;
+  src: url('/assets/fonts/wc-newsreader-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215, U+2248, U+2264-2265, U+25B6, U+25CF, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 300; font-display: swap;
+  src: url('/assets/fonts/wc-newsreader-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 400 500; font-display: swap;
+  src: url('/assets/fonts/wc-archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215, U+2248, U+2264-2265, U+25B6, U+25CF, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 400 500; font-display: swap;
+  src: url('/assets/fonts/wc-archivo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap;
+  src: url('/assets/fonts/wc-jetbrainsmono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215, U+2248, U+2264-2265, U+25B6, U+25CF, U+FEFF, U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap;
+  src: url('/assets/fonts/wc-jetbrainsmono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* Fallbacks com metricas ajustadas (calculadas pelo pipeline de fontes) para o swap nao deslocar layout. */
+@font-face { font-family: 'Newsreader Fallback'; src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  size-adjust: 99.52%; ascent-override: 73.85%; descent-override: 26.63%; line-gap-override: 0%; }
+@font-face { font-family: 'Archivo Fallback'; src: local('Arial'), local('ArialMT');
+  size-adjust: 99.89%; ascent-override: 87.89%; descent-override: 21.02%; line-gap-override: 0%; }
+@font-face { font-family: 'JetBrains Mono Fallback'; src: local('Courier New'), local('CourierNewPSMT');
+  size-adjust: 99.98%; ascent-override: 102.02%; descent-override: 30%; line-gap-override: 0%; }
+
+/* ---------- Reset e base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  background: var(--wc-ink-0);
+  color: var(--wc-paper-0);
+  font-family: var(--wc-font-text);
+  font-weight: var(--wc-fw-text);
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 96px;
+}
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-size: var(--wc-fs-body);
+  line-height: var(--wc-lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+}
+img, video, svg, picture { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4, p, figure, dl, dd, ol, ul { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration-color: var(--wc-gold); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a:hover { color: var(--wc-gold-lit); }
+::selection { background: var(--wc-gold); color: var(--wc-ink-0); }
+
+/* ---------- Tipografia (papeis de TYPOGRAPHY.md) ---------- */
+.wc-display, [class*="wc-t-display"] {
+  font-family: var(--wc-font-display);
+  font-weight: var(--wc-fw-display);
+  text-wrap: balance;
+}
+.wc-t-display-hero      { font-size: var(--wc-fs-display-hero);      line-height: var(--wc-lh-display-hero);      letter-spacing: var(--wc-ls-display-hero); }
+.wc-t-display-wordmark  { font-size: var(--wc-fs-display-wordmark);  line-height: var(--wc-lh-display-wordmark);  letter-spacing: var(--wc-ls-display-wordmark); }
+.wc-t-display-flagship  { font-size: var(--wc-fs-display-flagship);  line-height: var(--wc-lh-display-flagship);  letter-spacing: var(--wc-ls-display-flagship); }
+.wc-t-display-section   { font-size: var(--wc-fs-display-section);   line-height: var(--wc-lh-display-section);   letter-spacing: var(--wc-ls-display-section); }
+.wc-t-display-contact   { font-size: var(--wc-fs-display-contact);   line-height: var(--wc-lh-display-contact);   letter-spacing: var(--wc-ls-display-contact); }
+.wc-t-display-manifesto { font-size: var(--wc-fs-display-manifesto); line-height: var(--wc-lh-display-manifesto); letter-spacing: var(--wc-ls-display-manifesto); }
+.wc-t-display-l   { font-size: var(--wc-fs-display-l);   line-height: var(--wc-lh-display-l);   letter-spacing: var(--wc-ls-display-l); }
+.wc-t-display-m   { font-size: var(--wc-fs-display-m);   line-height: var(--wc-lh-display-m);   letter-spacing: var(--wc-ls-display-m); }
+.wc-t-display-s   { font-size: var(--wc-fs-display-s);   line-height: var(--wc-lh-display-s);   letter-spacing: var(--wc-ls-display-s); }
+.wc-t-display-xs  { font-size: var(--wc-fs-display-xs);  line-height: var(--wc-lh-display-xs);  letter-spacing: var(--wc-ls-display-xs); }
+.wc-t-display-xxs { font-size: var(--wc-fs-display-xxs); line-height: var(--wc-lh-display-xxs); letter-spacing: var(--wc-ls-display-xxs); }
+.wc-t-statement { font-family: var(--wc-font-display); font-weight: var(--wc-fw-display); font-size: var(--wc-fs-statement); line-height: var(--wc-lh-statement); text-wrap: balance; }
+.wc-t-lede { font-size: var(--wc-fs-lede); line-height: var(--wc-lh-lede); text-wrap: pretty; }
+.wc-t-body { font-size: var(--wc-fs-body); line-height: var(--wc-lh-body); text-wrap: pretty; max-width: var(--wc-text-max); }
+.wc-t-ui {
+  font-size: var(--wc-fs-ui); line-height: var(--wc-lh-ui); letter-spacing: var(--wc-ls-ui);
+  font-weight: var(--wc-fw-ui); text-transform: uppercase;
+}
+.wc-t-mono, .wc-t-mono-s { font-family: var(--wc-font-system); font-weight: var(--wc-fw-system); font-variant-numeric: tabular-nums; }
+.wc-t-mono   { font-size: var(--wc-fs-mono);   line-height: var(--wc-lh-mono);   letter-spacing: var(--wc-ls-mono); }
+.wc-t-mono-s { font-size: var(--wc-fs-mono-s); line-height: var(--wc-lh-mono-s); letter-spacing: var(--wc-ls-mono-s); }
+.wc-italic { font-style: italic; }
+.wc-c-1 { color: var(--wc-paper-1); }
+.wc-c-2 { color: var(--wc-paper-2); }
+.wc-c-gold { color: var(--wc-gold); }
+/* Caixa mascarada das linhas display (TYPOGRAPHY.md: line-height 1 + overflow + padding para nao cortar ascendentes). */
+.wc-mask { display: block; overflow: hidden; padding-block: 0.08em; margin-block: -0.08em; }
+/* A mascara recorta so na vertical: o reveal sobe dentro dela, mas a sangria horizontal controlada
+   (ex.: BRUNO a 112px em 390 encosta na borda, GRID.md) nao pode ser cortada. */
+@supports (overflow: clip) { .wc-mask { overflow-x: visible; overflow-y: clip; } }
+
+/* ---------- Grid (GRID.md) ---------- */
+.wc-container { width: 100%; max-width: var(--wc-content-max); margin-inline: auto; padding-inline: var(--wc-margin); }
+.wc-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--wc-cols), minmax(0, 1fr));
+  column-gap: var(--wc-gutter);
+}
+.wc-section { padding-block: var(--wc-section); }
+.wc-hairline { border: 0; border-top: var(--wc-hairline); margin: 0; }
+
+/* O overlay do SYSTEM desenha o MESMO grid do layout (mesmas custom properties), entao nunca mente.
+   Coluna: signal 5%. Bordas de coluna: signal 22%. */
+.wc-grid-overlay {
+  --wc-col: calc((100% - (var(--wc-cols) - 1) * var(--wc-gutter)) / var(--wc-cols));
+  --wc-period: calc(var(--wc-col) + var(--wc-gutter));
+  position: absolute; inset: 0;
+  max-width: var(--wc-content-max); margin-inline: auto;
+  padding-inline: var(--wc-margin);
+  background-origin: content-box; background-clip: content-box;
+  background-image:
+    repeating-linear-gradient(90deg,
+      rgb(168 255 96 / .22) 0 1px, transparent 1px calc(var(--wc-col) - 1px),
+      rgb(168 255 96 / .22) calc(var(--wc-col) - 1px) var(--wc-col), transparent var(--wc-col) var(--wc-period)),
+    repeating-linear-gradient(90deg, rgb(168 255 96 / .05) 0 var(--wc-col), transparent var(--wc-col) var(--wc-period));
+  pointer-events: none;
+  z-index: var(--wc-z-system-layer);
+}
+
+/* ---------- Grain (TOKENS.json grain: feTurbulence ~1 KB, opacity .03, overlay, fixo) ---------- */
+.wc-grain::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--wc-z-chrome);
+  opacity: .03; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Acessibilidade ---------- */
+:focus-visible { outline: 2px solid var(--wc-paper-0); outline-offset: 3px; }
+.wc-on-light-media :focus-visible { outline-color: var(--wc-ink-0); }
+.wc-sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.wc-skip {
+  position: absolute; left: var(--wc-margin); top: 12px; z-index: var(--wc-z-modal);
+  padding: 12px 16px; background: var(--wc-ink-0); color: var(--wc-paper-0); border: var(--wc-control-border);
+  transform: translateY(-200%);
+}
+.wc-skip:focus-visible { transform: none; }
+@media (max-width: 1023px) { html { scroll-padding-bottom: 72px; } }
+
+/* ---------- Modos de motion (06_MOTION) ----------
+   <html data-motion="full|reduced|save"> e definido por src/mode.js. Sem JS (sem atributo) vale a
+   preferencia do sistema via media query. Componentes usam SEMPRE as custom properties de duracao/easing. */
+:root[data-motion="reduced"] {
+  --wc-ease-surface: linear; --wc-ease-system: linear; --wc-ease-feedback: linear;
+  --wc-dur-surface-l: 200ms; --wc-dur-surface: 200ms; --wc-dur-system-l: 200ms; --wc-dur-system: 200ms;
+  --wc-dur-system-s: 200ms; --wc-dur-feedback: 200ms;
+  --wc-dur-stagger-1: 0ms; --wc-dur-stagger-2: 0ms; --wc-dur-stagger-3: 0ms;
+}
+:root[data-motion="save"] {
+  --wc-dur-surface-l: 0ms; --wc-dur-surface: 0ms; --wc-dur-system-l: 0ms; --wc-dur-system: 0ms;
+  --wc-dur-system-s: 0ms; --wc-dur-feedback: 0ms; --wc-dur-reduced: 0ms;
+  --wc-dur-stagger-1: 0ms; --wc-dur-stagger-2: 0ms; --wc-dur-stagger-3: 0ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion]) {
+    --wc-ease-surface: linear; --wc-ease-system: linear;
+    --wc-dur-surface-l: 200ms; --wc-dur-surface: 200ms; --wc-dur-system-l: 200ms; --wc-dur-system: 200ms;
+  }
+}
+:root[data-motion="reduced"] .wc-motion-transform,
+:root[data-motion="save"] .wc-motion-transform { transform: none !important; }
+
+/* ---------- Camadas EXPERIENCE / SYSTEM (06_MOTION/EXPERIENCE_SYSTEM_MECHANIC.md) ----------
+   Estado em <html data-layer>. Conteudo SYSTEM real e controlado por JS (hidden/inert, Fase 03);
+   aqui so as anotacoes decorativas (aria-hidden) e o overlay de grid. */
+:root:not([data-layer="system"]) .wc-annot,
+:root:not([data-layer="system"]) .wc-grid-overlay { display: none; }
+.wc-annot { font-family: var(--wc-font-system); font-size: var(--wc-fs-mono-s); letter-spacing: var(--wc-ls-mono-s); color: var(--wc-gold); }
+
+@media (forced-colors: active) {
+  .wc-grid-overlay, .wc-grain::after { display: none; }
+}
+@media print {
+  .wc-grain::after, .wc-grid-overlay { display: none; }
+  html { background: #fff; color: #000; }
+}

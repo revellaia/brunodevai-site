@@ -1,0 +1,6 @@
+# Material nao-runtime: nunca enviado ao Vercel (o site estatico e servido como esta).
+# Ferramentas de build/gate, entradas de build e scaffolding local.
+tools/
+data/
+_worldcraft/
+*.md

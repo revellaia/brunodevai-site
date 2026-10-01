@@ -1,0 +1,530 @@
+{
+  "nav.brand.primary": {
+    "en": "Bruno Goebel",
+    "pt": "Bruno Goebel",
+    "status": "APPROVED",
+    "notes": "G-008 editorial brand. Visual wordmark PENDING (Gate 2/3)."
+  },
+  "nav.brand.signature": {
+    "en": "DEV.AI (Bruno Dev.AI)",
+    "pt": "DEV.AI (Bruno Dev.AI)",
+    "status": "APPROVED",
+    "notes": "G-008 functional/digital signature, set in mono next to the name."
+  },
+  "nav.work": {
+    "en": "Work",
+    "pt": "Trabalho",
+    "status": "APPROVED",
+    "notes": "D-005"
+  },
+  "nav.lab": {
+    "en": "Lab",
+    "pt": "Lab",
+    "status": "APPROVED",
+    "notes": "D-005"
+  },
+  "nav.about": {
+    "en": "About",
+    "pt": "Sobre",
+    "status": "APPROVED",
+    "notes": "D-005"
+  },
+  "nav.contact": {
+    "en": "Contact",
+    "pt": "Contato",
+    "status": "APPROVED",
+    "notes": "D-005. Footer and mobile menu only; the desktop top bar uses nav.cta."
+  },
+  "nav.cta": {
+    "en": "Start a project",
+    "pt": "Iniciar projeto",
+    "status": "APPROVED",
+    "notes": "Brief §85 primary CTA"
+  },
+  "nav.lang": {
+    "en": "PT / EN",
+    "pt": "PT / EN",
+    "status": "APPROVED",
+    "notes": "Current language at full opacity, the other muted"
+  },
+  "nav.menu": {
+    "en": "Menu",
+    "pt": "Menu",
+    "status": "RECOMMENDED",
+    "notes": "Mobile"
+  },
+  "hero.name.line1": {
+    "en": "BRUNO",
+    "pt": "BRUNO",
+    "status": "APPROVED",
+    "notes": "Display, uppercase"
+  },
+  "hero.name.line2": {
+    "en": "Goebel",
+    "pt": "Goebel",
+    "status": "APPROVED",
+    "notes": "Display, italic"
+  },
+  "hero.primary.01": {
+    "en": "I build digital experiences.",
+    "pt": "Eu construo experiências digitais.",
+    "status": "REVISE_BEFORE_FREEZE",
+    "notes": "G-003 preferred direction, being tested in Homepage Master"
+  },
+  "hero.primary.02": {
+    "en": "And the systems behind them.",
+    "pt": "E os sistemas por trás delas.",
+    "status": "REVISE_BEFORE_FREEZE",
+    "notes": "G-003. Italic, secondary color"
+  },
+  "hero.primary.alt": {
+    "en": "Design you can see. Engineering you can feel.",
+    "pt": "Design que se vê. Engenharia que se sente.",
+    "status": "ALTERNATIVE",
+    "notes": "G-003 editorial alternative, not frozen. Do not ship unless the Owner selects it."
+  },
+  "hero.role": {
+    "en": "Creative Developer / Digital Systems",
+    "pt": "Creative Developer / Digital Systems",
+    "status": "APPROVED (EN) · TBC (PT)",
+    "notes": "G-002. See TBC-018: whether PT keeps the English title"
+  },
+  "hero.location": {
+    "en": "Brazil → Worldwide",
+    "pt": "Brasil → Mundo",
+    "status": "APPROVED (EN) · RECOMMENDED (PT)",
+    "notes": "Brief §05"
+  },
+  "hero.available": {
+    "en": "Available",
+    "pt": "Disponível",
+    "status": "TBC",
+    "notes": "TBC-019: show only when true. Green dot = signal."
+  },
+  "hero.signature": {
+    "en": "What you see is only half the build.",
+    "pt": "O que você vê é só metade da construção.",
+    "status": "APPROVED",
+    "notes": "G-003 conceptual/interactive signature. Shown next to the toggle and as the Engineering title."
+  },
+  "hero.toggle.hint": {
+    "en": "[S]",
+    "pt": "[S]",
+    "status": "RECOMMENDED",
+    "notes": "Keyboard shortcut hint, desktop only"
+  },
+  "hero.cta.mobile": {
+    "en": "View work",
+    "pt": "Ver trabalho",
+    "status": "APPROVED",
+    "notes": "Brief §85 secondary CTA"
+  },
+  "toggle.experience": {
+    "en": "EXPERIENCE",
+    "pt": "EXPERIÊNCIA",
+    "status": "RECOMMENDED",
+    "notes": "PT label to be validated at Gate 2"
+  },
+  "toggle.system": {
+    "en": "SYSTEM",
+    "pt": "SISTEMA",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "work.label": {
+    "en": "Selected work · 2026",
+    "pt": "Trabalhos selecionados · 2026",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "work.mode.immersive": {
+    "en": "Immersive",
+    "pt": "Imersivo",
+    "status": "RECOMMENDED",
+    "notes": "Brief §43"
+  },
+  "work.mode.index": {
+    "en": "Index",
+    "pt": "Índice",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "work.hint": {
+    "en": "Hover or focus to preview · Enter to open",
+    "pt": "Passe o cursor ou foque para ver · Enter para abrir",
+    "status": "RECOMMENDED",
+    "notes": "Desktop only"
+  },
+  "work.all": {
+    "en": "All work",
+    "pt": "Todos os trabalhos",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "status.live": {
+    "en": "Live",
+    "pt": "No ar",
+    "status": "APPROVED",
+    "notes": "Only for projects whose live URL is confirmed in FACTS"
+  },
+  "project.vakon.name": {
+    "en": "Vakon Universe",
+    "pt": "Vakon Universe",
+    "status": "APPROVED",
+    "notes": "Proper name"
+  },
+  "project.vakon.type": {
+    "en": "Transmedia / 3D / Digital world",
+    "pt": "Transmídia / 3D / Mundo digital",
+    "status": "RECOMMENDED",
+    "notes": "FACTS: transmedia universe · interactive 3D"
+  },
+  "project.cico.name": {
+    "en": "VI CICO",
+    "pt": "VI CICO",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "project.cico.type": {
+    "en": "Scientific congress platform",
+    "pt": "Plataforma de congresso científico",
+    "status": "APPROVED",
+    "notes": "FACTS"
+  },
+  "project.pires.name": {
+    "en": "Pires",
+    "pt": "Pires",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "project.pires.type": {
+    "en": "Brand / Professional services",
+    "pt": "Marca / Serviços profissionais",
+    "status": "RECOMMENDED",
+    "notes": "Brief §13"
+  },
+  "project.paula.name": {
+    "en": "Paula Guimarães",
+    "pt": "Paula Guimarães",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "project.paula.type": {
+    "en": "Editorial / Photography",
+    "pt": "Editorial / Fotografia",
+    "status": "RECOMMENDED",
+    "notes": "Brief §13"
+  },
+  "project.memore.name": {
+    "en": "Memoré",
+    "pt": "Memoré",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "project.memore.type": {
+    "en": "Commerce / Brand",
+    "pt": "Comércio / Marca",
+    "status": "RECOMMENDED",
+    "notes": "Brief §13"
+  },
+  "vakon.eyebrow": {
+    "en": "Project 01 / World building",
+    "pt": "Projeto 01 / Construção de mundo",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "vakon.title": {
+    "en": "The Frozen Legacy",
+    "pt": "The Frozen Legacy",
+    "status": "APPROVED",
+    "notes": "Proper name, kept in English in PT"
+  },
+  "vakon.lede": {
+    "en": "A digital universe built across narrative, 3D and technology.",
+    "pt": "Um universo digital construído entre narrativa, 3D e tecnologia.",
+    "status": "RECOMMENDED",
+    "notes": "Brief §15"
+  },
+  "vakon.cta.case": {
+    "en": "Explore case",
+    "pt": "Explorar case",
+    "status": "RECOMMENDED",
+    "notes": "Brief §15"
+  },
+  "vakon.cta.live": {
+    "en": "Enter live world",
+    "pt": "Entrar no mundo",
+    "status": "RECOMMENDED",
+    "notes": "Brief §15"
+  },
+  "vakon.sys.narrative": {
+    "en": "Narrative · story · characters · lore",
+    "pt": "Narrativa · história · personagens · lore",
+    "status": "RECOMMENDED",
+    "notes": "SYSTEM map node"
+  },
+  "vakon.sys.visual": {
+    "en": "Visual world · 3D · Glacial City",
+    "pt": "Mundo visual · 3D · Cidade Glacial",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "vakon.sys.web": {
+    "en": "Web experience · live site",
+    "pt": "Experiência web · site no ar",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "vakon.sys.book": {
+    "en": "Book · Kindle · 6 languages",
+    "pt": "Livro · Kindle · 6 idiomas",
+    "status": "TBC",
+    "notes": "TBC-003: which languages"
+  },
+  "cico.eyebrow": {
+    "en": "Project 02 / Systems",
+    "pt": "Projeto 02 / Sistemas",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "cico.headline": {
+    "en": "From event website to event operating system.",
+    "pt": "De site de evento a sistema operacional de evento.",
+    "status": "RECOMMENDED",
+    "notes": "Brief §16"
+  },
+  "cico.cta.system": {
+    "en": "Open system",
+    "pt": "Abrir sistema",
+    "status": "RECOMMENDED",
+    "notes": "Brief §62"
+  },
+  "cico.cta.live": {
+    "en": "View live",
+    "pt": "Ver ao vivo",
+    "status": "RECOMMENDED",
+    "notes": "Brief §62"
+  },
+  "cico.meta.client": {
+    "en": "SICIDETO",
+    "pt": "SICIDETO",
+    "status": "TBC",
+    "notes": "TBC-005: display name"
+  },
+  "cico.public_only": {
+    "en": "public area only",
+    "pt": "somente área pública",
+    "status": "APPROVED",
+    "notes": "Security boundary"
+  },
+  "client.label": {
+    "en": "Client work",
+    "pt": "Trabalhos para clientes",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "lab.title": {
+    "en": "Lab",
+    "pt": "Lab",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "lab.label": {
+    "en": "Visual studies · Uncommissioned work",
+    "pt": "Estudos visuais · Trabalho autoral",
+    "status": "RECOMMENDED",
+    "notes": "Brief §18"
+  },
+  "lab.lede": {
+    "en": "Directions explored without a client brief. Fictional brands, real craft.",
+    "pt": "Direções exploradas sem briefing de cliente. Marcas fictícias, ofício real.",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "lab.count": {
+    "en": "6 studies · more as they become public",
+    "pt": "6 estudos · mais quando se tornarem públicos",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "lab.cta": {
+    "en": "Enter the Lab",
+    "pt": "Entrar no Lab",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "lab.card.type": {
+    "en": "Visual study",
+    "pt": "Estudo visual",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "proof.label": {
+    "en": "Engineering",
+    "pt": "Engenharia",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "proof.lede": {
+    "en": "The other half is measured. These are the checks this site passes today.",
+    "pt": "A outra metade é medida. Estas são as verificações que este site passa hoje.",
+    "status": "RECOMMENDED",
+    "notes": "Must be literally true at release (TBC-020)"
+  },
+  "proof.footnote": {
+    "en": "Values from current production. Recomputed at every release. Targets are labelled as targets.",
+    "pt": "Valores da produção atual. Recalculados a cada release. Metas aparecem como metas.",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "about.label": {
+    "en": "Bruno Goebel",
+    "pt": "Bruno Goebel",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "about.statement": {
+    "en": "Creative developer by practice. I work where design, software, AI and digital products meet.",
+    "pt": "Desenvolvedor criativo por prática. Trabalho onde design, software, IA e produtos digitais se encontram.",
+    "status": "TBC",
+    "notes": "TBC-013 factual review. Do NOT add \"engineer by formation\" until confirmed."
+  },
+  "about.capabilities": {
+    "en": "Creative development · Digital products · AI systems · Immersive experiences",
+    "pt": "Desenvolvimento criativo · Produtos digitais · Sistemas de IA · Experiências imersivas",
+    "status": "RECOMMENDED",
+    "notes": "Brief §57"
+  },
+  "about.cta": {
+    "en": "About Bruno",
+    "pt": "Sobre o Bruno",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "manifesto.label": {
+    "en": "Principle",
+    "pt": "Princípio",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "manifesto.main": {
+    "en": "Real presence. Not generated sameness.",
+    "pt": "Sites com presença real. Não aparência de IA.",
+    "status": "APPROVED (PT equity) · RECOMMENDED (EN)",
+    "notes": "The PT line is existing brand equity. The EN line is an editorial rewrite."
+  },
+  "manifesto.line.01": {
+    "en": "Design needs a point of view.",
+    "pt": "Design precisa de ponto de vista.",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "manifesto.line.02": {
+    "en": "AI should amplify craft, not replace it.",
+    "pt": "IA amplifica o ofício. Não o substitui.",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "manifesto.line.03": {
+    "en": "Proof beats promise.",
+    "pt": "Prova vale mais que promessa.",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "contact.label": {
+    "en": "Contact",
+    "pt": "Contato",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "contact.headline": {
+    "en": "Have something worth building?",
+    "pt": "Tem algo que vale construir?",
+    "status": "RECOMMENDED",
+    "notes": "Brief §26"
+  },
+  "contact.cta": {
+    "en": "Start a project",
+    "pt": "Iniciar projeto",
+    "status": "APPROVED",
+    "notes": "Opens the existing commercial modal (logic preserved)"
+  },
+  "contact.email": {
+    "en": "commercial@brunodevai.com",
+    "pt": "commercial@brunodevai.com",
+    "status": "APPROVED",
+    "notes": "Brief §26"
+  },
+  "contact.whatsapp": {
+    "en": "WhatsApp",
+    "pt": "WhatsApp",
+    "status": "APPROVED",
+    "notes": "TBC-022: number/link from current production"
+  },
+  "contact.sys.after": {
+    "en": "After · what happens when you write",
+    "pt": "Depois · o que acontece quando você escreve",
+    "status": "RECOMMENDED",
+    "notes": "SYSTEM state"
+  },
+  "contact.sys.01": {
+    "en": "Reply [window TBC]",
+    "pt": "Resposta [prazo TBC]",
+    "status": "TBC",
+    "notes": "TBC-014. Hide the window until confirmed."
+  },
+  "contact.sys.02": {
+    "en": "Short call",
+    "pt": "Conversa rápida",
+    "status": "TBC",
+    "notes": "TBC-015: process steps"
+  },
+  "contact.sys.03": {
+    "en": "Written proposal",
+    "pt": "Proposta escrita",
+    "status": "TBC",
+    "notes": "TBC-015"
+  },
+  "footer.location": {
+    "en": "Brazil → Worldwide",
+    "pt": "Brasil → Mundo",
+    "status": "APPROVED (EN)",
+    "notes": ""
+  },
+  "footer.privacy": {
+    "en": "Privacy",
+    "pt": "Privacidade",
+    "status": "APPROVED",
+    "notes": ""
+  },
+  "footer.copyright": {
+    "en": "© 2026",
+    "pt": "© 2026",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "footer.wordmark": {
+    "en": "Bruno Goebel",
+    "pt": "Bruno Goebel",
+    "status": "APPROVED (concept)",
+    "notes": "G-008. Final visual PENDING"
+  },
+  "cta.enter_project": {
+    "en": "Enter project",
+    "pt": "Entrar no projeto",
+    "status": "RECOMMENDED",
+    "notes": "Vocabulary §62"
+  },
+  "cta.see_build": {
+    "en": "See the build",
+    "pt": "Ver a construção",
+    "status": "RECOMMENDED",
+    "notes": ""
+  },
+  "cta.start_something": {
+    "en": "Start something",
+    "pt": "Começar algo",
+    "status": "RECOMMENDED",
+    "notes": ""
+  }
+}
