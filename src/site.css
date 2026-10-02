@@ -713,14 +713,21 @@ section { position: relative; }
 }
 
 /* ---------- Alvos de toque: >= 44px em telas de toque/mobile (TOKENS target.touch), >= 24px no desktop (WCAG 2.2 2.5.8) ---------- */
-.footer-nav a, .footer-ch a, .footer-meta a { display: inline-flex; align-items: center; min-height: 24px; }
+.footer-nav a, .footer-ch a, .footer-meta a { display: inline-flex; align-items: center; min-height: 24px; min-width: 24px; }
+/* desktop: nav, rodape do Lab e navegacao dos estudos tambem >= 24px (sem depender da excecao de espacamento) */
+@media (min-width: 1024px) {
+  .nav-links { align-items: center; }
+  .nav-links a, .nav-cta, .lab-foot a, .study-nav a { display: inline-flex; align-items: center; min-height: 24px; }
+  .nav-lang { line-height: 24px; } /* inline-block: inline-flex colapsaria os espacos de "PT / EN" */
+  .wc-cta-u { min-height: 24px; }
+}
 @media (max-width: 1023px), (pointer: coarse) {
-  .footer-nav a, .footer-ch a, .footer-meta a, .about-body .wc-cta-u, .contact-email, .study-nav a, .study-back a, .menu-lang, .lab-foot a, .nav-brand {
+  .footer-nav a, .footer-ch a, .footer-meta a, .about-body .wc-cta-u, .work-foot .wc-cta-u, .workx-ctas .wc-cta-u, .aboutx-actions .wc-cta-u, .contact-email, .study-nav a, .study-back a, .menu-lang, .lab-foot a, .nav-brand {
     display: inline-flex; align-items: center; min-height: 44px; min-width: 44px;
   }
   .footer-nav a { justify-content: flex-end; }
   .footer-info { line-height: 1.4; }
-  .about-body .wc-cta-u { padding-bottom: 0; }
+  .about-body .wc-cta-u, .work-foot .wc-cta-u, .workx-ctas .wc-cta-u, .aboutx-actions .wc-cta-u { padding-bottom: 0; }
   .contact-email { padding-bottom: 0; }
 }
 
