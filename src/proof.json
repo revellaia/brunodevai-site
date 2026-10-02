@@ -1,7 +1,7 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "base_commit": "c121007",
+    "base_commit": "3b95cf4",
     "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
   "media": {
@@ -29,7 +29,7 @@
   },
   "runtime": {
     "js_files": 11,
-    "js_gz_kb": 12.9,
+    "js_gz_kb": 13,
     "css_files": 3,
     "css_gz_kb": 19
   },

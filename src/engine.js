@@ -97,9 +97,12 @@
     WC.layer.toggle('key');
   });
 
-  /* Compacto fixado no desktop depois que o hero sai da tela (paginas sem hero ja nascem com data-hero-out). */
-  var hero = document.getElementById('hero');
+  /* Compacto fixado no desktop depois que o hero sai da tela. Paginas sem #hero nascem com data-hero-out e usam o
+     h1 da pagina como hero: o compacto so aparece quando o titulo sai, para nao cobrir o texto de abertura. */
+  var hero = document.getElementById('hero') || document.querySelector('main h1');
   if (hero && 'IntersectionObserver' in window) {
+    var hr = hero.getBoundingClientRect();
+    if (hr.bottom > 0 && hr.top < window.innerHeight) root.removeAttribute('data-hero-out');
     new IntersectionObserver(function (en) {
       if (en[0].isIntersecting) root.removeAttribute('data-hero-out'); else root.setAttribute('data-hero-out', '');
     }, { threshold: 0 }).observe(hero);
