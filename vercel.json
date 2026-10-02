@@ -7,8 +7,10 @@
     { "source": "/sobre/", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/about/", "statusCode": 301 },
     { "source": "/sobre/index.html", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/about/", "statusCode": 301 },
     { "source": "/trabalhos", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/work/", "statusCode": 301 },
+    { "source": "/trabalhos/", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/work/", "statusCode": 301 },
     { "source": "/trabalhos/:path*", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/work/", "statusCode": 301 },
     { "source": "/trabalhos", "destination": "/work/", "statusCode": 301 },
+    { "source": "/trabalhos/", "destination": "/work/", "statusCode": 301 },
     { "source": "/trabalhos/:path*", "destination": "/work/", "statusCode": 301 }
   ],
   "headers": [

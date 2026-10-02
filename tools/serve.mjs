@@ -21,9 +21,9 @@ const TYPES = {
 const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 const headerRules = (vercel.headers || []).map(r => ({ re: new RegExp('^' + r.source + '$'), headers: r.headers }));
 /* Redirects do vercel.json (subconjunto usado: caminho literal ou ":param*", has=query). Como no Vercel,
-   a query original segue para o destino. */
+   a query original segue para o destino. Como no Vercel real, "/x/:p*" NAO casa "/x/" (barra final sem segmento). */
 const redirectRules = (vercel.redirects || []).map(r => ({
-  re: new RegExp('^' + r.source.replace(/\./g, '\\.').replace(/\/:\w+\*$/, '(?:/.*)?') + '$'),
+  re: new RegExp('^' + r.source.replace(/\./g, '\\.').replace(/\/:\w+\*$/, '(?:/.+)?') + '$'),
   has: r.has || [], to: r.destination, code: r.statusCode || (r.permanent === false ? 307 : 308),
 }));
 function redirectFor(u) {
