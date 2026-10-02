@@ -1,7 +1,7 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "base_commit": "3b95cf4",
+    "base_commit": "1ae5d5a",
     "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
   "media": {
