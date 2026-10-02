@@ -20,6 +20,20 @@ const TYPES = {
 };
 const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 const headerRules = (vercel.headers || []).map(r => ({ re: new RegExp('^' + r.source + '$'), headers: r.headers }));
+/* Redirects do vercel.json (subconjunto usado: caminho literal ou ":param*", has=query). Como no Vercel,
+   a query original segue para o destino. */
+const redirectRules = (vercel.redirects || []).map(r => ({
+  re: new RegExp('^' + r.source.replace(/\./g, '\\.').replace(/\/:\w+\*$/, '(?:/.*)?') + '$'),
+  has: r.has || [], to: r.destination, code: r.statusCode || (r.permanent === false ? 307 : 308),
+}));
+function redirectFor(u) {
+  for (const r of redirectRules) {
+    if (!r.re.test(u.pathname)) continue;
+    if (!r.has.every(h => h.type === 'query' && u.searchParams.get(h.key) === h.value)) continue;
+    return { code: r.code, location: r.to + u.search };
+  }
+  return null;
+}
 
 function resolve(urlPath) {
   let rel = decodeURIComponent(urlPath.split('?')[0]).replace(/^\/+/, '');
@@ -32,8 +46,10 @@ function resolve(urlPath) {
 }
 
 http.createServer((req, res) => {
-  const pathname = new URL(req.url, 'http://x').pathname;
+  const u = new URL(req.url, 'http://x'), pathname = u.pathname;
   for (const r of headerRules) if (r.re.test(pathname)) for (const h of r.headers) res.setHeader(h.key, h.value);
+  const rd = redirectFor(u);
+  if (rd) { res.writeHead(rd.code, { Location: rd.location }); return res.end(); }
   const hit = resolve(pathname);
   if (!hit) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('404'); }
   const stat = fs.statSync(hit.abs);

@@ -1,11 +1,19 @@
 {
   "$meta": {
-    "note": "Dados estruturados das paginas WORLDCRAFT. Fatos de 09_CASES/*/FACTS.md e 10_LAB; campos TBC simplesmente nao existem aqui (nunca renderizam). URLs ao vivo = as que a producao c7330d6 usa (TBC-024).",
-    "origin": "https://brunodevai.com"
+    "note": "Dados estruturados das paginas WORLDCRAFT. Fatos de 09_CASES/*/FACTS.md e 10_LAB; campos TBC simplesmente nao existem aqui (nunca renderizam). URLs ao vivo = as que a producao c7330d6 usa (TBC-024). Canonical host = www (apex 308 -> www).",
+    "origin": "https://www.brunodevai.com"
   },
   "locales": {
-    "pt": { "htmlLang": "pt-BR", "ogLocale": "pt_BR", "prefix": "" },
-    "en": { "htmlLang": "en", "ogLocale": "en_US", "prefix": "/en" }
+    "pt": {
+      "htmlLang": "pt-BR",
+      "ogLocale": "pt_BR",
+      "prefix": ""
+    },
+    "en": {
+      "htmlLang": "en",
+      "ogLocale": "en_US",
+      "prefix": "/en"
+    }
   },
   "contact": {
     "email": "commercial@brunodevai.com",
@@ -14,8 +22,18 @@
   "media": {
     "hero": {
       "poster": {
-        "desktop": { "avif": "/assets/cinematic/presence-landscape.avif", "webp": "/assets/cinematic/presence-landscape.webp", "w": 1280, "h": 720 },
-        "mobile": { "avif": "/assets/cinematic/presence-landscape-mobile-portrait.avif", "webp": "/assets/cinematic/presence-landscape-mobile-portrait.webp", "w": 540, "h": 960 }
+        "desktop": {
+          "avif": "/assets/cinematic/presence-landscape.avif",
+          "webp": "/assets/cinematic/presence-landscape.webp",
+          "w": 1280,
+          "h": 720
+        },
+        "mobile": {
+          "avif": "/assets/cinematic/presence-landscape-mobile-portrait.avif",
+          "webp": "/assets/cinematic/presence-landscape-mobile-portrait.webp",
+          "w": 540,
+          "h": 960
+        }
       },
       "video": {
         "desktop": "/assets/cinematic/presence-landscape.mp4",
@@ -23,50 +41,336 @@
       },
       "mobileQuery": "(max-width: 1023px) and (orientation: portrait)"
     },
-    "og": "/logo-brunodevai.png"
+    "og": null
   },
   "projects": [
-    { "id": "vakon", "n": "01", "url": "https://vakonuniverse.com", "host": "vakonuniverse.com",
-      "img": { "960": "/assets/cinematic/glacial-city-1200.webp", "640": "/assets/cinematic/glacial-city-760.webp", "w": 1200, "h": 676 } },
-    { "id": "cico", "n": "02", "url": "https://cicosicideto.com.br/", "host": "cicosicideto.com.br", "year": "2026",
-      "img": { "960": "/assets/cinematic/case-cico-960.webp", "640": "/assets/cinematic/case-cico-640.webp", "w": 960, "h": 600 } },
-    { "id": "pires", "n": "03", "url": "https://pirescontabilidadess.com.br/", "host": "pirescontabilidadess.com.br",
-      "img": { "960": "/assets/cinematic/case-pires-960.webp", "640": "/assets/cinematic/case-pires-640.webp", "w": 960, "h": 600 } },
-    { "id": "paula", "n": "04", "url": "https://paulaguimaraess.com.br/", "host": "paulaguimaraess.com.br",
-      "img": { "960": "/assets/cinematic/case-paula-960.webp", "640": "/assets/cinematic/case-paula-640.webp", "w": 960, "h": 600 } },
-    { "id": "memore", "n": "05", "url": "https://www.ateliememore.com.br", "host": "ateliememore.com.br",
-      "img": { "960": "/assets/cinematic/case-memore-960.webp", "640": "/assets/cinematic/case-memore-640.webp", "w": 960, "h": 600 } }
+    {
+      "id": "vakon",
+      "n": "01",
+      "url": "https://vakonuniverse.com",
+      "host": "vakonuniverse.com",
+      "img": {
+        "960": "/assets/cinematic/glacial-city-1200.webp",
+        "640": "/assets/cinematic/glacial-city-760.webp",
+        "w": 1200,
+        "h": 676
+      },
+      "case": "vakon"
+    },
+    {
+      "id": "cico",
+      "n": "02",
+      "url": "https://cicosicideto.com.br/",
+      "host": "cicosicideto.com.br",
+      "year": "2026",
+      "img": {
+        "960": "/assets/cinematic/case-cico-960.webp",
+        "640": "/assets/cinematic/case-cico-640.webp",
+        "w": 960,
+        "h": 600
+      },
+      "case": "cico"
+    },
+    {
+      "id": "pires",
+      "n": "03",
+      "url": "https://pirescontabilidadess.com.br/",
+      "host": "pirescontabilidadess.com.br",
+      "img": {
+        "960": "/assets/cinematic/case-pires-960.webp",
+        "640": "/assets/cinematic/case-pires-640.webp",
+        "w": 960,
+        "h": 600
+      }
+    },
+    {
+      "id": "paula",
+      "n": "04",
+      "url": "https://paulaguimaraess.com.br/",
+      "host": "paulaguimaraess.com.br",
+      "img": {
+        "960": "/assets/cinematic/case-paula-960.webp",
+        "640": "/assets/cinematic/case-paula-640.webp",
+        "w": 960,
+        "h": 600
+      }
+    },
+    {
+      "id": "memore",
+      "n": "05",
+      "url": "https://www.ateliememore.com.br",
+      "host": "ateliememore.com.br",
+      "img": {
+        "960": "/assets/cinematic/case-memore-960.webp",
+        "640": "/assets/cinematic/case-memore-640.webp",
+        "w": 960,
+        "h": 600
+      }
+    }
   ],
   "vakon": {
-    "img": { "desktop": "/assets/cinematic/glacial-city-1200.webp", "mobile": "/assets/cinematic/glacial-city-760.webp" }
+    "img": {
+      "desktop": "/assets/cinematic/glacial-city-1200.webp",
+      "mobile": "/assets/cinematic/glacial-city-760.webp"
+    }
   },
   "cico": {
     "nodes": [
-      ["portal", "normal"], ["registration", "normal"], ["congressist", "active"],
-      ["scientific", "normal"], ["attendance", "normal"], ["certification", "normal"],
-      ["operations", "normal"], ["auth", "active"]
+      [
+        "portal",
+        "normal"
+      ],
+      [
+        "registration",
+        "normal"
+      ],
+      [
+        "congressist",
+        "active"
+      ],
+      [
+        "scientific",
+        "normal"
+      ],
+      [
+        "attendance",
+        "normal"
+      ],
+      [
+        "certification",
+        "normal"
+      ],
+      [
+        "operations",
+        "normal"
+      ],
+      [
+        "auth",
+        "active"
+      ]
     ],
     "note": "PAYMENTS omitido em runtime (TBC-007). Scientific review flow omitido (TBC-008)."
   },
   "lab": [
-    { "slug": "terra-axis", "code": "LAB / 001", "title": "Terra Axis", "ratio": "4/5",
-      "poster": "/assets/cinematic/concept-terra-axis-tablet-portrait.webp", "pw": 768, "ph": 960,
-      "film": "/assets/cinematic/concept-terra-axis-tablet-portrait.mp4" },
-    { "slug": "valle-fiori", "code": "LAB / 002", "title": "Valle Fiori", "ratio": "16/10",
-      "poster": "/assets/cinematic/concept-valle-fiori-landscape-sm.webp", "pw": 960, "ph": 540,
-      "film": "/assets/cinematic/concept-valle-fiori-landscape-sm.mp4", "letterbox": true },
-    { "slug": "cavallo-alto", "code": "LAB / 003", "title": "Cavallo Alto", "ratio": "4/5",
-      "poster": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp", "pw": 768, "ph": 960,
-      "film": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4" },
-    { "slug": "nativa-reserve", "code": "LAB / 004", "title": "Nativa Reserve", "ratio": "16/10",
-      "poster": "/assets/cinematic/concept-nativa-reserve-landscape-sm.webp", "pw": 960, "ph": 540,
-      "film": "/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4" },
-    { "slug": "sertao-prime", "code": "LAB / 005", "title": "Sertão Prime", "ratio": "4/5",
-      "poster": "/assets/cinematic/concept-sertao-prime-tablet-portrait.webp", "pw": 768, "ph": 960,
-      "film": "/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4" },
-    { "slug": "blue-sanctuary", "code": "LAB / 006", "title": "Blue Sanctuary", "ratio": "16/10",
-      "poster": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.webp", "pw": 960, "ph": 540,
-      "film": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4" }
+    {
+      "slug": "terra-axis",
+      "code": "LAB / 001",
+      "title": "Terra Axis",
+      "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-terra-axis-tablet-portrait.webp",
+      "pw": 768,
+      "ph": 960,
+      "film": "/assets/cinematic/concept-terra-axis-tablet-portrait.mp4"
+    },
+    {
+      "slug": "valle-fiori",
+      "code": "LAB / 002",
+      "title": "Valle Fiori",
+      "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-valle-fiori-landscape-sm.webp",
+      "pw": 960,
+      "ph": 540,
+      "film": "/assets/cinematic/concept-valle-fiori-landscape-sm.mp4",
+      "letterbox": true
+    },
+    {
+      "slug": "cavallo-alto",
+      "code": "LAB / 003",
+      "title": "Cavallo Alto",
+      "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp",
+      "pw": 768,
+      "ph": 960,
+      "film": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4"
+    },
+    {
+      "slug": "nativa-reserve",
+      "code": "LAB / 004",
+      "title": "Nativa Reserve",
+      "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-nativa-reserve-landscape-sm.webp",
+      "pw": 960,
+      "ph": 540,
+      "film": "/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4"
+    },
+    {
+      "slug": "sertao-prime",
+      "code": "LAB / 005",
+      "title": "Sertão Prime",
+      "ratio": "4/5",
+      "poster": "/assets/cinematic/concept-sertao-prime-tablet-portrait.webp",
+      "pw": 768,
+      "ph": 960,
+      "film": "/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4"
+    },
+    {
+      "slug": "blue-sanctuary",
+      "code": "LAB / 006",
+      "title": "Blue Sanctuary",
+      "ratio": "16/10",
+      "poster": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.webp",
+      "pw": 960,
+      "ph": 540,
+      "film": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4"
+    }
   ],
-  "labColumns": [[0, 3], [1, 4], [2, 5]]
+  "labColumns": [
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      5
+    ]
+  ],
+  "routes": {
+    "home": {
+      "pt": "/",
+      "en": "/en/"
+    },
+    "work": {
+      "pt": "/work/",
+      "en": "/en/work/"
+    },
+    "vakon": {
+      "pt": "/work/vakon-universe/",
+      "en": "/en/work/vakon-universe/"
+    },
+    "cico": {
+      "pt": "/work/vi-cico/",
+      "en": "/en/work/vi-cico/"
+    },
+    "about": {
+      "pt": "/sobre/",
+      "en": "/en/about/"
+    },
+    "lab": {
+      "pt": "/lab/",
+      "en": "/en/lab/"
+    },
+    "privacy": {
+      "pt": "/privacy.html"
+    },
+    "lab-terra-axis": {
+      "pt": "/lab/terra-axis/",
+      "en": "/en/lab/terra-axis/"
+    },
+    "lab-valle-fiori": {
+      "pt": "/lab/valle-fiori/",
+      "en": "/en/lab/valle-fiori/"
+    },
+    "lab-cavallo-alto": {
+      "pt": "/lab/cavallo-alto/",
+      "en": "/en/lab/cavallo-alto/"
+    },
+    "lab-nativa-reserve": {
+      "pt": "/lab/nativa-reserve/",
+      "en": "/en/lab/nativa-reserve/"
+    },
+    "lab-sertao-prime": {
+      "pt": "/lab/sertao-prime/",
+      "en": "/en/lab/sertao-prime/"
+    },
+    "lab-blue-sanctuary": {
+      "pt": "/lab/blue-sanctuary/",
+      "en": "/en/lab/blue-sanctuary/"
+    }
+  },
+  "cases": {
+    "vakon": {
+      "hero": "/assets/cinematic/glacial-city-1200.webp",
+      "heroMobile": "/assets/cinematic/glacial-city-760.webp",
+      "hw": 1200,
+      "hh": 676,
+      "world": [
+        "/assets/work/vakon-universe/city-1600.webp",
+        1600,
+        900
+      ],
+      "experience": [
+        "/assets/work/vakon-universe/home-1600.webp",
+        1600,
+        900
+      ],
+      "details": [
+        "/assets/work/vakon-universe/riders-1600.webp",
+        1600,
+        900
+      ],
+      "mobile": [
+        [
+          "/assets/work/vakon-universe/m-home.webp",
+          540,
+          1169
+        ],
+        [
+          "/assets/work/vakon-universe/m-book.webp",
+          540,
+          1169
+        ],
+        [
+          "/assets/work/vakon-universe/m-en.webp",
+          540,
+          1169
+        ]
+      ]
+    },
+    "cico": {
+      "hero": "/assets/work/vi-cico/portal-1600.webp",
+      "hw": 1600,
+      "hh": 900,
+      "portal": [
+        "/assets/work/vi-cico/portal-1600.webp",
+        1600,
+        900
+      ],
+      "registration": [
+        "/assets/work/vi-cico/m-registration.webp",
+        540,
+        1169
+      ],
+      "scientific": [
+        "/assets/work/vi-cico/scientific-flow-1600.webp",
+        1600,
+        500
+      ],
+      "certification": [
+        "/assets/work/vi-cico/certificate-1600.webp",
+        1600,
+        700
+      ],
+      "mobile": [
+        [
+          "/assets/work/vi-cico/m-portal.webp",
+          540,
+          1169
+        ],
+        [
+          "/assets/work/vi-cico/m-registration.webp",
+          540,
+          1169
+        ],
+        [
+          "/assets/work/vi-cico/m-certificate.webp",
+          540,
+          1169
+        ]
+      ]
+    }
+  },
+  "og": {
+    "home": "og-home",
+    "work": "og-home",
+    "about": "og-home",
+    "lab": "og-home",
+    "privacy": "og-home",
+    "vakon": "og-vakon",
+    "cico": "og-cico",
+    "default": "og-home"
+  }
 }

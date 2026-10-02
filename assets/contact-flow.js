@@ -45,44 +45,13 @@
   const whatsappUrl=(l,ctx)=>'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(COPY[l].waMsg(ctx));
   const mailtoUrl=(l,ctx)=>'mailto:'+EMAIL+'?subject='+encodeURIComponent(COPY[l].subject)+'&body='+encodeURIComponent(COPY[l].body(ctx).replace(/\n/g,'\r\n'));
 
-  const CSS=`
-.cf-back{position:fixed;inset:0;z-index:1200;background:rgba(4,5,4,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s}
-.cf-back[hidden]{display:none}
-.cf-back.show{opacity:1}
-.cf-panel{position:relative;width:100%;max-width:620px;max-height:calc(100dvh - 40px);overflow:auto;background:var(--void-2,#141613);color:var(--text-hi,#f4f2ec);border:1px solid rgba(216,179,104,.22);border-radius:16px;padding:40px clamp(22px,4vw,40px) 34px;box-shadow:0 40px 90px rgba(0,0,0,.55);font-family:var(--font-body,'Inter',system-ui,sans-serif);transform:translateY(16px);transition:transform .35s var(--ease,cubic-bezier(.22,.61,.36,1))}
-.cf-back.show .cf-panel{transform:translateY(0)}
-.cf-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:var(--text-hi,#f4f2ec);cursor:pointer;display:grid;place-items:center;font-size:18px;transition:border-color .2s}
-.cf-x:hover{border-color:var(--neon,#A8FF60)}
-.cf-title{font-family:var(--font-display,'Fraunces',Georgia,serif);font-weight:400;font-size:clamp(26px,3.4vw,36px);line-height:1.2;color:var(--text-hi,#f4f2ec);margin:0 44px 12px 0;letter-spacing:normal}
-.cf-text{font-size:15px;line-height:1.7;color:var(--text-lo,#9a9b94);font-weight:300;margin:0 0 26px}
-.cf-options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cf-option{display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid rgba(216,179,104,.18);border-radius:12px;background:rgba(255,255,255,.015);min-width:0}
-.cf-label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lit,#D8B368)}
-.cf-label svg{width:15px;height:15px;flex:none}
-.cf-value{font-size:14px;color:var(--text-hi,#f4f2ec);overflow-wrap:anywhere;margin-bottom:12px}
-.cf-btn{margin-top:auto;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 18px;font-size:13px;font-weight:700;letter-spacing:.04em;text-decoration:none;text-align:center;transition:all .3s var(--ease,ease)}
-.cf-btn.primary{background:var(--neon,#A8FF60);color:var(--void,#0c0d0b)}
-.cf-btn.primary:hover{box-shadow:0 0 34px var(--neon-dim,rgba(168,255,96,.16));transform:translateY(-2px)}
-.cf-btn.ghost{border:1px solid rgba(216,179,104,.5);color:var(--gold-lit,#D8B368)}
-.cf-btn.ghost:hover{border-color:var(--neon,#A8FF60);color:var(--text-hi,#f4f2ec)}
-.cf-btn:focus-visible,.cf-x:focus-visible{outline:2px solid var(--gold-lit,#D8B368);outline-offset:3px}
-body.cf-locked{overflow:hidden}
-@media(max-width:560px){.cf-options{grid-template-columns:1fr}.cf-panel{padding:34px 20px 24px}.cf-text{margin-bottom:20px}}
-@media(prefers-reduced-motion:reduce){.cf-back,.cf-panel,.cf-btn{transition:none}.cf-btn.primary:hover{transform:none}}
-`;
-
   const ICON_CHAT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/></svg>';
   const ICON_MAIL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>';
 
   let back,panel,lastFocus=null,context='';
 
   function build(){
-    /* Paginas com skin propria (<html data-cf-skin>, WORLDCRAFT) estilizam .cf-* no CSS delas. */
-    if(!document.documentElement.hasAttribute('data-cf-skin')){
-      const style=document.createElement('style');
-      style.textContent=CSS;
-      document.head.appendChild(style);
-    }
+    /* Estilo do painel (.cf-*) vive em src/site.css (CSP sem 'unsafe-inline'). */
     back=document.createElement('div');
     back.className='cf-back';
     back.id='contactFlow';

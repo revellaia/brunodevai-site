@@ -1,27 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://brunodevai.com/</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.brunodevai.com/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/"/>
   </url>
   <url>
-    <loc>https://brunodevai.com/trabalhos/</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.brunodevai.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/"/>
   </url>
   <url>
-    <loc>https://brunodevai.com/sobre/</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.brunodevai.com/work/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/"/>
   </url>
   <url>
-    <loc>https://brunodevai.com/privacy.html</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.brunodevai.com/en/work/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/work/vakon-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/vakon-universe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/vakon-universe/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/vakon-universe/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/en/work/vakon-universe/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/vakon-universe/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/vakon-universe/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/vakon-universe/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/work/vi-cico/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/vi-cico/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/vi-cico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/vi-cico/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/en/work/vi-cico/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/work/vi-cico/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/work/vi-cico/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/work/vi-cico/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/sobre/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/sobre/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/sobre/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/sobre/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/sobre/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/lab/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/lab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/lab/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/lab/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/en/lab/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/lab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/lab/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/lab/"/>
+  </url>
+  <url>
+    <loc>https://www.brunodevai.com/privacy.html</loc>
   </url>
 </urlset>

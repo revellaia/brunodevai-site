@@ -131,11 +131,11 @@ a:hover { color: var(--wc-gold-lit); }
   z-index: var(--wc-z-system-layer);
 }
 
-/* ---------- Grain (TOKENS.json grain: feTurbulence ~1 KB, opacity .03, overlay, fixo) ---------- */
+/* ---------- Grain (TOKENS.json grain: feTurbulence ~1 KB, opacity .03, overlay, fixo). Arquivo proprio: CSP img-src sem data:. ---------- */
 .wc-grain::after {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: var(--wc-z-chrome);
   opacity: .03; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("/assets/brand/grain.svg");
 }
 
 /* ---------- Acessibilidade ---------- */

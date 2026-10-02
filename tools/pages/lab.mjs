@@ -25,7 +25,7 @@ export function labDetailBody(c, i) {
   return h`<article class="study" aria-labelledby="study-title">
   <div class="wc-grid-overlay" aria-hidden="true"></div>
   <div class="study-in wc-container">
-    <p class="study-back wc-label"><a href="${c.href('/lab/')}">← ${c.T('lab.title')}</a></p>
+    <p class="study-back wc-label"><a href="${c.url('lab')}">← ${c.T('lab.title')}</a></p>
     <header class="study-head">
       <p class="wc-label">${s.code} · ${c.T('lab.card.type')}</p>
       <h1 class="study-title" id="study-title">${s.title}</h1>
@@ -36,8 +36,8 @@ export function labDetailBody(c, i) {
       </video>
     </figure>
     <nav class="study-nav wc-t-mono" aria-label="${c.T('lab.title')}">
-      <a href="${c.href(`/lab/${prev.slug}/`)}" rel="prev">← ${prev.code} · ${prev.title}</a>
-      <a href="${c.href(`/lab/${next.slug}/`)}" rel="next">${next.code} · ${next.title} →</a>
+      <a href="${c.url('lab-' + prev.slug)}" rel="prev">← ${prev.code} · ${prev.title}</a>
+      <a href="${c.url('lab-' + next.slug)}" rel="next">${next.code} · ${next.title} →</a>
     </nav>
   </div>
   <p class="wc-annot study-annot" aria-hidden="true">LabDetail · 1 film · controls · preload none · poster first · no autoplay</p>

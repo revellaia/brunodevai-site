@@ -844,5 +844,539 @@
     "pt": "Pular para o conteúdo",
     "status": "UI_A11Y (engineering label, Owner review)",
     "notes": "Skip link on pages without the work index."
+  },
+  "case.meta": {
+    "en": "Project",
+    "pt": "Projeto",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.challenge": {
+    "en": "Challenge",
+    "pt": "Desafio",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.idea": {
+    "en": "The idea",
+    "pt": "A ideia",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.world": {
+    "en": "The world",
+    "pt": "O mundo",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.experience": {
+    "en": "Experience",
+    "pt": "Experiência",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.design": {
+    "en": "Design language",
+    "pt": "Linguagem visual",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.system": {
+    "en": "Digital system",
+    "pt": "Sistema digital",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.responsive": {
+    "en": "Responsive",
+    "pt": "Responsivo",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.details": {
+    "en": "Selected details",
+    "pt": "Detalhes",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.live": {
+    "en": "Live project",
+    "pt": "Projeto no ar",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.next": {
+    "en": "Next case",
+    "pt": "Próximo case",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.portal": {
+    "en": "Public portal",
+    "pt": "Portal público",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.registration": {
+    "en": "Registration",
+    "pt": "Inscrições",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.congressist": {
+    "en": "Congressist experience",
+    "pt": "Área do congressista",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.scientific": {
+    "en": "Scientific work",
+    "pt": "Trabalhos científicos",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.certification": {
+    "en": "Certification",
+    "pt": "Certificação",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.operations": {
+    "en": "Operations",
+    "pt": "Operação",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.mobile": {
+    "en": "Mobile",
+    "pt": "Mobile",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.systemview": {
+    "en": "System view",
+    "pt": "Visão de sistema",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "case.engineering": {
+    "en": "Engineering",
+    "pt": "Engenharia",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "ui.meta.url": {
+    "en": "URL",
+    "pt": "URL",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "ui.meta.event": {
+    "en": "Event",
+    "pt": "Evento",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "work.cta.case": {
+    "en": "Explore case",
+    "pt": "Explorar case",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "work.cta.live": {
+    "en": "View live",
+    "pt": "Ver ao vivo",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "work.col.case": {
+    "en": "Case",
+    "pt": "Case",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "about.method": {
+    "en": "Method",
+    "pt": "Método",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "about.competences": {
+    "en": "Competences",
+    "pt": "Competências",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "about.view": {
+    "en": "Point of view",
+    "pt": "Visão",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "privacy.back": {
+    "en": "Back to the site",
+    "pt": "Voltar ao site",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "a11y.breadcrumb": {
+    "en": "Breadcrumb",
+    "pt": "Navegação estrutural",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "ui.source": {
+    "en": "Source",
+    "pt": "Fonte",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "meta.work.title": {
+    "en": "Work · Bruno Goebel",
+    "pt": "Trabalho · Bruno Goebel",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "meta.work.desc": {
+    "en": "Selected work by Bruno Goebel: Vakon Universe, VI CICO, Pires, Paula Guimarães and Memoré.",
+    "pt": "Trabalhos selecionados de Bruno Goebel: Vakon Universe, VI CICO, Pires, Paula Guimarães e Memoré.",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": "Factual list of projects."
+  },
+  "meta.about.title": {
+    "en": "About · Bruno Goebel · Creative Developer / Digital Systems",
+    "pt": "Sobre · Bruno Goebel · Desenvolvedor Criativo / Sistemas Digitais",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "meta.vakon.title": {
+    "en": "Vakon Universe · The Frozen Legacy · Case · Bruno Goebel",
+    "pt": "Vakon Universe · The Frozen Legacy · Case · Bruno Goebel",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "meta.cico.title": {
+    "en": "VI CICO · Scientific congress platform · Case · Bruno Goebel",
+    "pt": "VI CICO · Plataforma de congresso científico · Case · Bruno Goebel",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "meta.privacy.title": {
+    "en": "Privacy Policy · Bruno Goebel",
+    "pt": "Política de Privacidade · Bruno Goebel",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "og.alt.home": {
+    "en": "Bruno Goebel · Creative Developer / Digital Systems",
+    "pt": "Bruno Goebel · Desenvolvedor Criativo / Sistemas Digitais",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
+  },
+  "vakon.case.challenge": {
+    "en": "Create a sci-fi IP that lives in the browser, with no app and no download, and still delivers the feeling of a real world.",
+    "pt": "Criar um IP sci-fi que vivesse no navegador, sem app, sem download, e ainda assim entregasse sensação de mundo real.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6) · EN = TRANSLATION of PUBLISHED_OWNER PT (brunodevai.com v1 case dossier, c7330d6); Owner review",
+    "notes": ""
+  },
+  "vakon.case.solution": {
+    "en": "A transmedia universe with The Frozen Legacy experience, real-time 3D and narrative, built as a continuous system rather than an isolated page.",
+    "pt": "Universo transmídia com a experiência The Frozen Legacy, 3D em tempo real e narrativa, construído como sistema contínuo e não como página isolada.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": "The word \"bilíngue\" was removed: the live site now has 6 language routes (PUBLIC_FACT)."
+  },
+  "vakon.case.desc": {
+    "en": "An international-scale authorial project developed to unite narrative, technology and visual experience in a living digital ecosystem.",
+    "pt": "Projeto autoral de escala internacional desenvolvido para unir narrativa, tecnologia e experiência visual em um ecossistema digital vivo.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: v1 vakon_desc PT/EN)",
+    "notes": ""
+  },
+  "vakon.case.world": {
+    "en": "A world without sun. A city sustained by stolen heat. In 2221 the sun vanished and humanity learned to survive in the dark. The Glacial City endures through Lumiet, and the Rift Riders move along the edge between light and darkness.",
+    "pt": "Um mundo sem sol. Uma cidade sustentada por calor roubado. Quando o sol desapareceu, a humanidade aprendeu a sobreviver no escuro. A Cidade Glacial resiste com Lumiet, e os Rift Riders se movem no limite entre a luz e a escuridão.",
+    "status": "PUBLIC_FACT (observed on www.vakonuniverse.com/en/the-frozen-legacy/ and PT home, 2026-10-01)",
+    "notes": "Story premise as published by the project itself."
+  },
+  "vakon.case.design": {
+    "en": "Its own visual universe, transmedia presence, immersive environments, real-time 3D, continuous narrative, characters, elements, equipment and a cinematic glacial identity.",
+    "pt": "Universo visual próprio, presença transmídia, ambientes imersivos, 3D em tempo real, narrativa contínua, personagens, elementos, equipamentos e identidade glacial cinematográfica.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ p_frozen_desc PT/EN)",
+    "notes": "\"bilingual experience\" removed (now 6 language routes)."
+  },
+  "vakon.case.sys.content": {
+    "en": "Content architecture · home narrative in chapters · The Series · Books · Roadmap",
+    "pt": "Arquitetura de conteúdo · narrativa da home em capítulos · A Série · Livros · Roadmap",
+    "status": "PUBLIC_FACT (observed on www.vakonuniverse.com navigation, 2026-10-01)",
+    "notes": ""
+  },
+  "vakon.case.sys.languages": {
+    "en": "Languages · 6 routes · PT-BR · EN · ES · FR · DE · JA",
+    "pt": "Idiomas · 6 rotas · PT-BR · EN · ES · FR · DE · JA",
+    "status": "PUBLIC_FACT (observed on www.vakonuniverse.com language selector, 2026-10-01)",
+    "notes": ""
+  },
+  "vakon.case.sys.book": {
+    "en": "Book · Volume I published · Amazon and Kindle Unlimited · Volume II in editorial preparation · Volume III in production",
+    "pt": "Livro · Volume I publicado · Amazon e Kindle Unlimited · Volume II em preparação editorial · Volume III em produção",
+    "status": "PUBLIC_FACT (observed on www.vakonuniverse.com books and roadmap pages, 2026-10-01)",
+    "notes": ""
+  },
+  "vakon.case.sys.media": {
+    "en": "Media · real-time 3D in the browser · no app · no download",
+    "pt": "Mídia · 3D em tempo real no navegador · sem app · sem download",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": ""
+  },
+  "vakon.case.responsive": {
+    "en": "The same world on mobile: home, book and the English route.",
+    "pt": "O mesmo mundo no mobile: home, livro e a rota em inglês.",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": "Caption describing the three captures."
+  },
+  "cico.case.challenge": {
+    "en": "Turn a three-day scientific congress into a digital presence able to serve, at the same time, communication, programme, speakers, registration, scientific production and attendee operations, without reducing the event to a landing page.",
+    "pt": "Transformar um congresso científico de três dias em uma presença digital capaz de atender simultaneamente divulgação, programação, palestrantes, inscrições, produção científica e operação dos congressistas, sem reduzir o evento a uma landing page.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6) · EN = TRANSLATION of PUBLISHED_OWNER PT (brunodevai.com v1 case dossier, c7330d6); Owner review",
+    "notes": ""
+  },
+  "cico.case.idea": {
+    "en": "An ecosystem split between a public portal and an individual environment for each congressist.",
+    "pt": "Um ecossistema dividido entre portal público e ambiente individual do congressista.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": ""
+  },
+  "cico.case.desc": {
+    "en": "Official portal of an international Dentistry congress, with a premium public experience, registration, a Congressist Area, scientific production and integrated certification.",
+    "pt": "Portal oficial de um congresso internacional de Odontologia, com experiência pública premium, inscrições, Área do Congressista, produção científica e certificação integradas.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: v1 cico_desc PT/EN)",
+    "notes": ""
+  },
+  "cico.case.portal": {
+    "en": "The public experience organises programme, speakers, workshops, forums, scientific works, proceedings, partners, gallery, location and registration.",
+    "pt": "A experiência pública organiza programação, palestrantes, workshops, fóruns, trabalhos científicos, anais, parceiros, galeria, localização e inscrições.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": ""
+  },
+  "cico.case.registration": {
+    "en": "Registration happens on the portal itself, with an own account and immediate access to the Congressist Area.",
+    "pt": "A inscrição é feita no próprio portal, com conta própria e acesso imediato à Área do Congressista.",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br home, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.congressist": {
+    "en": "The private area brings together profile, credential, agenda, attendance, materials, works and certificates, with authentication and authorisation on the server.",
+    "pt": "A área privada concentra perfil, credencial, agenda, presenças, materiais, trabalhos e certificados, com autenticação e autorização no servidor.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": "Private area is never shown in screenshots."
+  },
+  "cico.case.scientific": {
+    "en": "A work moves through an editorial flow in the system: submission, screening, review, presentation and publication in the proceedings. A work only becomes public in the published state.",
+    "pt": "Um trabalho percorre um fluxo editorial no sistema: submissão, triagem, avaliação, apresentação e publicação nos anais. Um trabalho só se torna público no estado publicado.",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": "Resolves TBC-008 by public evidence (Owner may veto)."
+  },
+  "cico.case.flow.1": {
+    "en": "Submission · draft · submitted",
+    "pt": "Submissão · rascunho · submetido",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.flow.2": {
+    "en": "Screening",
+    "pt": "Triagem",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.flow.3": {
+    "en": "Review · revision requested · resubmitted · accepted · not accepted",
+    "pt": "Avaliação · correção solicitada · reenviado · aceito · não aceito",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.flow.4": {
+    "en": "Presentation · scheduled",
+    "pt": "Apresentação · programado",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.flow.5": {
+    "en": "Proceedings · published",
+    "pt": "Anais · publicado",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.certification": {
+    "en": "Anyone can check a certificate by its code. The check only states whether it is authentic and its status; it does not expose contact data or allow listing participants.",
+    "pt": "Qualquer pessoa valida um certificado pelo código. A consulta informa apenas se ele é autêntico e qual é a sua situação; não expõe dados de contato nem permite listar participantes.",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/certificados/validar, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.operations": {
+    "en": "Operations and data appear only in the system diagram. Administrative screens are never shown.",
+    "pt": "Operação e dados aparecem apenas no diagrama do sistema. Telas administrativas nunca são exibidas.",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": "Security boundary statement."
+  },
+  "cico.case.mobile": {
+    "en": "Portal, registration and certificate check at 390 px.",
+    "pt": "Portal, inscrição e validação de certificado em 390 px.",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": "Caption describing the three captures."
+  },
+  "cico.case.eng.1": {
+    "en": "Authentication and authorisation on the server",
+    "pt": "Autenticação e autorização no servidor",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: brunodevai.com v1 case dossier, c7330d6)",
+    "notes": ""
+  },
+  "cico.case.eng.2": {
+    "en": "Explicit editorial states for scientific works",
+    "pt": "Estados editoriais explícitos para trabalhos científicos",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/trabalhos-cientificos, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.eng.3": {
+    "en": "Public certificate check without exposing participant data",
+    "pt": "Validação pública de certificado sem expor dados de participantes",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/certificados/validar, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.eng.4": {
+    "en": "Responsive public portal",
+    "pt": "Portal público responsivo",
+    "status": "PUBLIC_FACT (observed on captures at 390 px, 2026-10-01)",
+    "notes": ""
+  },
+  "cico.case.event": {
+    "en": "International Dental Scientific Congress · 29–31 Oct 2026 · Araguaína, Tocantins",
+    "pt": "Congresso Internacional Científico Odontológico · 29 a 31 out 2026 · Araguaína, Tocantins",
+    "status": "PUBLIC_FACT (observed on cicosicideto.com.br/inscricoes, 2026-10-01)",
+    "notes": ""
+  },
+  "about.page.lede": {
+    "en": "My work combines engineering reasoning, visual direction, product architecture, artificial intelligence, digital security, motion, narrative and value perception.",
+    "pt": "Minha atuação combina raciocínio de engenharia, direção visual, arquitetura de produto, inteligência artificial, segurança digital, motion, narrativa e percepção de valor.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js hero_positioning)",
+    "notes": ""
+  },
+  "about.page.complement": {
+    "en": "I transform complex ideas into visual, functional, secure systems ready to grow.",
+    "pt": "Transformo ideias complexas em sistemas visuais, funcionais, seguros e preparados para crescer.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js hero_complement)",
+    "notes": ""
+  },
+  "about.page.base": {
+    "en": "Araguaína · Tocantins · Brazil",
+    "pt": "Araguaína · Tocantins · Brasil",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js prof_base_val)",
+    "notes": ""
+  },
+  "about.view.headline": {
+    "en": "Technology should not just work. It must convey trust before it is even explained.",
+    "pt": "Tecnologia não deve apenas funcionar. Ela deve transmitir confiança antes mesmo de ser explicada.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js visao_headline)",
+    "notes": ""
+  },
+  "about.view.text": {
+    "en": "Every digital product is a combination of structure, behavior, image, clarity and responsibility. When these parts work together, the user does not just perceive an interface. They perceive criteria.",
+    "pt": "Cada produto digital é uma combinação de estrutura, comportamento, imagem, clareza e responsabilidade. Quando essas partes trabalham juntas, o usuário não percebe apenas uma interface. Ele percebe critério.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js visao_text)",
+    "notes": ""
+  },
+  "about.method.title": {
+    "en": "From idea to operating experience.",
+    "pt": "Da ideia à experiência em operação.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_title)",
+    "notes": ""
+  },
+  "about.method.1": {
+    "en": "Diagnosis",
+    "pt": "Diagnóstico",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step1_title)",
+    "notes": ""
+  },
+  "about.method.2": {
+    "en": "Architecture",
+    "pt": "Arquitetura",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step2_title)",
+    "notes": ""
+  },
+  "about.method.3": {
+    "en": "Visual direction",
+    "pt": "Direção visual",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step3_title)",
+    "notes": ""
+  },
+  "about.method.4": {
+    "en": "Development",
+    "pt": "Desenvolvimento",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step4_title)",
+    "notes": ""
+  },
+  "about.method.5": {
+    "en": "Security",
+    "pt": "Segurança",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step5_title)",
+    "notes": ""
+  },
+  "about.method.6": {
+    "en": "Auditing",
+    "pt": "Auditoria",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step6_title)",
+    "notes": ""
+  },
+  "about.method.7": {
+    "en": "Evolution",
+    "pt": "Evolução",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step7_title)",
+    "notes": ""
+  },
+  "about.method.1.desc": {
+    "en": "Understanding the business, product, audience, objectives, risks and desired perception.",
+    "pt": "Entendimento do negócio, produto, público, objetivos, riscos e percepção desejada.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step1_desc)",
+    "notes": ""
+  },
+  "about.method.2.desc": {
+    "en": "Definition of structure, data, components, flows, responsibilities, technology and validation criteria.",
+    "pt": "Definição de estrutura, dados, componentes, fluxos, responsabilidades, tecnologia e critérios de validação.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step2_desc)",
+    "notes": ""
+  },
+  "about.method.3.desc": {
+    "en": "Construction of language, identity, atmosphere, hierarchy, motion and narrative.",
+    "pt": "Construção de linguagem, identidade, atmosfera, hierarquia, motion e narrativa.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step3_desc)",
+    "notes": ""
+  },
+  "about.method.4.desc": {
+    "en": "Functional implementation with components, server, integrations, data and responsive behavior.",
+    "pt": "Implementação funcional com componentes, servidor, integrações, dados e comportamento responsivo.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step4_desc)",
+    "notes": ""
+  },
+  "about.method.5.desc": {
+    "en": "Authoritative validations, data protection, permissions, endpoints and state changes.",
+    "pt": "Validações autoritativas, proteção de dados, permissões, endpoints e alterações de estado.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step5_desc)",
+    "notes": ""
+  },
+  "about.method.6.desc": {
+    "en": "Tests, visual review, technical analysis, accessibility, performance and inconsistency correction.",
+    "pt": "Testes, revisão visual, análise técnica, acessibilidade, performance e correção de inconsistências.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step6_desc)",
+    "notes": ""
+  },
+  "about.method.7.desc": {
+    "en": "Monitoring, maintenance, expansion and product adaptation.",
+    "pt": "Monitoramento, manutenção, expansão e adaptação do produto.",
+    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js method_step7_desc)",
+    "notes": ""
+  },
+  "meta.privacy.desc": {
+    "en": "Privacy Policy (LGPD) of Bruno Goebel’s website: data that may be collected, purpose, cookies, storage and rights.",
+    "pt": "Política de Privacidade (LGPD) do site de Bruno Goebel: dados que podem ser coletados, finalidade, cookies, armazenamento e direitos.",
+    "status": "UI_LABEL (section label, Owner review)",
+    "notes": ""
   }
 }

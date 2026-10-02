@@ -6,9 +6,9 @@ import { t, tOptional } from '../lib/copy.mjs';
 import { layerSwitch, ext } from './common.mjs';
 import { proofRows, heroIndex } from './proof-text.mjs';
 
-const live = c => h`<span class="wc-live"><span class="wc-dot" aria-hidden="true"></span>${c.T('status.live')}</span>`;
-const sysDetails = (c, cls, inner, label) => h`<details class="wc-sysblock ${cls}" data-sys><summary class="wc-sys-summary wc-t-ui">${c.T('cta.see_build')}</summary><section class="wc-sys-layer" aria-label="${label || c.T('toggle.system')}">${inner}</section></details>`;
-const grid = () => raw('<div class="wc-grid-overlay" aria-hidden="true"></div>');
+export const live = c => h`<span class="wc-live"><span class="wc-dot" aria-hidden="true"></span>${c.T('status.live')}</span>`;
+export const sysDetails = (c, cls, inner, label) => h`<details class="wc-sysblock ${cls}" data-sys><summary class="wc-sys-summary wc-t-ui">${c.T('cta.see_build')}</summary><section class="wc-sys-layer" aria-label="${label || c.T('toggle.system')}">${inner}</section></details>`;
+export const grid = () => raw('<div class="wc-grid-overlay" aria-hidden="true"></div>');
 
 function hero(c, routes) {
   const s = c.site.media.hero, idx = heroIndex(c.proof, c.lang, routes);
@@ -64,19 +64,20 @@ function work(c) {
   const P = c.site.projects;
   const label = id => c.T(`project.${id}.name`);
   const type = id => c.T(`project.${id}.type`);
-  const rows = P.map((p, i) => h`<li class="work-item"><a class="work-row" href="${p.url}" target="_blank" rel="noopener noreferrer" data-i="${i}">
+  /* Vakon e CICO abrem o case interno; Pires, Paula e Memore seguem externos (nova aba). */
+  const link = p => (p.case ? h`href="${c.url(p.case)}"` : h`href="${p.url}" target="_blank" rel="noopener noreferrer"`);
+  const rows = P.map((p, i) => h`<li class="work-item"><a class="work-row" ${link(p)} data-i="${i}">
       <span class="work-n">${p.n}</span>
       <span class="work-namecell"><img class="work-thumb" src="${p.img['640']}" width="640" height="${Math.round(640 * p.img.h / p.img.w)}" alt="" loading="lazy" decoding="async"><span class="work-name">${label(p.id)}</span></span>
       <span class="work-type">${type(p.id)}</span>
-      <span class="work-meta">${p.year ? h`<span class="k">${c.T('ui.meta.year')}</span><span>${p.year}</span>` : ''}<span class="k">${c.T('ui.meta.status')}</span>${live(c)}</span>${ext(c.T)}
+      <span class="work-meta">${p.year ? h`<span class="k">${c.T('ui.meta.year')}</span><span>${p.year}</span>` : ''}<span class="k">${c.T('ui.meta.status')}</span>${live(c)}</span>${p.case ? '' : ext(c.T)}
     </a></li>`);
   const table = h`<table class="work-table" data-work-table hidden>
       <caption class="wc-sr-only">${c.T('work.label')}</caption>
       <thead><tr><th scope="col" aria-sort="ascending"><button type="button" data-sort="n">#</button></th><th scope="col"><button type="button" data-sort="name">${c.T('nav.work')}</button></th><th scope="col"><button type="button" data-sort="type">${c.T('ui.meta.type')}</button></th><th scope="col"><button type="button" data-sort="year">${c.T('ui.meta.year')}</button></th><th scope="col">${c.T('ui.meta.status')}</th></tr></thead>
-      <tbody>${P.map(p => h`<tr data-n="${p.n}" data-name="${label(p.id)}" data-type="${type(p.id)}" data-year="${p.year || ''}"><td>${p.n}</td><th scope="row"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${label(p.id)}${ext(c.T)}</a></th><td>${type(p.id)}</td><td>${p.year || ''}</td><td>${live(c)}</td></tr>`)}</tbody>
+      <tbody>${P.map(p => h`<tr data-n="${p.n}" data-name="${label(p.id)}" data-type="${type(p.id)}" data-year="${p.year || ''}"><td>${p.n}</td><th scope="row"><a ${link(p)}>${label(p.id)}${p.case ? '' : ext(c.T)}</a></th><td>${type(p.id)}</td><td>${p.year || ''}</td><td>${live(c)}</td></tr>`)}</tbody>
     </table>`;
   return h`<section class="work" id="work" aria-labelledby="work-title">
-  <span class="wc-alias" id="cases"></span>
   <div class="work-preview" aria-hidden="true" data-work-preview>${P.map((p, i) => h`<img data-i="${i}" data-src="${p.img['960']}" width="${p.img.w}" height="${p.img.h}" alt="" decoding="async">`)}</div>
   ${grid()}
   <div class="work-in wc-container">
@@ -86,7 +87,7 @@ function work(c) {
     </div>
     <ol class="work-list" data-work-list>${rows}</ol>
     ${table}
-    <p class="work-hint" aria-hidden="true">${c.T('work.hint')}</p>
+    <div class="work-foot"><p class="work-hint" aria-hidden="true">${c.T('work.hint')}</p><a class="wc-cta-u" href="${c.url('work')}">${c.T('work.all')} →</a></div>
   </div>
   <p class="wc-annot work-annot-1" aria-hidden="true">ProjectIndex · 5 × ProjectRow · Newsreader 300 · skew ≤ 4° from pointer velocity</p>
   <p class="wc-annot work-annot-2" aria-hidden="true">ProjectMediaPreview · 1 image in memory per hover · no video</p>
@@ -112,7 +113,7 @@ function vakon(c) {
     <div class="vakon-row">
       <p class="vakon-lede">${c.T('vakon.lede')}</p>
       <p class="vakon-meta">${c.T('project.vakon.type')}</p>
-      <p class="vakon-ctas"><a class="wc-btn wc-btn--line" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('vakon.cta.live')} ↗${ext(c.T)}</a></p>
+      <p class="vakon-ctas"><a class="wc-btn wc-btn--primary" href="${c.url('vakon')}">${c.T('vakon.cta.case')}</a><a class="wc-btn wc-btn--line" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('vakon.cta.live')} ↗${ext(c.T)}</a></p>
     </div>
   </div>
   ${sysDetails(c, 'vakon-sys', h`<div class="vakon-sys-in wc-container">
@@ -142,7 +143,7 @@ function cico(c) {
         <div><dt>${c.T('ui.meta.year')}</dt><dd>${p.year}</dd></div>
         <div><dt>${c.T('ui.meta.status')}</dt><dd>${live(c)}</dd></div>
       </dl>
-      <p class="cico-ctas"><a class="wc-btn wc-btn--line" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('cico.cta.live')} ↗${ext(c.T)}</a></p>
+      <p class="cico-ctas"><a class="wc-btn wc-btn--primary" href="${c.url('cico')}">${c.T('cico.cta.system')}</a><a class="wc-btn wc-btn--line" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('cico.cta.live')} ↗${ext(c.T)}</a></p>
     </div>
     <div class="cico-stage">
       <div class="cico-bar">${layerSwitch(c, 'wc-switch--local')}<p class="cico-host">${p.host} · ${c.T('cico.public_only')}</p></div>
@@ -180,7 +181,7 @@ function clients(c) {
 
 export function labCard(c, s, order) {
   return h`<li class="lab-card lab-card--${s.ratio === '4/5' ? 'p' : 'l'} lab-card--o${order}${s.letterbox ? ' lab-card--lb' : ''}">
-    <a href="${c.href(`/lab/${s.slug}/`)}" data-film="${s.film}">
+    <a href="${c.url('lab-' + s.slug)}" data-film="${s.film}">
       <span class="lab-media"><img src="${s.poster}" width="${s.pw}" height="${s.ph}" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ ${c.T('lab.card.film')}</span></span>
       <span class="lab-meta"><span>${s.code}</span><span>${c.T('lab.card.type')}</span></span>
       <span class="lab-name">${s.title}</span>
@@ -196,7 +197,6 @@ export function labCards(c) {
 
 function lab(c) {
   return h`<section class="lab" id="lab" aria-labelledby="lab-title">
-  <span class="wc-alias" id="modelos"></span>
   ${grid()}
   <div class="lab-in wc-container">
     <div class="lab-head">
@@ -204,7 +204,7 @@ function lab(c) {
       <div class="lab-intro"><p class="wc-label">05 · ${c.T('lab.label')}</p><p class="lab-lede">${c.T('lab.lede')}</p></div>
     </div>
     ${labCards(c)}
-    <div class="lab-foot"><p><span class="lab-swipe">${c.T('ui.swipe')} · </span>${c.T('lab.count')}</p><a href="${c.href('/lab/')}">${c.T('lab.cta')} →</a></div>
+    <div class="lab-foot"><p><span class="lab-swipe">${c.T('ui.swipe')} · </span>${c.T('lab.count')}</p><a href="${c.url('lab')}">${c.T('lab.cta')} →</a></div>
   </div>
   <p class="wc-annot lab-annot-1" aria-hidden="true">LabIndex · 3 staggered columns (0 / 120 / 48px) · LabCard: poster 4:5 or 16:10, grayscale 60% at rest</p>
   <p class="wc-annot wc-annot--signal lab-annot-2" aria-hidden="true">● G-004: 1 delivery profile per study · film requested on hover/focus only · max 1 playing · masters off-deploy</p>
@@ -215,7 +215,6 @@ function engineering(c) {
   const [l1, l2] = splitTwo(c.T('hero.signature'), c.lang, { en: ' is ', pt: ' é ' });
   const rows = proofRows(c.proof, c.lang);
   return h`<section class="proof" id="engineering" aria-labelledby="proof-title">
-  <span class="wc-alias" id="seguranca"></span>
   <div class="proof-in wc-container">
     <div class="proof-intro">
       <p class="wc-label">06 · ${c.T('proof.label')}</p>
@@ -236,7 +235,7 @@ function about(c) {
     <h2 class="wc-label" id="about-title">07 · ${c.T('about.label')}</h2>
     <div class="about-body">
       <ul class="about-caps">${c.T('about.capabilities').split(' · ').map(x => h`<li>${x}</li>`)}</ul>
-      <a class="wc-cta-u" href="${c.about}">${c.T('about.cta')} →</a>
+      <a class="wc-cta-u" href="${c.url('about')}">${c.T('about.cta')} →</a>
     </div>
   </div>
 </section>`;
@@ -259,7 +258,6 @@ function manifesto(c) {
 function contact(c) {
   const [l1, l2] = splitTwo(c.T('contact.headline'), c.lang, { en: ' worth', pt: ' que' });
   return h`<section class="contact" id="contact" aria-labelledby="contact-title">
-  <span class="wc-alias" id="contato"></span>
   <div class="contact-in wc-container">
     <p class="wc-label">09 · ${c.T('contact.label')}</p>
     <h2 class="contact-title" id="contact-title" data-reveal="mask"><span class="wc-mask"><span>${l1}</span></span> <span class="wc-mask"><span class="wc-italic">${l2}</span></span></h2>
