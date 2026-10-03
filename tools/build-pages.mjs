@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* WORLDCRAFT · gerador estatico (sem framework, sem build no Vercel): data/*.json + src/proof.json -> HTML + sitemap.xml + robots.txt.
+/* BRUNO DEV.AI V3 · gerador estatico (sem framework, sem build no Vercel): data/*.json + src/proof.json -> HTML + sitemap.xml + robots.txt.
    node tools/build-pages.mjs          -> escreve as paginas
    node tools/build-pages.mjs --check  -> exit 1 se algum artefato gerado estiver desatualizado
    PT na raiz, EN em /en/ (12_ENGINEERING/I18N.md). Rotas por id em data/site.json (routes).
@@ -20,16 +20,15 @@ const NOINDEX = 'noindex, follow';
 
 /* Paginas por id de rota. robots != index => fora do sitemap. */
 const PAGES = {
+  /* Home: candidato LCP = h1 (texto) ou slide 1 do frame (Vakon, eager + fetchpriority high). O backdrop e decorativo
+     (lazy, fetchpriority low; nunca em SAVE DATA), entao nao recebe preload. */
   home: c => {
-    const s = c.site.media.hero;
-    const preload = [
-      `<link rel="preload" as="image" type="image/avif" href="${s.poster.mobile.avif}" media="${s.mobileQuery}" fetchpriority="high">`,
-      `<link rel="preload" as="image" type="image/avif" href="${s.poster.desktop.avif}" media="not all and ${s.mobileQuery}" fetchpriority="high">`,
-    ].join('\n');
+    const v = c.site.projects.find(p => p.id === 'vakon').img;
+    const preload = `<link rel="preload" as="image" type="image/webp" href="${v['960']}" imagesrcset="${v['640']} 760w, ${v['960']} 1200w" imagesizes="(min-width: 1024px) 50vw, 100vw" fetchpriority="high">`;
     return {
-      skip: 'work', heroOut: false, extraScripts: ['hero', 'lens', 'work', 'lab'],
-      headOpts: { title: c.T('meta.home.title'), description: `${c.T('hero.primary.01')} ${c.T('hero.primary.02')}`, preload, og: 'home' },
-      body: homeBody(c, ['home', 'work', 'lab', 'about'].map(id => c.url(id))),
+      extraScripts: ['home'],
+      headOpts: { title: c.T('v3.meta.home.title'), description: c.T('v3.hero.sub'), preload, og: 'home' },
+      body: homeBody(c),
     };
   },
   work: c => ({ headOpts: { title: c.T('meta.work.title'), description: c.T('meta.work.desc'), og: 'work' }, body: workBody(c) }),
@@ -42,12 +41,12 @@ const PAGES = {
     body: cicoCase(c),
   }),
   about: c => ({ headOpts: { title: c.T('meta.about.title'), description: c.T('about.page.complement'), og: 'about' }, body: aboutBody(c) }),
-  lab: c => ({ extraScripts: ['lab'], headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
+  lab: c => ({ headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
   privacy: c => ({ headOpts: { title: c.T('meta.privacy.title'), description: c.T('meta.privacy.desc'), og: 'privacy' }, body: privacyBody(c) }),
 };
 for (const [i, s] of site.lab.entries()) {
   PAGES[`lab-${s.slug}`] = c => ({
-    headOpts: { title: `${s.title} · ${s.code} · ${c.T('lab.card.type')} · ${c.T('nav.brand.primary')}`, description: c.T('lab.lede'), robots: NOINDEX, og: 'lab' },
+    headOpts: { title: `${s.title} · ${s.code} · ${c.T('v3.lab.card')} · ${c.T('nav.brand.primary')}`, description: c.T('lab.lede'), robots: NOINDEX, og: 'lab' },
     body: labDetailBody(c, i),
   });
 }

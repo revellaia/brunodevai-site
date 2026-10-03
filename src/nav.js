@@ -1,4 +1,4 @@
-/* WORLDCRAFT · nav.js — fundo da barra apos 80px (sem esconder no scroll) e menu mobile em <dialog>
+/* BRUNO DEV.AI V3 · nav.js — fundo do header apos 80px (sem esconder no scroll) e menu mobile em <dialog>
    (focus trap, Esc e retorno de foco nativos). Sem JS, "Menu" e uma ancora para o rodape. */
 (function () {
   'use strict';
@@ -22,6 +22,14 @@
   opener.addEventListener('click', function (e) { e.preventDefault(); dialog.showModal(); });
   opener.addEventListener('keydown', function (e) { if (e.key === ' ') { e.preventDefault(); dialog.showModal(); } });
   dialog.addEventListener('click', function (e) {
+    /* CTA do menu: fecha o menu e abre o fluxo comercial unico com o foco voltando ao botao do menu (visivel). */
+    var cta = e.target.closest('[data-contact-flow]');
+    if (cta && window.BrunoContactFlow && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
+      dialog.close();
+      window.BrunoContactFlow.open(cta.getAttribute('data-contact-context') || '', opener);
+      return;
+    }
     if (e.target.closest('[data-menu-close]') || e.target.closest('[data-menu-link]')) dialog.close();
   });
   dialog.addEventListener('close', function () { opener.focus({ preventScroll: true }); });

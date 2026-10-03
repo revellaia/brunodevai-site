@@ -1,4 +1,4 @@
-/* WORLDCRAFT · mode.js
+/* BRUNO DEV.AI V3 · mode.js (base tecnica V2 preservada)
    Detecta o modo de motion e espelha em <html data-motion="full|reduced|save"> (06_MOTION).
    SAVE  = navigator.connection.saveData, effectiveType slow-2g/2g ou prefers-reduced-data: reduce.
    REDUCED = prefers-reduced-motion: reduce.  FULL = nenhum dos anteriores.
@@ -8,6 +8,7 @@
   var root = document.documentElement;
   var WC = window.WC = window.WC || {};
   if (WC.mode) return;
+  root.setAttribute('data-js', ''); /* progressive enhancement: sem JS a pagina e completa e estatica */
 
   var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
   var mq = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };

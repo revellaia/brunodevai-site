@@ -1,0 +1,50 @@
+/* GERADO por tools/build-media.mjs a partir de data/media-framing.json (2026-10-02 · MEDIA COMPOSITION > CONTAINER CONVENIENCE).
+   Nao editar a mao. Mudanca de framing = atualizar o manifest + contact sheet (07_MEDIA/MEDIA_FRAMING_GUIDE.md). */
+/* hero.backdrop · 1280x720 (16:9) · DECORATIVE · safe: x 30–75%, y 50–75% (cavalos) */
+[data-adm="hero.backdrop"] .adm-m { object-fit: cover; object-position: 50% 60%; } /* COVER · crop ~23% · src presence-landscape-mobile-portrait */
+/* hero.frame.vakon · 1200x676 (16:9) · CONTENT · safe: x 22–85%, y 4–90% */
+[data-adm="hero.frame.vakon"] { aspect-ratio: 1.6; }
+[data-adm="hero.frame.vakon"] .adm-m { object-fit: cover; object-position: 55% 50%; } /* ART_DIRECTED_CROP · crop ~10% · src glacial-city-1200 */
+/* shot.cico · 960x600 (16:10) · CONTENT · safe: 100% (não cortar) */
+[data-adm="shot.cico"] { aspect-ratio: 1.6; }
+[data-adm="shot.cico"] .adm-m { object-fit: contain; object-position: 50% 0%; } /* NATURAL_RATIO · src case-cico-960 */
+/* shot.pires · 960x600 (16:10) · CONTENT · safe: 100% (não cortar) */
+[data-adm="shot.pires"] { aspect-ratio: 1.6; }
+[data-adm="shot.pires"] .adm-m { object-fit: contain; object-position: 50% 0%; } /* NATURAL_RATIO · src case-pires-960 */
+/* shot.paula · 960x600 (16:10) · CONTENT · safe: 100% (não cortar) */
+[data-adm="shot.paula"] { aspect-ratio: 1.6; }
+[data-adm="shot.paula"] .adm-m { object-fit: contain; object-position: 50% 0%; } /* NATURAL_RATIO · src case-paula-960 */
+/* shot.memore · 960x600 (16:10) · CONTENT · safe: 100% (não cortar) */
+[data-adm="shot.memore"] { aspect-ratio: 1.6; }
+[data-adm="shot.memore"] .adm-m { object-fit: contain; object-position: 50% 0%; } /* NATURAL_RATIO · src case-memore-960 */
+/* work.vakon.feature · 1200x676 (16:9) · CONTENT · safe: x 22–85%, y 4–90% */
+[data-adm="work.vakon.feature"] { aspect-ratio: 1; }
+[data-adm="work.vakon.feature"] .adm-m { object-fit: cover; object-position: 55% 50%; } /* ART_DIRECTED_CROP · crop ~44% · src glacial-city-760 */
+/* lab.terra-axis · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.terra-axis"] { aspect-ratio: 0.8; }
+[data-adm="lab.terra-axis"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* lab.valle-fiori · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.valle-fiori"] { aspect-ratio: 0.8; }
+[data-adm="lab.valle-fiori"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* lab.cavallo-alto · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.cavallo-alto"] { aspect-ratio: 0.8; }
+[data-adm="lab.cavallo-alto"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* lab.nativa-reserve · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.nativa-reserve"] { aspect-ratio: 0.8; }
+[data-adm="lab.nativa-reserve"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* lab.sertao-prime · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.sertao-prime"] { aspect-ratio: 0.8; }
+[data-adm="lab.sertao-prime"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* lab.blue-sanctuary · 768x960 (4:5) · CONTENT · safe: 100% */
+[data-adm="lab.blue-sanctuary"] { aspect-ratio: 0.8; }
+[data-adm="lab.blue-sanctuary"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
+/* logo.lockup · 948x302 (3.14:1) · BRAND · safe: 100% */
+/* logo.emblem · 352x392 (0.9:1) · BRAND · safe: watermark: decorativo */
+@media (min-width: 768px) { /* tablet_768 */
+  [data-adm="work.vakon.feature"] { aspect-ratio: 1.6; }
+  [data-adm="work.vakon.feature"] .adm-m { object-fit: cover; object-position: 52% 40%; } /* ART_DIRECTED_CROP · crop ~10% · src glacial-city-1200 */
+}
+@media (min-width: 1024px) { /* tablet_1024 */
+  [data-adm="work.vakon.feature"] { aspect-ratio: 2.06; }
+  [data-adm="work.vakon.feature"] .adm-m { object-fit: cover; object-position: 50% 30%; } /* ART_DIRECTED_CROP · crop ~14% · src glacial-city-1200 */
+}

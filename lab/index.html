@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" data-hero-out>
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="pt-BR" href="https://www.brunodevai.com/lab/">
 <link rel="alternate" hreflang="en" href="https://www.brunodevai.com/en/lab/">
 <link rel="alternate" hreflang="x-default" href="https://www.brunodevai.com/lab/">
-<meta name="theme-color" content="#070706">
+<meta name="theme-color" content="#0A0A09">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.brunodevai.com/lab/">
 <meta property="og:title" content="Lab · Estudos visuais · Bruno Goebel">
@@ -22,132 +22,88 @@
 <meta property="og:image:alt" content="Bruno Goebel · Desenvolvedor Criativo / Sistemas Digitais">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:site_name" content="Bruno Goebel">
+<meta property="og:site_name" content="Bruno Dev.AI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lab · Estudos visuais · Bruno Goebel">
 <meta name="twitter:description" content="Direções exploradas sem briefing de cliente. Marcas fictícias, ofício real.">
 <meta name="twitter:image" content="https://www.brunodevai.com/assets/og/og-home-pt.jpg">
 <meta name="twitter:image:alt" content="Bruno Goebel · Desenvolvedor Criativo / Sistemas Digitais">
-<link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/brand/favicon-96.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">
-<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/wc-newsreader-roman-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/wc-newsreader-italic-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/bd-newsreader-roman-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/bd-archivo-latin.woff2" crossorigin>
 
 <script src="/src/mode.js"></script>
-<script src="/src/layer.js"></script>
 <link rel="stylesheet" href="/src/tokens.css">
 <link rel="stylesheet" href="/src/base.css">
+<link rel="stylesheet" href="/src/media.css">
 <link rel="stylesheet" href="/src/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.brunodevai.com/#bruno","name":"Bruno Goebel","jobTitle":"Creative Developer / Digital Systems","url":"https://www.brunodevai.com/"},{"@type":"WebSite","@id":"https://www.brunodevai.com/#site","name":"Bruno Goebel","url":"https://www.brunodevai.com/","inLanguage":"pt-BR","publisher":{"@id":"https://www.brunodevai.com/#bruno"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.brunodevai.com/#bruno","name":"Bruno Goebel","jobTitle":"Creative Developer / Digital Systems","url":"https://www.brunodevai.com/"},{"@type":"WebSite","@id":"https://www.brunodevai.com/#site","name":"Bruno Dev.AI","alternateName":"Bruno Goebel","url":"https://www.brunodevai.com/","inLanguage":"pt-BR","publisher":{"@id":"https://www.brunodevai.com/#bruno"}}]}</script>
 </head>
-<body class="wc-grain">
-<a class="wc-skip wc-t-ui" href="#main">Pular para o conteúdo</a>
-<header class="nav" data-nav>
-  <div class="nav-in">
-    <a class="nav-brand" href="/"><span class="nav-name">Bruno Goebel</span> <span class="nav-sig">DEV.AI</span></a>
-    <nav class="nav-links" aria-label="Principal">
-      <a href="/work/">Trabalho</a>
-      <a href="/lab/" aria-current="page">Lab</a>
-      <a href="/sobre/">Sobre</a>
-    </nav>
-    <div class="nav-end">
-      <a class="nav-lang" href="/en/lab/" hreflang="en" lang="en" aria-label="English"><span class="is-cur">PT</span> / <span class="">EN</span></a>
-      <a class="nav-cta wc-cta-u" href="mailto:commercial@brunodevai.com" data-contact-flow>Iniciar projeto</a>
-      <a class="nav-menu" href="#footer" data-menu-open aria-haspopup="dialog">Menu</a>
-    </div>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="hd" data-header>
+  <a class="hd-logo" href="/"><img class="logo" src="/assets/brand/logo-lockup-452.webp" srcset="/assets/brand/logo-lockup-452.webp 452w, /assets/brand/logo-lockup-678.webp 678w, /assets/brand/logo-lockup-948.webp 948w" sizes="(min-width: 1600px) 189px, (min-width: 1024px) 176px, (min-width: 768px) 151px, (min-width: 430px) 132px, 126px" width="948" height="302" alt="Bruno Dev.AI" decoding="async"></a>
+  <nav class="hd-nav" aria-label="Principal"><a href="/work/">Trabalhos</a><a href="/#capabilities">Capacidades</a><a href="/lab/" aria-current="page">Lab</a><a href="/sobre/">Sobre</a><a href="/#contact">Contato</a></nav>
+  <div class="hd-end">
+    <a class="lang hd-lang" href="/en/lab/" hreflang="en" lang="en" aria-label="English"><span class="is-cur">PT</span>&nbsp;/&nbsp;<span class="">EN</span></a>
+    <a class="hd-cta" href="mailto:commercial@brunodevai.com" data-contact-flow>Iniciar projeto <span aria-hidden="true">→</span></a>
+    <a class="hd-menu" href="#footer" data-menu-open aria-haspopup="dialog" aria-label="Menu"><span></span><span></span></a>
   </div>
 </header>
-<dialog class="menu" data-menu aria-label="Menu">
-  <div class="menu-in">
-    <button type="button" class="menu-close" data-menu-close>Fechar</button>
-    <ul class="menu-links">
-      <li><a href="/work/" data-menu-link>Trabalho</a></li>
-      <li><a href="/lab/" data-menu-link>Lab</a></li>
-      <li><a href="/sobre/" data-menu-link>Sobre</a></li>
-      <li><a href="/#contact" data-menu-link>Contato</a></li>
-    </ul>
-    <p class="menu-channels"><a href="mailto:commercial@brunodevai.com" data-cf-mail>commercial@brunodevai.com</a><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" data-cf-wa>WhatsApp ↗<span class="wc-sr-only"> (abre em nova aba)</span></a></p>
-    <a class="menu-lang" href="/en/lab/" hreflang="en" lang="en" aria-label="English"><span class="is-cur">PT</span> / <span class="">EN</span></a>
+<dialog class="mn" data-menu aria-label="Menu">
+  <div class="mn-in">
+    <div class="mn-top"><a class="hd-logo" href="/" data-menu-link><img class="logo" src="/assets/brand/logo-lockup-452.webp" srcset="/assets/brand/logo-lockup-452.webp 452w, /assets/brand/logo-lockup-678.webp 678w, /assets/brand/logo-lockup-948.webp 948w" sizes="(min-width: 1600px) 189px, (min-width: 1024px) 176px, (min-width: 768px) 151px, (min-width: 430px) 132px, 126px" width="948" height="302" alt="Bruno Dev.AI" decoding="async"></a><button type="button" class="mn-close" data-menu-close aria-label="Fechar">✕</button></div>
+    <ul class="mn-links"><li><a href="/work/" data-menu-link>Trabalhos</a></li><li><a href="/#capabilities" data-menu-link>Capacidades</a></li><li><a href="/lab/" data-menu-link>Lab</a></li><li><a href="/sobre/" data-menu-link>Sobre</a></li><li><a href="/#contact" data-menu-link>Contato</a></li></ul>
+    <div class="mn-end">
+      <a class="lang mn-lang" href="/en/lab/" hreflang="en" lang="en" aria-label="English"><span class="is-cur">PT</span>&nbsp;/&nbsp;<span class="">EN</span></a>
+      <a class="btn btn--primary" href="mailto:commercial@brunodevai.com" data-contact-flow data-menu-link>Iniciar projeto <span aria-hidden="true">→</span></a>
+      <p class="mn-ch"><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" data-cf-wa>WhatsApp · +55 63 99260-1105<span class="sr-only"> (abre em nova aba)</span></a><a href="mailto:commercial@brunodevai.com" data-cf-mail>commercial@brunodevai.com</a></p>
+    </div>
   </div>
 </dialog>
 <main id="main">
-<section class="lab lab--page" aria-labelledby="lab-title">
-  <div class="wc-grid-overlay" aria-hidden="true"></div>
-  <div class="lab-in wc-container">
-    <div class="lab-head">
-      <h1 class="lab-title" id="lab-title">Lab</h1>
-      <div class="lab-intro"><p class="wc-label">Estudos visuais · Trabalho autoral</p><p class="lab-lede">Direções exploradas sem briefing de cliente. Marcas fictícias, ofício real.</p></div>
-    </div>
-    <ul class="lab-grid"><li class="lab-card lab-card--p lab-card--o1">
-    <a href="/lab/terra-axis/" data-film="/assets/cinematic/concept-terra-axis-tablet-portrait.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-terra-axis-tablet-portrait.webp" width="768" height="960" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 001</span><span>Estudo visual</span></span>
-      <span class="lab-name">Terra Axis</span>
-    </a>
-  </li><li class="lab-card lab-card--l lab-card--o4">
-    <a href="/lab/nativa-reserve/" data-film="/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-nativa-reserve-landscape-sm.webp" width="960" height="540" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 004</span><span>Estudo visual</span></span>
-      <span class="lab-name">Nativa Reserve</span>
-    </a>
-  </li><li class="lab-card lab-card--l lab-card--o2 lab-card--lb">
-    <a href="/lab/valle-fiori/" data-film="/assets/cinematic/concept-valle-fiori-landscape-sm.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-valle-fiori-landscape-sm.webp" width="960" height="540" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 002</span><span>Estudo visual</span></span>
-      <span class="lab-name">Valle Fiori</span>
-    </a>
-  </li><li class="lab-card lab-card--p lab-card--o5">
-    <a href="/lab/sertao-prime/" data-film="/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-sertao-prime-tablet-portrait.webp" width="768" height="960" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 005</span><span>Estudo visual</span></span>
-      <span class="lab-name">Sertão Prime</span>
-    </a>
-  </li><li class="lab-card lab-card--p lab-card--o3">
-    <a href="/lab/cavallo-alto/" data-film="/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp" width="768" height="960" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 003</span><span>Estudo visual</span></span>
-      <span class="lab-name">Cavallo Alto</span>
-    </a>
-  </li><li class="lab-card lab-card--l lab-card--o6">
-    <a href="/lab/blue-sanctuary/" data-film="/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4">
-      <span class="lab-media"><img src="/assets/cinematic/concept-blue-sanctuary-landscape-sm.webp" width="960" height="540" alt="" loading="lazy" decoding="async"><span class="lab-badge" aria-hidden="true">▶ Filme · na interação</span></span>
-      <span class="lab-meta"><span>LAB / 006</span><span>Estudo visual</span></span>
-      <span class="lab-name">Blue Sanctuary</span>
-    </a>
-  </li></ul>
-    <div class="lab-foot"><p>6 estudos · mais quando se tornarem públicos</p></div>
-  </div>
-  <p class="wc-annot wc-annot--signal lab-annot-2" aria-hidden="true">● G-004: 1 delivery profile per study · film requested on hover/focus only · max 1 playing · masters off-deploy</p>
-</section>
+<header class="page-hero">
+  <nav class="crumb" aria-label="Navegação estrutural"><ol><li><a href="/">Bruno Dev.AI</a></li><li aria-current="page">Lab</li></ol></nav>
+  <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>Estudos visuais · Trabalho autoral</p>
+  <h1 class="h1">Estudos visuais autorais.</h1>
+  <p class="page-lede">Direções exploradas sem briefing de cliente. Marcas fictícias, ofício real.</p>
+</header>
+<ul class="labx-grid"><li><a class="lab-card" href="/lab/terra-axis/">
+      <div class="adm" data-adm="lab.terra-axis" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-terra-axis-tablet-portrait.webp" width="768" height="960" alt="Terra Axis" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Terra Axis</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li><li><a class="lab-card" href="/lab/valle-fiori/">
+      <div class="adm" data-adm="lab.valle-fiori" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-valle-fiori-poster-4x5.webp" width="768" height="960" alt="Valle Fiori" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Valle Fiori</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li><li><a class="lab-card" href="/lab/cavallo-alto/">
+      <div class="adm" data-adm="lab.cavallo-alto" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp" width="768" height="960" alt="Cavallo Alto" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Cavallo Alto</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li><li><a class="lab-card" href="/lab/nativa-reserve/">
+      <div class="adm" data-adm="lab.nativa-reserve" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-nativa-reserve-poster-4x5.webp" width="768" height="960" alt="Nativa Reserve" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Nativa Reserve</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li><li><a class="lab-card" href="/lab/sertao-prime/">
+      <div class="adm" data-adm="lab.sertao-prime" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-sertao-prime-tablet-portrait.webp" width="768" height="960" alt="Sertão Prime" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Sertão Prime</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li><li><a class="lab-card" href="/lab/blue-sanctuary/">
+      <div class="adm" data-adm="lab.blue-sanctuary" data-reveal="media"><img class="adm-m" src="/assets/cinematic/concept-blue-sanctuary-poster-4x5.webp" width="768" height="960" alt="Blue Sanctuary" loading="lazy" decoding="async"></div>
+      <span class="lab-card-t"><span class="lab-card-name">Blue Sanctuary</span><span class="lab-card-type">Estudo visual</span></span>
+    </a></li></ul>
 </main>
-<footer class="footer" id="footer">
-  <div class="wc-container">
-    <div class="footer-info">
-      <p class="footer-id wc-t-mono">Bruno Goebel<br>Brasil → Mundo</p>
-      <p class="footer-ch"><a href="mailto:commercial@brunodevai.com" data-cf-mail>commercial@brunodevai.com</a><br><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" data-cf-wa>WhatsApp<span class="wc-sr-only"> (abre em nova aba)</span></a></p>
-      <nav class="footer-nav" aria-label="Rodapé">
-        <ul>
-          <li><a href="/work/">Trabalho</a></li>
-          <li><a href="/lab/">Lab</a></li>
-          <li><a href="/sobre/">Sobre</a></li>
-          <li><a href="/privacy.html">Privacidade</a></li>
-        </ul>
-      </nav>
-      <p class="footer-meta wc-t-mono"><a href="/en/lab/" hreflang="en" lang="en" aria-label="English">PT / EN</a><br>© 2026</p>
+<footer class="ft" id="footer">
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <a href="/"><img class="logo" src="/assets/brand/logo-lockup-452.webp" srcset="/assets/brand/logo-lockup-452.webp 452w, /assets/brand/logo-lockup-678.webp 678w, /assets/brand/logo-lockup-948.webp 948w" sizes="(min-width: 1024px) 226px, (min-width: 768px) 189px, 170px" width="948" height="302" alt="Bruno Dev.AI" decoding="async"></a>
+      <p class="ft-desc">Creative Developer / Digital Systems. Experiências digitais e os sistemas por trás delas.</p>
     </div>
-    <p class="footer-sig wc-t-mono">BRUNO DEV.AI</p>
-    <p class="footer-mark" aria-hidden="true"><span>Bruno</span> <span class="wc-italic">Goebel</span></p>
+    <nav class="ft-col" aria-label="Rodapé"><p class="label">Navegação</p><a href="/work/">Trabalhos</a><a href="/#capabilities">Capacidades</a><a href="/lab/">Lab</a><a href="/sobre/">Sobre</a></nav>
+    <div class="ft-col"><p class="label">Contato</p><a href="mailto:commercial@brunodevai.com" data-cf-mail>commercial@brunodevai.com</a><a href="https://wa.me/5563992601105" target="_blank" rel="noopener noreferrer" data-cf-wa>+55 63 99260-1105<span class="sr-only"> (abre em nova aba)</span></a><a class="lang ft-lang" href="/en/lab/" hreflang="en" lang="en" aria-label="English"><span class="is-cur">PT</span>&nbsp;/&nbsp;<span class="">EN</span></a></div>
   </div>
+  <div class="ft-legal"><span>© 2026 Bruno Dev.AI · Bruno Goebel</span><span>Brasil → Mundo</span><a href="/privacy.html">Privacidade</a></div>
 </footer>
-<div class="wc-pin" data-pin><button type="button" class="wc-switch wc-switch--pin" role="switch" aria-checked="false" aria-label="Camada de sistema" data-layer-switch hidden><span class="wc-seg" data-seg="experience">EXPERIÊNCIA</span><span class="wc-seg" data-seg="system">SISTEMA</span></button></div>
-<div class="wc-bar" data-bar><button type="button" class="wc-switch wc-switch--bar" role="switch" aria-checked="false" aria-label="Camada de sistema" data-layer-switch hidden><span class="wc-seg" data-seg="experience">EXPERIÊNCIA</span><span class="wc-seg" data-seg="system">SISTEMA</span></button></div>
-<p class="wc-sr-only" aria-live="polite" data-layer-live data-on-system="Camada de sistema ativada" data-on-experience="Camada de experiência ativada"></p>
 <script src="/assets/contact-flow.js" defer></script>
-<script src="/src/engine.js" defer></script>
 <script src="/src/nav.js" defer></script>
 <script src="/src/reveal.js" defer></script>
 <script src="/src/contact.js" defer></script>
-<script src="/src/lab.js" defer></script>
 </body>
 </html>

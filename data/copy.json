@@ -5,12 +5,6 @@
     "status": "APPROVED",
     "notes": "G-008 editorial brand. Visual wordmark PENDING (Gate 2/3)."
   },
-  "nav.brand.signature": {
-    "en": "DEV.AI (Bruno Dev.AI)",
-    "pt": "DEV.AI (Bruno Dev.AI)",
-    "status": "APPROVED",
-    "notes": "G-008 functional/digital signature, set in mono next to the name."
-  },
   "nav.work": {
     "en": "Work",
     "pt": "Trabalho",
@@ -41,119 +35,11 @@
     "status": "APPROVED",
     "notes": "Brief §85 primary CTA"
   },
-  "nav.lang": {
-    "en": "PT / EN",
-    "pt": "PT / EN",
-    "status": "APPROVED",
-    "notes": "Current language at full opacity, the other muted"
-  },
   "nav.menu": {
     "en": "Menu",
     "pt": "Menu",
     "status": "RECOMMENDED",
     "notes": "Mobile"
-  },
-  "hero.name.line1": {
-    "en": "BRUNO",
-    "pt": "BRUNO",
-    "status": "APPROVED",
-    "notes": "Display, uppercase"
-  },
-  "hero.name.line2": {
-    "en": "Goebel",
-    "pt": "Goebel",
-    "status": "APPROVED",
-    "notes": "Display, italic"
-  },
-  "hero.primary.01": {
-    "en": "I build digital experiences.",
-    "pt": "Eu construo experiências digitais.",
-    "status": "APPROVED",
-    "notes": "G-003 preferred direction, being tested in Homepage Master | G-003 FROZEN by Owner at Gate 2 (2026-10-01)."
-  },
-  "hero.primary.02": {
-    "en": "And the systems behind them.",
-    "pt": "E os sistemas por trás delas.",
-    "status": "APPROVED",
-    "notes": "G-003. Italic, secondary color | G-003 FROZEN by Owner at Gate 2 (2026-10-01)."
-  },
-  "hero.primary.alt": {
-    "en": "Design you can see. Engineering you can feel.",
-    "pt": "Design que se vê. Engenharia que se sente.",
-    "status": "ALTERNATIVE",
-    "notes": "G-003 editorial alternative, not frozen. Do not ship unless the Owner selects it."
-  },
-  "hero.role": {
-    "en": "Creative Developer / Digital Systems",
-    "pt": "Creative Developer / Digital Systems",
-    "status": "APPROVED",
-    "notes": "G-002. See TBC-018: whether PT keeps the English title | Positioning FROZEN by Owner at Gate 2 (2026-10-01); PT keeps the English title (TBC-018 safe placeholder)."
-  },
-  "hero.location": {
-    "en": "Brazil → Worldwide",
-    "pt": "Brasil → Mundo",
-    "status": "APPROVED (EN) · RECOMMENDED (PT)",
-    "notes": "Brief §05"
-  },
-  "hero.available": {
-    "en": "Available",
-    "pt": "Disponível",
-    "status": "TBC",
-    "notes": "TBC-019: show only when true. Green dot = signal."
-  },
-  "hero.signature": {
-    "en": "What you see is only half the build.",
-    "pt": "O que você vê é só metade da construção.",
-    "status": "APPROVED",
-    "notes": "G-003 conceptual/interactive signature. Shown next to the toggle and as the Engineering title."
-  },
-  "hero.toggle.hint": {
-    "en": "[S]",
-    "pt": "[S]",
-    "status": "RECOMMENDED",
-    "notes": "Keyboard shortcut hint, desktop only"
-  },
-  "hero.cta.mobile": {
-    "en": "View work",
-    "pt": "Ver trabalho",
-    "status": "APPROVED",
-    "notes": "Brief §85 secondary CTA"
-  },
-  "toggle.experience": {
-    "en": "EXPERIENCE",
-    "pt": "EXPERIÊNCIA",
-    "status": "RECOMMENDED",
-    "notes": "PT label to be validated at Gate 2"
-  },
-  "toggle.system": {
-    "en": "SYSTEM",
-    "pt": "SISTEMA",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "work.label": {
-    "en": "Selected work · 2026",
-    "pt": "Trabalhos selecionados · 2026",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "work.mode.immersive": {
-    "en": "Immersive",
-    "pt": "Imersivo",
-    "status": "RECOMMENDED",
-    "notes": "Brief §43"
-  },
-  "work.mode.index": {
-    "en": "Index",
-    "pt": "Índice",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "work.hint": {
-    "en": "Hover or focus to preview · Enter to open",
-    "pt": "Passe o cursor ou foque para ver · Enter para abrir",
-    "status": "RECOMMENDED",
-    "notes": "Desktop only"
   },
   "work.all": {
     "en": "All work",
@@ -245,12 +131,6 @@
     "status": "RECOMMENDED",
     "notes": "Brief §15"
   },
-  "vakon.cta.case": {
-    "en": "Explore case",
-    "pt": "Explorar case",
-    "status": "RECOMMENDED",
-    "notes": "Brief §15"
-  },
   "vakon.cta.live": {
     "en": "Enter live world",
     "pt": "Entrar no mundo",
@@ -293,35 +173,17 @@
     "status": "RECOMMENDED",
     "notes": "Brief §16"
   },
-  "cico.cta.system": {
-    "en": "Open system",
-    "pt": "Abrir sistema",
-    "status": "RECOMMENDED",
-    "notes": "Brief §62"
-  },
   "cico.cta.live": {
     "en": "View live",
     "pt": "Ver ao vivo",
     "status": "RECOMMENDED",
     "notes": "Brief §62"
   },
-  "cico.meta.client": {
-    "en": "SICIDETO",
-    "pt": "SICIDETO",
-    "status": "TBC",
-    "notes": "TBC-005: display name"
-  },
   "cico.public_only": {
     "en": "public area only",
     "pt": "somente área pública",
     "status": "APPROVED",
     "notes": "Security boundary"
-  },
-  "client.label": {
-    "en": "Client work",
-    "pt": "Trabalhos para clientes",
-    "status": "RECOMMENDED",
-    "notes": ""
   },
   "lab.title": {
     "en": "Lab",
@@ -341,39 +203,9 @@
     "status": "RECOMMENDED",
     "notes": ""
   },
-  "lab.count": {
-    "en": "6 studies · more as they become public",
-    "pt": "6 estudos · mais quando se tornarem públicos",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
   "lab.cta": {
     "en": "Enter the Lab",
     "pt": "Entrar no Lab",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "lab.card.type": {
-    "en": "Visual study",
-    "pt": "Estudo visual",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "proof.label": {
-    "en": "Engineering",
-    "pt": "Engenharia",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "proof.lede": {
-    "en": "The other half is measured. These are the checks this site passes today.",
-    "pt": "A outra metade é medida. Estas são as verificações que este site passa hoje.",
-    "status": "RECOMMENDED",
-    "notes": "Must be literally true at release (TBC-020)"
-  },
-  "proof.footnote": {
-    "en": "Values from current production. Recomputed at every release. Targets are labelled as targets.",
-    "pt": "Valores da produção atual. Recalculados a cada release. Metas aparecem como metas.",
     "status": "RECOMMENDED",
     "notes": ""
   },
@@ -401,54 +233,6 @@
     "status": "RECOMMENDED",
     "notes": ""
   },
-  "manifesto.label": {
-    "en": "Principle",
-    "pt": "Princípio",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "manifesto.main": {
-    "en": "Real presence. Not generated sameness.",
-    "pt": "Sites com presença real. Não aparência de IA.",
-    "status": "APPROVED (PT equity) · RECOMMENDED (EN)",
-    "notes": "The PT line is existing brand equity. The EN line is an editorial rewrite."
-  },
-  "manifesto.line.01": {
-    "en": "Design needs a point of view.",
-    "pt": "Design precisa de ponto de vista.",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "manifesto.line.02": {
-    "en": "AI should amplify craft, not replace it.",
-    "pt": "IA amplifica o ofício. Não o substitui.",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "manifesto.line.03": {
-    "en": "Proof beats promise.",
-    "pt": "Prova vale mais que promessa.",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "contact.label": {
-    "en": "Contact",
-    "pt": "Contato",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "contact.headline": {
-    "en": "Have something worth building?",
-    "pt": "Tem algo que vale construir?",
-    "status": "RECOMMENDED",
-    "notes": "Brief §26"
-  },
-  "contact.cta": {
-    "en": "Start a project",
-    "pt": "Iniciar projeto",
-    "status": "APPROVED",
-    "notes": "Opens the existing commercial modal (logic preserved)"
-  },
   "contact.email": {
     "en": "commercial@brunodevai.com",
     "pt": "commercial@brunodevai.com",
@@ -461,70 +245,10 @@
     "status": "APPROVED",
     "notes": "TBC-022: number/link from current production"
   },
-  "contact.sys.after": {
-    "en": "After · what happens when you write",
-    "pt": "Depois · o que acontece quando você escreve",
-    "status": "RECOMMENDED",
-    "notes": "SYSTEM state"
-  },
-  "contact.sys.01": {
-    "en": "Reply [window TBC]",
-    "pt": "Resposta [prazo TBC]",
-    "status": "TBC",
-    "notes": "TBC-014. Hide the window until confirmed."
-  },
-  "contact.sys.02": {
-    "en": "Short call",
-    "pt": "Conversa rápida",
-    "status": "TBC",
-    "notes": "TBC-015: process steps"
-  },
-  "contact.sys.03": {
-    "en": "Written proposal",
-    "pt": "Proposta escrita",
-    "status": "TBC",
-    "notes": "TBC-015"
-  },
-  "footer.location": {
-    "en": "Brazil → Worldwide",
-    "pt": "Brasil → Mundo",
-    "status": "APPROVED (EN)",
-    "notes": ""
-  },
   "footer.privacy": {
     "en": "Privacy",
     "pt": "Privacidade",
     "status": "APPROVED",
-    "notes": ""
-  },
-  "footer.copyright": {
-    "en": "© 2026",
-    "pt": "© 2026",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "footer.wordmark": {
-    "en": "Bruno Goebel",
-    "pt": "Bruno Goebel",
-    "status": "APPROVED (concept)",
-    "notes": "G-008. Final visual PENDING"
-  },
-  "cta.enter_project": {
-    "en": "Enter project",
-    "pt": "Entrar no projeto",
-    "status": "RECOMMENDED",
-    "notes": "Vocabulary §62"
-  },
-  "cta.see_build": {
-    "en": "See the build",
-    "pt": "Ver a construção",
-    "status": "RECOMMENDED",
-    "notes": ""
-  },
-  "cta.start_something": {
-    "en": "Start something",
-    "pt": "Começar algo",
-    "status": "RECOMMENDED",
     "notes": ""
   },
   "a11y.skip": {
@@ -538,30 +262,6 @@
     "pt": "Principal",
     "status": "UI_A11Y (engineering label, Owner review)",
     "notes": "aria-label of the primary nav."
-  },
-  "a11y.layer.switch": {
-    "en": "System layer",
-    "pt": "Camada de sistema",
-    "status": "UI_A11Y (engineering label, Owner review)",
-    "notes": "EXPERIENCE_SYSTEM_MECHANIC §3 label."
-  },
-  "a11y.layer.on.system": {
-    "en": "System layer on",
-    "pt": "Camada de sistema ativada",
-    "status": "UI_A11Y (engineering label, Owner review)",
-    "notes": "Live region (§3)."
-  },
-  "a11y.layer.on.experience": {
-    "en": "Experience layer on",
-    "pt": "Camada de experiência ativada",
-    "status": "UI_A11Y (engineering label, Owner review)",
-    "notes": "Live region (§3)."
-  },
-  "a11y.menu.close": {
-    "en": "Close",
-    "pt": "Fechar",
-    "status": "UI_A11Y (engineering label, Owner review)",
-    "notes": "Mobile menu close button."
   },
   "a11y.newtab": {
     "en": "opens in a new tab",
@@ -598,96 +298,6 @@
     "pt": "Status",
     "status": "UI_A11Y (engineering label, Owner review)",
     "notes": "Meta label."
-  },
-  "ui.swipe": {
-    "en": "Swipe",
-    "pt": "Deslize",
-    "status": "UI_A11Y (engineering label, Owner review)",
-    "notes": "Lab strip hint on touch (master 390)."
-  },
-  "lab.card.film": {
-    "en": "Film · on interaction",
-    "pt": "Filme · na interação",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": "Master 1440 badge while a Lab film plays."
-  },
-  "sys.this_page": {
-    "en": "this page",
-    "pt": "esta página",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": "Hero System Index header."
-  },
-  "sys.k.media": {
-    "en": "Media",
-    "pt": "Mídia",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.loading": {
-    "en": "Loading",
-    "pt": "Carregamento",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.security": {
-    "en": "Security",
-    "pt": "Segurança",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.responsive": {
-    "en": "Responsive",
-    "pt": "Responsivo",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.a11y": {
-    "en": "A11y",
-    "pt": "A11y",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.routes": {
-    "en": "Routes",
-    "pt": "Rotas",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.video": {
-    "en": "Video",
-    "pt": "Vídeo",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.touch": {
-    "en": "Touch",
-    "pt": "Toque",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.motion": {
-    "en": "Motion",
-    "pt": "Movimento",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.storage": {
-    "en": "Storage",
-    "pt": "Armazenamento",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.k.targets": {
-    "en": "Targets",
-    "pt": "Metas",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": ""
-  },
-  "sys.src": {
-    "en": "src",
-    "pt": "fonte",
-    "status": "SYSTEM_LABEL (technical label from the Homepage Master, Owner review)",
-    "notes": "Source line prefix in SYSTEM."
   },
   "vakon.sys.label": {
     "en": "System · universe map",
@@ -977,24 +587,6 @@
     "status": "UI_LABEL (section label, Owner review)",
     "notes": ""
   },
-  "work.cta.case": {
-    "en": "Explore case",
-    "pt": "Explorar case",
-    "status": "UI_LABEL (section label, Owner review)",
-    "notes": ""
-  },
-  "work.cta.live": {
-    "en": "View live",
-    "pt": "Ver ao vivo",
-    "status": "UI_LABEL (section label, Owner review)",
-    "notes": ""
-  },
-  "work.col.case": {
-    "en": "Case",
-    "pt": "Case",
-    "status": "UI_LABEL (section label, Owner review)",
-    "notes": ""
-  },
   "about.method": {
     "en": "Method",
     "pt": "Método",
@@ -1013,21 +605,9 @@
     "status": "UI_LABEL (section label, Owner review)",
     "notes": ""
   },
-  "privacy.back": {
-    "en": "Back to the site",
-    "pt": "Voltar ao site",
-    "status": "UI_LABEL (section label, Owner review)",
-    "notes": ""
-  },
   "a11y.breadcrumb": {
     "en": "Breadcrumb",
     "pt": "Navegação estrutural",
-    "status": "UI_LABEL (section label, Owner review)",
-    "notes": ""
-  },
-  "ui.source": {
-    "en": "Source",
-    "pt": "Fonte",
     "status": "UI_LABEL (section label, Owner review)",
     "notes": ""
   },
@@ -1265,12 +845,6 @@
     "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js hero_complement)",
     "notes": ""
   },
-  "about.page.base": {
-    "en": "Araguaína · Tocantins · Brazil",
-    "pt": "Araguaína · Tocantins · Brasil",
-    "status": "PUBLISHED_OWNER (text published by the Owner in production v1: /sobre/ about-i18n.js prof_base_val)",
-    "notes": ""
-  },
   "about.view.headline": {
     "en": "Technology should not just work. It must convey trust before it is even explained.",
     "pt": "Tecnologia não deve apenas funcionar. Ela deve transmitir confiança antes mesmo de ser explicada.",
@@ -1378,5 +952,678 @@
     "pt": "Política de Privacidade (LGPD) do site de Bruno Goebel: dados que podem ser coletados, finalidade, cookies, armazenamento e direitos.",
     "status": "UI_LABEL (section label, Owner review)",
     "notes": ""
+  },
+  "v3.nav.work": {
+    "en": "Work",
+    "pt": "Trabalhos",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.capabilities": {
+    "en": "Capabilities",
+    "pt": "Capacidades",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.lab": {
+    "en": "Lab",
+    "pt": "Lab",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.about": {
+    "en": "About",
+    "pt": "Sobre",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.contact": {
+    "en": "Contact",
+    "pt": "Contato",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.cta": {
+    "en": "Start a project",
+    "pt": "Iniciar projeto",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.menu": {
+    "en": "Menu",
+    "pt": "Menu",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.nav.close": {
+    "en": "Close",
+    "pt": "Fechar",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.logo.alt": {
+    "en": "Bruno Dev.AI",
+    "pt": "Bruno Dev.AI",
+    "status": "OWNER_APPROVED (V3 OD-03)",
+    "notes": "LOGO_USAGE: alt do lockup"
+  },
+  "v3.hero.eyebrow.name": {
+    "en": "Bruno Goebel",
+    "pt": "Bruno Goebel",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.eyebrow.role": {
+    "en": "Creative Developer",
+    "pt": "Creative Developer",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.h1.a": {
+    "en": "I build digital experiences.",
+    "pt": "Eu construo experiências digitais.",
+    "status": "OWNER_APPROVED (V3 OD-02 frozen)"
+  },
+  "v3.hero.h1.b": {
+    "en": "And the systems behind them.",
+    "pt": "E os sistemas por trás delas.",
+    "status": "OWNER_APPROVED (V3 OD-02 frozen)"
+  },
+  "v3.hero.sub": {
+    "en": "Websites, platforms and digital products for brands that need a world-class presence and precise execution.",
+    "pt": "Sites, plataformas e produtos digitais para marcas que precisam de presença internacional e execução precisa.",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.hero.cta.primary": {
+    "en": "Start a project",
+    "pt": "Iniciar projeto",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.cta.secondary": {
+    "en": "View work",
+    "pt": "Ver trabalhos",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.label": {
+    "en": "Featured",
+    "pt": "Em destaque",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.region": {
+    "en": "Featured projects",
+    "pt": "Projetos em destaque",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.roledesc": {
+    "en": "carousel",
+    "pt": "carrossel",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.pause": {
+    "en": "Pause rotation",
+    "pt": "Pausar rotação",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.play": {
+    "en": "Resume rotation",
+    "pt": "Retomar rotação",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.show": {
+    "en": "Show",
+    "pt": "Mostrar",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.hero.frame.list": {
+    "en": "Projects",
+    "pt": "Projetos",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.vakon.name": {
+    "en": "The Frozen Legacy",
+    "pt": "The Frozen Legacy",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.vakon.type": {
+    "en": "Vakon Universe · Worldbuilding",
+    "pt": "Vakon Universe · Worldbuilding",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.vakon.alt": {
+    "en": "The Frozen Legacy, the Glacial City of the Vakon universe",
+    "pt": "The Frozen Legacy, Cidade Glacial do universo Vakon",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.cico.name": {
+    "en": "VI CICO Tocantins",
+    "pt": "VI CICO Tocantins",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.cico.alt": {
+    "en": "VI CICO Tocantins website",
+    "pt": "Site do VI CICO Tocantins",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.pires.name": {
+    "en": "Pires Contabilidade",
+    "pt": "Pires Contabilidade",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.pires.alt": {
+    "en": "Pires Contabilidade website",
+    "pt": "Site da Pires Contabilidade",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.paula.name": {
+    "en": "Paula Guimarães",
+    "pt": "Paula Guimarães",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.paula.alt": {
+    "en": "Paula Guimarães Photography website",
+    "pt": "Site de Paula Guimarães Fotografia",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.memore.name": {
+    "en": "Ateliê Memoré",
+    "pt": "Ateliê Memoré",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.slide.memore.alt": {
+    "en": "Ateliê Memoré online store",
+    "pt": "Loja do Ateliê Memoré",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.type.cico": {
+    "en": "Scientific congress platform",
+    "pt": "Plataforma de congresso científico",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.type.pires": {
+    "en": "Brand and website · Professional services",
+    "pt": "Marca e site · Serviços profissionais",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.type.paula": {
+    "en": "Editorial · Photography",
+    "pt": "Editorial · Fotografia",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.type.memore": {
+    "en": "E-commerce · Brand",
+    "pt": "E-commerce · Marca",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.status.live": {
+    "en": "Live",
+    "pt": "No ar",
+    "status": "OWNER_APPROVED (V3 OD-07: verified 2026-10-02, re-check before release)"
+  },
+  "v3.strip.label": {
+    "en": "Projects and clients",
+    "pt": "Projetos e clientes",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.strip.vakon": {
+    "en": "Vakon Universe",
+    "pt": "Vakon Universe",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.strip.cico": {
+    "en": "VI CICO Tocantins",
+    "pt": "VI CICO Tocantins",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.strip.pires": {
+    "en": "Pires Contabilidade",
+    "pt": "Pires Contabilidade",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.strip.paula": {
+    "en": "Paula Guimarães",
+    "pt": "Paula Guimarães",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.strip.memore": {
+    "en": "Ateliê Memoré",
+    "pt": "Ateliê Memoré",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.eyebrow": {
+    "en": "Selected work",
+    "pt": "Trabalhos selecionados",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.h2": {
+    "en": "Projects where brand presence and engineering carry equal weight.",
+    "pt": "Projetos em que presença de marca e engenharia têm o mesmo peso.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.all": {
+    "en": "All work →",
+    "pt": "Todos os trabalhos →",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.vakon.eyebrow": {
+    "en": "Authorial project · Worldbuilding",
+    "pt": "Projeto autoral · Worldbuilding",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.vakon.lede": {
+    "en": "Vakon Universe. A digital universe built across narrative, 3D and technology.",
+    "pt": "Vakon Universe. Um universo digital construído entre narrativa, 3D e tecnologia.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.cta": {
+    "en": "Explore case →",
+    "pt": "Explorar case →",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.work.live": {
+    "en": "View live ↗",
+    "pt": "Ver ao vivo ↗",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.eyebrow": {
+    "en": "Featured case",
+    "pt": "Case em destaque",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.h2.a": {
+    "en": "From congress portal to",
+    "pt": "De portal de congresso a",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.cico.h2.b": {
+    "en": "event operating system.",
+    "pt": "sistema operacional do evento.",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.cico.lede": {
+    "en": "Public portal, registration, attendee area, scientific papers and certification in a single ecosystem.",
+    "pt": "Portal público, inscrição, área do congressista, trabalhos científicos e certificação, num único ecossistema.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.meta.type": {
+    "en": "Type",
+    "pt": "Tipo",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.meta.year": {
+    "en": "Year",
+    "pt": "Ano",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.meta.status": {
+    "en": "Status",
+    "pt": "Status",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.cta.case": {
+    "en": "View the case →",
+    "pt": "Ver o case →",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.cta.live": {
+    "en": "View live ↗",
+    "pt": "Ver ao vivo ↗",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.tabs": {
+    "en": "Case view",
+    "pt": "Visualização do case",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.tab.ui": {
+    "en": "Interface",
+    "pt": "Interface",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.tab.sys": {
+    "en": "System",
+    "pt": "Sistema",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.signature": {
+    "en": "What you see is only half the build.",
+    "pt": "O que você vê é só metade da construção.",
+    "status": "OWNER_APPROVED (G-003)"
+  },
+  "v3.cico.sys.label": {
+    "en": "Architecture · public view",
+    "pt": "Arquitetura · visão pública",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.note": {
+    "en": "Editorial view. No personal data, figures or admin screens are shown.",
+    "pt": "Visualização editorial. Nenhum dado pessoal, valor ou tela administrativa é exibido.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.shot.alt": {
+    "en": "VI CICO Tocantins public portal",
+    "pt": "Portal público do VI CICO Tocantins",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.1.t": {
+    "en": "Public portal",
+    "pt": "Portal público",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.1.d": {
+    "en": "Programme, speakers, papers, proceedings",
+    "pt": "Programação, palestrantes, trabalhos, anais",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.2.t": {
+    "en": "Registration",
+    "pt": "Inscrição",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.2.d": {
+    "en": "Attendee sign-up flow",
+    "pt": "Fluxo de cadastro do congressista",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.3.t": {
+    "en": "Attendee area",
+    "pt": "Área do congressista",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.3.d": {
+    "en": "Profile, badge, agenda, materials",
+    "pt": "Perfil, credencial, agenda, materiais",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.4.t": {
+    "en": "Scientific papers",
+    "pt": "Trabalhos científicos",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.4.d": {
+    "en": "Submissions and proceedings",
+    "pt": "Submissões e anais",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.5.t": {
+    "en": "Attendance and certification",
+    "pt": "Presença e certificação",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.5.d": {
+    "en": "Attendance and certificates",
+    "pt": "Presenças e certificados",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.6.t": {
+    "en": "Server-side authentication",
+    "pt": "Autenticação no servidor",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.cico.node.6.d": {
+    "en": "Access and permissions validated on the server",
+    "pt": "Acesso e permissões validados no servidor",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.eyebrow": {
+    "en": "Capabilities",
+    "pt": "Capacidades",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.h2": {
+    "en": "From brand to system, to the same standard.",
+    "pt": "Da marca ao sistema, com o mesmo padrão.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.lede": {
+    "en": "One person accountable for visual direction, development and engineering, from first sketch to deploy.",
+    "pt": "Um único responsável pela direção visual, pelo desenvolvimento e pela engenharia, do primeiro esboço ao deploy.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.1.t": {
+    "en": "High-end websites",
+    "pt": "Sites de alto padrão",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.1.d": {
+    "en": "Digital presence for premium brands: art direction, motion and performance.",
+    "pt": "Presença digital para marcas premium: direção visual, motion e performance.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.2.t": {
+    "en": "Platforms and systems",
+    "pt": "Plataformas e sistemas",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.2.d": {
+    "en": "Member areas, registration, certification and operations, with server-side logic.",
+    "pt": "Áreas logadas, inscrições, certificação e operação, com lógica no servidor.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.3.t": {
+    "en": "AI-driven digital products",
+    "pt": "Produtos digitais com IA",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.3.d": {
+    "en": "Interfaces and flows where AI extends the product without replacing the craft.",
+    "pt": "Interfaces e fluxos em que a IA amplia o produto sem substituir o ofício.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.4.t": {
+    "en": "Immersive experiences",
+    "pt": "Experiências imersivas",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.caps.4.d": {
+    "en": "Digital worlds, 3D and interactive narrative, as in the Vakon universe.",
+    "pt": "Mundos digitais, 3D e narrativa interativa, como no universo Vakon.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.eyebrow": {
+    "en": "Engineering",
+    "pt": "Engenharia",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.h.a": {
+    "en": "Design you can see.",
+    "pt": "Design que se vê.",
+    "status": "OWNER_APPROVED (G-003 editorial)"
+  },
+  "v3.eng.h.b": {
+    "en": "Engineering you can feel.",
+    "pt": "Engenharia que se sente.",
+    "status": "OWNER_APPROVED (G-003 editorial)"
+  },
+  "v3.eng.note": {
+    "en": "Real checks applied to this site and to delivered projects. No invented metrics.",
+    "pt": "Verificações reais aplicadas a este site e aos projetos entregues. Sem métricas inventadas.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.security": {
+    "en": "Security",
+    "pt": "Segurança",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.responsive": {
+    "en": "Responsive",
+    "pt": "Responsivo",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.performance": {
+    "en": "Performance",
+    "pt": "Performance",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.a11y": {
+    "en": "Accessibility",
+    "pt": "Acessibilidade",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.media": {
+    "en": "Media",
+    "pt": "Mídia",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.k.delivery": {
+    "en": "Delivery",
+    "pt": "Entrega",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.security": {
+    "en": "Strict CSP, X-Frame-Options DENY, secret scanning",
+    "pt": "CSP restrita, X-Frame-Options DENY, varredura de segredos",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.responsive": {
+    "en": "Tested at {n} viewports, no horizontal overflow",
+    "pt": "Testado em {n} viewports, sem overflow horizontal",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.performance": {
+    "en": "One critical video; everything else on demand",
+    "pt": "Um vídeo crítico; todo o resto sob demanda",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.a11y": {
+    "en": "WCAG 2.2 AA target and reduced motion",
+    "pt": "Meta WCAG 2.2 AA e movimento reduzido",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.media": {
+    "en": "Media budget validated at build time",
+    "pt": "Orçamento de mídia validado no build",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.eng.v.delivery": {
+    "en": "Versioned backups and approved releases",
+    "pt": "Backups versionados e releases aprovadas",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.lab.eyebrow": {
+    "en": "Lab",
+    "pt": "Lab",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.lab.h": {
+    "en": "Self-initiated visual studies.",
+    "pt": "Estudos visuais autorais.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.lab.cta": {
+    "en": "Enter the Lab →",
+    "pt": "Entrar no Lab →",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.lab.card": {
+    "en": "Visual study",
+    "pt": "Estudo visual",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.about.eyebrow": {
+    "en": "About",
+    "pt": "Sobre",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.about.first": {
+    "en": "Bruno",
+    "pt": "Bruno",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.about.last": {
+    "en": "Goebel",
+    "pt": "Goebel",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.about.role": {
+    "en": "Creative Developer / Digital Systems",
+    "pt": "Creative Developer / Digital Systems",
+    "status": "OWNER_APPROVED (G-002)"
+  },
+  "v3.about.statement": {
+    "en": "Creative developer working where design, software, AI and digital products meet, for brands in Brazil and abroad.",
+    "pt": "Creative developer. Trabalho onde design, software, IA e produtos digitais se encontram, para marcas no Brasil e no exterior.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.about.k.base": {
+    "en": "Based in",
+    "pt": "Base",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.about.v.base": {
+    "en": "Brazil → Worldwide",
+    "pt": "Brasil → Mundo",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.about.k.focus": {
+    "en": "Focus",
+    "pt": "Foco",
+    "status": "OWNER_APPROVED (V3 override, mission §4)"
+  },
+  "v3.about.v.focus": {
+    "en": "Websites, platforms and digital products",
+    "pt": "Sites, plataformas e produtos digitais",
+    "status": "OWNER_APPROVED (V3 override, mission §4)",
+    "notes": "Sem idiomas: proficiencia nao confirmada (mission §4/§40)"
+  },
+  "v3.about.cta": {
+    "en": "Meet Bruno →",
+    "pt": "Conheça o Bruno →",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.contact.eyebrow": {
+    "en": "Contact",
+    "pt": "Contato",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.contact.h2": {
+    "en": "Have something worth building?",
+    "pt": "Tem algo que vale construir?",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.contact.text": {
+    "en": "Tell me about the project. The first conversation sets scope, timing and the shortest path to the result.",
+    "pt": "Conte sobre o projeto. A primeira conversa define escopo, prazo e o caminho mais curto até o resultado.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.contact.whatsapp": {
+    "en": "WhatsApp",
+    "pt": "WhatsApp",
+    "status": "OWNER_APPROVED"
+  },
+  "v3.contact.phone": {
+    "en": "+55 63 99260-1105",
+    "pt": "+55 63 99260-1105",
+    "status": "OWNER_APPROVED"
+  },
+  "v3.contact.email.lead": {
+    "en": "or write to",
+    "pt": "ou escreva para",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.desc": {
+    "en": "Creative Developer / Digital Systems. Digital experiences and the systems behind them.",
+    "pt": "Creative Developer / Digital Systems. Experiências digitais e os sistemas por trás delas.",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.nav": {
+    "en": "Navigation",
+    "pt": "Navegação",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.contact": {
+    "en": "Contact",
+    "pt": "Contato",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.copy": {
+    "en": "© 2026 Bruno Dev.AI · Bruno Goebel",
+    "pt": "© 2026 Bruno Dev.AI · Bruno Goebel",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.place": {
+    "en": "Brazil → Worldwide",
+    "pt": "Brasil → Mundo",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.footer.privacy": {
+    "en": "Privacy",
+    "pt": "Privacidade",
+    "status": "OWNER_APPROVED (V3 OD-03)"
+  },
+  "v3.meta.home.title": {
+    "en": "Bruno Dev.AI · Bruno Goebel · Creative Developer / Digital Systems",
+    "pt": "Bruno Dev.AI · Bruno Goebel · Creative Developer / Digital Systems",
+    "status": "OWNER_APPROVED (V3 OD-03)",
+    "notes": "11_ENGINEERING/SEO.md"
   }
 }

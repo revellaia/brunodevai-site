@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-/* WORLDCRAFT tokens: data/tokens.json -> src/tokens.css (gerado; nao editar o CSS a mao).
+/* BRUNO DEV.AI V3 · tokens: data/tokens.json -> src/tokens.css (gerado; nao editar o CSS a mao).
    node tools/build-tokens.mjs           -> escreve src/tokens.css
    node tools/build-tokens.mjs --check   -> exit 1 se src/tokens.css estiver desatualizado
 
-   Fonte: 04_DESIGN_SYSTEM/TOKENS.json do handoff (copiado byte a byte para data/tokens.json).
-   Line-height/tracking por papel vem de 04_DESIGN_SYSTEM/TYPOGRAPHY.md (tabela "Scale"), que TOKENS.json
-   so traz por categoria. Valores RECOMMENDED podem mudar no Gate 2: troque data/tokens.json e regenere. */
+   Fonte: 04_DESIGN_SYSTEM/TOKENS_V3.json do handoff V3 (copiado byte a byte para data/tokens.json).
+   Escala tipografica: colunas [>=1600, 1440, 1366, 1024, 768, 430, 390] do TOKENS_V3.
+   Valores de layout (header, logo, margem, gutter, paddings) vem da funcao layout(w) do master
+   01_MASTER/V3Page.dc.html, a especificacao numerica executavel. Mobile-first: base = 390, e cada
+   faixa sobrescreve so o que muda (>=430, >=768, >=1024, >=1200, >=1440, >=1600). */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,105 +16,91 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const tokens = JSON.parse(fs.readFileSync(path.join(root, 'data/tokens.json'), 'utf8'));
 const OUT = path.join(root, 'src/tokens.css');
 
-/* TYPOGRAPHY.md · Scale: [line-height, tracking]. Tamanhos vem de TOKENS.json (1440 / 390). */
-const ROLES = {
-  'display-hero': [1, '-0.045em'],
-  'display-wordmark': [0.78, '-0.05em'],
-  'display-flagship': [0.82, '-0.045em'],
-  'display-section': [0.8, '-0.045em'],
-  'display-contact': [0.84, '-0.045em'],
-  'display-manifesto': [0.9, '-0.04em'],
-  'display-l': [0.92, '-0.035em'],
-  'display-m': [0.95, '-0.03em'],
-  'display-s': [1, '-0.03em'],
-  'display-xs': [1.04, '-0.025em'],
-  'display-xxs': [1.04, '-0.025em'],
-  statement: [1.14, '0'],
-  lede: [1.25, '0'],
-  body: [1.5, '0'],
-  ui: [1.2, '0.12em'],
-  mono: [1.7, '0.08em'],
-  'mono-s': [1.6, '0.06em'],
+/* Faixas: [min-width, indice da coluna do TOKENS_V3 font.scale]. A coluna "1366" vale para 1200-1439. */
+const BANDS = [[0, 6], [430, 5], [768, 4], [1024, 3], [1200, 2], [1440, 1], [1600, 0]];
+
+/* layout(w) do master, por faixa (mesma ordem de BANDS). null = herda a faixa anterior. */
+const LAYOUT = {
+  'header-h': [76, null, 88, 104, null, null, 112],
+  'logo-h': [40, 42, 48, 56, null, null, 60],
+  'foot-logo-h': [54, null, 60, 72, null, null, null],
+  'm': [20, null, 40, 48, 80, null, 'max(120px, calc((100% - 1520px) / 2))'],
+  'g': [12, null, 20, 24, null, null, null],
+  'sec-pad': [76, null, 100, 136, null, null, 150],
+  'sec-gap': [40, null, null, 60, null, null, null],
+  'hero-pad-top': [52, null, 72, 112, null, null, 128],
+  'hero-pad-bottom': [56, null, 80, 120, null, null, 136],
+  'hero-row-gap': [44, null, 56, null, null, null, null],
+  'hero-gap': [24, null, 32, null, null, null, null],
+  'cta-gap': [12, null, 30, null, null, null, null],
+  'bar-w': [18, null, 36, null, null, null, null],
+  'strip-pad': [26, null, 34, null, null, null, null],
+  'strip-size': [18, null, 20, 19, 22, null, null],
+  'feat-inset': [20, null, 32, 44, null, null, null],
+  'work-row-gap': [48, null, 56, 72, null, null, null],
+  'work-offset': [0, null, 48, 64, 96, null, null],
+  'sys-pad': [20, null, 32, null, null, null, null],
+  'panel-pad': [26, null, 48, 72, null, null, null],
+  'about-lead': [19, null, 22, 24, null, null, null],
+  'contact-bottom': [64, null, 88, 120, null, null, null],
+  'wm-right': [-80, null, null, -60, null, null, null],
+  'wm-h': [360, null, null, 520, null, null, null],
+  'foot-pad': [52, null, null, 72, null, null, null],
+  'foot-gap': [36, null, null, 56, null, null, null],
+  'nav-gap': [40, null, null, 26, 40, null, null],
 };
-const MIN_VW = 390, MAX_VW = 1440;
-const r = n => +n.toFixed(4);
+const SCALE_ROLES = ['h1', 'h2', 'h3', 'featureTitle', 'contactTitle', 'aboutName', 'cardTitle', 'capTitle', 'slideName', 'lead', 'body'];
+const kebab = s => s.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+const px = v => (typeof v === 'number' ? `${v}px` : v);
 
-/* Interpolacao linear 390 -> 1440 (TOKENS.json fluid_rule) e teto no valor de 1440.
-   Excecao explicita do fluid_rule: hero = clamp(112px, 20.1vw, 300px). */
-function fluid(name, mobile, desktop) {
-  if (name === 'display-hero') return 'clamp(112px, 20.1vw, 300px)';
-  if (mobile === desktop) return `${desktop}px`;
-  const slope = (desktop - mobile) / (MAX_VW - MIN_VW);
-  const base = mobile - slope * MIN_VW;
-  const [lo, hi] = [Math.min(mobile, desktop), Math.max(mobile, desktop)];
-  return `clamp(${lo}px, ${r(base)}px + ${r(slope * 100)}vw, ${hi}px)`;
+const c = tokens.color, f = tokens.font, mo = tokens.motion;
+const base = [];
+const push = (k, v) => base.push(`  --v-${k}: ${v};`);
+
+for (const [k, v] of Object.entries(c)) if (k !== 'removed') push(k, v.value);
+base.push('');
+push('font-display', f.family.display.value);
+push('font-text', f.family.text.value);
+push('font-system', f.family.system.value);
+for (const [k, v] of Object.entries(f.weight)) push(`fw-${kebab(k)}`, v);
+for (const [k, v] of Object.entries(f.lineHeight)) push(`lh-${kebab(k)}`, v);
+for (const k of ['small', 'ui', 'eyebrow', 'micro']) push(`fs-${k}`, px(f.scale[k]));
+base.push('');
+push('shadow-media', tokens.shadow.media);
+push('border-panel', tokens.border.panel);
+push('border-contact', tokens.border.contactPanel);
+for (const [k, v] of Object.entries(mo.easing)) push(`ease-${k}`, v);
+for (const [k, v] of Object.entries(mo.duration)) push(`dur-${kebab(k)}`, `${v}ms`);
+for (const [k, v] of Object.entries(tokens.z)) if (!k.startsWith('_')) push(`z-${k}`, v);
+push('touch-min', px(tokens.target.touchMin));
+push('btn-h', px(tokens.target.buttonHeight));
+push('header-cta-h', px(tokens.target.headerCta));
+
+/* valores por faixa */
+const perBand = BANDS.map(() => []);
+for (const role of SCALE_ROLES) {
+  const col = f.scale[role];
+  let prev;
+  BANDS.forEach(([, ci], bi) => { const v = col[ci]; if (v !== prev) perBand[bi].push(`  --v-fs-${kebab(role)}: ${v}px;`); prev = v; });
 }
-
-const c = tokens.color, f = tokens.font, m = tokens.motion;
-const lines = [];
-const push = (k, v) => lines.push(`  --wc-${k}: ${v};`);
-
-for (const [k, v] of Object.entries(c)) {
-  if (k === 'ratio') continue;
-  if (k === 'media-dim') { push('media-dim', String(v.value).replace(/^filter:\s*/, '')); continue; }
-  push(k, v.value);
+for (const [k, vals] of Object.entries(LAYOUT)) {
+  if (vals.length !== BANDS.length) throw new Error(`LAYOUT.${k}: ${vals.length} faixas`);
+  vals.forEach((v, bi) => { if (v !== null) perBand[bi].push(`  --v-${k}: ${px(v)};`); });
 }
-lines.push('');
-push('font-display', f.family.display.value.replace("'Newsreader',", "'Newsreader', 'Newsreader Fallback',"));
-push('font-text', f.family.text.value.replace("'Archivo',", "'Archivo', 'Archivo Fallback',"));
-push('font-system', f.family.system.value.replace("'JetBrains Mono',", "'JetBrains Mono', 'JetBrains Mono Fallback',"));
-push('fw-display', f.weight.display.value);
-push('fw-text', f.weight.text.value);
-push('fw-text-strong', f.weight.textStrong.value);
-push('fw-ui', f.weight.ui.value);
-push('fw-system', 400);
-push('fw-system-strong', 500);
-lines.push('');
-for (const [name, [lh, ls]] of Object.entries(ROLES)) {
-  const d = f.size_desktop_1440[name], mo = f.size_mobile_390[name];
-  if (d === undefined || mo === undefined) throw new Error(`token de tamanho ausente: ${name}`);
-  push(`fs-${name}`, fluid(name, mo, d));
-  push(`lh-${name}`, lh);
-  push(`ls-${name}`, ls);
-}
-lines.push('');
-tokens.space.scale.forEach((v, i) => push(`space-${i + 1}`, `${v}px`));
-push('section', `${tokens.space.section_mobile.default}px`);
-push('section-l', `${tokens.space.section_mobile.large}px`);
-push('section-xl', `${tokens.space.section_mobile.large}px`);
-lines.push('');
-push('content-max', `${tokens.grid.maxWidth.content}px`);
-push('text-max', `${tokens.grid.maxWidth.text}px`);
-const g390 = tokens.grid['390'];
-push('cols', g390.cols);
-push('margin', `${g390.margin}px`);
-push('gutter', `${g390.gutter}px`);
-lines.push('');
-push('radius', `${tokens.radius.value}px`);
-push('hairline', `1px solid var(--wc-line)`);
-push('control-border', `1px solid var(--wc-line-strong)`);
-push('target-min', '44px');
-lines.push('');
-for (const [k, v] of Object.entries(m.easing)) push(`ease-${k}`, v.value);
-for (const [k, v] of Object.entries(m.duration)) if (!k.startsWith('_')) push(`dur-${k}`, `${v}ms`);
-lines.push('');
-for (const [k, v] of Object.entries(tokens.z)) if (!k.startsWith('_')) push(`z-${k.replace(/[A-Z]/g, x => '-' + x.toLowerCase())}`, v);
+const cols = [4, null, 8, 12, null, null, null];
+cols.forEach((v, bi) => { if (v) perBand[bi].push(`  --v-cols: ${v};`); });
 
-/* Grid e ritmo por breakpoint (min-width). 430 repete 390 por definicao do GRID.md. */
-const bp = [];
-for (const w of ['768', '1024', '1440', '1920']) {
-  const gg = tokens.grid[w];
-  const extra = w === '1024' ? `\n    --wc-section: ${tokens.space.section_desktop.default}px;\n    --wc-section-l: ${tokens.space.section_desktop.large}px;\n    --wc-section-xl: ${tokens.space.section_desktop.manifesto}px;` : '';
-  bp.push(`  @media (min-width: ${w}px) {\n  :root {\n    --wc-cols: ${gg.cols};\n    --wc-margin: ${gg.margin}px;\n    --wc-gutter: ${gg.gutter}px;${extra}\n  }\n  }`);
-}
-
-const css = `/* GERADO por tools/build-tokens.mjs a partir de data/tokens.json (${tokens.$meta.version}).
-   Nao editar a mao. Valores RECOMMENDED podem mudar no Gate 2. */
+let css = `/* GERADO por tools/build-tokens.mjs a partir de data/tokens.json (${tokens.$meta.version}).
+   Nao editar a mao. Faixas mobile-first: base 390 · >=430 · >=768 · >=1024 · >=1200 · >=1440 · >=1600. */
 :root {
-${lines.join('\n')}
+${base.join('\n')}
+${perBand[0].join('\n')}
 }
-${bp.join('\n').replace(/^ {2}/gm, '')}
 `;
+BANDS.slice(1).forEach(([min], i) => {
+  const rules = perBand[i + 1];
+  if (rules.length) css += `@media (min-width: ${min}px) {\n  :root {\n${rules.map(r => '  ' + r).join('\n')}\n  }\n}\n`;
+});
 
 if (process.argv.includes('--check')) {
   const cur = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
@@ -120,5 +108,5 @@ if (process.argv.includes('--check')) {
   console.log('TOKENS=FRESH');
 } else {
   fs.writeFileSync(OUT, css);
-  console.log(`src/tokens.css escrito (${Buffer.byteLength(css)} bytes, ${lines.filter(l => l.startsWith('  --')).length} props)`);
+  console.log(`TOKENS ${base.filter(l => l.trim()).length} base + ${perBand.flat().length} por faixa -> src/tokens.css`);
 }

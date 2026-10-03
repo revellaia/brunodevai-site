@@ -38,8 +38,7 @@
       "video": {
         "desktop": "/assets/cinematic/presence-landscape.mp4",
         "mobile": "/assets/cinematic/presence-landscape-mobile-portrait.mp4"
-      },
-      "mobileQuery": "(max-width: 1023px) and (orientation: portrait)"
+      }
     },
     "og": null
   },
@@ -50,8 +49,8 @@
       "url": "https://vakonuniverse.com",
       "host": "vakonuniverse.com",
       "img": {
-        "960": "/assets/cinematic/glacial-city-1200.webp",
         "640": "/assets/cinematic/glacial-city-760.webp",
+        "960": "/assets/cinematic/glacial-city-1200.webp",
         "w": 1200,
         "h": 676
       },
@@ -64,8 +63,8 @@
       "host": "cicosicideto.com.br",
       "year": "2026",
       "img": {
-        "960": "/assets/cinematic/case-cico-960.webp",
         "640": "/assets/cinematic/case-cico-640.webp",
+        "960": "/assets/cinematic/case-cico-960.webp",
         "w": 960,
         "h": 600
       },
@@ -77,8 +76,8 @@
       "url": "https://pirescontabilidadess.com.br/",
       "host": "pirescontabilidadess.com.br",
       "img": {
-        "960": "/assets/cinematic/case-pires-960.webp",
         "640": "/assets/cinematic/case-pires-640.webp",
+        "960": "/assets/cinematic/case-pires-960.webp",
         "w": 960,
         "h": 600
       }
@@ -89,8 +88,8 @@
       "url": "https://paulaguimaraess.com.br/",
       "host": "paulaguimaraess.com.br",
       "img": {
-        "960": "/assets/cinematic/case-paula-960.webp",
         "640": "/assets/cinematic/case-paula-640.webp",
+        "960": "/assets/cinematic/case-paula-960.webp",
         "w": 960,
         "h": 600
       }
@@ -101,8 +100,8 @@
       "url": "https://www.ateliememore.com.br",
       "host": "ateliememore.com.br",
       "img": {
-        "960": "/assets/cinematic/case-memore-960.webp",
         "640": "/assets/cinematic/case-memore-640.webp",
+        "960": "/assets/cinematic/case-memore-960.webp",
         "w": 960,
         "h": 600
       }
@@ -160,7 +159,8 @@
       "poster": "/assets/cinematic/concept-terra-axis-tablet-portrait.webp",
       "pw": 768,
       "ph": 960,
-      "film": "/assets/cinematic/concept-terra-axis-tablet-portrait.mp4"
+      "film": "/assets/cinematic/concept-terra-axis-tablet-portrait.mp4",
+      "poster4x5": "/assets/cinematic/concept-terra-axis-tablet-portrait.webp"
     },
     {
       "slug": "valle-fiori",
@@ -171,7 +171,7 @@
       "pw": 960,
       "ph": 540,
       "film": "/assets/cinematic/concept-valle-fiori-landscape-sm.mp4",
-      "letterbox": true
+      "poster4x5": "/assets/cinematic/concept-valle-fiori-poster-4x5.webp"
     },
     {
       "slug": "cavallo-alto",
@@ -181,7 +181,8 @@
       "poster": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp",
       "pw": 768,
       "ph": 960,
-      "film": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4"
+      "film": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.mp4",
+      "poster4x5": "/assets/cinematic/concept-cavallo-alto-tablet-portrait.webp"
     },
     {
       "slug": "nativa-reserve",
@@ -191,7 +192,8 @@
       "poster": "/assets/cinematic/concept-nativa-reserve-landscape-sm.webp",
       "pw": 960,
       "ph": 540,
-      "film": "/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4"
+      "film": "/assets/cinematic/concept-nativa-reserve-landscape-sm.mp4",
+      "poster4x5": "/assets/cinematic/concept-nativa-reserve-poster-4x5.webp"
     },
     {
       "slug": "sertao-prime",
@@ -201,7 +203,8 @@
       "poster": "/assets/cinematic/concept-sertao-prime-tablet-portrait.webp",
       "pw": 768,
       "ph": 960,
-      "film": "/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4"
+      "film": "/assets/cinematic/concept-sertao-prime-tablet-portrait.mp4",
+      "poster4x5": "/assets/cinematic/concept-sertao-prime-tablet-portrait.webp"
     },
     {
       "slug": "blue-sanctuary",
@@ -211,22 +214,9 @@
       "poster": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.webp",
       "pw": 960,
       "ph": 540,
-      "film": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4"
+      "film": "/assets/cinematic/concept-blue-sanctuary-landscape-sm.mp4",
+      "poster4x5": "/assets/cinematic/concept-blue-sanctuary-poster-4x5.webp"
     }
-  ],
-  "labColumns": [
-    [
-      0,
-      3
-    ],
-    [
-      1,
-      4
-    ],
-    [
-      2,
-      5
-    ]
   ],
   "routes": {
     "home": {

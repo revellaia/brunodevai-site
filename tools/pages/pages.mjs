@@ -1,103 +1,75 @@
-/* WORLDCRAFT · /work/ (indice), /sobre/ + /en/about/ (About text-first) e /privacy.html (texto juridico verbatim).
-   About: sem retrato (G-005/TBC-016: nenhuma foto de origem confirmada) — composicao tipografica.
-   Privacy: fragmento data/legal/privacy.pt.html portado verbatim da v1; so PT (sem par EN = sem hreflang). */
+/* BRUNO DEV.AI V3 · /work/ (indice), /sobre/ + /en/about/ (About B text-first) e /privacy.html (texto juridico verbatim).
+   About: sem retrato (OD-06: B text-first ate existir foto real; nunca retrato gerado). Conteudo factual da V2 preservado.
+   Privacy: fragmento data/legal/privacy.pt.html portado verbatim; so PT (sem par EN = sem hreflang). */
 import fs from 'node:fs';
 import path from 'node:path';
 import { h, raw } from '../lib/html.mjs';
 import { root } from '../lib/deploy-tree.mjs';
-import { ext } from './common.mjs';
-import { live, grid } from './home.mjs';
+import { ext, live, adm, eyebrow } from './common.mjs';
+import { aboutFacts } from './home.mjs';
+
+const crumb = (c, label) => h`<nav class="crumb" aria-label="${c.T('a11y.breadcrumb')}"><ol><li><a href="${c.home}">Bruno Dev.AI</a></li><li aria-current="page">${label}</li></ol></nav>`;
 
 export function workBody(c) {
-  const P = c.site.projects;
-  const rows = P.map(p => {
-    const name = c.T(`project.${p.id}.name`);
+  const rows = c.site.projects.map(p => {
+    const name = p.id === 'vakon' ? c.T('project.vakon.name') : c.T(`v3.slide.${p.id}.name`);
+    const type = p.id === 'vakon' ? c.T('v3.slide.vakon.type') : c.T(`v3.type.${p.id}`);
+    const id = p.id === 'vakon' ? 'work.vakon.feature' : `shot.${p.id}`;
+    const media = p.id === 'vakon'
+      ? adm(c, { id: 'hero.frame.vakon', src: p.img['960'], srcset: `${p.img['640']} 760w, ${p.img['960']} 1200w`, sizes: '(min-width: 768px) 50vw, 100vw', w: p.img.w, h: p.img.h, alt: c.T('v3.slide.vakon.alt'), reveal: true })
+      : adm(c, { id, src: p.img['960'], srcset: `${p.img['640']} 640w, ${p.img['960']} 960w`, sizes: '(min-width: 768px) 50vw, 100vw', w: p.img.w, h: p.img.h, alt: c.T(`v3.slide.${p.id}.alt`), reveal: true });
     const primary = p.case
-      ? h`<a class="workx-name" href="${c.url(p.case)}">${name}</a>`
-      : h`<a class="workx-name" href="${p.url}" target="_blank" rel="noopener noreferrer">${name}${ext(c.T)}</a>`;
-    return h`<li class="workx-item">
-      <img class="workx-thumb" src="${p.img['640']}" width="640" height="${Math.round(640 * p.img.h / p.img.w)}" alt="" loading="lazy" decoding="async">
-      <p class="workx-n wc-t-mono" aria-hidden="true">${p.n}</p>
-      <h2 class="workx-h">${primary}</h2>
-      <dl class="workx-meta">
-        <div><dt>${c.T('ui.meta.type')}</dt><dd>${c.T(`project.${p.id}.type`)}</dd></div>
-        ${p.year ? h`<div><dt>${c.T('ui.meta.year')}</dt><dd>${p.year}</dd></div>` : ''}
-        <div><dt>${c.T('ui.meta.status')}</dt><dd>${live(c)}</dd></div>
-      </dl>
-      <p class="workx-ctas">${p.case ? h`<a class="wc-cta-u" href="${c.url(p.case)}">${c.T(p.id === 'cico' ? 'cico.cta.system' : 'work.cta.case')} →</a>` : ''}<a class="workx-live" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('work.cta.live')} ↗${ext(c.T)}</a></p>
+      ? h`<a href="${c.url(p.case)}">${name}</a>`
+      : h`<a href="${p.url}" target="_blank" rel="noopener noreferrer">${name}${ext(c.T)}</a>`;
+    return h`<li class="wrow">
+      <div class="wrow-media">${p.case ? h`<a href="${c.url(p.case)}" tabindex="-1" aria-hidden="true">${media}</a>` : media}</div>
+      <div class="wrow-info">
+        <p class="wrow-n mono" aria-hidden="true">${p.n}</p>
+        <h2 class="wrow-name">${primary}</h2>
+        <p class="wrow-type">${type}</p>
+        <p class="wrow-meta">${p.year ? h`<span>${p.year}</span>` : ''}${live(c)}</p>
+        <p class="wrow-ctas">${p.case ? h`<a class="link-u" href="${c.url(p.case)}">${c.T(p.id === 'cico' ? 'v3.cico.cta.case' : 'v3.work.cta')}</a>` : ''}<a class="link-plain" href="${p.url}" target="_blank" rel="noopener noreferrer">${c.T('v3.work.live')}${ext(c.T)}</a></p>
+      </div>
     </li>`;
   });
-  return h`<section class="workx" aria-labelledby="workx-title">
-  ${grid()}
-  <div class="workx-in wc-container">
-    <header class="workx-head">
-      <p class="wc-label">${c.T('work.label')}</p>
-      <h1 class="workx-title" id="workx-title">${c.T('nav.work')}</h1>
-      <p class="workx-lede">${c.T('meta.work.desc')}</p>
-    </header>
-    <ol class="workx-list">${rows}</ol>
-  </div>
-  <p class="wc-annot workx-annot" aria-hidden="true">WorkIndex · ${P.length} × row · 2 internal cases · ${P.length - 2} external · thumbs 640w webp lazy</p>
-</section>`;
+  return h`<header class="page-hero">
+  ${crumb(c, c.T('v3.nav.work'))}
+  ${eyebrow('', c.T('v3.work.eyebrow'))}
+  <h1 class="h1">${c.T('v3.work.h2')}</h1>
+  <p class="page-lede">${c.T('meta.work.desc')}</p>
+</header>
+<ol class="wlist">${rows}</ol>`;
 }
 
 export function aboutBody(c) {
   const steps = [1, 2, 3, 4, 5, 6, 7];
-  return h`<article class="aboutx" aria-labelledby="aboutx-title">
-  ${grid()}
-  <header class="aboutx-hero wc-container">
-    <p class="wc-label">${c.T('nav.about')}</p>
-    <h1 class="aboutx-title" id="aboutx-title"><span class="wc-mask"><span>${c.T('hero.name.line1')}</span></span> <span class="wc-mask"><span class="wc-italic">${c.T('hero.name.line2')}</span></span></h1>
-    <p class="aboutx-id wc-t-mono">${c.T('hero.role')}<br>${c.T('about.page.base')}</p>
+  const sec = (n, label, inner) => h`<section class="ax-sec grid" aria-labelledby="ax-${n}"><h2 class="ax-k eyebrow" id="ax-${n}"><span class="eyebrow-n">0${n}</span><span class="eyebrow-rule" aria-hidden="true"></span>${label}</h2><div class="ax-body">${inner}</div></section>`;
+  return h`<article aria-labelledby="ax-title">
+  <header class="ax-hero">
+    ${crumb(c, c.T('v3.nav.about'))}
+    ${eyebrow('', c.T('v3.about.eyebrow'))}
+    <h1 class="about-name" id="ax-title">${c.T('v3.about.first')}<br><span class="it">${c.T('v3.about.last')}</span></h1>
+    <p class="about-role">${c.T('v3.about.role')}</p>
+    <p class="about-st">${c.T('v3.about.statement')}</p>
+    ${aboutFacts(c)}
   </header>
-  <section class="aboutx-sec" aria-labelledby="ax-1">
-    <div class="wc-container aboutx-grid">
-      <h2 class="wc-label aboutx-k" id="ax-1"><span>01</span> ${c.T('about.label')}</h2>
-      <div class="aboutx-body">
-        <p class="aboutx-lede">${c.T('about.page.lede')}</p>
-        <p class="aboutx-text">${c.T('about.page.complement')}</p>
-      </div>
-    </div>
+  ${sec(1, c.T('about.label'), h`<p class="ax-lede">${c.T('about.page.lede')}</p><p class="ax-text">${c.T('about.page.complement')}</p>`)}
+  ${sec(2, c.T('about.competences'), h`<ul class="ax-caps">${c.T('about.capabilities').split(' · ').map(x => h`<li>${x}</li>`)}</ul>`)}
+  ${sec(3, c.T('about.view'), h`<p class="ax-lede">${c.T('about.view.headline')}</p><p class="ax-text">${c.T('about.view.text')}</p>`)}
+  ${sec(4, c.T('about.method'), h`<p class="ax-lede">${c.T('about.method.title')}</p><ol class="ax-steps">${steps.map(i => h`<li><span class="ax-sn mono">${String(i).padStart(2, '0')}</span><span class="ax-st">${c.T(`about.method.${i}`)}</span><span class="ax-sd">${c.T(`about.method.${i}.desc`)}</span></li>`)}</ol>`)}
+  <section class="ax-cta" aria-labelledby="ax-5">
+    <h2 class="sr-only" id="ax-5">${c.T('v3.nav.contact')}</h2>
+    <a class="btn btn--primary" href="mailto:${c.site.contact.email}" data-contact-flow>${c.T('v3.nav.cta')} <span aria-hidden="true">→</span></a>
+    <a class="link-u" href="${c.url('work')}">${c.T('v3.work.all')}</a>
   </section>
-  <section class="aboutx-sec" aria-labelledby="ax-2">
-    <div class="wc-container aboutx-grid">
-      <h2 class="wc-label aboutx-k" id="ax-2"><span>02</span> ${c.T('about.competences')}</h2>
-      <ul class="aboutx-caps">${c.T('about.capabilities').split(' · ').map(x => h`<li>${x}</li>`)}</ul>
-    </div>
-  </section>
-  <section class="aboutx-sec" aria-labelledby="ax-3">
-    <div class="wc-container aboutx-grid">
-      <h2 class="wc-label aboutx-k" id="ax-3"><span>03</span> ${c.T('about.view')}</h2>
-      <div class="aboutx-body">
-        <p class="aboutx-quote">${c.T('about.view.headline')}</p>
-        <p class="aboutx-text">${c.T('about.view.text')}</p>
-      </div>
-    </div>
-  </section>
-  <section class="aboutx-sec" aria-labelledby="ax-4">
-    <div class="wc-container aboutx-grid">
-      <h2 class="wc-label aboutx-k" id="ax-4"><span>04</span> ${c.T('about.method')}</h2>
-      <div class="aboutx-body">
-        <p class="aboutx-mt">${c.T('about.method.title')}</p>
-        <ol class="aboutx-steps">${steps.map(i => h`<li><span class="aboutx-sn wc-t-mono">${String(i).padStart(2, '0')}</span><span class="aboutx-st">${c.T(`about.method.${i}`)}</span><span class="aboutx-sd">${c.T(`about.method.${i}.desc`)}</span></li>`)}</ol>
-      </div>
-    </div>
-  </section>
-  <section class="aboutx-cta" aria-labelledby="ax-5">
-    <div class="wc-container">
-      <h2 class="wc-sr-only" id="ax-5">${c.T('nav.contact')}</h2>
-      <p class="aboutx-actions"><a class="wc-btn wc-btn--primary" href="mailto:${c.site.contact.email}" data-contact-flow>${c.T('contact.cta')}</a><a class="wc-cta-u" href="${c.url('work')}">${c.T('work.all')} →</a></p>
-    </div>
-  </section>
-  <p class="wc-annot aboutx-annot" aria-hidden="true">About · text-first · no portrait until source is confirmed (G-005) · copy = published v1 text</p>
 </article>`;
 }
 
 export function privacyBody(c) {
   const frag = fs.readFileSync(path.join(root, 'data/legal/privacy.pt.html'), 'utf8').replace(/^<!--[\s\S]*?-->\n/, '');
   return h`<article class="legal" aria-labelledby="legal-title">
-  <div class="legal-in wc-container">
-    <p class="legal-back wc-label"><a href="${c.url('home')}">← ${c.T('privacy.back')}</a></p>
+  <div class="legal-in">
+    ${crumb(c, c.T('v3.footer.privacy'))}
     ${raw(frag.replace('<h1>', '<h1 id="legal-title">'))}
   </div>
 </article>`;

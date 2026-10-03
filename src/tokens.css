@@ -1,170 +1,217 @@
-/* GERADO por tools/build-tokens.mjs a partir de data/tokens.json (1.0.0-gate2-pending).
-   Nao editar a mao. Valores RECOMMENDED podem mudar no Gate 2. */
+/* GERADO por tools/build-tokens.mjs a partir de data/tokens.json (3.0.0-gate-pending).
+   Nao editar a mao. Faixas mobile-first: base 390 · >=430 · >=768 · >=1024 · >=1200 · >=1440 · >=1600. */
 :root {
-  --wc-ink-0: #070706;
-  --wc-ink-1: #0E0F0D;
-  --wc-ink-lab: #0B0B0A;
-  --wc-ink-2: #141412;
-  --wc-paper-0: #F1EEE6;
-  --wc-paper-0b: #E6E2D8;
-  --wc-paper-1: #C9C5BB;
-  --wc-paper-2: #8E8B82;
-  --wc-gold: #C5A059;
-  --wc-gold-lit: #D8B368;
-  --wc-signal: #A8FF60;
-  --wc-line: rgba(241,238,230,.12);
-  --wc-line-strong: rgba(241,238,230,.30);
-  --wc-system-overlay: rgba(10,11,9,.95);
-  --wc-media-dim: saturate(.5) brightness(.4);
+  --v-bg: #0A0A09;
+  --v-surface-1: #0E0E0D;
+  --v-surface-2: #111110;
+  --v-surface-3: #121211;
+  --v-ink: #EDE9E0;
+  --v-ink-2: #CFC9BC;
+  --v-ink-3: #B7B2A7;
+  --v-ink-4: #A7A296;
+  --v-muted: #858178;
+  --v-faint: #6E6A62;
+  --v-gold: #C9A55C;
+  --v-gold-hover: #D9B978;
+  --v-gold-logo: #E2C27F;
+  --v-line: rgba(237,233,224,.08);
+  --v-line-2: rgba(237,233,224,.12);
+  --v-line-strong: rgba(237,233,224,.30);
+  --v-gold-line: rgba(201,165,92,.55);
+  --v-gold-underline: rgba(201,165,92,.6);
 
-  --wc-font-display: 'Newsreader', 'Newsreader Fallback', 'Iowan Old Style', 'Times New Roman', serif;
-  --wc-font-text: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
-  --wc-font-system: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --wc-fw-display: 300;
-  --wc-fw-text: 400;
-  --wc-fw-text-strong: 500;
-  --wc-fw-ui: 500;
-  --wc-fw-system: 400;
-  --wc-fw-system-strong: 500;
+  --v-font-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --v-font-text: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --v-font-system: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --v-fw-display: 300;
+  --v-fw-display-card: 400;
+  --v-fw-body: 400;
+  --v-fw-ui: 500;
+  --v-fw-button: 600;
+  --v-fw-mono: 400;
+  --v-lh-h1: 1.06;
+  --v-lh-h2: 1.1;
+  --v-lh-h3: 1.12;
+  --v-lh-feature: 1;
+  --v-lh-lead: 1.6;
+  --v-lh-body: 1.65;
+  --v-lh-ui: 1;
+  --v-fs-small: 14px;
+  --v-fs-ui: 13px;
+  --v-fs-eyebrow: 12px;
+  --v-fs-micro: 11px;
 
-  --wc-fs-display-hero: clamp(112px, 20.1vw, 300px);
-  --wc-lh-display-hero: 1;
-  --wc-ls-display-hero: -0.045em;
-  --wc-fs-display-wordmark: clamp(118px, 74.1714px + 11.2381vw, 236px);
-  --wc-lh-display-wordmark: 0.78;
-  --wc-ls-display-wordmark: -0.05em;
-  --wc-fs-display-flagship: clamp(80px, 31.7143px + 12.381vw, 210px);
-  --wc-lh-display-flagship: 0.82;
-  --wc-ls-display-flagship: -0.045em;
-  --wc-fs-display-section: clamp(110px, 76.5714px + 8.5714vw, 200px);
-  --wc-lh-display-section: 0.8;
-  --wc-ls-display-section: -0.045em;
-  --wc-fs-display-contact: clamp(70px, 25.4286px + 11.4286vw, 190px);
-  --wc-lh-display-contact: 0.84;
-  --wc-ls-display-contact: -0.045em;
-  --wc-fs-display-manifesto: clamp(64px, 32.0571px + 8.1905vw, 150px);
-  --wc-lh-display-manifesto: 0.9;
-  --wc-ls-display-manifesto: -0.04em;
-  --wc-fs-display-l: clamp(52px, 35.6571px + 4.1905vw, 96px);
-  --wc-lh-display-l: 0.92;
-  --wc-ls-display-l: -0.035em;
-  --wc-fs-display-m: clamp(48px, 37.6px + 2.6667vw, 76px);
-  --wc-lh-display-m: 0.95;
-  --wc-ls-display-m: -0.03em;
-  --wc-fs-display-s: clamp(46px, 39.3143px + 1.7143vw, 64px);
-  --wc-lh-display-s: 1;
-  --wc-ls-display-s: -0.03em;
-  --wc-fs-display-xs: clamp(40px, 33.3143px + 1.7143vw, 58px);
-  --wc-lh-display-xs: 1.04;
-  --wc-ls-display-xs: -0.025em;
-  --wc-fs-display-xxs: clamp(34px, 31.7714px + 0.5714vw, 40px);
-  --wc-lh-display-xxs: 1.04;
-  --wc-ls-display-xxs: -0.025em;
-  --wc-fs-statement: clamp(27px, 22.9143px + 1.0476vw, 38px);
-  --wc-lh-statement: 1.14;
-  --wc-ls-statement: 0;
-  --wc-fs-lede: clamp(20px, 17.7714px + 0.5714vw, 26px);
-  --wc-lh-lede: 1.25;
-  --wc-ls-lede: 0;
-  --wc-fs-body: clamp(16px, 15.2571px + 0.1905vw, 18px);
-  --wc-lh-body: 1.5;
-  --wc-ls-body: 0;
-  --wc-fs-ui: clamp(12px, 11.6286px + 0.0952vw, 13px);
-  --wc-lh-ui: 1.2;
-  --wc-ls-ui: 0.12em;
-  --wc-fs-mono: clamp(11px, 10.6286px + 0.0952vw, 12px);
-  --wc-lh-mono: 1.7;
-  --wc-ls-mono: 0.08em;
-  --wc-fs-mono-s: clamp(10px, 9.6286px + 0.0952vw, 11px);
-  --wc-lh-mono-s: 1.6;
-  --wc-ls-mono-s: 0.06em;
-
-  --wc-space-1: 4px;
-  --wc-space-2: 8px;
-  --wc-space-3: 12px;
-  --wc-space-4: 16px;
-  --wc-space-5: 20px;
-  --wc-space-6: 24px;
-  --wc-space-7: 28px;
-  --wc-space-8: 32px;
-  --wc-space-9: 40px;
-  --wc-space-10: 48px;
-  --wc-space-11: 56px;
-  --wc-space-12: 64px;
-  --wc-space-13: 72px;
-  --wc-space-14: 80px;
-  --wc-space-15: 96px;
-  --wc-space-16: 120px;
-  --wc-space-17: 140px;
-  --wc-space-18: 160px;
-  --wc-space-19: 180px;
-  --wc-section: 72px;
-  --wc-section-l: 96px;
-  --wc-section-xl: 96px;
-
-  --wc-content-max: 1800px;
-  --wc-text-max: 720px;
-  --wc-cols: 4;
-  --wc-margin: 20px;
-  --wc-gutter: 12px;
-
-  --wc-radius: 0px;
-  --wc-hairline: 1px solid var(--wc-line);
-  --wc-control-border: 1px solid var(--wc-line-strong);
-  --wc-target-min: 44px;
-
-  --wc-ease-surface: cubic-bezier(.16,1,.3,1);
-  --wc-ease-system: cubic-bezier(.2,0,0,1);
-  --wc-ease-feedback: ease-out;
-  --wc-ease-reduced: linear;
-  --wc-dur-surface-l: 1200ms;
-  --wc-dur-surface: 900ms;
-  --wc-dur-system-l: 600ms;
-  --wc-dur-system: 480ms;
-  --wc-dur-system-s: 320ms;
-  --wc-dur-feedback: 200ms;
-  --wc-dur-reduced: 200ms;
-  --wc-dur-stagger-1: 120ms;
-  --wc-dur-stagger-2: 240ms;
-  --wc-dur-stagger-3: 480ms;
-
-  --wc-z-base: 0;
-  --wc-z-media: 1;
-  --wc-z-system-layer: 2;
-  --wc-z-chrome: 3;
-  --wc-z-nav: 50;
-  --wc-z-menu: 100;
-  --wc-z-modal: 200;
-  --wc-z-cursor: 300;
+  --v-shadow-media: 0 40px 80px -30px rgba(0,0,0,.8);
+  --v-border-panel: 1px solid rgba(237,233,224,.10);
+  --v-border-contact: 1px solid rgba(201,165,92,.30);
+  --v-ease-premium: cubic-bezier(.16,1,.3,1);
+  --v-ease-standard: ease;
+  --v-ease-reduced: linear;
+  --v-dur-hero-crossfade: 1100ms;
+  --v-dur-media-hover: 1200ms;
+  --v-dur-feature-hover: 1400ms;
+  --v-dur-lab-hover: 500ms;
+  --v-dur-toggle: 300ms;
+  --v-dur-button-hover: 250ms;
+  --v-dur-reduced: 200ms;
+  --v-dur-hero-interval: 4800ms;
+  --v-z-base: 0;
+  --v-z-media: 1;
+  --v-z-content: 2;
+  --v-z-header: 5;
+  --v-z-menu: 100;
+  --v-z-modal: 200;
+  --v-touch-min: 44px;
+  --v-btn-h: 56px;
+  --v-header-cta-h: 46px;
+  --v-fs-h1: 40px;
+  --v-fs-h2: 32px;
+  --v-fs-h3: 30px;
+  --v-fs-feature-title: 34px;
+  --v-fs-contact-title: 36px;
+  --v-fs-about-name: 52px;
+  --v-fs-card-title: 24px;
+  --v-fs-cap-title: 23px;
+  --v-fs-slide-name: 21px;
+  --v-fs-lead: 16px;
+  --v-fs-body: 15px;
+  --v-header-h: 76px;
+  --v-logo-h: 40px;
+  --v-foot-logo-h: 54px;
+  --v-m: 20px;
+  --v-g: 12px;
+  --v-sec-pad: 76px;
+  --v-sec-gap: 40px;
+  --v-hero-pad-top: 52px;
+  --v-hero-pad-bottom: 56px;
+  --v-hero-row-gap: 44px;
+  --v-hero-gap: 24px;
+  --v-cta-gap: 12px;
+  --v-bar-w: 18px;
+  --v-strip-pad: 26px;
+  --v-strip-size: 18px;
+  --v-feat-inset: 20px;
+  --v-work-row-gap: 48px;
+  --v-work-offset: 0px;
+  --v-sys-pad: 20px;
+  --v-panel-pad: 26px;
+  --v-about-lead: 19px;
+  --v-contact-bottom: 64px;
+  --v-wm-right: -80px;
+  --v-wm-h: 360px;
+  --v-foot-pad: 52px;
+  --v-foot-gap: 36px;
+  --v-nav-gap: 40px;
+  --v-cols: 4;
+}
+@media (min-width: 430px) {
+  :root {
+    --v-fs-h1: 42px;
+    --v-fs-h2: 34px;
+    --v-logo-h: 42px;
+  }
 }
 @media (min-width: 768px) {
-:root {
-  --wc-cols: 6;
-  --wc-margin: 40px;
-  --wc-gutter: 20px;
-}
+  :root {
+    --v-fs-h1: 52px;
+    --v-fs-h2: 38px;
+    --v-fs-h3: 34px;
+    --v-fs-feature-title: 44px;
+    --v-fs-contact-title: 46px;
+    --v-fs-about-name: 64px;
+    --v-fs-card-title: 26px;
+    --v-fs-slide-name: 26px;
+    --v-fs-lead: 18px;
+    --v-fs-body: 16px;
+    --v-header-h: 88px;
+    --v-logo-h: 48px;
+    --v-foot-logo-h: 60px;
+    --v-m: 40px;
+    --v-g: 20px;
+    --v-sec-pad: 100px;
+    --v-hero-pad-top: 72px;
+    --v-hero-pad-bottom: 80px;
+    --v-hero-row-gap: 56px;
+    --v-hero-gap: 32px;
+    --v-cta-gap: 30px;
+    --v-bar-w: 36px;
+    --v-strip-pad: 34px;
+    --v-strip-size: 20px;
+    --v-feat-inset: 32px;
+    --v-work-row-gap: 56px;
+    --v-work-offset: 48px;
+    --v-sys-pad: 32px;
+    --v-panel-pad: 48px;
+    --v-about-lead: 22px;
+    --v-contact-bottom: 88px;
+    --v-cols: 8;
+  }
 }
 @media (min-width: 1024px) {
-:root {
-  --wc-cols: 12;
-  --wc-margin: 40px;
-  --wc-gutter: 20px;
-  --wc-section: 140px;
-  --wc-section-l: 160px;
-  --wc-section-xl: 180px;
+  :root {
+    --v-fs-h1: 54px;
+    --v-fs-h2: 40px;
+    --v-fs-h3: 36px;
+    --v-fs-feature-title: 46px;
+    --v-fs-contact-title: 50px;
+    --v-fs-about-name: 76px;
+    --v-fs-card-title: 30px;
+    --v-header-h: 104px;
+    --v-logo-h: 56px;
+    --v-foot-logo-h: 72px;
+    --v-m: 48px;
+    --v-g: 24px;
+    --v-sec-pad: 136px;
+    --v-sec-gap: 60px;
+    --v-hero-pad-top: 112px;
+    --v-hero-pad-bottom: 120px;
+    --v-strip-size: 19px;
+    --v-feat-inset: 44px;
+    --v-work-row-gap: 72px;
+    --v-work-offset: 64px;
+    --v-panel-pad: 72px;
+    --v-about-lead: 24px;
+    --v-contact-bottom: 120px;
+    --v-wm-right: -60px;
+    --v-wm-h: 520px;
+    --v-foot-pad: 72px;
+    --v-foot-gap: 56px;
+    --v-nav-gap: 26px;
+    --v-cols: 12;
+  }
 }
+@media (min-width: 1200px) {
+  :root {
+    --v-fs-h1: 60px;
+    --v-fs-h2: 44px;
+    --v-fs-h3: 40px;
+    --v-fs-feature-title: 54px;
+    --v-fs-contact-title: 56px;
+    --v-fs-cap-title: 26px;
+    --v-m: 80px;
+    --v-strip-size: 22px;
+    --v-work-offset: 96px;
+    --v-nav-gap: 40px;
+  }
 }
 @media (min-width: 1440px) {
-:root {
-  --wc-cols: 12;
-  --wc-margin: 60px;
-  --wc-gutter: 24px;
+  :root {
+    --v-fs-h1: 64px;
+    --v-fs-h2: 46px;
+  }
 }
-}
-@media (min-width: 1920px) {
-:root {
-  --wc-cols: 12;
-  --wc-margin: 96px;
-  --wc-gutter: 24px;
-}
+@media (min-width: 1600px) {
+  :root {
+    --v-fs-h1: 68px;
+    --v-fs-h2: 48px;
+    --v-fs-h3: 42px;
+    --v-fs-contact-title: 60px;
+    --v-fs-about-name: 88px;
+    --v-header-h: 112px;
+    --v-logo-h: 60px;
+    --v-m: max(120px, calc((100% - 1520px) / 2));
+    --v-sec-pad: 150px;
+    --v-hero-pad-top: 128px;
+    --v-hero-pad-bottom: 136px;
+  }
 }
