@@ -24,7 +24,10 @@ const PAGES = {
      (lazy, fetchpriority low; nunca em SAVE DATA), entao nao recebe preload. */
   home: c => {
     const v = c.site.projects.find(p => p.id === 'vakon').img;
-    const preload = `<link rel="preload" as="image" type="image/webp" href="${v['960']}" imagesrcset="${v['640']} 760w, ${v['960']} 1200w" imagesizes="(min-width: 1024px) 50vw, 100vw" fetchpriority="high">`;
+    const bd = c.site.media.hero.poster;
+    /* bd-backdrop: src/mode.js pre-carrega o poster decorativo so fora do SAVE DATA (no SAVE nao ha backdrop nem download) */
+    const preload = `<link rel="preload" as="image" type="image/webp" href="${v['960']}" imagesrcset="${v['640']} 760w, ${v['960']} 1200w" imagesizes="(min-width: 1024px) 50vw, 100vw" fetchpriority="high">
+<meta name="bd-backdrop" data-mobile="${bd.mobile.avif}" data-desktop="${bd.desktop.avif}">`;
     return {
       extraScripts: ['home'],
       headOpts: { title: c.T('v3.meta.home.title'), description: c.T('v3.hero.sub'), preload, og: 'home' },

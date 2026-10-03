@@ -1,7 +1,7 @@
 {
-  "at": "2026-10-02T03:06:06.390Z",
-  "harness": "qa/completion-qa.mjs (Chromium 151, local)",
-  "base_commit": "f280814",
+  "at": "2026-10-03T11:50:05.129Z",
+  "harness": "V3_IMPLEMENTATION/qa/v3-qa.mjs (Chromium 151, local)",
+  "base_commit": "ff44986",
   "viewports": [
     390,
     430,
@@ -17,7 +17,7 @@
   "broken_requests": 0,
   "video_requests": {
     "full": 1,
-    "reduced": 1,
+    "reduced": 0,
     "save": 0
   },
   "secrets": {
@@ -25,8 +25,8 @@
     "leaks": 0
   },
   "checks": {
-    "total": 1065,
+    "total": 1876,
     "failed": 0,
-    "warned": 11
+    "warned": 0
   }
 }
