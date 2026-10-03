@@ -76,8 +76,8 @@
   --v-fs-lead: 16px;
   --v-fs-body: 15px;
   --v-header-h: 76px;
-  --v-logo-h: 40px;
-  --v-foot-logo-h: 54px;
+  --v-logo-h: 46px;
+  --v-foot-logo-h: 62px;
   --v-m: 20px;
   --v-g: 12px;
   --v-sec-pad: 76px;
@@ -98,7 +98,7 @@
   --v-about-lead: 19px;
   --v-contact-bottom: 64px;
   --v-wm-right: -80px;
-  --v-wm-h: 360px;
+  --v-wm-h: 470px;
   --v-foot-pad: 52px;
   --v-foot-gap: 36px;
   --v-nav-gap: 40px;
@@ -108,7 +108,7 @@
   :root {
     --v-fs-h1: 42px;
     --v-fs-h2: 34px;
-    --v-logo-h: 42px;
+    --v-logo-h: 48px;
   }
 }
 @media (min-width: 768px) {
@@ -124,8 +124,8 @@
     --v-fs-lead: 18px;
     --v-fs-body: 16px;
     --v-header-h: 88px;
-    --v-logo-h: 48px;
-    --v-foot-logo-h: 60px;
+    --v-logo-h: 55px;
+    --v-foot-logo-h: 69px;
     --v-m: 40px;
     --v-g: 20px;
     --v-sec-pad: 100px;
@@ -157,8 +157,8 @@
     --v-fs-about-name: 76px;
     --v-fs-card-title: 30px;
     --v-header-h: 104px;
-    --v-logo-h: 56px;
-    --v-foot-logo-h: 72px;
+    --v-logo-h: 65px;
+    --v-foot-logo-h: 83px;
     --v-m: 48px;
     --v-g: 24px;
     --v-sec-pad: 136px;
@@ -173,7 +173,7 @@
     --v-about-lead: 24px;
     --v-contact-bottom: 120px;
     --v-wm-right: -60px;
-    --v-wm-h: 520px;
+    --v-wm-h: 679px;
     --v-foot-pad: 72px;
     --v-foot-gap: 56px;
     --v-nav-gap: 26px;
@@ -208,7 +208,7 @@
     --v-fs-contact-title: 60px;
     --v-fs-about-name: 88px;
     --v-header-h: 112px;
-    --v-logo-h: 60px;
+    --v-logo-h: 69px;
     --v-m: max(120px, calc((100% - 1520px) / 2));
     --v-sec-pad: 150px;
     --v-hero-pad-top: 128px;

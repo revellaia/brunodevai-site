@@ -22,8 +22,11 @@ const BANDS = [[0, 6], [430, 5], [768, 4], [1024, 3], [1200, 2], [1440, 1], [160
 /* layout(w) do master, por faixa (mesma ordem de BANDS). null = herda a faixa anterior. */
 const LAYOUT = {
   'header-h': [76, null, 88, 104, null, null, 112],
-  'logo-h': [40, 42, 48, 56, null, null, 60],
-  'foot-logo-h': [54, null, 60, 72, null, null, null],
+  /* Logo OFICIAL completo (03_BRAND/Logo Oficial.png, 2069x760 = 2.7224:1, com tagline e circuito; Owner 2026-10-03).
+     O master media 40/42/48/56/60 e 54/60/72 com o recorte antigo 948x302 (3.139:1). Para manter a LARGURA aprovada
+     (mesmo espaco no header/footer; wordmark ~94% do aprovado), altura = antiga x 3.139/2.7224 (x1.153). */
+  'logo-h': [46, 48, 55, 65, null, null, 69],
+  'foot-logo-h': [62, null, 69, 83, null, null, null],
   'm': [20, null, 40, 48, 80, null, 'max(120px, calc((100% - 1520px) / 2))'],
   'g': [12, null, 20, 24, null, null, null],
   'sec-pad': [76, null, 100, 136, null, null, 150],
@@ -44,7 +47,9 @@ const LAYOUT = {
   'about-lead': [19, null, 22, 24, null, null, null],
   'contact-bottom': [64, null, 88, 120, null, null, null],
   'wm-right': [-80, null, null, -60, null, null, null],
-  'wm-h': [360, null, null, 520, null, null, null],
+  /* Emblema OFICIAL (03_BRAND/Logo Fanvicon.png, canvas 1024x1536 preservado; arte = 73,9% da altura do canvas, contra
+     96,4% no recorte antigo 352x392). Altura da caixa x1.305 = a arte do watermark fica do tamanho aprovado (master 360/520). */
+  'wm-h': [470, null, null, 679, null, null, null],
   'foot-pad': [52, null, null, 72, null, null, null],
   'foot-gap': [36, null, null, 56, null, null, null],
   'nav-gap': [40, null, null, 26, 40, null, null],

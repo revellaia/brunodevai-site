@@ -218,7 +218,7 @@ function about(c) {
 export function contact(c) {
   return h`<section class="contact-sec" id="contact" aria-labelledby="contact-title">
   <div class="contact">
-    <img class="contact-wm" src="/assets/brand/logo-emblem-352.webp" width="352" height="392" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="contact-wm" src="/assets/brand/emblem-official-720.webp" width="720" height="1080" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <p class="eyebrow">${c.T('v3.contact.eyebrow')}</p>
     <h2 class="contact-h" id="contact-title">${c.T('v3.contact.h2')}</h2>
     <p class="contact-p">${c.T('v3.contact.text')}</p>

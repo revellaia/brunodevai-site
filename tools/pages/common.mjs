@@ -22,13 +22,15 @@ export function makeCtx(lang, site, proof, id) {
   };
 }
 
-/* Logo real (LOGO_USAGE V3): lockup PNG->WebP sem upscale (452/678/948w = alturas 144/216/302 do original). */
-const LOCKUP = '/assets/brand/logo-lockup-452.webp 452w, /assets/brand/logo-lockup-678.webp 678w, /assets/brand/logo-lockup-948.webp 948w';
+/* Logo OFICIAL completo (03_BRAND/Logo Oficial.png 2069x760, canvas e proporcao preservados; sem recorte).
+   Derivados WebP lossless 490/735/980w (V3_IMPLEMENTATION/brand/build_brand_assets.py), nunca acima do nativo.
+   sizes = largura renderizada por faixa (altura do token logo-h x 2.7224). */
+const LOCKUP = '/assets/brand/logo-official-490.webp 490w, /assets/brand/logo-official-735.webp 735w, /assets/brand/logo-official-980.webp 980w';
 const SIZES = {
-  header: '(min-width: 1600px) 189px, (min-width: 1024px) 176px, (min-width: 768px) 151px, (min-width: 430px) 132px, 126px',
-  footer: '(min-width: 1024px) 226px, (min-width: 768px) 189px, 170px',
+  header: '(min-width: 1600px) 188px, (min-width: 1024px) 177px, (min-width: 768px) 150px, (min-width: 430px) 131px, 125px',
+  footer: '(min-width: 1024px) 226px, (min-width: 768px) 188px, 169px',
 };
-export const logo = (c, where) => h`<img class="logo" src="/assets/brand/logo-lockup-452.webp" srcset="${LOCKUP}" sizes="${SIZES[where]}" width="948" height="302" alt="${c.T('v3.logo.alt')}" decoding="async">`;
+export const logo = (c, where) => h`<img class="logo" src="/assets/brand/logo-official-490.webp" srcset="${LOCKUP}" sizes="${SIZES[where]}" width="2069" height="760" alt="${c.T('v3.logo.alt')}" decoding="async">`;
 
 /* "No ar" so para projeto com URL publica confirmada (OD-07: verificado 2026-10-02; re-check antes do release). */
 export const live = (c) => h`<span class="status"><span class="dot" aria-hidden="true"></span>${c.T('v3.status.live')}</span>`;

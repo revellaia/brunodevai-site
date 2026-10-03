@@ -109,7 +109,7 @@ a.link-u:hover, a:hover .link-u { color: var(--v-gold-hover); }
 .adm > picture { position: absolute; inset: 0; }
 /* Midia de case: NATURAL_RATIO puro (width/height do arquivo; nunca corta, nunca distorce). */
 .nat { width: 100%; height: auto; }
-.logo { height: var(--v-logo-h); width: auto; max-width: none; }
+.logo { height: var(--v-logo-h); width: auto; max-width: none; object-fit: contain; object-position: center; } /* logo oficial inteiro: canvas transparente preservado, nunca recortado */
 
 /* ---------- Reveals (reveal.js liga data-reveal-on; SAVE DATA nao oculta nada) ---------- */
 :root[data-reveal-on][data-motion="full"] [data-reveal]:not(.is-in) { opacity: 0; }
