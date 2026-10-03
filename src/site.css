@@ -179,7 +179,7 @@
 .browser-url { margin-left: 12px; font-size: var(--v-fs-micro); color: var(--v-muted); }
 :root[data-js] .cico-panel[hidden] { display: none !important; }
 :root[data-motion="full"] .cico-panel.is-entering { animation: v-fade 300ms ease; }
-.cico-sys { background: #0D0D0C; padding: var(--v-sys-pad); display: flex; flex-direction: column; gap: 20px; }
+.cico-sys { background: #0D0D0C; padding: var(--v-sys-pad); display: flex; flex-direction: column; gap: 20px; aspect-ratio: 16 / 10; } /* altura minima = painel Interface (screenshot 16:10): a coluna centralizada nao "pula" ao trocar de aba; conteudo maior cresce */
 :root:not([data-js]) .cico-sys { border-top: 1px solid var(--v-line); }
 .cico-sys-label { font-size: var(--v-fs-micro); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--v-gold); }
 .cico-nodes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
