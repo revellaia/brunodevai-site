@@ -4,3 +4,20 @@ tools/
 data/
 _worldcraft/
 *.md
+# Fronteira de deploy (V3, 2026-10-03): pastas locais privadas ou nao-runtime que existem no diretorio de
+# trabalho (fora do Git pelo .gitignore, mas um deploy via CLI a partir desta pasta as enviaria). Nunca publicar.
+Modelo contratos/
+Propostas/
+Midia Herosection/
+security/
+output/
+test-results/
+.claude/
+_RECOVERY/
+evidence/
+node_modules/
+# Configuracao local do repositorio e artefatos de arquivo/log
+.gitignore
+*.zip
+*.bundle
+*.log
