@@ -33,7 +33,7 @@ function hero(c) {
         <source type="image/avif" srcset="${s.poster.desktop.avif}">
         <img class="adm-m" src="${s.poster.desktop.webp}" width="${s.poster.desktop.w}" height="${s.poster.desktop.h}" alt="" loading="lazy" decoding="async" fetchpriority="low">
       </picture>
-      <video class="adm-m" muted playsinline loop preload="none" disablepictureinpicture tabindex="-1" data-hero-video data-src-desktop="${s.video.desktop}" data-src-mobile="${s.video.mobile}"></video>
+      <video class="adm-m" autoplay muted playsinline loop preload="none" disablepictureinpicture tabindex="-1" data-hero-video data-src-desktop="${s.video.desktop}" data-src-mobile="${s.video.mobile}"></video>
     </div>
   </div>
   <div class="hero-grad" aria-hidden="true"></div>

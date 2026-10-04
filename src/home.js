@@ -12,23 +12,76 @@
   var mode = function () { return WC.mode ? WC.mode.get() : 'full'; };
   var INTERVAL = 4800, PRELOAD_AHEAD = 1000;
 
-  /* ---------- backdrop: video so em FULL, depois do load (poster decorativo e o fallback) ---------- */
+  /* ---------- backdrop: video so em FULL, src so depois do load (poster decorativo e o fallback) ----------
+     Arquitetura de reproducao recuperada do historico provado no Chrome (c9b6af8 / e3447a5, 2026-07): nunca uma unica
+     tentativa de play(). ensureHeroVideoPlaying(reason) reafirma muted/defaultMuted/autoplay/loop/playsInline/controls
+     (propriedade + atributo) e tenta de novo em cada ponto do ciclo de vida e no primeiro gesto real, porque o autoplay
+     mudo do Chrome pode ser recusado em silencio em sessoes novas. playPending + safePause evitam "play() request was
+     interrupted by a call to pause()". Watchdog limitado (800 ms, N tentativas) recupera sem depender de gesto.
+     Portado SO o motor de reproducao (sem o parallax/visual antigo). O src continua ausente ate o load (gate V3). */
   var video = document.querySelector('[data-hero-video]');
-  function startVideo() {
-    if (!video || mode() !== 'full' || video.getAttribute('src')) return;
-    var mobile = window.matchMedia('(max-width: 767px)').matches;
-    video.src = video.getAttribute(mobile ? 'data-src-mobile' : 'data-src-desktop');
-    video.addEventListener('playing', function () { video.classList.add('is-playing'); }, { once: true });
-    var p = video.play();
-    if (p && p.catch) p.catch(function () { /* autoplay bloqueado: fica o poster */ });
-  }
-  if (video) {
-    if (document.readyState === 'complete') setTimeout(startVideo, 200);
-    else window.addEventListener('load', function () { setTimeout(startVideo, 200); });
-    document.addEventListener('visibilitychange', function () {
-      if (!video.getAttribute('src')) return;
-      if (document.hidden) video.pause(); else if (mode() === 'full') { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+  var heroEl = document.getElementById('top');
+  if (video && heroEl) {
+    var gateOpen = false, visible = true, playPending = false, watchdogTimer = null, watchdogTicks = 0;
+    var safePause = function () { if (playPending) return; video.pause(); };
+    var attachSrc = function () {
+      if (video.getAttribute('src')) return;
+      var mobile = window.matchMedia('(max-width: 767px)').matches;
+      video.src = video.getAttribute(mobile ? 'data-src-mobile' : 'data-src-desktop');
+    };
+    var ensureHeroVideoPlaying = function (reason) {
+      if (mode() !== 'full') { safePause(); return false; } /* REDUCED/SAVE: poster estatico, nenhum download */
+      if (!gateOpen || !visible || document.hidden) return false;
+      attachSrc();
+      if (!video.paused && video.currentTime > 0) return true;
+      if (playPending) return false;
+      video.muted = true; video.defaultMuted = true; video.autoplay = true; video.loop = true; video.playsInline = true; video.controls = false;
+      video.setAttribute('muted', ''); video.setAttribute('autoplay', ''); video.setAttribute('loop', ''); video.setAttribute('playsinline', '');
+      var p;
+      try { playPending = true; p = video.play(); } catch (e) { playPending = false; heroEl.setAttribute('data-video-state', 'blocked:' + reason); return false; }
+      if (!p || !p.then) { playPending = false; return true; }
+      p.then(function () { playPending = false; heroEl.setAttribute('data-video-state', 'playing:' + reason); },
+        function () { playPending = false; heroEl.setAttribute('data-video-state', 'blocked:' + reason); });
+      return true;
+    };
+    var armWatchdog = function (maxTicks) {
+      watchdogTicks = 0;
+      if (watchdogTimer) clearInterval(watchdogTimer);
+      watchdogTimer = setInterval(function () {
+        watchdogTicks++;
+        if (watchdogTicks > maxTicks || mode() !== 'full') { clearInterval(watchdogTimer); watchdogTimer = null; return; }
+        if (visible && video.paused && !playPending) ensureHeroVideoPlaying('watchdog');
+      }, 800);
+    };
+    video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (evt) {
+      video.addEventListener(evt, function () { ensureHeroVideoPlaying('video-' + evt); }, { once: true });
     });
+    var openGate = function () { setTimeout(function () { gateOpen = true; ensureHeroVideoPlaying('window-load'); armWatchdog(15); }, 200); };
+    if (document.readyState === 'complete') openGate(); else window.addEventListener('load', openGate, { once: true });
+    window.addEventListener('pageshow', function () { ensureHeroVideoPlaying('pageshow'); });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { safePause(); return; }
+      ensureHeroVideoPlaying('visibilitychange'); armWatchdog(6);
+    });
+    if ('IntersectionObserver' in window) {
+      var pauseDebounce = null;
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (pauseDebounce) { clearTimeout(pauseDebounce); pauseDebounce = null; }
+          if (!e.isIntersecting && e.intersectionRatio <= 0.03) { pauseDebounce = setTimeout(function () { visible = false; safePause(); }, 400); return; }
+          visible = true; ensureHeroVideoPlaying('intersection-visible');
+        });
+      }, { threshold: [0, 0.03, 0.05, 0.28], rootMargin: '120px 0px' }).observe(heroEl);
+    }
+    /* primeiro gesto real do visitante (uma vez cada) + presenca do ponteiro no hero */
+    var once = function (target, type, reason) { target.addEventListener(type, function () { ensureHeroVideoPlaying(reason); }, { once: true, passive: true }); };
+    once(document, 'click', 'document-click'); once(document, 'scroll', 'document-scroll'); once(document, 'keydown', 'document-keydown');
+    once(document, 'touchstart', 'document-touchstart'); once(document, 'pointerdown', 'document-pointerdown'); once(heroEl, 'mouseenter', 'hero-mouseenter');
+    heroEl.addEventListener('pointermove', function () { if (video.paused) ensureHeroVideoPlaying('hero-pointermove'); }, { passive: true });
+    window.addEventListener('wc:mode', function () { if (mode() === 'full') ensureHeroVideoPlaying('mode-full'); else safePause(); });
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { ensureHeroVideoPlaying('dom-content-loaded'); }, { once: true });
+    ensureHeroVideoPlaying('init');
   }
 
   /* ---------- HeroProjectFrame ---------- */

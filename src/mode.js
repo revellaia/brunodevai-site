@@ -1,6 +1,8 @@
 /* BRUNO DEV.AI V3 · mode.js (base tecnica V2 preservada)
    Detecta o modo de motion e espelha em <html data-motion="full|reduced|save"> (06_MOTION).
-   SAVE  = navigator.connection.saveData, effectiveType slow-2g/2g ou prefers-reduced-data: reduce.
+   SAVE  = SO preferencia EXPLICITA de economia: navigator.connection.saveData === true ou prefers-reduced-data: reduce.
+           effectiveType (2g/slow-2g) NAO entra no gate (hotfix 2026-10-04): e uma estimativa de rede que o Chrome
+           muda sozinho e desligava carrossel e video do hero sem o usuario pedir. Fica so como sinal (WC.mode.network()).
    REDUCED = prefers-reduced-motion: reduce.  FULL = nenhum dos anteriores.
    Carregar SINCRONO no <head> (antes do CSS pintar), sem defer. Evento 'wc:mode' a cada mudanca. */
 (function () {
@@ -16,8 +18,7 @@
   var reducedData = mq('(prefers-reduced-data: reduce)');
 
   function detect() {
-    var slow = conn && /^(slow-)?2g$/.test(conn.effectiveType || '');
-    if ((conn && conn.saveData === true) || slow || reducedData.matches) return 'save';
+    if ((conn && conn.saveData === true) || reducedData.matches) return 'save';
     if (reducedMotion.matches) return 'reduced';
     return 'full';
   }
@@ -55,5 +56,7 @@
     get: function () { return current; },
     /* Videos so podem ser requisitados fora do SAVE (AC-09). */
     allowsVideo: function () { return current !== 'save'; },
+    /* sinal de rede (otimizacao), nunca gate de modo */
+    network: function () { return conn ? { effectiveType: conn.effectiveType || null, saveData: conn.saveData === true } : null; },
   };
 })();
