@@ -1,13 +1,13 @@
-/* BRUNO DEV.AI V3 · home.js — HeroVideoPlaylist (6 filmes do Lab), video atmosferico do backdrop e abas Interface/Sistema.
-   DOIS sistemas de video independentes no hero:
-   A) BACKDROP (presence-landscape): atmosfera continua atras do hero; so em FULL, src depois do load; nunca ligado aos slides.
-   B) PLAYLIST (frame da direita): os 6 filmes do Lab em ordem (01 Terra Axis ... 06 Blue Sanctuary -> 01). So o filme ATIVO
-      toca (o anterior pausa e volta a 0); janela de apresentacao = min(duracao do filme, 8 s), ou 'ended' se acabar antes;
-      falha de play nao trava: o poster fica e a playlist segue. Maximo simultaneo em FULL: 2 videos (backdrop + ativo).
+/* BRUNO DEV.AI V3 · home.js — HeroVideoPlaylist (7 filmes) e abas Interface/Sistema.
+   O fundo do hero e a FOTO 01 do Bruno (imagem estatica, sem JS). O frame da direita toca 7 filmes em ordem:
+   01 Presence (filme de marca, o antigo video atmosferico do fundo) + 02..07 os estudos do Lab -> 01. So o filme ATIVO
+   toca (o anterior pausa e volta a 0); janela de apresentacao = min(duracao do filme, 8 s), ou 'ended' se acabar antes;
+   falha de play nao trava: o poster fica e a playlist segue. Maximo simultaneo no hero: 1 video.
    Contrato do Owner: a playlist avanca por padrao em QUALQUER modo; so para com Pausar, aba oculta ou interacao ativa de
    teclado. REDUCED e SAVE: sequencia de POSTERS (4,8 s, sem video; SAVE com imagem just-in-time).
-   Um motor de reproducao para os dois (ensureVideoPlaying), recuperado do historico provado no Chrome (c9b6af8 / e3447a5 /
-   06a6f19): muted/defaultMuted/autoplay/playsInline reafirmados, playPending + stopVideo seguro, retentativas limitadas.
+   Motor de reproducao (ensureVideoPlaying), recuperado do historico provado no Chrome (c9b6af8 / e3447a5 / 06a6f19):
+   muted/defaultMuted/autoplay/playsInline reafirmados, playPending + stopVideo seguro, retentativas limitadas, nova
+   tentativa no load, nos eventos de ciclo de vida e no primeiro gesto real.
    Leitores de tela: a legenda so vira aria-live quando o usuario troca o slide (nunca no avanco automatico). */
 (function () {
   'use strict';
@@ -150,83 +150,17 @@
       });
       window.addEventListener('pageshow', function () { kbActive = false; lastRotationAt = Date.now(); playActive(); schedule(); });
       window.addEventListener('focus', rearm);
+      /* load: nova tentativa do filme ativo (sessao nova do Chrome pode recusar o primeiro play() em silencio) */
+      window.addEventListener('load', function () { var v = vid(i); if (useVideo() && v && v.paused && !userPaused && !document.hidden) { ensureVideoPlaying(v, false); armRetry(); } }, { once: true });
       window.addEventListener('wc:mode', function () { if (!useVideo()) { stopVideo(vid(i)); slides[i].classList.remove('is-playing'); } lastRotationAt = Date.now(); playActive(); schedule(); });
       /* primeiro gesto real: nova tentativa do filme ativo (autoplay recusado em silencio) */
       ['click', 'scroll', 'keydown', 'touchstart', 'pointerdown'].forEach(function (t) { document.addEventListener(t, function () { var v = vid(i); if (useVideo() && v && v.paused && !userPaused) ensureVideoPlaying(v, false); }, { once: true, passive: true }); });
       window.WC = window.WC || {};
       window.WC.hero = { state: function () { var v = vid(i); return { slide: i, userPaused: userPaused, kbActive: kbActive, hidden: document.hidden, timerArmed: !!timer, guardArmed: !!guard, windowMs: windowMs, lastRotationAt: lastRotationAt, expectedNextAt: expectedNextAt, sinceLastMs: Date.now() - lastRotationAt, video: v ? { src: (v.getAttribute('src') || '').split('/').pop(), paused: v.paused, t: +v.currentTime.toFixed(2) } : null }; } };
-      playActive(); /* imediato: o filme 01 ja entra (nao espera o load nem o backdrop) */
+      playActive(); /* imediato: o filme 01 ja entra (nao espera o load) */
       schedule();
     }
   } catch (e) { /* a playlist nunca pode derrubar o resto da pagina */ }
-
-  try {
-  /* ---------- backdrop: video so em FULL, src so depois do load (poster decorativo e o fallback) ----------
-     Arquitetura de reproducao recuperada do historico provado no Chrome (c9b6af8 / e3447a5, 2026-07): nunca uma unica
-     tentativa de play(). ensureHeroVideoPlaying(reason) reafirma muted/defaultMuted/autoplay/loop/playsInline/controls
-     (propriedade + atributo) e tenta de novo em cada ponto do ciclo de vida e no primeiro gesto real, porque o autoplay
-     mudo do Chrome pode ser recusado em silencio em sessoes novas. playPending + safePause evitam "play() request was
-     interrupted by a call to pause()". Watchdog limitado (800 ms, N tentativas) recupera sem depender de gesto.
-     Portado SO o motor de reproducao (sem o parallax/visual antigo). O src continua ausente ate o load (gate V3). */
-  var video = document.querySelector('[data-hero-video]');
-  var heroEl = document.getElementById('top');
-  if (video && heroEl) {
-    var gateOpen = false, visible = true, watchdogTimer = null, watchdogTicks = 0;
-    var safePause = function () { if (video.__playPending) return; video.pause(); }; /* motor generico: playPending no proprio elemento */
-    var attachSrc = function () {
-      if (video.getAttribute('src')) return;
-      var mobile = window.matchMedia('(max-width: 767px)').matches;
-      video.src = video.getAttribute(mobile ? 'data-src-mobile' : 'data-src-desktop');
-    };
-    var ensureHeroVideoPlaying = function (reason) {
-      if (mode() !== 'full') { safePause(); return false; } /* REDUCED/SAVE: poster estatico, nenhum download */
-      if (!gateOpen || !visible || document.hidden) return false;
-      attachSrc();
-      if (!video.paused && video.currentTime > 0) return true;
-      var ok = ensureVideoPlaying(video, true); /* mesmo motor da playlist; backdrop em loop continuo */
-      heroEl.setAttribute('data-video-state', (ok ? 'requested:' : 'blocked:') + reason);
-      return ok;
-    };
-    var armWatchdog = function (maxTicks) {
-      watchdogTicks = 0;
-      if (watchdogTimer) clearInterval(watchdogTimer);
-      watchdogTimer = setInterval(function () {
-        watchdogTicks++;
-        if (watchdogTicks > maxTicks || mode() !== 'full') { clearInterval(watchdogTimer); watchdogTimer = null; return; }
-        if (visible && video.paused && !video.__playPending) ensureHeroVideoPlaying('watchdog');
-      }, 800);
-    };
-    video.addEventListener('playing', function () { video.classList.add('is-playing'); heroEl.setAttribute('data-video-state', 'playing'); });
-    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (evt) {
-      video.addEventListener(evt, function () { ensureHeroVideoPlaying('video-' + evt); }, { once: true });
-    });
-    var openGate = function () { setTimeout(function () { gateOpen = true; ensureHeroVideoPlaying('window-load'); armWatchdog(15); }, 200); };
-    if (document.readyState === 'complete') openGate(); else window.addEventListener('load', openGate, { once: true });
-    window.addEventListener('pageshow', function () { ensureHeroVideoPlaying('pageshow'); });
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { safePause(); return; }
-      ensureHeroVideoPlaying('visibilitychange'); armWatchdog(6);
-    });
-    if ('IntersectionObserver' in window) {
-      var pauseDebounce = null;
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (pauseDebounce) { clearTimeout(pauseDebounce); pauseDebounce = null; }
-          if (!e.isIntersecting && e.intersectionRatio <= 0.03) { pauseDebounce = setTimeout(function () { visible = false; safePause(); }, 400); return; }
-          visible = true; ensureHeroVideoPlaying('intersection-visible');
-        });
-      }, { threshold: [0, 0.03, 0.05, 0.28], rootMargin: '120px 0px' }).observe(heroEl);
-    }
-    /* primeiro gesto real do visitante (uma vez cada) + presenca do ponteiro no hero */
-    var once = function (target, type, reason) { target.addEventListener(type, function () { ensureHeroVideoPlaying(reason); }, { once: true, passive: true }); };
-    once(document, 'click', 'document-click'); once(document, 'scroll', 'document-scroll'); once(document, 'keydown', 'document-keydown');
-    once(document, 'touchstart', 'document-touchstart'); once(document, 'pointerdown', 'document-pointerdown'); once(heroEl, 'mouseenter', 'hero-mouseenter');
-    heroEl.addEventListener('pointermove', function () { if (video.paused) ensureHeroVideoPlaying('hero-pointermove'); }, { passive: true });
-    window.addEventListener('wc:mode', function () { if (mode() === 'full') ensureHeroVideoPlaying('mode-full'); else safePause(); });
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { ensureHeroVideoPlaying('dom-content-loaded'); }, { once: true });
-    ensureHeroVideoPlaying('init');
-  }
-  } catch (e) { /* o video e decorativo: falha dele nunca afeta o carrossel */ }
 
   /* ---------- Abas Interface / Sistema (WAI-ARIA tabs, ativacao automatica) ---------- */
   var tablist = document.querySelector('[data-tabs]');

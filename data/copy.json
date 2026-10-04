@@ -1040,9 +1040,9 @@
     "status": "OWNER_APPROVED (V3 OD-03)"
   },
   "v3.hero.frame.region": {
-    "en": "Featured projects",
-    "pt": "Projetos em destaque",
-    "status": "OWNER_APPROVED (V3 OD-03)"
+    "en": "Featured films",
+    "pt": "Filmes em destaque",
+    "status": "UI_A11Y (2026-10-04)"
   },
   "v3.hero.frame.roledesc": {
     "en": "carousel",
@@ -1065,9 +1065,9 @@
     "status": "OWNER_APPROVED (V3 OD-03)"
   },
   "v3.hero.frame.list": {
-    "en": "Projects",
-    "pt": "Projetos",
-    "status": "OWNER_APPROVED (V3 OD-03)"
+    "en": "Films",
+    "pt": "Filmes",
+    "status": "UI_A11Y (2026-10-04)"
   },
   "v3.slide.vakon.name": {
     "en": "The Frozen Legacy",
@@ -1525,14 +1525,14 @@
     "status": "OWNER_APPROVED (V3 OD-03)"
   },
   "v3.about.role": {
-    "en": "Creative Developer / Digital Systems",
-    "pt": "Creative Developer / Digital Systems",
-    "status": "OWNER_APPROVED (G-002)"
+    "en": "Digital engineer · Creative developer",
+    "pt": "Engenheiro digital · Creative developer",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
   },
   "v3.about.statement": {
-    "en": "Creative developer working where design, software, AI and digital products meet, for brands in Brazil and abroad.",
-    "pt": "Creative developer. Trabalho onde design, software, IA e produtos digitais se encontram, para marcas no Brasil e no exterior.",
-    "status": "OWNER_APPROVED (V3 OD-03)"
+    "en": "I build websites, apps and systems for brands that are already a reference in the real world and need a digital presence that lives up to it.",
+    "pt": "Construo sites, aplicativos e sistemas para marcas que já são referência no mundo real e precisam de uma presença digital à mesma altura.",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
   },
   "v3.about.k.base": {
     "en": "Based in",
@@ -1550,9 +1550,9 @@
     "status": "OWNER_APPROVED (V3 override, mission §4)"
   },
   "v3.about.v.focus": {
-    "en": "Websites, platforms and digital products",
-    "pt": "Sites, plataformas e produtos digitais",
-    "status": "OWNER_APPROVED (V3 override, mission §4)",
+    "en": "Websites, apps and systems",
+    "pt": "Sites, aplicativos e sistemas",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)",
     "notes": "Sem idiomas: proficiencia nao confirmada (mission §4/§40)"
   },
   "v3.about.cta": {
@@ -1625,5 +1625,40 @@
     "pt": "Bruno Dev.AI · Bruno Goebel · Creative Developer / Digital Systems",
     "status": "OWNER_APPROVED (V3 OD-03)",
     "notes": "11_ENGINEERING/SEO.md"
+  },
+  "v3.about.body": {
+    "pt": "Antes de pedir um orçamento, o cliente pesquisa. É nesse momento que o site deixa de ser só uma página e passa a ser argumento. Por isso trato estratégia, direção visual e engenharia como um único trabalho: cada projeto nasce da identidade da marca e só vai ao ar quando está rápido, seguro e preciso em qualquer tela. Uso inteligência artificial no processo, com critério de engenharia, para ir mais longe sem perder o acabamento.",
+    "en": "Before asking for a quote, clients do their research. That is the moment a website stops being just a page and becomes an argument. So I treat strategy, visual direction and engineering as a single job: every project starts from the brand's own identity and only goes live when it is fast, secure and precise on every screen. I use artificial intelligence throughout the process, with engineering judgment, to go further without losing the finish.",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+  },
+  "v3.about.k.craft": {
+    "pt": "Assinatura",
+    "en": "Signature",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+  },
+  "v3.about.v.craft": {
+    "pt": "IA e design imersivo",
+    "en": "AI and immersive design",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+  },
+  "v3.hero.photo.alt": {
+    "pt": "Bruno Goebel trabalhando no notebook, no escritório",
+    "en": "Bruno Goebel working at a laptop in a dark office",
+    "status": "UI_A11Y (2026-10-04)"
+  },
+  "v3.about.photo.main.alt": {
+    "pt": "Retrato de Bruno Goebel em um café, com notebook e caneca",
+    "en": "Portrait of Bruno Goebel at a café table with a laptop and a mug",
+    "status": "UI_A11Y (2026-10-04)"
+  },
+  "v3.about.photo.second.alt": {
+    "pt": "Bruno Goebel em um terraço, com a cidade ao fundo",
+    "en": "Bruno Goebel on a rooftop, with the city skyline behind",
+    "status": "UI_A11Y (2026-10-04)"
+  },
+  "v3.hero.film.presence.type": {
+    "pt": "Filme de marca",
+    "en": "Brand film",
+    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
   }
 }

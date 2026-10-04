@@ -42,16 +42,6 @@
 
   apply();
 
-  /* Poster decorativo do hero (meta bd-backdrop, so na home): pre-carregado cedo fora do SAVE DATA para nao virar
-     um LCP tardio (o <img> e lazy); no SAVE nao ha backdrop e nada e baixado. */
-  var bd = document.querySelector('meta[name="bd-backdrop"]');
-  if (bd && current !== 'save') {
-    var l = document.createElement('link');
-    l.rel = 'preload'; l.as = 'image'; l.type = 'image/avif';
-    l.href = bd.getAttribute(window.matchMedia && window.matchMedia('(max-width: 767px)').matches ? 'data-mobile' : 'data-desktop');
-    document.head.appendChild(l);
-  }
-
   WC.mode = {
     get: function () { return current; },
     /* Videos so podem ser requisitados fora do SAVE (AC-09). */

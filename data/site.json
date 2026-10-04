@@ -21,26 +21,44 @@
   },
   "media": {
     "hero": {
-      "poster": {
-        "desktop": {
-          "avif": "/assets/cinematic/presence-landscape.avif",
-          "webp": "/assets/cinematic/presence-landscape.webp",
-          "w": 1280,
-          "h": 720
-        },
-        "mobile": {
-          "avif": "/assets/cinematic/presence-landscape-mobile-portrait.avif",
-          "webp": "/assets/cinematic/presence-landscape-mobile-portrait.webp",
-          "w": 540,
-          "h": 960
-        }
+      "photo": {
+        "source": "03_BRUNO/approved/Retrato 1.png",
+        "w": 1448,
+        "h": 1086,
+        "avif": "/assets/bruno/bruno-hero-1448.avif",
+        "webp": "/assets/bruno/bruno-hero-1448.webp",
+        "avifSet": "/assets/bruno/bruno-hero-960.avif 960w, /assets/bruno/bruno-hero-1448.avif 1448w",
+        "webpSet": "/assets/bruno/bruno-hero-960.webp 960w, /assets/bruno/bruno-hero-1448.webp 1448w"
       },
-      "video": {
-        "desktop": "/assets/cinematic/presence-landscape.mp4",
-        "mobile": "/assets/cinematic/presence-landscape-mobile-portrait.mp4"
+      "film": {
+        "slug": "presence",
+        "title": "Presence",
+        "film": "/assets/cinematic/presence-landscape.mp4",
+        "poster": "/assets/cinematic/presence-landscape.webp",
+        "posterAvif": "/assets/cinematic/presence-landscape.avif",
+        "w": 1280,
+        "h": 720
       }
     },
-    "og": null
+    "og": null,
+    "about": {
+      "main": {
+        "source": "03_BRUNO/approved/Retrato 3.png",
+        "w": 1122,
+        "h": 1402,
+        "avif": "/assets/bruno/bruno-about-cafe-1122.avif",
+        "webp": "/assets/bruno/bruno-about-cafe-1122.webp",
+        "avifSet": "/assets/bruno/bruno-about-cafe-720.avif 720w, /assets/bruno/bruno-about-cafe-1122.avif 1122w",
+        "webpSet": "/assets/bruno/bruno-about-cafe-720.webp 720w, /assets/bruno/bruno-about-cafe-1122.webp 1122w"
+      },
+      "second": {
+        "source": "03_BRUNO/approved/Retrato 2.png",
+        "w": 640,
+        "h": 640,
+        "avif": "/assets/bruno/bruno-about-city-640.avif",
+        "webp": "/assets/bruno/bruno-about-city-640.webp"
+      }
+    }
   },
   "projects": [
     {

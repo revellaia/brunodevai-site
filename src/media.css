@@ -1,7 +1,7 @@
-/* GERADO por tools/build-media.mjs a partir de data/media-framing.json (2026-10-02 · MEDIA COMPOSITION > CONTAINER CONVENIENCE).
+/* GERADO por tools/build-media.mjs a partir de data/media-framing.json (2026-10-04 · MEDIA COMPOSITION > CONTAINER CONVENIENCE).
    Nao editar a mao. Mudanca de framing = atualizar o manifest + contact sheet (07_MEDIA/MEDIA_FRAMING_GUIDE.md). */
-/* hero.backdrop · 1280x720 (16:9) · DECORATIVE · safe: x 30–75%, y 50–75% (cavalos) */
-[data-adm="hero.backdrop"] .adm-m { object-fit: cover; object-position: 50% 60%; } /* COVER · crop ~23% · src presence-landscape-mobile-portrait */
+/* hero.photo · 1448x1086 (4:3) · CONTENT · safe: x 20–86%, y 10–78% */
+[data-adm="hero.photo"] .adm-m { object-fit: cover; object-position: 70% 30%; } /* ART_DIRECTED_CROP · crop ~25% · src bruno-hero */
 /* hero.frame.vakon · 1200x676 (16:9) · CONTENT · safe: x 22–85%, y 4–90% */
 [data-adm="hero.frame.vakon"] { aspect-ratio: 1.6; }
 [data-adm="hero.frame.vakon"] .adm-m { object-fit: cover; object-position: 55% 50%; } /* ART_DIRECTED_CROP · crop ~10% · src glacial-city-1200 */
@@ -40,11 +40,22 @@
 [data-adm="lab.blue-sanctuary"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src tablet-portrait poster */
 /* logo.lockup · 948x302 (3.14:1) · BRAND · safe: 100% */
 /* logo.emblem · 352x392 (0.9:1) · BRAND · safe: watermark: decorativo */
+/* about.main · 1122x1402 (4:5) · CONTENT · safe: 100% */
+[data-adm="about.main"] { aspect-ratio: 0.8; }
+[data-adm="about.main"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src bruno-about-cafe */
+/* about.second · 1254x1254 (1:1) · CONTENT · safe: 100% */
+[data-adm="about.second"] { aspect-ratio: 1; }
+[data-adm="about.second"] .adm-m { object-fit: contain; object-position: 50% 50%; } /* NATURAL_RATIO · src bruno-about-city */
 @media (min-width: 768px) { /* tablet_768 */
+  [data-adm="hero.photo"] .adm-m { object-fit: cover; object-position: 50% 30%; } /* ART_DIRECTED_CROP · crop ~6% · src bruno-hero */
   [data-adm="work.vakon.feature"] { aspect-ratio: 1.6; }
   [data-adm="work.vakon.feature"] .adm-m { object-fit: cover; object-position: 52% 40%; } /* ART_DIRECTED_CROP · crop ~10% · src glacial-city-1200 */
 }
 @media (min-width: 1024px) { /* tablet_1024 */
+  [data-adm="hero.photo"] .adm-m { object-fit: cover; object-position: 50% 34%; } /* ART_DIRECTED_CROP · crop ~22% · src bruno-hero */
   [data-adm="work.vakon.feature"] { aspect-ratio: 2.06; }
   [data-adm="work.vakon.feature"] .adm-m { object-fit: cover; object-position: 50% 30%; } /* ART_DIRECTED_CROP · crop ~14% · src glacial-city-1200 */
+}
+@media (min-width: 1200px) { /* desktop_1366 */
+  [data-adm="hero.photo"] .adm-m { object-fit: cover; object-position: 50% 30%; } /* ART_DIRECTED_CROP · crop ~8% · src bruno-hero */
 }

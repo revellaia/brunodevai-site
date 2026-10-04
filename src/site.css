@@ -53,13 +53,18 @@
 @keyframes v-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
 /* ============ 01 HERO ============ */
-.hero { position: relative; overflow: hidden; padding: var(--v-hero-pad-top) var(--v-m) var(--v-hero-pad-bottom); }
-.hero-bd, .hero-bd > .adm { position: absolute; inset: 0; }
-.hero-bd .adm-m { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; filter: saturate(.35) brightness(.3); }
-.hero-bd video.adm-m { opacity: 0; transition: opacity 600ms ease; }
-.hero-bd video.adm-m.is-playing { opacity: 1; }
-:root[data-motion="save"] .hero-bd { display: none; }
-.hero-grad { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,9,.55) 0%, #0A0A09 75%); }
+/* FOTO 01 do Bruno (Owner 2026-10-04), sem filtro nem blur: so gradientes nas bordas para a leitura do texto.
+   <1200: faixa cinematografica no topo (largura total, crop dirigido por faixa via data-adm hero.photo); texto e frame
+   logo abaixo, entrando sobre o fade inferior da foto (mesa). >=1200: placa a direita com Bruno + notebook inteiros,
+   texto a esquerda sobre a parede escura, frame na coluna direita. */
+.hero { --hp-band: 100vw; --hp-in: 64px; position: relative; overflow: hidden; padding: calc(var(--hp-band) - var(--hp-in)) var(--v-m) var(--v-hero-pad-bottom); }
+.hero-bd { position: absolute; top: 0; left: 0; right: 0; height: var(--hp-band); }
+.hero-bd > .adm { position: absolute; inset: 0; }
+.hero-bd .adm-m { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.hero-grad { position: absolute; top: 0; left: 0; right: 0; height: var(--hp-band); pointer-events: none;
+  background: linear-gradient(180deg, rgba(10,10,9,.3) 0%, rgba(10,10,9,0) 16%, rgba(10,10,9,0) 60%, rgba(10,10,9,.74) 84%, #0A0A09 100%); }
+@media (min-width: 768px) { .hero { --hp-band: min(72vw, 620px); --hp-in: 56px; } }
+@media (min-width: 1024px) { .hero { --hp-band: 58vw; } }
 .hero-grid { position: relative; row-gap: var(--v-hero-row-gap); align-items: center; }
 .hero-text { grid-column: 1 / -1; display: flex; flex-direction: column; gap: var(--v-hero-gap); }
 .hero-media { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
@@ -74,11 +79,21 @@
   .hero-cta2 { min-height: 24px; border: 0; border-bottom: 1px solid var(--v-gold-underline); padding-bottom: 4px; }
 }
 @media (min-width: 1024px) {
-  .hero-grad { background: linear-gradient(90deg, #0A0A09 0%, rgba(10,10,9,.92) 36%, rgba(10,10,9,.6) 70%, rgba(10,10,9,.8) 100%); }
+  .hero-grid { align-items: start; }
   .hero-text { grid-column: 1 / span 6; }
   .hero-media { grid-column: 7 / span 6; }
 }
-@media (min-width: 1200px) { .hero-text { grid-column: 1 / span 5; } }
+@media (min-width: 1200px) {
+  /* placa: a foto ocupa a altura da 1a dobra a direita; o frame desce para abaixo da linha do notebook (78% da placa,
+     sobre a mesa que se dissolve no fundo), sem cobrir rosto, notebook nem maos */
+  .hero { --hp-left: 30%; --hp-plate: clamp(720px, calc(100svh - var(--v-header-h)), 1000px); padding: var(--v-hero-pad-top) var(--v-m) 72px; }
+  .hero-bd { left: var(--hp-left); height: var(--hp-plate); }
+  .hero-grad { height: var(--hp-plate);
+    background: linear-gradient(90deg, #0A0A09 0%, rgba(10,10,9,.94) calc(var(--hp-left) - 2%), rgba(10,10,9,.28) calc(var(--hp-left) + 7%), rgba(10,10,9,0) calc(var(--hp-left) + 14%)),
+      linear-gradient(180deg, rgba(10,10,9,.36) 0%, rgba(10,10,9,0) 12%, rgba(10,10,9,0) 68%, rgba(10,10,9,.72) 88%, #0A0A09 100%); }
+  .hero-text { grid-column: 1 / span 5; grid-row: 1; min-height: calc(var(--hp-plate) - 2 * var(--v-hero-pad-top)); justify-content: center; }
+  .hero-media { grid-column: 8 / span 5; grid-row: 1; margin-top: calc(var(--hp-plate) * .78 - var(--v-hero-pad-top)); }
+}
 /* entrada (FULL): h1/lead/CTAs opacity + translateY 12, stagger 80ms, 700ms; REDUCED: opacity 200ms; SAVE: nada */
 :root[data-motion="full"] .hero-text > * { animation: v-rise 700ms var(--v-ease-premium) both; }
 :root[data-motion="full"] .hero-text > :nth-child(2) { animation-delay: 80ms; }
@@ -86,7 +101,7 @@
 :root[data-motion="full"] .hero-text > :nth-child(4) { animation-delay: 240ms; }
 :root[data-motion="reduced"] .hero-text > * { animation: v-fade 200ms linear both; }
 
-/* HeroProjectFrame: carrossel acessivel (5 projetos reais) */
+/* HeroVideoPlaylist: frame acessivel (7 filmes: Presence + 6 estudos do Lab) */
 .hpf-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid rgba(237,233,224,.14); background: var(--v-surface-3); box-shadow: var(--v-shadow-media); }
 .hpf-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
 .hpf-slide.is-active { opacity: 1; visibility: visible; }
@@ -257,8 +272,18 @@
 @media (min-width: 1024px) { .lab-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
 /* ============ 08 ABOUT ============ */
-.about { position: relative; overflow: hidden; padding: var(--v-sec-pad) var(--v-m); border-top: 1px solid var(--v-line); row-gap: 36px; align-items: center; }
-.about-id { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 22px; align-self: start; }
+/* Presenca humana real (Owner 2026-10-04): FOTO 03 dominante (4:5) + FOTO 02 complementar (1:1) sobreposta no canto
+   superior direito (so fundo do cafe: rosto, maos e a caneca ficam livres), separadas por um respiro na cor do fundo
+   (sem moldura decorativa). Proporcoes nativas, nunca corte. */
+.about { position: relative; overflow: hidden; padding: var(--v-sec-pad) var(--v-m); border-top: 1px solid var(--v-line); row-gap: 48px; align-items: center; }
+.about-media { grid-column: 1 / -1; position: relative; padding-top: 8%; max-width: 560px; }
+.about-main, .about-second { margin: 0; }
+.about-main { width: 80%; }
+.about-main .adm, .about-second .adm { border: 1px solid var(--v-line); }
+.about-second { position: absolute; right: 0; top: 0; width: 44%; box-shadow: 0 0 0 10px var(--v-bg), var(--v-shadow-media); }
+.about-id { display: flex; flex-direction: column; gap: 22px; }
+.about-body { font-size: var(--v-fs-body); line-height: var(--v-lh-body); color: var(--v-ink-3); max-width: 600px; }
+.about-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
 .about-name { font-family: 'Newsreader', 'Newsreader Fallback', Georgia, serif; font-weight: 300; font-size: var(--v-fs-about-name); line-height: 1; letter-spacing: -0.025em; }
 .about-role { font-size: var(--v-fs-eyebrow); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--v-muted); }
 .about-text { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 26px; position: relative; }
@@ -268,8 +293,8 @@
 .facts dt { font-size: var(--v-fs-micro); letter-spacing: .18em; text-transform: uppercase; color: var(--v-muted); }
 .facts dd { font-size: 15px; }
 .about-text .link-u { align-self: flex-start; }
-@media (min-width: 768px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .about-id { grid-column: 1 / span 5; } .about-text { grid-column: 7 / span 6; } }
+@media (min-width: 768px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .about-media { grid-column: 1 / span 5; max-width: none; } .about-text { grid-column: 7 / span 6; } }
 
 /* ============ 09 CONTACT ============ */
 .contact-sec { padding: 0 var(--v-m) var(--v-contact-bottom); }
@@ -362,8 +387,11 @@ body.cf-locked { overflow: hidden; }
 @media (min-width: 768px) { .wrow { grid-template-columns: repeat(var(--v-cols), minmax(0, 1fr)); column-gap: var(--v-g); } .wrow-media { grid-column: 1 / span 4; } .wrow-info { grid-column: 5 / span 4; } }
 @media (min-width: 1024px) { .wrow-media { grid-column: 1 / span 6; } .wrow-info { grid-column: 8 / span 5; } }
 
-/* ============ /sobre/ (About text-first, sem retrato) ============ */
+/* ============ /sobre/ (fotos reais aprovadas no cabecalho) ============ */
 .ax-hero { padding: calc(var(--v-sec-pad) * .72) var(--v-m) var(--v-sec-pad); display: flex; flex-direction: column; gap: 22px; border-bottom: 1px solid var(--v-line); }
+.ax-hero-in { row-gap: 48px; align-items: center; }
+.ax-hero-text { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 22px; }
+@media (min-width: 1024px) { .ax-hero-text { grid-column: 1 / span 6; } .ax-hero .about-media { grid-column: 8 / span 5; } }
 .ax-sec { padding: var(--v-sec-pad) var(--v-m) 0; row-gap: 24px; }
 .ax-k { grid-column: 1 / -1; }
 .ax-body { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 20px; }

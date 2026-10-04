@@ -63,8 +63,8 @@ const proof = {
   media: {
     tree_mib: media.TOTAL_REPO_DEPLOYABLE_SIZE_MIB, budget_mib: media.gates.budget.limit_mib, target_mib: media.gates.budget.target_mib,
     mp4_mib: media.TOTAL_MP4_SIZE_MIB, media_mib: media.TOTAL_MEDIA_SIZE_MIB, orphans: media.UNREFERENCED_MEDIA.length, pass: media.pass,
-    hero_desktop_mib: mib(sumOf(/^assets\/cinematic\/presence-landscape\.mp4$/)),
-    hero_mobile_mib: mib(sumOf(/^assets\/cinematic\/presence-landscape-mobile-portrait\.mp4$/)),
+    hero_film_mib: mib(sumOf(/^assets\/cinematic\/presence-landscape\.mp4$/)),
+    hero_photo_kib: kb(sumOf(/^assets\/bruno\/bruno-hero-/)),
   },
   baseline,
   fonts: { critical_files: critFonts.length, critical_kb: kb(critFonts.reduce((a, f) => a + size(f), 0)), cdn: false },

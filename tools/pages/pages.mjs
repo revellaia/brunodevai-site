@@ -1,12 +1,12 @@
-/* BRUNO DEV.AI V3 · /work/ (indice), /sobre/ + /en/about/ (About B text-first) e /privacy.html (texto juridico verbatim).
-   About: sem retrato (OD-06: B text-first ate existir foto real; nunca retrato gerado). Conteudo factual da V2 preservado.
+/* BRUNO DEV.AI V3 · /work/ (indice), /sobre/ + /en/about/ e /privacy.html (texto juridico verbatim).
+   About: fotos reais aprovadas pelo Owner (03_BRUNO/approved, 2026-10-04) no cabecalho; conteudo factual da V2 preservado.
    Privacy: fragmento data/legal/privacy.pt.html portado verbatim; so PT (sem par EN = sem hreflang). */
 import fs from 'node:fs';
 import path from 'node:path';
 import { h, raw } from '../lib/html.mjs';
 import { root } from '../lib/deploy-tree.mjs';
 import { ext, live, adm, eyebrow } from './common.mjs';
-import { aboutFacts } from './home.mjs';
+import { aboutFacts, aboutPhotos } from './home.mjs';
 
 const crumb = (c, label) => h`<nav class="crumb" aria-label="${c.T('a11y.breadcrumb')}"><ol><li><a href="${c.home}">Bruno Dev.AI</a></li><li aria-current="page">${label}</li></ol></nav>`;
 
@@ -47,11 +47,17 @@ export function aboutBody(c) {
   return h`<article aria-labelledby="ax-title">
   <header class="ax-hero">
     ${crumb(c, c.T('v3.nav.about'))}
-    ${eyebrow('', c.T('v3.about.eyebrow'))}
-    <h1 class="about-name" id="ax-title">${c.T('v3.about.first')}<br><span class="it">${c.T('v3.about.last')}</span></h1>
-    <p class="about-role">${c.T('v3.about.role')}</p>
-    <p class="about-st">${c.T('v3.about.statement')}</p>
-    ${aboutFacts(c)}
+    <div class="ax-hero-in grid">
+      <div class="ax-hero-text">
+        ${eyebrow('', c.T('v3.about.eyebrow'))}
+        <h1 class="about-name" id="ax-title">${c.T('v3.about.first')}<br><span class="it">${c.T('v3.about.last')}</span></h1>
+        <p class="about-role">${c.T('v3.about.role')}</p>
+        <p class="about-st">${c.T('v3.about.statement')}</p>
+        <p class="about-body">${c.T('v3.about.body')}</p>
+        ${aboutFacts(c)}
+      </div>
+      ${aboutPhotos(c)}
+    </div>
   </header>
   ${sec(1, c.T('about.label'), h`<p class="ax-lede">${c.T('about.page.lede')}</p><p class="ax-text">${c.T('about.page.complement')}</p>`)}
   ${sec(2, c.T('about.competences'), h`<ul class="ax-caps">${c.T('about.capabilities').split(' · ').map(x => h`<li>${x}</li>`)}</ul>`)}

@@ -8,30 +8,35 @@ import { ext, live, adm, eyebrow } from './common.mjs';
 const P = (c, id) => c.site.projects.find(p => p.id === id);
 const shotSet = p => `${p.img['640']} 640w, ${p.img['960']} 960w`;
 
-/* HeroVideoPlaylist (Owner 2026-10-04): o frame da direita toca os 6 filmes do Lab, em ordem (site.lab), reaproveitando os
-   arquivos ja implantados (0 midia nova). Cada slide: poster do proprio filme (mesmo frame/proporcao) + <video> sem src
-   (o src entra so no slide ativo, via src/home.js). Proporcoes mistas (768x960 retrato / 960x540 paisagem) no frame 16:10:
-   video e poster em object-fit CONTAIN (quadro inteiro, nunca corte nem distorcao) sobre um preenchimento decorativo =
-   o mesmo poster desfocado/escurecido. Os 5 projetos seguem no Selected Work e nos cases. */
+/* HeroPhoto + HeroVideoPlaylist (Owner 2026-10-04). Fundo do hero = FOTO 01 aprovada do Bruno (03_BRUNO/approved/Retrato 1):
+   imagem estatica, sem tratamento, candidato LCP (preload em build-pages). O frame da direita toca 7 filmes em ordem:
+   01 Presence (o antigo video atmosferico do fundo, agora filme de marca) + os 6 estudos do Lab (site.lab), reaproveitando
+   os arquivos ja implantados. Cada slide: poster do proprio filme (mesmo frame/proporcao) + <video> sem src (o src entra so
+   no slide ativo, via src/home.js). Proporcoes mistas (1280x720 / 768x960 / 960x540) no frame 16:10: video e poster em
+   object-fit CONTAIN (quadro inteiro, nunca corte nem distorcao) sobre um preenchimento decorativo = o mesmo poster
+   desfocado/escurecido. Os 5 projetos seguem no Selected Work e nos cases. */
 const LAB_FILM_PX = film => /-tablet-portrait\.mp4$/.test(film) ? [768, 960] : [960, 540];
 function slides(c) {
-  return c.site.lab.map(s => { const [w, h] = LAB_FILM_PX(s.film); return { id: s.slug, film: s.film, poster: s.poster, w, h, name: s.title, type: c.T('v3.lab.card'), alt: `${s.title} · ${c.T('v3.lab.card')}`, href: c.url('lab-' + s.slug) }; });
+  const p = c.site.media.hero.film, pt = c.T('v3.hero.film.presence.type');
+  const brand = { id: p.slug, film: p.film, poster: p.poster, posterAvif: p.posterAvif, w: p.w, h: p.h, name: p.title, type: pt, alt: `${p.title} · ${pt}`, href: null };
+  return [brand, ...c.site.lab.map(s => { const [w, h] = LAB_FILM_PX(s.film); return { id: s.slug, film: s.film, poster: s.poster, w, h, name: s.title, type: c.T('v3.lab.card'), alt: `${s.title} · ${c.T('v3.lab.card')}`, href: c.url('lab-' + s.slug) }; })];
 }
+/* poster AVIF quando existe (so o slide 01, sempre eager): fill e poster pedem a MESMA URL (um download). O poster do slide 01
+   vai com fetchpriority low: a banda inicial e da FOTO 01 (LCP) e dos scripts; o filme cobre o poster logo em seguida. */
+const pic = (x, img) => x.posterAvif ? h`<picture><source type="image/avif" srcset="${x.posterAvif}">${img}</picture>` : img;
+/* foto do hero: faixa de largura total (<1200) ou placa a direita (>=1200, ~70% da viewport) */
+export const HERO_PHOTO_SIZES = '(min-width: 1200px) 72vw, 100vw';
 
 function hero(c) {
-  const s = c.site.media.hero;
+  const ph = c.site.media.hero.photo;
   const S = slides(c);
-  const sizes = '(min-width: 1024px) 50vw, 100vw';
   return h`<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero-bd" aria-hidden="true" data-hero-bd>
-    <div class="adm" data-adm="hero.backdrop">
+  <div class="hero-bd" data-hero-bd>
+    <div class="adm" data-adm="hero.photo">
       <picture>
-        <source media="(max-width: 767px)" type="image/avif" srcset="${s.poster.mobile.avif}">
-        <source media="(max-width: 767px)" type="image/webp" srcset="${s.poster.mobile.webp}">
-        <source type="image/avif" srcset="${s.poster.desktop.avif}">
-        <img class="adm-m" src="${s.poster.desktop.webp}" width="${s.poster.desktop.w}" height="${s.poster.desktop.h}" alt="" loading="lazy" decoding="async" fetchpriority="low">
+        <source type="image/avif" srcset="${ph.avifSet}" sizes="${HERO_PHOTO_SIZES}">
+        <img class="adm-m" src="${ph.webp}" srcset="${ph.webpSet}" sizes="${HERO_PHOTO_SIZES}" width="${ph.w}" height="${ph.h}" alt="${c.T('v3.hero.photo.alt')}" decoding="async" fetchpriority="high" data-hero-photo>
       </picture>
-      <video class="adm-m" autoplay muted playsinline loop preload="none" disablepictureinpicture tabindex="-1" data-hero-video data-src-desktop="${s.video.desktop}" data-src-mobile="${s.video.mobile}"></video>
     </div>
   </div>
   <div class="hero-grad" aria-hidden="true"></div>
@@ -47,7 +52,7 @@ function hero(c) {
     </div>
     <div class="hero-media" data-hpf>
       <div class="hpf-frame" role="region" aria-roledescription="${c.T('v3.hero.frame.roledesc')}" aria-label="${c.T('v3.hero.frame.region')}">
-        ${S.map((x, i) => h`<div class="hpf-slide hpf-vslide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}" data-video="${x.film}"${i ? raw(' aria-hidden="true"') : ''}><img class="hpf-fill" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="" aria-hidden="true" decoding="async"><img class="hpf-poster" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="${x.alt}" decoding="async"${i === 0 ? raw(' fetchpriority="high"') : ''}><video class="hpf-video"${i === 0 ? raw(' autoplay') : ''} muted playsinline preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true" width="${x.w}" height="${x.h}"></video></div>`)}
+        ${S.map((x, i) => h`<div class="hpf-slide hpf-vslide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}" data-video="${x.film}"${i ? raw(' aria-hidden="true"') : ''}>${pic(x, h`<img class="hpf-fill" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="" aria-hidden="true" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}${pic(x, h`<img class="hpf-poster" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="${x.alt}" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}<video class="hpf-video"${i === 0 ? raw(' autoplay') : ''} muted playsinline preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true" width="${x.w}" height="${x.h}"></video></div>`)}
         <p class="hpf-count mono" aria-hidden="true"><span data-hpf-n>01</span> / ${String(S.length).padStart(2, '0')}</p>
         <button type="button" class="hpf-pause" data-hpf-pause data-label-pause="${c.T('v3.hero.frame.pause')}" data-label-play="${c.T('v3.hero.frame.play')}" aria-label="${c.T('v3.hero.frame.pause')}" hidden><span aria-hidden="true" data-hpf-icon>II</span></button>
       </div>
@@ -59,7 +64,7 @@ function hero(c) {
         </div>
         <div class="hpf-bars" data-hpf-bars hidden>${S.map((x, i) => h`<button type="button" class="hpf-bar" data-go="${i}" aria-label="${c.T('v3.hero.frame.show')}: ${x.name}"${i === 0 ? raw(' aria-current="true"') : ''}><span></span></button>`)}</div>
       </div>
-      <ul class="hpf-nojs" aria-label="${c.T('v3.hero.frame.list')}">${S.map(x => h`<li><a href="${x.href}">${x.name}</a></li>`)}</ul>
+      <ul class="hpf-nojs" aria-label="${c.T('v3.hero.frame.list')}">${S.map(x => x.href ? h`<li><a href="${x.href}">${x.name}</a></li>` : h`<li>${x.name}</li>`)}</ul>
     </div>
   </div>
 </section>`;
@@ -198,20 +203,39 @@ function lab(c) {
 }
 
 export function aboutFacts(c) {
-  return h`<dl class="facts"><div><dt>${c.T('v3.about.k.base')}</dt><dd>${c.T('v3.about.v.base')}</dd></div><div><dt>${c.T('v3.about.k.focus')}</dt><dd>${c.T('v3.about.v.focus')}</dd></div></dl>`;
+  return h`<dl class="facts">${['base', 'focus', 'craft'].map(k => h`<div><dt>${c.T(`v3.about.k.${k}`)}</dt><dd>${c.T(`v3.about.v.${k}`)}</dd></div>`)}</dl>`;
+}
+
+/* Foto real do Bruno (03_BRUNO/approved): AVIF + WebP, proporcao nativa (NATURAL_RATIO via data-adm), sem corte. */
+const photo = (c, id, p, alt, sizes) => h`<div class="adm" data-adm="${id}"><picture>${p.avifSet
+  ? h`<source type="image/avif" srcset="${p.avifSet}" sizes="${sizes}">`
+  : h`<source type="image/avif" srcset="${p.avif}">`}<img class="adm-m" src="${p.webp}"${p.webpSet ? raw(` srcset="${p.webpSet}" sizes="${sizes}"`) : ''} width="${p.w}" height="${p.h}" alt="${alt}" loading="lazy" decoding="async"></picture></div>`;
+
+/* Sobre com presenca humana real (Owner 2026-10-04): FOTO 03 dominante (4:5) + FOTO 02 complementar (1:1) sobreposta. */
+export function aboutPhotos(c) {
+  const a = c.site.media.about;
+  return h`<div class="about-media">
+    <figure class="about-main">${photo(c, 'about.main', a.main, c.T('v3.about.photo.main.alt'), '(min-width: 1024px) 40vw, 86vw')}</figure>
+    <figure class="about-second">${photo(c, 'about.second', a.second, c.T('v3.about.photo.second.alt'))}</figure>
+  </div>`;
 }
 
 function about(c) {
   return h`<section class="about grid" id="about" aria-labelledby="about-title">
-  <div class="about-id">
-    ${eyebrow('06', c.T('v3.about.eyebrow'))}
-    <h2 class="about-name" id="about-title">${c.T('v3.about.first')}<br><span class="it">${c.T('v3.about.last')}</span></h2>
-    <p class="about-role">${c.T('v3.about.role')}</p>
-  </div>
+  ${aboutPhotos(c)}
   <div class="about-text">
+    <div class="about-id">
+      ${eyebrow('06', c.T('v3.about.eyebrow'))}
+      <h2 class="about-name" id="about-title">${c.T('v3.about.first')}<br><span class="it">${c.T('v3.about.last')}</span></h2>
+      <p class="about-role">${c.T('v3.about.role')}</p>
+    </div>
     <p class="about-st">${c.T('v3.about.statement')}</p>
+    <p class="about-body">${c.T('v3.about.body')}</p>
     ${aboutFacts(c)}
-    <a class="link-u" href="${c.url('about')}">${c.T('v3.about.cta')}</a>
+    <p class="about-ctas">
+      <a class="link-u" href="${c.url('about')}">${c.T('v3.about.cta')}</a>
+      <a class="link-plain" href="mailto:${c.site.contact.email}" data-contact-flow>${c.T('v3.hero.cta.primary')} <span aria-hidden="true">→</span></a>
+    </p>
   </div>
 </section>`;
 }

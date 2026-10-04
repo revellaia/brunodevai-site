@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { root } from './lib/deploy-tree.mjs';
 import { ORIGIN, makeCtx, page } from './pages/common.mjs';
-import { homeBody } from './pages/home.mjs';
+import { homeBody, HERO_PHOTO_SIZES } from './pages/home.mjs';
 import { labIndexBody, labDetailBody } from './pages/lab.mjs';
 import { vakonCase, cicoCase } from './pages/case.mjs';
 import { workBody, aboutBody, privacyBody } from './pages/pages.mjs';
@@ -20,14 +20,11 @@ const NOINDEX = 'noindex, follow';
 
 /* Paginas por id de rota. robots != index => fora do sitemap. */
 const PAGES = {
-  /* Home: candidato LCP = h1 (texto) ou o poster do 1o filme da playlist do hero (Terra Axis, fetchpriority high).
-     O backdrop e decorativo (lazy, fetchpriority low; nunca em SAVE DATA), entao nao recebe preload. */
+  /* Home: candidato LCP = h1 (texto) ou a FOTO 01 do Bruno no fundo do hero (preload responsivo AVIF, fetchpriority high).
+     A playlist do frame nao recebe preload: o poster do filme 01 entra normal e os demais sob demanda. */
   home: c => {
-    const first = c.site.lab[0].poster;
-    const bd = c.site.media.hero.poster;
-    /* bd-backdrop: src/mode.js pre-carrega o poster decorativo so fora do SAVE DATA (no SAVE nao ha backdrop nem download) */
-    const preload = `<link rel="preload" as="image" type="image/webp" href="${first}" fetchpriority="high">
-<meta name="bd-backdrop" data-mobile="${bd.mobile.avif}" data-desktop="${bd.desktop.avif}">`;
+    const ph = c.site.media.hero.photo;
+    const preload = `<link rel="preload" as="image" type="image/avif" imagesrcset="${ph.avifSet}" imagesizes="${HERO_PHOTO_SIZES}" fetchpriority="high">`;
     return {
       extraScripts: ['home', 'hover-video'],
       headOpts: { title: c.T('v3.meta.home.title'), description: c.T('v3.hero.sub'), preload, og: 'home' },
