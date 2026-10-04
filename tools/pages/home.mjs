@@ -8,16 +8,14 @@ import { ext, live, adm, eyebrow } from './common.mjs';
 const P = (c, id) => c.site.projects.find(p => p.id === id);
 const shotSet = p => `${p.img['640']} 640w, ${p.img['960']} 960w`;
 
-/* Slides do HeroProjectFrame: framing por slide = manifest (Vakon ART_DIRECTED_CROP 55% 50%; screenshots NATURAL_RATIO). */
+/* HeroVideoPlaylist (Owner 2026-10-04): o frame da direita toca os 6 filmes do Lab, em ordem (site.lab), reaproveitando os
+   arquivos ja implantados (0 midia nova). Cada slide: poster do proprio filme (mesmo frame/proporcao) + <video> sem src
+   (o src entra so no slide ativo, via src/home.js). Proporcoes mistas (768x960 retrato / 960x540 paisagem) no frame 16:10:
+   video e poster em object-fit CONTAIN (quadro inteiro, nunca corte nem distorcao) sobre um preenchimento decorativo =
+   o mesmo poster desfocado/escurecido. Os 5 projetos seguem no Selected Work e nos cases. */
+const LAB_FILM_PX = film => /-tablet-portrait\.mp4$/.test(film) ? [768, 960] : [960, 540];
 function slides(c) {
-  const v = P(c, 'vakon');
-  return [
-    { id: 'vakon', adm: 'hero.frame.vakon', src: v.img['960'], srcset: `${v.img['640']} 760w, ${v.img['960']} 1200w`, w: v.img.w, h: v.img.h, name: c.T('v3.slide.vakon.name'), type: c.T('v3.slide.vakon.type'), alt: c.T('v3.slide.vakon.alt'), href: c.url('vakon') },
-    ...['cico', 'pires', 'paula', 'memore'].map(id => {
-      const p = P(c, id);
-      return { id, adm: `shot.${id}`, src: p.img['960'], srcset: shotSet(p), w: p.img.w, h: p.img.h, name: c.T(`v3.slide.${id}.name`), type: c.T(`v3.type.${id}`), alt: c.T(`v3.slide.${id}.alt`), href: p.case ? c.url(p.case) : p.url, external: !p.case };
-    }),
-  ];
+  return c.site.lab.map(s => { const [w, h] = LAB_FILM_PX(s.film); return { id: s.slug, film: s.film, poster: s.poster, w, h, name: s.title, type: c.T('v3.lab.card'), alt: `${s.title} · ${c.T('v3.lab.card')}`, href: c.url('lab-' + s.slug) }; });
 }
 
 function hero(c) {
@@ -49,7 +47,7 @@ function hero(c) {
     </div>
     <div class="hero-media" data-hpf>
       <div class="hpf-frame" role="region" aria-roledescription="${c.T('v3.hero.frame.roledesc')}" aria-label="${c.T('v3.hero.frame.region')}">
-        ${S.map((x, i) => h`<div class="hpf-slide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}"${i ? raw(' aria-hidden="true"') : ''}>${adm(c, { id: x.adm, src: x.src, srcset: x.srcset, sizes, w: x.w, h: x.h, alt: x.alt, loading: 'eager', priority: i === 0, deferred: i > 0 })}</div>`)}
+        ${S.map((x, i) => h`<div class="hpf-slide hpf-vslide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}" data-video="${x.film}"${i ? raw(' aria-hidden="true"') : ''}><img class="hpf-fill" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="" aria-hidden="true" decoding="async"><img class="hpf-poster" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="${x.alt}" decoding="async"${i === 0 ? raw(' fetchpriority="high"') : ''}><video class="hpf-video"${i === 0 ? raw(' autoplay') : ''} muted playsinline preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true" width="${x.w}" height="${x.h}"></video></div>`)}
         <p class="hpf-count mono" aria-hidden="true"><span data-hpf-n>01</span> / ${String(S.length).padStart(2, '0')}</p>
         <button type="button" class="hpf-pause" data-hpf-pause data-label-pause="${c.T('v3.hero.frame.pause')}" data-label-play="${c.T('v3.hero.frame.play')}" aria-label="${c.T('v3.hero.frame.pause')}" hidden><span aria-hidden="true" data-hpf-icon>II</span></button>
       </div>
@@ -61,7 +59,7 @@ function hero(c) {
         </div>
         <div class="hpf-bars" data-hpf-bars hidden>${S.map((x, i) => h`<button type="button" class="hpf-bar" data-go="${i}" aria-label="${c.T('v3.hero.frame.show')}: ${x.name}"${i === 0 ? raw(' aria-current="true"') : ''}><span></span></button>`)}</div>
       </div>
-      <ul class="hpf-nojs" aria-label="${c.T('v3.hero.frame.list')}">${S.map(x => h`<li><a href="${x.href}"${x.external ? raw(' target="_blank" rel="noopener noreferrer"') : ''}>${x.name}${x.external ? ext(c.T) : ''}</a></li>`)}</ul>
+      <ul class="hpf-nojs" aria-label="${c.T('v3.hero.frame.list')}">${S.map(x => h`<li><a href="${x.href}">${x.name}</a></li>`)}</ul>
     </div>
   </div>
 </section>`;

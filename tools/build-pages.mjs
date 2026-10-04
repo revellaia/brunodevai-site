@@ -20,13 +20,13 @@ const NOINDEX = 'noindex, follow';
 
 /* Paginas por id de rota. robots != index => fora do sitemap. */
 const PAGES = {
-  /* Home: candidato LCP = h1 (texto) ou slide 1 do frame (Vakon, eager + fetchpriority high). O backdrop e decorativo
-     (lazy, fetchpriority low; nunca em SAVE DATA), entao nao recebe preload. */
+  /* Home: candidato LCP = h1 (texto) ou o poster do 1o filme da playlist do hero (Terra Axis, fetchpriority high).
+     O backdrop e decorativo (lazy, fetchpriority low; nunca em SAVE DATA), entao nao recebe preload. */
   home: c => {
-    const v = c.site.projects.find(p => p.id === 'vakon').img;
+    const first = c.site.lab[0].poster;
     const bd = c.site.media.hero.poster;
     /* bd-backdrop: src/mode.js pre-carrega o poster decorativo so fora do SAVE DATA (no SAVE nao ha backdrop nem download) */
-    const preload = `<link rel="preload" as="image" type="image/webp" href="${v['960']}" imagesrcset="${v['640']} 760w, ${v['960']} 1200w" imagesizes="(min-width: 1024px) 50vw, 100vw" fetchpriority="high">
+    const preload = `<link rel="preload" as="image" type="image/webp" href="${first}" fetchpriority="high">
 <meta name="bd-backdrop" data-mobile="${bd.mobile.avif}" data-desktop="${bd.desktop.avif}">`;
     return {
       extraScripts: ['home', 'hover-video'],

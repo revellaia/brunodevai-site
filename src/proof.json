@@ -1,11 +1,11 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "base_commit": "06a6f19",
+    "base_commit": "a7daf82",
     "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
   "media": {
-    "tree_mib": 30.46,
+    "tree_mib": 30.47,
     "budget_mib": 40,
     "target_mib": 60,
     "mp4_mib": 26.51,
@@ -29,9 +29,9 @@
   },
   "runtime": {
     "js_files": 7,
-    "js_gz_kb": 11.8,
+    "js_gz_kb": 12.4,
     "css_files": 4,
-    "css_gz_kb": 12.9
+    "css_gz_kb": 13.1
   },
   "security": {
     "csp_self": true,

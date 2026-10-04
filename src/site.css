@@ -94,6 +94,13 @@
 :root[data-motion="full"] .hpf-slide.is-active { transition: opacity 1100ms var(--v-ease-premium), visibility 0s; }
 :root[data-motion="reduced"] .hpf-slide { transition: opacity 200ms linear, visibility 0s linear 200ms; }
 :root[data-motion="reduced"] .hpf-slide.is-active { transition: opacity 200ms linear, visibility 0s; }
+/* HeroVideoPlaylist: filme e poster INTEIROS (contain; proporcoes mistas 4:5 e 16:9 no frame 16:10); fundo = o mesmo
+   poster desfocado/escurecido (decorativo, aria-hidden). O <video> so aparece quando esta tocando de fato. */
+.hpf-vslide .hpf-fill, .hpf-vslide .hpf-poster, .hpf-vslide .hpf-video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.hpf-vslide .hpf-fill { object-fit: cover; filter: blur(26px) brightness(.36) saturate(.85); transform: scale(1.18); }
+.hpf-vslide .hpf-poster, .hpf-vslide .hpf-video { object-fit: contain; object-position: 50% 50%; }
+.hpf-vslide .hpf-video { opacity: 0; transition: opacity 450ms ease; }
+.hpf-vslide.is-playing .hpf-video { opacity: 1; }
 .hpf-count { position: absolute; top: 14px; left: 16px; z-index: 2; padding: 6px 10px; background: rgba(10,10,9,.72); font-size: var(--v-fs-micro); letter-spacing: .1em; }
 .hpf-pause { position: absolute; top: 10px; right: 12px; z-index: 2; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(10,10,9,.72); border: 1px solid rgba(237,233,224,.18); font-size: var(--v-fs-micro); }
 @media (pointer: coarse) { .hpf-pause { width: 44px; height: 44px; top: 6px; right: 8px; } }

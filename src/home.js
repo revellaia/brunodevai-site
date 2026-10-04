@@ -1,22 +1,43 @@
-/* BRUNO DEV.AI V3 · home.js — HeroProjectFrame (carrossel acessivel), video do backdrop e abas Interface/Sistema.
-   Uma arquitetura de motion (CSS transitions + IntersectionObserver), por modo (src/mode.js):
-   CARROSSEL (contrato do Owner 2026-10-04): autoplay 4.8 s em TODOS os modos; so para com Pausar, aba oculta ou interacao
-             ativa de teclado. FULL = crossfade 1.1 s; REDUCED = troca com fade <= 200 ms; SAVE = gira com imagem just-in-time.
-   VIDEO do backdrop (independente do carrossel): so em FULL, src depois do load, motor historico de reproducao.
-             REDUCED = poster; SAVE = sem backdrop e sem video.
-   Leitores de tela: a legenda so vira aria-live quando o usuario troca o slide (nunca na rotacao automatica). */
+/* BRUNO DEV.AI V3 · home.js — HeroVideoPlaylist (6 filmes do Lab), video atmosferico do backdrop e abas Interface/Sistema.
+   DOIS sistemas de video independentes no hero:
+   A) BACKDROP (presence-landscape): atmosfera continua atras do hero; so em FULL, src depois do load; nunca ligado aos slides.
+   B) PLAYLIST (frame da direita): os 6 filmes do Lab em ordem (01 Terra Axis ... 06 Blue Sanctuary -> 01). So o filme ATIVO
+      toca (o anterior pausa e volta a 0); janela de apresentacao = min(duracao do filme, 8 s), ou 'ended' se acabar antes;
+      falha de play nao trava: o poster fica e a playlist segue. Maximo simultaneo em FULL: 2 videos (backdrop + ativo).
+   Contrato do Owner: a playlist avanca por padrao em QUALQUER modo; so para com Pausar, aba oculta ou interacao ativa de
+   teclado. REDUCED e SAVE: sequencia de POSTERS (4,8 s, sem video; SAVE com imagem just-in-time).
+   Um motor de reproducao para os dois (ensureVideoPlaying), recuperado do historico provado no Chrome (c9b6af8 / e3447a5 /
+   06a6f19): muted/defaultMuted/autoplay/playsInline reafirmados, playPending + stopVideo seguro, retentativas limitadas.
+   Leitores de tela: a legenda so vira aria-live quando o usuario troca o slide (nunca no avanco automatico). */
 (function () {
   'use strict';
   var WC = window.WC || {};
   var mode = function () { return WC.mode ? WC.mode.get() : 'full'; };
-  var INTERVAL = 4800, PRELOAD_AHEAD = 1000;
+  var POSTER_INTERVAL = 4800, VIDEO_WINDOW = 8000, PRELOAD_AHEAD = 1500;
 
-  /* ---------- HeroProjectFrame (CONTRATO DO OWNER 2026-10-04: autoplay e o comportamento padrao) ----------
-     Gira 01>02>03>04>05>01 a cada 4,8 s em QUALQUER modo. So para com: (A) Pausar explicito, (B) aba oculta,
-     (C) interacao ATIVA de teclado nos controles (keydown de navegacao; termina quando o foco sai do frame ou num clique).
-     Foco de mouse, foco restaurado pelo navegador, hover, reduced motion, reduced data, saveData e effectiveType NAO param.
-     WC.mode decide so a transicao (CSS por data-motion) e o carregamento (proxima imagem just-in-time, nunca as 5).
-     Um unico timer de rotacao (setTimeout em cadeia) + um guarda de autocura (>6 s sem troca -> re-arma), sem polling. */
+  /* ---------- motor de reproducao (generico) ---------- */
+  var stopVideo = function (v) {
+    if (!v) return;
+    if (v.__playPending) { v.__wantStop = true; return; } /* nunca pausar com play() em voo */
+    v.pause(); try { v.currentTime = 0; } catch (e) { /* sem metadata ainda */ }
+    v.autoplay = false; v.removeAttribute('autoplay');
+  };
+  var ensureVideoPlaying = function (v, loop) {
+    if (!v || !v.getAttribute('src')) return false;
+    if (!v.paused && v.currentTime > 0) return true;
+    if (v.__playPending) return false;
+    v.__wantStop = false;
+    v.muted = true; v.defaultMuted = true; v.autoplay = true; v.playsInline = true; v.controls = false; v.loop = !!loop;
+    v.setAttribute('muted', ''); v.setAttribute('autoplay', ''); v.setAttribute('playsinline', '');
+    if (loop) v.setAttribute('loop', ''); else v.removeAttribute('loop');
+    var p;
+    try { v.__playPending = true; p = v.play(); } catch (e) { v.__playPending = false; return false; }
+    if (!p || !p.then) { v.__playPending = false; return true; }
+    p.then(function () { v.__playPending = false; if (v.__wantStop) stopVideo(v); }, function () { v.__playPending = false; if (v.__wantStop) stopVideo(v); });
+    return true;
+  };
+
+  /* ---------- HeroVideoPlaylist ---------- */
   try {
     var hpf = document.querySelector('[data-hpf]');
     if (hpf) {
@@ -28,32 +49,55 @@
       var live = hpf.querySelector('[data-hpf-live]');
       var nameEl = hpf.querySelector('[data-hpf-name]'), typeEl = hpf.querySelector('[data-hpf-type]'), numEl = hpf.querySelector('[data-hpf-n]');
       var i = Math.max(0, slides.findIndex(function (s) { return s.classList.contains('is-active'); }));
-      var userPaused = false, kbActive = false, timer = null, ahead = null, guard = null;
-      var lastRotationAt = Date.now(), expectedNextAt = 0;
+      var userPaused = false, kbActive = false, timer = null, ahead = null, guard = null, retry = null, retries = 0;
+      var lastRotationAt = Date.now(), expectedNextAt = 0, windowMs = 0;
 
-      var load = function (n) {
-        var img = slides[n] && slides[n].querySelector('img[data-src]');
-        if (!img) return;
-        if (img.getAttribute('data-srcset')) { img.setAttribute('srcset', img.getAttribute('data-srcset')); img.removeAttribute('data-srcset'); }
-        img.setAttribute('src', img.getAttribute('data-src'));
-        img.removeAttribute('data-src');
+      var vid = function (n) { return slides[n] && slides[n].querySelector('video'); };
+      var useVideo = function () { return mode() === 'full'; };
+      var loadPoster = function (n) {
+        if (!slides[n]) return;
+        [].forEach.call(slides[n].querySelectorAll('img[data-src]'), function (img) { img.setAttribute('src', img.getAttribute('data-src')); img.removeAttribute('data-src'); });
+      };
+      var attachVideo = function (n, preloadOnly) {
+        var v = vid(n); if (!v || v.getAttribute('src')) return v;
+        if (preloadOnly) { v.autoplay = false; v.removeAttribute('autoplay'); v.preload = 'metadata'; }
+        v.src = slides[n].getAttribute('data-video');
+        return v;
       };
       var canRotate = function () { return !userPaused && !document.hidden && !kbActive; };
       var clearTimers = function () { clearTimeout(timer); clearTimeout(ahead); clearTimeout(guard); timer = ahead = guard = null; };
+      var stopRetry = function () { clearInterval(retry); retry = null; };
+      /* retentativas limitadas do filme ativo (800 ms, ate 10x): cobre recusa silenciosa do primeiro play() */
+      var armRetry = function () {
+        stopRetry(); retries = 0;
+        retry = setInterval(function () {
+          var v = vid(i);
+          if (++retries > 10 || !useVideo() || !v || (!v.paused && v.currentTime > 0)) { stopRetry(); return; }
+          if (!document.hidden && !userPaused && !v.__playPending) ensureVideoPlaying(v, false);
+        }, 800);
+      };
+      var playActive = function () {
+        if (!useVideo() || document.hidden || userPaused) return;
+        var v = attachVideo(i, false); ensureVideoPlaying(v, false); armRetry();
+      };
       var schedule = function () {
         clearTimers();
         if (!canRotate()) { expectedNextAt = 0; return; }
-        expectedNextAt = Date.now() + INTERVAL;
-        /* just-in-time: so a PROXIMA imagem, ~1 s antes da troca (vale para SAVE tambem) */
-        ahead = setTimeout(function () { load((i + 1) % slides.length); }, INTERVAL - PRELOAD_AHEAD);
-        timer = setTimeout(function () { timer = null; if (canRotate()) show(i + 1, false); else schedule(); }, INTERVAL);
-        /* autocura: se a troca nao aconteceu ~1,2 s depois do previsto (timer perdido/estrangulado), re-arma */
-        guard = setTimeout(function () { guard = null; if (canRotate() && Date.now() - lastRotationAt > INTERVAL + 1200) show(i + 1, false); }, INTERVAL + 1200);
+        var v = vid(i);
+        windowMs = useVideo() ? Math.min(VIDEO_WINDOW, v && v.duration > 0 && isFinite(v.duration) ? v.duration * 1000 - 300 : VIDEO_WINDOW) : POSTER_INTERVAL;
+        windowMs = Math.max(3000, windowMs);
+        expectedNextAt = Date.now() + windowMs;
+        /* just-in-time: so o PROXIMO poster (e, em FULL, a metadata do proximo filme) pouco antes da troca */
+        ahead = setTimeout(function () { var n = (i + 1) % slides.length; loadPoster(n); if (useVideo()) attachVideo(n, true); }, Math.max(0, windowMs - PRELOAD_AHEAD));
+        timer = setTimeout(function () { timer = null; if (canRotate()) show(i + 1, false); else schedule(); }, windowMs);
+        /* autocura: troca atrasada > 1,5 s (timer perdido/estrangulado) -> avanca */
+        guard = setTimeout(function () { guard = null; if (canRotate() && Date.now() - lastRotationAt > windowMs + 1500) show(i + 1, false); }, windowMs + 1500);
       };
       var show = function (n, byUser) {
         n = (n + slides.length) % slides.length;
         if (n !== i) {
-          load(n);
+          stopVideo(vid(i)); slides[i].classList.remove('is-playing');
+          loadPoster(n);
           if (byUser) live.setAttribute('aria-live', 'polite'); else live.removeAttribute('aria-live');
           slides.forEach(function (s, k) {
             var on = k === n;
@@ -67,40 +111,54 @@
           i = n;
         }
         lastRotationAt = Date.now();
+        playActive();
         schedule();
       };
+      slides.forEach(function (s, k) {
+        var v = s.querySelector('video'); if (!v) return;
+        v.addEventListener('playing', function () { if (k === i) s.classList.add('is-playing'); else stopVideo(v); });
+        v.addEventListener('ended', function () { if (k === i && canRotate()) show(i + 1, false); });
+        v.addEventListener('loadedmetadata', function () { if (k === i && canRotate() && timer) { var left = expectedNextAt - Date.now(); var target = Math.min(VIDEO_WINDOW, v.duration * 1000 - 300); if (target < windowMs && left > 0) schedule(); } });
+      });
       var setPaused = function (p) {
         userPaused = p; /* SO o botao muda isto */
         pauseBtn.setAttribute('aria-label', pauseBtn.getAttribute(p ? 'data-label-play' : 'data-label-pause'));
         icon.textContent = p ? '▶' : 'II';
+        var v = vid(i);
+        if (p) { stopRetry(); if (v) { if (v.__playPending) v.__wantStop = true; else v.pause(); } } else playActive();
         lastRotationAt = Date.now();
         schedule();
       };
-      var rearm = function () { kbActive = kbActive && hpf.contains(document.activeElement); if (canRotate() && (!timer || Date.now() - lastRotationAt > INTERVAL + 1200)) { lastRotationAt = Date.now(); schedule(); } };
+      var rearm = function () { kbActive = kbActive && hpf.contains(document.activeElement); if (canRotate() && (!timer || Date.now() - lastRotationAt > windowMs + 1500)) { lastRotationAt = Date.now(); playActive(); schedule(); } };
 
-      /* controles visiveis em todos os modos: autoplay em todo modo exige Pausar sempre disponivel (WCAG 2.2.2) */
+      /* controles visiveis em todos os modos: avanco automatico exige Pausar sempre disponivel (WCAG 2.2.2) */
       pauseBtn.hidden = false; barsWrap.hidden = false;
-      bars.forEach(function (b) { b.addEventListener('click', function (e) { if (e.detail !== 0) kbActive = false; /* clique de mouse; Enter/Espaco (detail 0) mantem a pausa de teclado */ show(+b.getAttribute('data-go'), true); }); });
+      bars.forEach(function (b) { b.addEventListener('click', function (e) { if (e.detail !== 0) kbActive = false; show(+b.getAttribute('data-go'), true); }); });
       pauseBtn.addEventListener('click', function () { setPaused(!userPaused); });
-      /* interacao de teclado explicita e temporaria */
       hpf.addEventListener('keydown', function (e) {
         if (/^(Tab|ArrowLeft|ArrowRight|ArrowUp|ArrowDown|Home|End|Enter| |Spacebar)$/.test(e.key)) { kbActive = true; schedule(); }
       });
-      /* entrar no frame com Tab (o keydown ocorre no elemento anterior): so conta se o Tab foi agora (< 400 ms);
-         foco programatico ou restaurado pelo navegador nao tem Tab recente e NAO pausa */
       var lastTabAt = 0;
       document.addEventListener('keydown', function (e) { if (e.key === 'Tab') lastTabAt = Date.now(); }, true);
       hpf.addEventListener('focusin', function () { if (Date.now() - lastTabAt < 400) { kbActive = true; schedule(); } });
       hpf.addEventListener('focusout', function (e) { if (!hpf.contains(e.relatedTarget)) { kbActive = false; rearm(); } });
       document.addEventListener('pointerdown', function () { if (kbActive) { kbActive = false; rearm(); } }, { passive: true });
-      document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimers(); else { lastRotationAt = Date.now(); schedule(); } });
-      window.addEventListener('pageshow', function () { kbActive = false; lastRotationAt = Date.now(); schedule(); }); /* BFCache: nunca herda pausa acidental */
+      document.addEventListener('visibilitychange', function () {
+        var v = vid(i);
+        if (document.hidden) { clearTimers(); stopRetry(); if (v && !v.__playPending) v.pause(); }
+        else { lastRotationAt = Date.now(); playActive(); schedule(); }
+      });
+      window.addEventListener('pageshow', function () { kbActive = false; lastRotationAt = Date.now(); playActive(); schedule(); });
       window.addEventListener('focus', rearm);
+      window.addEventListener('wc:mode', function () { if (!useVideo()) { stopVideo(vid(i)); slides[i].classList.remove('is-playing'); } lastRotationAt = Date.now(); playActive(); schedule(); });
+      /* primeiro gesto real: nova tentativa do filme ativo (autoplay recusado em silencio) */
+      ['click', 'scroll', 'keydown', 'touchstart', 'pointerdown'].forEach(function (t) { document.addEventListener(t, function () { var v = vid(i); if (useVideo() && v && v.paused && !userPaused) ensureVideoPlaying(v, false); }, { once: true, passive: true }); });
       window.WC = window.WC || {};
-      window.WC.hero = { state: function () { return { slide: i, userPaused: userPaused, kbActive: kbActive, hidden: document.hidden, timerArmed: !!timer, guardArmed: !!guard, lastRotationAt: lastRotationAt, expectedNextAt: expectedNextAt, sinceLastMs: Date.now() - lastRotationAt }; } };
-      schedule(); /* imediato: nao espera video, load, IntersectionObserver, rede nem modo */
+      window.WC.hero = { state: function () { var v = vid(i); return { slide: i, userPaused: userPaused, kbActive: kbActive, hidden: document.hidden, timerArmed: !!timer, guardArmed: !!guard, windowMs: windowMs, lastRotationAt: lastRotationAt, expectedNextAt: expectedNextAt, sinceLastMs: Date.now() - lastRotationAt, video: v ? { src: (v.getAttribute('src') || '').split('/').pop(), paused: v.paused, t: +v.currentTime.toFixed(2) } : null }; } };
+      playActive(); /* imediato: o filme 01 ja entra (nao espera o load nem o backdrop) */
+      schedule();
     }
-  } catch (e) { /* o carrossel nunca pode derrubar o resto da pagina */ }
+  } catch (e) { /* a playlist nunca pode derrubar o resto da pagina */ }
 
   try {
   /* ---------- backdrop: video so em FULL, src so depois do load (poster decorativo e o fallback) ----------
@@ -113,8 +171,8 @@
   var video = document.querySelector('[data-hero-video]');
   var heroEl = document.getElementById('top');
   if (video && heroEl) {
-    var gateOpen = false, visible = true, playPending = false, watchdogTimer = null, watchdogTicks = 0;
-    var safePause = function () { if (playPending) return; video.pause(); };
+    var gateOpen = false, visible = true, watchdogTimer = null, watchdogTicks = 0;
+    var safePause = function () { if (video.__playPending) return; video.pause(); }; /* motor generico: playPending no proprio elemento */
     var attachSrc = function () {
       if (video.getAttribute('src')) return;
       var mobile = window.matchMedia('(max-width: 767px)').matches;
@@ -125,15 +183,9 @@
       if (!gateOpen || !visible || document.hidden) return false;
       attachSrc();
       if (!video.paused && video.currentTime > 0) return true;
-      if (playPending) return false;
-      video.muted = true; video.defaultMuted = true; video.autoplay = true; video.loop = true; video.playsInline = true; video.controls = false;
-      video.setAttribute('muted', ''); video.setAttribute('autoplay', ''); video.setAttribute('loop', ''); video.setAttribute('playsinline', '');
-      var p;
-      try { playPending = true; p = video.play(); } catch (e) { playPending = false; heroEl.setAttribute('data-video-state', 'blocked:' + reason); return false; }
-      if (!p || !p.then) { playPending = false; return true; }
-      p.then(function () { playPending = false; heroEl.setAttribute('data-video-state', 'playing:' + reason); },
-        function () { playPending = false; heroEl.setAttribute('data-video-state', 'blocked:' + reason); });
-      return true;
+      var ok = ensureVideoPlaying(video, true); /* mesmo motor da playlist; backdrop em loop continuo */
+      heroEl.setAttribute('data-video-state', (ok ? 'requested:' : 'blocked:') + reason);
+      return ok;
     };
     var armWatchdog = function (maxTicks) {
       watchdogTicks = 0;
@@ -141,10 +193,10 @@
       watchdogTimer = setInterval(function () {
         watchdogTicks++;
         if (watchdogTicks > maxTicks || mode() !== 'full') { clearInterval(watchdogTimer); watchdogTimer = null; return; }
-        if (visible && video.paused && !playPending) ensureHeroVideoPlaying('watchdog');
+        if (visible && video.paused && !video.__playPending) ensureHeroVideoPlaying('watchdog');
       }, 800);
     };
-    video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+    video.addEventListener('playing', function () { video.classList.add('is-playing'); heroEl.setAttribute('data-video-state', 'playing'); });
     ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (evt) {
       video.addEventListener(evt, function () { ensureHeroVideoPlaying('video-' + evt); }, { once: true });
     });
