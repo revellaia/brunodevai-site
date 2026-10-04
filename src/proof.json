@@ -1,7 +1,7 @@
 {
   "$meta": {
     "generator": "tools/build-proof.mjs",
-    "base_commit": "9e8a69f",
+    "base_commit": "17d43f9",
     "note": "Measured from the real tree. qa = last local QA run (null = not measured yet, rows depending on it are omitted). Do not edit by hand."
   },
   "media": {
@@ -28,10 +28,10 @@
     "cdn": false
   },
   "runtime": {
-    "js_files": 6,
-    "js_gz_kb": 7.9,
+    "js_files": 7,
+    "js_gz_kb": 9.4,
     "css_files": 4,
-    "css_gz_kb": 12.8
+    "css_gz_kb": 12.9
   },
   "security": {
     "csp_self": true,
@@ -45,9 +45,9 @@
     "cls": 0.05
   },
   "qa": {
-    "at": "2026-10-03T18:29:00.772Z",
+    "at": "2026-10-04T11:00:58.278Z",
     "harness": "V3_IMPLEMENTATION/qa/v3-qa.mjs (Chromium 151, local)",
-    "base_commit": "44fafed-dirty",
+    "base_commit": "17d43f9-dirty",
     "viewports": [
       390,
       430,
@@ -71,7 +71,7 @@
       "leaks": 0
     },
     "checks": {
-      "total": 2537,
+      "total": 2551,
       "failed": 0,
       "warned": 1
     }

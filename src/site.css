@@ -237,6 +237,9 @@
 .lab-card:hover .adm-m, .lab-card:focus-visible .adm-m { filter: grayscale(0) brightness(1); }
 :root[data-motion="full"] .lab-card .adm-m { transition: filter 500ms var(--v-ease-premium), transform 1000ms var(--v-ease-premium); }
 :root[data-motion="full"] .lab-card:hover .adm-m, :root[data-motion="full"] .lab-card:focus-visible .adm-m { transform: scale(1.04); }
+/* filme no hover (src/hover-video.js): sobre o poster, mesmo framing (.adm-m + src/media.css); poster ate tocar de fato */
+.lab-card .hv-video { opacity: 0; transition: opacity 300ms ease; }
+.lab-card.is-playing .hv-video { opacity: 1; }
 .lab-card-t { display: flex; flex-direction: column; gap: 4px; }
 .lab-card-name { font-size: 15px; font-weight: 500; }
 .lab-card-type { font-size: var(--v-fs-eyebrow); color: var(--v-muted); }

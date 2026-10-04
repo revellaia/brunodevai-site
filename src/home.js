@@ -1,6 +1,8 @@
 /* BRUNO DEV.AI V3 · home.js — HeroProjectFrame (carrossel acessivel), video do backdrop e abas Interface/Sistema.
    Uma arquitetura de motion (CSS transitions + IntersectionObserver), por modo (src/mode.js):
-   FULL    = rotacao 4.8 s (pausa em hover, foco, botao, aba oculta), crossfade 1.1 s, video do backdrop apos o load.
+   FULL    = autoplay continuo 4.8 s (1>2>3>4>5>1...), crossfade 1.1 s, video do backdrop apos o load. O ponteiro sobre o
+             hero NAO pausa (Owner 2026-10-03). Pausa so: botao Pausar, foco de TECLADO dentro do frame (:focus-visible)
+             ou aba oculta. Selecao manual reinicia o timer (a menos que o usuario tenha pausado). Um unico timer.
    REDUCED = sem auto-rotacao; troca manual com fade 200 ms; backdrop so poster.
    SAVE    = slide 1 estatico; slides 2-5 nunca baixados; sem backdrop (nem poster) e sem video.
    Leitores de tela: a legenda so vira aria-live quando o usuario troca o slide (nunca na rotacao automatica). */
@@ -39,7 +41,7 @@
     var icon = hpf.querySelector('[data-hpf-icon]');
     var live = hpf.querySelector('[data-hpf-live]');
     var nameEl = hpf.querySelector('[data-hpf-name]'), typeEl = hpf.querySelector('[data-hpf-type]'), numEl = hpf.querySelector('[data-hpf-n]');
-    var i = 0, paused = false, hover = false, focusIn = false, timer = null, ahead = null;
+    var i = 0, paused = false, focusIn = false, timer = null, ahead = null;
 
     var load = function (n) {
       var img = slides[n] && slides[n].querySelector('img[data-src]');
@@ -67,7 +69,7 @@
       schedule();
     };
 
-    var canRotate = function () { return mode() === 'full' && !paused && !hover && !focusIn && !document.hidden; };
+    var canRotate = function () { return mode() === 'full' && !paused && !focusIn && !document.hidden; };
     var schedule = function () {
       clearTimeout(timer); clearTimeout(ahead);
       if (mode() !== 'full' || paused) return;
@@ -96,9 +98,9 @@
 
     bars.forEach(function (b) { b.addEventListener('click', function () { show(+b.getAttribute('data-go'), true); }); });
     pauseBtn.addEventListener('click', function () { setPaused(!paused); });
-    hpf.addEventListener('mouseenter', function () { hover = true; });
-    hpf.addEventListener('mouseleave', function () { hover = false; });
-    hpf.addEventListener('focusin', function () { focusIn = true; });
+    /* so foco de teclado pausa (WCAG 2.2.2); o foco que um clique de mouse deixa num botao nao conta */
+    var kbFocus = function (el) { try { return el.matches(':focus-visible'); } catch (e) { return true; } };
+    hpf.addEventListener('focusin', function (e) { focusIn = kbFocus(e.target); });
     hpf.addEventListener('focusout', function (e) { if (!hpf.contains(e.relatedTarget)) focusIn = false; });
     window.addEventListener('wc:mode', applyMode);
     applyMode();

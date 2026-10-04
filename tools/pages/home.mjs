@@ -178,9 +178,12 @@ function engineering(c) {
 </section>`;
 }
 
-/* Lab: poster 4:5 (tablet-portrait) por estudo; NATURAL_RATIO (nunca paisagem forcada em retrato). Filmes so na pagina do estudo. */
+/* Lab: poster 4:5 (tablet-portrait) por estudo; NATURAL_RATIO (nunca paisagem forcada em retrato).
+   Filme no hover (desktop, src/hover-video.js) SO quando o filme existente ja e 4:5 nativo (tablet-portrait 768x960 =
+   mesma proporcao e mesmo frame do poster): zero corte, zero midia nova. Filme paisagem (16:9) nao entra no card 4:5. */
+const HOVER_FILM = /-tablet-portrait\.mp4$/;
 export function labCard(c, s) {
-  return h`<a class="lab-card" href="${c.url('lab-' + s.slug)}">
+  return h`<a class="lab-card" href="${c.url('lab-' + s.slug)}"${HOVER_FILM.test(s.film) ? h` data-hover-video="${s.film}"` : ''}>
       ${adm(c, { id: `lab.${s.slug}`, src: s.poster4x5, w: 768, h: 960, alt: s.title, reveal: true })}
       <span class="lab-card-t"><span class="lab-card-name">${s.title}</span><span class="lab-card-type">${c.T('v3.lab.card')}</span></span>
     </a>`;

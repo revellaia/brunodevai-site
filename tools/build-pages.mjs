@@ -29,7 +29,7 @@ const PAGES = {
     const preload = `<link rel="preload" as="image" type="image/webp" href="${v['960']}" imagesrcset="${v['640']} 760w, ${v['960']} 1200w" imagesizes="(min-width: 1024px) 50vw, 100vw" fetchpriority="high">
 <meta name="bd-backdrop" data-mobile="${bd.mobile.avif}" data-desktop="${bd.desktop.avif}">`;
     return {
-      extraScripts: ['home'],
+      extraScripts: ['home', 'hover-video'],
       headOpts: { title: c.T('v3.meta.home.title'), description: c.T('v3.hero.sub'), preload, og: 'home' },
       body: homeBody(c),
     };
@@ -44,7 +44,7 @@ const PAGES = {
     body: cicoCase(c),
   }),
   about: c => ({ headOpts: { title: c.T('meta.about.title'), description: c.T('about.page.complement'), og: 'about' }, body: aboutBody(c) }),
-  lab: c => ({ headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
+  lab: c => ({ extraScripts: ['hover-video'], headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
   privacy: c => ({ headOpts: { title: c.T('meta.privacy.title'), description: c.T('meta.privacy.desc'), og: 'privacy' }, body: privacyBody(c) }),
 };
 for (const [i, s] of site.lab.entries()) {
