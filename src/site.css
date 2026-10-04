@@ -84,15 +84,18 @@
   .hero-media { grid-column: 7 / span 6; }
 }
 @media (min-width: 1200px) {
-  /* placa: a foto ocupa a altura da 1a dobra a direita; o frame desce para abaixo da linha do notebook (78% da placa,
-     sobre a mesa que se dissolve no fundo), sem cobrir rosto, notebook nem maos */
+  /* placa: a foto ocupa a altura da 1a dobra a direita; o frame desce para abaixo da base do notebook (sobre a mesa que
+     se dissolve no fundo), sem cobrir rosto, notebook nem maos */
   .hero { --hp-left: 30%; --hp-plate: clamp(720px, calc(100svh - var(--v-header-h)), 1000px); padding: var(--v-hero-pad-top) var(--v-m) 72px; }
   .hero-bd { left: var(--hp-left); height: var(--hp-plate); }
   .hero-grad { height: var(--hp-plate);
     background: linear-gradient(90deg, #0A0A09 0%, rgba(10,10,9,.94) calc(var(--hp-left) - 2%), rgba(10,10,9,.28) calc(var(--hp-left) + 7%), rgba(10,10,9,0) calc(var(--hp-left) + 14%)),
       linear-gradient(180deg, rgba(10,10,9,.36) 0%, rgba(10,10,9,0) 12%, rgba(10,10,9,0) 68%, rgba(10,10,9,.72) 88%, #0A0A09 100%); }
   .hero-text { grid-column: 1 / span 5; grid-row: 1; min-height: calc(var(--hp-plate) - 2 * var(--v-hero-pad-top)); justify-content: center; }
-  .hero-media { grid-column: 8 / span 5; grid-row: 1; margin-top: calc(var(--hp-plate) * .78 - var(--v-hero-pad-top)); }
+  /* topo do frame = base real do notebook + 12 px. Geometria do cover da foto (object-position y 30%): altura renderizada
+     rh = max(placa, largura da placa x 1086/1448 = 70vw x .75 = 52.5vw); base do notebook = .30 x placa + (.77 - .30) x rh.
+     Em placas mais largas que 4:3 (1600/1920/ultrawide) a foto cresce pela largura e o notebook desce: o frame acompanha. */
+  .hero-media { grid-column: 8 / span 5; grid-row: 1; margin-top: calc(var(--hp-plate) * .3 + max(var(--hp-plate), 52.5vw) * .47 + 12px - var(--v-hero-pad-top)); }
 }
 /* entrada (FULL): h1/lead/CTAs opacity + translateY 12, stagger 80ms, 700ms; REDUCED: opacity 200ms; SAVE: nada */
 :root[data-motion="full"] .hero-text > * { animation: v-rise 700ms var(--v-ease-premium) both; }

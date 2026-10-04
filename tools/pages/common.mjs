@@ -45,7 +45,7 @@ export function adm(c, { id, src, w, h: hh, alt = '', srcset = '', sizes = '', m
 
 export const eyebrow = (n, text, { rule = true } = {}) => h`<p class="eyebrow">${n ? h`<span class="eyebrow-n">${n}</span>` : ''}${rule ? h`<span class="eyebrow-rule" aria-hidden="true"></span>` : ''}${text}</p>`;
 
-const PERSON = c => ({ '@type': 'Person', '@id': ORIGIN + '/#bruno', name: c.T('nav.brand.primary'), jobTitle: c.T('v3.about.role'), url: ORIGIN + '/' });
+const PERSON = c => ({ '@type': 'Person', '@id': ORIGIN + '/#bruno', name: c.T('nav.brand.primary'), jobTitle: c.T('seo.person.jobTitle'), url: ORIGIN + '/' });
 
 export function head(c, { title, description, robots = 'index, follow', preload = '', og = 'default', ld = [] }) {
   const canon = ORIGIN + c.route;

@@ -1525,14 +1525,14 @@
     "status": "OWNER_APPROVED (V3 OD-03)"
   },
   "v3.about.role": {
-    "en": "Digital engineer · Creative developer",
-    "pt": "Engenheiro digital · Creative developer",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "en": "Creative Developer · Digital Systems",
+    "pt": "Creative Developer · Sistemas Digitais",
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta)"
   },
   "v3.about.statement": {
     "en": "I build websites, apps and systems for brands that are already a reference in the real world and need a digital presence that lives up to it.",
     "pt": "Construo sites, aplicativos e sistemas para marcas que já são referência no mundo real e precisam de uma presença digital à mesma altura.",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai"
   },
   "v3.about.k.base": {
     "en": "Based in",
@@ -1552,7 +1552,7 @@
   "v3.about.v.focus": {
     "en": "Websites, apps and systems",
     "pt": "Sites, aplicativos e sistemas",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)",
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai",
     "notes": "Sem idiomas: proficiencia nao confirmada (mission §4/§40)"
   },
   "v3.about.cta": {
@@ -1629,17 +1629,17 @@
   "v3.about.body": {
     "pt": "Antes de pedir um orçamento, o cliente pesquisa. É nesse momento que o site deixa de ser só uma página e passa a ser argumento. Por isso trato estratégia, direção visual e engenharia como um único trabalho: cada projeto nasce da identidade da marca e só vai ao ar quando está rápido, seguro e preciso em qualquer tela. Uso inteligência artificial no processo, com critério de engenharia, para ir mais longe sem perder o acabamento.",
     "en": "Before asking for a quote, clients do their research. That is the moment a website stops being just a page and becomes an argument. So I treat strategy, visual direction and engineering as a single job: every project starts from the brand's own identity and only goes live when it is fast, secure and precise on every screen. I use artificial intelligence throughout the process, with engineering judgment, to go further without losing the finish.",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai"
   },
   "v3.about.k.craft": {
     "pt": "Assinatura",
     "en": "Signature",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai"
   },
   "v3.about.v.craft": {
     "pt": "IA e design imersivo",
     "en": "AI and immersive design",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai"
   },
   "v3.hero.photo.alt": {
     "pt": "Bruno Goebel trabalhando no notebook, no escritório",
@@ -1659,6 +1659,11 @@
   "v3.hero.film.presence.type": {
     "pt": "Filme de marca",
     "en": "Brand film",
-    "status": "OWNER_REVIEW (2026-10-04 · fonte: bio + posts @brunodev.ai)"
+    "status": "OWNER_APPROVED (2026-10-04 · Final Owner Delta) · fonte: bio + posts @brunodev.ai"
+  },
+  "seo.person.jobTitle": {
+    "pt": "Creative Developer · Digital Systems",
+    "en": "Creative Developer · Digital Systems",
+    "status": "SEO_FIXED (2026-10-04 · Owner: JSON-LD jobTitle canonico, igual em PT e EN)"
   }
 }
