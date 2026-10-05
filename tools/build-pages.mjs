@@ -26,7 +26,7 @@ const PAGES = {
     const ph = c.site.media.hero.photo;
     const preload = `<link rel="preload" as="image" type="image/avif" imagesrcset="${ph.avifSet}" imagesizes="${HERO_PHOTO_SIZES}" fetchpriority="high">`;
     return {
-      extraScripts: ['home', 'hover-video'],
+      extraScripts: ['video', 'home', 'hover-video'], /* video.js (motor compartilhado) antes dos consumidores */
       headOpts: { title: c.T('v3.meta.home.title'), description: c.T('v3.hero.sub'), preload, og: 'home' },
       body: homeBody(c),
     };
@@ -41,7 +41,7 @@ const PAGES = {
     body: cicoCase(c),
   }),
   about: c => ({ headOpts: { title: c.T('meta.about.title'), description: c.T('about.page.complement'), og: 'about' }, body: aboutBody(c) }),
-  lab: c => ({ extraScripts: ['hover-video'], headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
+  lab: c => ({ extraScripts: ['video', 'hover-video'], headOpts: { title: c.T('meta.lab.title'), description: c.T('lab.lede'), og: 'lab' }, body: labIndexBody(c) }),
   privacy: c => ({ headOpts: { title: c.T('meta.privacy.title'), description: c.T('meta.privacy.desc'), og: 'privacy' }, body: privacyBody(c) }),
 };
 for (const [i, s] of site.lab.entries()) {

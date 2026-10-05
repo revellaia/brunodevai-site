@@ -265,6 +265,9 @@
 /* filme no hover (src/hover-video.js): sobre o poster, mesmo framing (.adm-m + src/media.css); poster ate tocar de fato */
 .lab-card .hv-video { opacity: 0; transition: opacity 300ms ease; }
 .lab-card.is-playing .hv-video { opacity: 1; }
+/* filme PAISAGEM no card 4:5: inteiro (contain) sobre o proprio poster desfocado/escurecido, como o frame do hero */
+.lab-card[data-hover-landscape] .hv-video { object-fit: contain; object-position: 50% 50%; }
+.lab-card[data-hover-landscape].is-playing img.adm-m { filter: blur(22px) brightness(.38) saturate(.85); transform: scale(1.15); }
 .lab-card-t { display: flex; flex-direction: column; gap: 4px; }
 .lab-card-name { font-size: 15px; font-weight: 500; }
 .lab-card-type { font-size: var(--v-fs-eyebrow); color: var(--v-muted); }

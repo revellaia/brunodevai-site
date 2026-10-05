@@ -4,6 +4,7 @@
    slides 2-5 do hero sem src (carregados sob demanda; SAVE DATA nunca baixa); Engineering so com fatos de src/proof.json. */
 import { h, raw } from '../lib/html.mjs';
 import { ext, live, adm, eyebrow } from './common.mjs';
+import { mp4Duration } from '../lib/mp4.mjs';
 
 const P = (c, id) => c.site.projects.find(p => p.id === id);
 const shotSet = p => `${p.img['640']} 640w, ${p.img['960']} 960w`;
@@ -52,7 +53,7 @@ function hero(c) {
     </div>
     <div class="hero-media" data-hpf>
       <div class="hpf-frame" role="region" aria-roledescription="${c.T('v3.hero.frame.roledesc')}" aria-label="${c.T('v3.hero.frame.region')}">
-        ${S.map((x, i) => h`<div class="hpf-slide hpf-vslide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}" data-video="${x.film}"${i ? raw(' aria-hidden="true"') : ''}>${pic(x, h`<img class="hpf-fill" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="" aria-hidden="true" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}${pic(x, h`<img class="hpf-poster" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="${x.alt}" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}<video class="hpf-video"${i === 0 ? raw(' autoplay') : ''} muted playsinline preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true" width="${x.w}" height="${x.h}"></video></div>`)}
+        ${S.map((x, i) => h`<div class="hpf-slide hpf-vslide${i === 0 ? ' is-active' : ''}" data-slide="${i}" data-name="${x.name}" data-type="${x.type}" data-video="${x.film}" data-duration="${mp4Duration(x.film)}"${i ? raw(' aria-hidden="true"') : ''}>${pic(x, h`<img class="hpf-fill" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="" aria-hidden="true" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}${pic(x, h`<img class="hpf-poster" ${raw(i === 0 ? 'src' : 'data-src')}="${x.poster}" width="${x.w}" height="${x.h}" alt="${x.alt}" decoding="async"${i === 0 ? raw(' fetchpriority="low"') : ''}>`)}<video class="hpf-video"${i === 0 ? raw(' autoplay') : ''} muted playsinline preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true" width="${x.w}" height="${x.h}"></video></div>`)}
         <p class="hpf-count mono" aria-hidden="true"><span data-hpf-n>01</span> / ${String(S.length).padStart(2, '0')}</p>
         <button type="button" class="hpf-pause" data-hpf-pause data-label-pause="${c.T('v3.hero.frame.pause')}" data-label-play="${c.T('v3.hero.frame.play')}" aria-label="${c.T('v3.hero.frame.pause')}" hidden><span aria-hidden="true" data-hpf-icon>II</span></button>
       </div>
@@ -182,11 +183,12 @@ function engineering(c) {
 }
 
 /* Lab: poster 4:5 (tablet-portrait) por estudo; NATURAL_RATIO (nunca paisagem forcada em retrato).
-   Filme no hover (desktop, src/hover-video.js) SO quando o filme existente ja e 4:5 nativo (tablet-portrait 768x960 =
-   mesma proporcao e mesmo frame do poster): zero corte, zero midia nova. Filme paisagem (16:9) nao entra no card 4:5. */
-const HOVER_FILM = /-tablet-portrait\.mp4$/;
+   Filme no hover/foco (desktop, src/hover-video.js) em TODOS os 6 estudos (Owner P0 2026-10-05), reaproveitando os
+   arquivos ja implantados: retrato 4:5 nativo (tablet-portrait 768x960) ocupa o card; PAISAGEM (960x540) entra inteiro
+   em object-fit contain sobre o poster desfocado (data-hover-landscape) -> zero corte, zero distorcao, zero midia nova. */
+const PORTRAIT_FILM = /-tablet-portrait\.mp4$/;
 export function labCard(c, s) {
-  return h`<a class="lab-card" href="${c.url('lab-' + s.slug)}"${HOVER_FILM.test(s.film) ? h` data-hover-video="${s.film}"` : ''}>
+  return h`<a class="lab-card" href="${c.url('lab-' + s.slug)}" data-hover-video="${s.film}"${PORTRAIT_FILM.test(s.film) ? '' : raw(' data-hover-landscape')}>
       ${adm(c, { id: `lab.${s.slug}`, src: s.poster4x5, w: 768, h: 960, alt: s.title, reveal: true })}
       <span class="lab-card-t"><span class="lab-card-name">${s.title}</span><span class="lab-card-type">${c.T('v3.lab.card')}</span></span>
     </a>`;
